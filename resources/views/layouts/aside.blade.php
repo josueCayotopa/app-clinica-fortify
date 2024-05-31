@@ -6,8 +6,6 @@
 
                 <img src=" {{ asset('/images/grupoempresarial2.png') }}" height="50">
 
-
-
             </span>
 
         </a>
@@ -276,8 +274,36 @@
                 @endcan
 
             </ul>
+
         </li>
         @endcan
+        @can('user_index')
+            
+      
+        <li class="menu-item ">
+            <a href="#" class="menu-link menu-toggle">
+                <i class='menu-icon bx bx-map-alt'> </i>
+                <div data-i18n="Ventas">Configuracion</div>
+            </a>
+            <ul class="menu-sub">
+
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div data-i18n="New Sale">Empresa</div>
+                    </a>
+                </li>
+
+
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div data-i18n="Ventas"></div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
+        @endcan
+       
 
 
 

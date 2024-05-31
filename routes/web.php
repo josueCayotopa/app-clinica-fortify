@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserControlles;
@@ -45,7 +46,7 @@ Route::group(['middleware'=>'auth'], function()
     Route::resource('roles', RolController::class);
 
     Route::get('/home/empleados/empleado',[EmpleadoController::class,'index'])->name('empleado.index');
-
+    Route::resource('/configuracion/empresa',EmpresaController::class);
 
 }
 );

@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
+            
+           
             PermissionSeeder::class,
             RoleSeeder::class,
             RoleHasPermissionSeeder::class,
@@ -30,10 +32,13 @@ class DatabaseSeeder extends Seeder
             Tipo_DocumentoSeeder::class,
             NacionalidadSeeder::class,
             DepartamentoRegionSeeder::class,
-            ProvinciaSeeder::class,
+         
             TipoEstablecimientoSeeder::class,
             ViaSeeder::class,
             ZonaSeeder::class,
+            
+          // ProvinciaSeeder::class,
+          // DistritoSeeder::class,
 
         ]);
     }
