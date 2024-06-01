@@ -46,7 +46,7 @@ Route::group(['middleware'=>'auth'], function()
     Route::resource('roles', RolController::class);
 
     Route::get('/home/empleados/empleado',[EmpleadoController::class,'index'])->name('empleado.index');
-    Route::resource('/configuracion/empresa',EmpresaController::class);
+    Route::resource('empresas',EmpresaController::class);
 
 }
 );

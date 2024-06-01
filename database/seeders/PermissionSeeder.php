@@ -47,12 +47,6 @@ class PermissionSeeder extends Seeder
             'contrato_show',
             'contrato_destroy',
 
-
-
-            
-
-
-
         ];
         foreach ($permissions as $permission)
         {

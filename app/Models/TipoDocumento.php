@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class TipoDocumento extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'descripcion',
+        // Agrega aquí las demás columnas de la tabla "tipo_documentos"
+    ];
+    
+    public function empresas()
+    {
+        return $this->hasMany(Empresa::class, 'tipo_documento_id');
+    }
 }

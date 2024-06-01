@@ -31,7 +31,7 @@ class ZonaSeeder extends Seeder
 
 
         ];
-        DB::table('zona')->insert($data);
+        DB::table('zonas')->insert($data);
     
 
     }

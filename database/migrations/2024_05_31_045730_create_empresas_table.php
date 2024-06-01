@@ -27,16 +27,20 @@ return new class extends Migration
             $table->string('email');
             $table->string('numero_telefono');
             $table->string('codigo_ubigeo');
-            
+            $table->unsignedBigInteger('departamento_id');
+            $table->unsignedBigInteger('provincia_id');
             $table->unsignedBigInteger('distrito_id');
             $table->unsignedBigInteger('zona_id');
             $table->unsignedBigInteger('via_id');
             $table->unsignedBigInteger('pais_id');
+            
            
             $table->foreign('tipo_documento_id')->references('id')->on('tipo_documentos');
+            $table->foreign('departamento_id')->references('id')->on('departamento__regions');
+            $table->foreign('provincia_id')->references('id')->on('provincias');
             $table->foreign('distrito_id')->references('id')->on('distritos');
-            $table->foreign('zona_id')->references('id')->on('zona');
-            $table->foreign('via_id')->references('id')->on('via');
+            $table->foreign('zona_id')->references('id')->on('zonas');
+            $table->foreign('via_id')->references('id')->on('vias');
             $table->foreign('pais_id')->references('id')->on('nacionalidad');
             $table->timestamps();
 

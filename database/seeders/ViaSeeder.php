@@ -33,7 +33,7 @@ class ViaSeeder extends Seeder
 
         ];
         
-        DB::table('via')->insert($data);
+        DB::table('vias')->insert($data);
 
     }
 }
