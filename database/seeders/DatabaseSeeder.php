@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Tipo_moneda;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -38,8 +40,12 @@ class DatabaseSeeder extends Seeder
             */
           // ProvinciaSeeder::class,
           // DistritoSeeder::class,
-          ViaSeeder::class,
-          ZonaSeeder::class,
+          //ViaSeeder::class,
+          //ZonaSeeder::class,
+          //NivelEducativoSeeder::class,
+          //TipoTrabajadorsSeeder::class,
+          //TipoMonedasSeeder::class,
+         // TipoCambioSeeder::class,
 
         ]);
     }
