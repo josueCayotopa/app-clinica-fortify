@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PrioridadRemuneracion;
+use App\Models\TipoPago;
 use Illuminate\Http\Request;
 
-class PrioridadRemuneracionController extends Controller
+class TipoPagoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PrioridadRemuneracionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\PrioridadRemuneracion  $prioridadRemuneracion
+     * @param  \App\Models\TipoPago  $tipoPago
      * @return \Illuminate\Http\Response
      */
-    public function show(PrioridadRemuneracion $prioridadRemuneracion)
+    public function show(TipoPago $tipoPago)
     {
         //
     }
@@ -52,10 +52,10 @@ class PrioridadRemuneracionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\PrioridadRemuneracion  $prioridadRemuneracion
+     * @param  \App\Models\TipoPago  $tipoPago
      * @return \Illuminate\Http\Response
      */
-    public function edit(PrioridadRemuneracion $prioridadRemuneracion)
+    public function edit(TipoPago $tipoPago)
     {
         //
     }
@@ -64,10 +64,10 @@ class PrioridadRemuneracionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PrioridadRemuneracion  $prioridadRemuneracion
+     * @param  \App\Models\TipoPago  $tipoPago
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PrioridadRemuneracion $prioridadRemuneracion)
+    public function update(Request $request, TipoPago $tipoPago)
     {
         //
     }
@@ -75,10 +75,10 @@ class PrioridadRemuneracionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\PrioridadRemuneracion  $prioridadRemuneracion
+     * @param  \App\Models\TipoPago  $tipoPago
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PrioridadRemuneracion $prioridadRemuneracion)
+    public function destroy(TipoPago $tipoPago)
     {
         //
     }

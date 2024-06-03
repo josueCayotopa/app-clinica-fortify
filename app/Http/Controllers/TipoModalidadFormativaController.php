@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EntidadesPrestadorasSalud;
+use App\Models\TipoModalidadFormativa;
 use Illuminate\Http\Request;
 
-class EntidadesPrestadorasSaludController extends Controller
+class TipoModalidadFormativaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class EntidadesPrestadorasSaludController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\EntidadesPrestadorasSalud  $entidadesPrestadorasSalud
+     * @param  \App\Models\TipoModalidadFormativa  $tipoModalidadFormativa
      * @return \Illuminate\Http\Response
      */
-    public function show(EntidadesPrestadorasSalud $entidadesPrestadorasSalud)
+    public function show(TipoModalidadFormativa $tipoModalidadFormativa)
     {
         //
     }
@@ -52,10 +52,10 @@ class EntidadesPrestadorasSaludController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\EntidadesPrestadorasSalud  $entidadesPrestadorasSalud
+     * @param  \App\Models\TipoModalidadFormativa  $tipoModalidadFormativa
      * @return \Illuminate\Http\Response
      */
-    public function edit(EntidadesPrestadorasSalud $entidadesPrestadorasSalud)
+    public function edit(TipoModalidadFormativa $tipoModalidadFormativa)
     {
         //
     }
@@ -64,10 +64,10 @@ class EntidadesPrestadorasSaludController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\EntidadesPrestadorasSalud  $entidadesPrestadorasSalud
+     * @param  \App\Models\TipoModalidadFormativa  $tipoModalidadFormativa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EntidadesPrestadorasSalud $entidadesPrestadorasSalud)
+    public function update(Request $request, TipoModalidadFormativa $tipoModalidadFormativa)
     {
         //
     }
@@ -75,10 +75,10 @@ class EntidadesPrestadorasSaludController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\EntidadesPrestadorasSalud  $entidadesPrestadorasSalud
+     * @param  \App\Models\TipoModalidadFormativa  $tipoModalidadFormativa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(EntidadesPrestadorasSalud $entidadesPrestadorasSalud)
+    public function destroy(TipoModalidadFormativa $tipoModalidadFormativa)
     {
         //
     }

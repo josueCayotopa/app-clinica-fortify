@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('entidades_prestadoras_saluds', function (Blueprint $table) {
+        Schema::create('tipo_pagos', function (Blueprint $table) {
             $table->id();
-            $table->string('ruc');
+            
             $table->string('descripcion');
             $table->boolean('estado')->default(true);
             $table->timestamps();
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entidades_prestadoras_saluds');
+        Schema::dropIfExists('tipo_pagos');
     }
 };

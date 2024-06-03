@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prioridad_remuneracions', function (Blueprint $table) {
-            $table->id();
-            $table->string('codigo_sunat');
+        Schema::create('motivo_baja_d_h_s', function (Blueprint $table) {
+            $table->id(); 
             $table->string('descripcion');
             $table->boolean('estado')->default(true);
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prioridad_remuneracions');
+        Schema::dropIfExists('motivo_baja_d_h_s');
     }
 };
