@@ -11,5 +11,15 @@ class Provincia extends Model
     protected $fillable = [
         'codigo',
         'descripcion',
+        'departamento_id',
     ];
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento_Region::class, 'departamento_id');
+    }
+
+    public function distritos()
+    {
+        return $this->hasMany(Distrito::class);
+    }
 }

@@ -4,7 +4,9 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\UserControlles;
+use App\Models\Sucursal;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,28 +29,31 @@ Route::get('/', function () {
 
 
 // usuarios 
-Route::group(['middleware'=>'auth'], function()
-{
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
 
-    Route::get('/home/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home.dashboard');
-    Route::get('/users/create',[UserControlles::class,'create'])->name('users.create');
-    Route::post('/users',[UserControlles::class, 'store'])->name('users.store');
-    Route::get('/users/index',[UserControlles::class, 'index'])->name('users.index');
-    Route::get('/users/search', [UserControlles::class, 'search'])->name('users.search');
-    Route::get('/users/{user}',[UserControlles::class, 'show'])->name('users.show');
-    Route::get('/users/{user}/edit',[UserControlles::class, 'edit'])->name('users.edit');
-    
-    Route::put('/users/{user}',[UserControlles::class, 'update'])->name('users.update');
-    Route::delete('/users/{user}',[UserControlles::class, 'destroy'])->name('users.delete');
+        Route::get('/home/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home.dashboard');
+        Route::get('/users/create', [UserControlles::class, 'create'])->name('users.create');
+        Route::post('/users', [UserControlles::class, 'store'])->name('users.store');
+        Route::get('/users/index', [UserControlles::class, 'index'])->name('users.index');
+        Route::get('/users/search', [UserControlles::class, 'search'])->name('users.search');
+        Route::get('/users/{user}', [UserControlles::class, 'show'])->name('users.show');
+        Route::get('/users/{user}/edit', [UserControlles::class, 'edit'])->name('users.edit');
+
+        Route::put('/users/{user}', [UserControlles::class, 'update'])->name('users.update');
+        Route::delete('/users/{user}', [UserControlles::class, 'destroy'])->name('users.delete');
 
 
-    Route::resource('permissions', PermissionController::class);
-    Route::resource('roles', RolController::class);
+        Route::resource('permissions', PermissionController::class);
+        Route::resource('roles', RolController::class);
 
-    Route::get('/home/empleados/empleado',[EmpleadoController::class,'index'])->name('empleado.index');
-    Route::resource('empresas',EmpresaController::class);
-
-}
+        Route::get('/home/empleados/empleado', [EmpleadoController::class, 'index'])->name('empleado.index');
+        Route::resource('empresas', EmpresaController::class);
+        Route::get('get-provincias', [EmpresaController::class, 'getProvincias'])->name('getProvincias');
+        Route::get('get-distritos', [EmpresaController::class, 'getDistritos'])->name('getDistritos');
+        Route::resource('sucursales', SucursalController::class);
+    }
 );
 
 // permisos

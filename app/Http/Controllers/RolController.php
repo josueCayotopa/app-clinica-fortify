@@ -11,11 +11,20 @@ use Spatie\Permission\Models\Role;
 
 class RolController extends Controller
 {
-   public  function index()
+   public  function index(Request $request)
    {
       abort_if( Gate::denies('role_index'), 403);
-    $roles=Role::paginate(5);
-    return view('users.roles.index', compact('roles'));
+      $query = Role::query();
+
+      if ($request->has('search')) {
+          $search = $request->input('search');
+          $query->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('id', 'LIKE', "%{$search}%");
+      }
+  
+      $roles = $query->paginate(5);
+  
+      return view('users.roles.index', compact('roles'));
 
    }
    public  function create()

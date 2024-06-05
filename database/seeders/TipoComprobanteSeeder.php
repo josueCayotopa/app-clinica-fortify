@@ -16,7 +16,7 @@ class TipoComprobanteSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('tipo_pago')->insert([
+        DB::table('tipo_comprobantes')->insert([
             ['codigo_sunat'=>'R', 'descripcion' => 'RECIBO POR HONORARIO', 'estado' => true],
             ['codigo_sunat'=>'N', 'descripcion' => 'NOTA DE CRÉDITO', 'estado' => true],
             [ 'codigo_sunat'=>'D','descripcion' => 'DIETA', 'estado' => true],

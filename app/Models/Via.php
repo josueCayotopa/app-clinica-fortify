@@ -12,4 +12,5 @@ class Via extends Model
         'descripcion',
         // Agrega aquí las demás columnas de la tabla "tipo_documentos"
     ];
+    
 }

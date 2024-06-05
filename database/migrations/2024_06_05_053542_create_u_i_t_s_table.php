@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_pagos', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('descripcion');
-            $table->boolean('estado')->default(true);
+        Schema::create('u_i_t_s', function (Blueprint $table) {
+            $table->integer('ano_proceso')->length(4)->primary();
+            $table->decimal('num_uit_deducible', 3, 0)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_pagos');
+        Schema::dropIfExists('u_i_t_s');
     }
 };

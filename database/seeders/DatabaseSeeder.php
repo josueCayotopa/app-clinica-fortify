@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Tipo_moneda;
+use App\Models\TipoPago;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -45,7 +46,22 @@ class DatabaseSeeder extends Seeder
           //NivelEducativoSeeder::class,
           //TipoTrabajadorsSeeder::class,
           //TipoMonedasSeeder::class,
-         // TipoCambioSeeder::class,
+          // TipoCambioSeeder::class,
+          //OcupacionSeeder::class,
+          // RegimenPensionarioSeeder::class,
+          // TiposContatosTrabajoSeeder::class,
+          // PeriodicidadSeeder::class,
+          // EPSSeeder::class,
+          // SituacionEPSSeeder::class,
+          // TipoPagoSeeder::class,
+          // MotivoFinPeriodoSeeder::class,
+          // TipoModalidadFormativaSeeder::class,
+          // VinculoFamiliarSeeder::class,
+          // MotivoBajaDHSeeder::class,
+          // TipoSuspensionSeeder::class,
+          TipoComprobanteSeeder::class,
+
+
 
         ]);
     }

@@ -11,6 +11,11 @@ class Distrito extends Model
     protected $fillable = [
         'codigo',
         'descripcion',
+        'provincia_id',
     ];
+    public function provincia()
+{
+    return $this->belongsTo(Provincia::class, 'provincia_id');
+}
 
 }

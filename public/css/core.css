@@ -8765,11 +8765,16 @@
   }
   
   .nav-tabs .nav-item .nav-link:not(.active) {
-    background-color: #eceef1
+    color: #c7cdd4; /* Color de texto */
+    
+    background-color: #f8f9fa; /* Color de fondo */
+    border-color: #dee2e6; /* Color del borde */
+    /* Otros estilos que desees aplicar */
   }
   
   .nav-tabs .nav-item .nav-link.disabled {
     color: #c7cdd4
+
   }
   
   .nav-tabs .nav-link,.nav-pills .nav-link {

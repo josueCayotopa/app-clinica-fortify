@@ -9,13 +9,14 @@
 
     <h4>Roles</h4>
 
-    <div class="search-container mb-3">
-        <div class="input-group flex-grow-1">
-            <input type="text" class="form-control" id="search-input" placeholder="Buscar por Nombre o ID">
-        </div>
+    <div class="search-container mb-3 ">
+        <form method="GET" action="{{ route('roles.index') }}" class="input-group flex-grow-1 ">
+            <input type="text" class="form-control " name="search" id="search-input" placeholder="Buscar por Nombre o ID" value="{{ request()->input('search') }}">
+            <div class="input-group-append ">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
         @can('role_create')
-            
-     
         <button class="btn btn-primary ms-3" id="new-button" data-toggle="modal" data-target="#createPermissionModal">
             Nuevo<span><i class='bx bx-plus'></i></span>
         </button>
@@ -28,7 +29,6 @@
                 <th>Id</th>
                 <th>Nombre</th>
                 <th>Permisos</th>
-
                 <th>Fecha</th>
                 <th class="text-right">Opciones</th>
             </tr>
@@ -42,40 +42,34 @@
                         @forelse ($role->permissions as $permission)
                             <span class="badge badge-success" style="background-color: rgb(22, 156, 209)">
                                 {{ $permission->name }}
-
                             </span>
                         @empty
-                        <span class="badge badge-danger" style="background-color: rgb(240, 7, 19)">
-                            No tiene permisos
-
-                        </span>
+                            <span class="badge badge-danger" style="background-color: rgb(240, 7, 19)">
+                                No tiene permisos
+                            </span>
                         @endforelse
                     </td>
-                    
                     <td>{{ $role->created_at->toFormattedDateString() }}</td>
                     <td class="text-right">
                         <div class="action-buttons" style="display: flex; justify-content: center; margin-top: 20px;">
-                           
-                           @can('role_show')
-                               
-                           
-                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-outline-primary" style="margin: 0 2px;">
-                                <span><i class='bx bx-show-alt'></i></span>
-                            </a>
+                            @can('role_show')
+                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-outline-primary" style="margin: 0 2px;">
+                                    <span><i class='bx bx-show-alt'></i></span>
+                                </a>
                             @endcan
                             @can('role_edit')
-                            <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning" style="margin: 0 2px;">
-                                <span><i class='bx bxs-edit'></i></span>
-                            </a>
+                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning" style="margin: 0 2px;">
+                                    <span><i class='bx bxs-edit'></i></span>
+                                </a>
                             @endcan
                             @can('role_destroy')
-                            <form action="{{ route('roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro?')">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit" style="margin: 0 2px;">
-                                    <span><i class='bx bxs-x-circle'></i></i></span>
-                                </button>
-                            </form>
+                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit" style="margin: 0 2px;">
+                                        <span><i class='bx bxs-x-circle'></i></i></span>
+                                    </button>
+                                </form>
                             @endcan
                         </div>
                     </td>
@@ -84,10 +78,11 @@
         </tbody>
     </table>
 
-    <div class="mt-5"> <!-- Mayor separación entre la tabla y el paginador -->
+    <div class="mt-5">
         {{ $roles->links() }}
     </div>
 </div>
+
 
 
 

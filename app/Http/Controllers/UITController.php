@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Afp;
+use App\Models\UIT;
 use Illuminate\Http\Request;
 
-class AfpController extends Controller
+class UITController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AfpController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Afp  $afp
+     * @param  \App\Models\UIT  $uIT
      * @return \Illuminate\Http\Response
      */
-    public function show(Afp $afp)
+    public function show(UIT $uIT)
     {
         //
     }
@@ -52,10 +52,10 @@ class AfpController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Afp  $afp
+     * @param  \App\Models\UIT  $uIT
      * @return \Illuminate\Http\Response
      */
-    public function edit(Afp $afp)
+    public function edit(UIT $uIT)
     {
         //
     }
@@ -64,10 +64,10 @@ class AfpController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Afp  $afp
+     * @param  \App\Models\UIT  $uIT
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Afp $afp)
+    public function update(Request $request, UIT $uIT)
     {
         //
     }
@@ -75,10 +75,10 @@ class AfpController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Afp  $afp
+     * @param  \App\Models\UIT  $uIT
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Afp $afp)
+    public function destroy(UIT $uIT)
     {
         //
     }

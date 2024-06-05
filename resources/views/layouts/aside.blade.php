@@ -283,20 +283,20 @@
         <li class="menu-item ">
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-map-alt'> </i>
-                <div data-i18n="Ventas">Configuracion</div>
+                <div data-i18n="configuracion">Configuracion</div>
             </a>
             <ul class="menu-sub">
 
                 <li class="menu-item">
                     <a href="{{ route('empresas.index') }}" class="menu-link">
-                        <div data-i18n="New Sale">Empresa</div>
+                        <div data-i18n="empresa">Empresa</div>
                     </a>
                 </li>
 
 
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Ventas"></div>
+                    <a href="{{ route('sucursales.index') }}" class="menu-link">
+                        <div data-i18n="empresa"> Sucursales</div>
                     </a>
                 </li>
 

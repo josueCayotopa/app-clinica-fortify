@@ -16,7 +16,7 @@ class TipoPagoSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('tipo_pago')->insert([
+        DB::table('tipo_pagos')->insert([
             [ 'descripcion' => 'EFECTIVO', 'estado' => true],
             [ 'descripcion' => 'DEPÓSITO EN CUENTA', 'estado' => true],
             [ 'descripcion' => 'OTROS', 'estado' => true],
