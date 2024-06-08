@@ -7,79 +7,55 @@ use Illuminate\Http\Request;
 
 class UITController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $uits = Uit::paginate(5);
+        return view('configuracion.uit.index', compact('uits'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('configuracion.uit.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ano_proceso' => 'required|integer|unique:u_i_t_s,ano_proceso',
+            'num_uit_deducible' => 'required|numeric',
+        ]);
+
+        Uit::create($request->all());
+        return redirect()->route('uits.index')->with('success', 'Asignación de UIT creada exitosamente.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\UIT  $uIT
-     * @return \Illuminate\Http\Response
-     */
-    public function show(UIT $uIT)
+    public function show($id)
     {
-        //
+        $uit = Uit::findOrFail($id);
+        return view('configuracion.uit.show', compact('uit'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\UIT  $uIT
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(UIT $uIT)
+    public function edit($id)
     {
-        //
+        $uit = Uit::findOrFail($id);
+        return view('configuracion.uit.edit', compact('uit'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UIT  $uIT
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, UIT $uIT)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'num_uit_deducible' => 'required|numeric',
+        ]);
+
+        $uit = Uit::findOrFail($id);
+        $uit->update($request->all());
+        return redirect()->route('uits.index')->with('success', 'Asignación de UIT actualizada exitosamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\UIT  $uIT
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(UIT $uIT)
+    public function destroy($id)
     {
-        //
+        $uit = Uit::findOrFail($id);
+        $uit->delete();
+        return redirect()->route('uits.index')->with('success', 'Asignación de UIT eliminada exitosamente.');
     }
 }

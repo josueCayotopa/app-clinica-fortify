@@ -6,7 +6,7 @@
                 {{ session('success') }}
             </div>
         @endif
-        <h4>Sucursale</h4>
+        <h4> Sucursales </h4>
 
         <div class="search-container mb-3">
             <div class="input-group me-3">
@@ -18,7 +18,7 @@
             </div>
             <input type="search" id="search-input" class="form-control" placeholder="Buscar por nombre o usuario">
             @can('user_create')
-                <button class="btn btn-primary ms-3" id="new-button" >Nuevo <span><i class='bx bx-user-plus'></i></span>
+                <button class="btn btn-primary ms-3" id="new-button" > Nuevo <span><i class='bx bx-user-plus'></i></span>
 
                 </button>
             @endcan
@@ -50,21 +50,21 @@
                             justify-content: center;
                             margin-top: 20px;">
                                 @can('user_show')
-                                    <a href=" {{ route('empresas.show', $sucursalempresa->id) }}" class="btn btn-outline-primary"
+                                    <a href=" {{ route('sucursales.show', $sucursal->id) }}" class="btn btn-outline-primary"
                                         style="margin: 0 2px;">
                                         <span><i class='bx bx-show-alt'></i></span>
                                     </a>
                                 @endcan
 
                                 @can('user_edit')
-                                    <a href=" {{ route('empresas.edit', $sucursal->id) }}" class="btn btn-warning"
+                                    <a href=" {{ route('sucursales.edit', $sucursal->id) }}" class="btn btn-warning"
                                         style="margin: 0 2px;">
                                         <span><i class='bx bx-edit-alt'></i></span>
                                     </a>
                                 @endcan
                                 @can('user_create')
                                     <div>
-                                        <form action="{{ route('empresas.delete', $sucursal->id) }}" method="POST"
+                                        <form action="{{ route('sucursales.destroy', $sucursal->id) }}" method="POST"
                                             onsubmit="return confirm('seguro?')">
                                             @csrf
                                             @method('DELETE')
@@ -92,34 +92,7 @@
             {{ $sucursales->links() }}
         </div>
     </div>
-    <!-- Modal Crear -->
-    <div class="modal fade" id="crearEmpresaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                  <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control" id="message-text"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
+    
     <script>
         document.getElementById('new-button').addEventListener('click', function() {
             window.location.href = '{{ route('sucursales.create') }}';

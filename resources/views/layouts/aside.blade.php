@@ -89,12 +89,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('categoria-cargo.indexcargocategoria') }}" class="menu-link">
                                 <div data-i18n="Ventas">Categorias y Cargo</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="menu-link">
+                            <a href="afp.descuentos.index" class="menu-link">
                                 <div data-i18n="Ventas">AFP y DESC.</div>
                             </a>
                         </li>
@@ -297,6 +297,36 @@
                 <li class="menu-item">
                     <a href="{{ route('sucursales.index') }}" class="menu-link">
                         <div data-i18n="empresa"> Sucursales</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('uits.index') }}" class="menu-link">
+                        <div data-i18n="empresa"> UIT</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('sucursales.index') }}" class="menu-link">
+                        <div data-i18n="empresa"> Descuentos AFP</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('sucursales.index') }}" class="menu-link">
+                        <div data-i18n="empresa"> Semanas</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('sucursales.index') }}" class="menu-link">
+                        <div data-i18n="empresa"> Tipo Trabajador ESSALUD</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('sucursales.index') }}" class="menu-link">
+                        <div data-i18n="empresa"> Tipos de Planillas</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('sucursales.index') }}" class="menu-link">
+                        <div data-i18n="empresa"> Prestamos c/ Conceptos</div>
                     </a>
                 </li>
 

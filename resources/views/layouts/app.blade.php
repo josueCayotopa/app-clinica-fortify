@@ -27,15 +27,18 @@
     <!-- Icons. Uncomment required icon fonts -->
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css'>
     <link rel='stylesheet' href='https://unpkg.com/css-pro-layout@1.1.0/dist/css/css-pro-layout.css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/app-cll.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/core.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/theme-default.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/demo.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/apex-charts.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/perfect-scrollbar.css') }}">
+   
 
 
     <!-- Vendors CSS -->
@@ -71,10 +74,14 @@
     <script src="{{ asset('/js/popper.js') }}"></script>
     <script src="{{ asset('/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.js') }}"></script>
+
     <script src="{{ asset('/js/menu.js') }}"></script>
     
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 
 

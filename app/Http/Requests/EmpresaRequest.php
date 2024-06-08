@@ -24,37 +24,33 @@ class EmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-
-            //
-            
-            
-            'razon_social' => 'required|string|max:255',
+            'codigo_empresa' => 'required|string|max:255',
             'direccion' => 'required|string|max:255',
+            'razon_social' => 'required|string|max:255',
             'nombre_comercial' => 'required|string|max:255',
-            'ruc_empresa' => 'required|string|max:20',
+            'ruc_empresa' => 'required|string|max:255',
             'numero_decreto_supremo' => 'required|string|max:255',
             'nombre_representante_legal' => 'required|string|max:255',
             'tipo_documento_id' => 'required|exists:tipo_documentos,id',
-            'numero_documento' => 'required|string|max:20',
+            'numero_documento' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'numero_telefono' => 'required|string|max:20',
-            'codigo_ubigeo' => 'required|string|max:20',
+            'numero_telefono' => 'required|string|max:255',
             'departamento_id' => 'required|exists:departamento__regions,id',
             'provincia_id' => 'required|exists:provincias,id',
             'distrito_id' => 'required|exists:distritos,id',
             'zona_id' => 'required|exists:zonas,id',
             'via_id' => 'required|exists:vias,id',
             'pais_id' => 'required|exists:nacionalidad,id',
-            
+            'tipo_moneda' => 'required|exists:tipo_monedas,id',
         ];
-        
     }
     public function messages()
     {
-        return[
-            
-            
+        return [
+
+
             'razon_social.required' => 'La razón social es obligatoria.',
+            'razon_social.string' => 'tipo text',
             'direccion.required' => 'La dirección es obligatoria.',
             'nombre_comercial.required' => 'El nombre comercial es obligatorio.',
             'ruc_empresa.required' => 'El RUC de la empresa es obligatorio.',
@@ -80,6 +76,5 @@ class EmpresaRequest extends FormRequest
             'pais_id.required' => 'El país es obligatorio.',
             'pais_id.exists' => 'El país seleccionado no es válido.',
         ];
-        
     }
 }

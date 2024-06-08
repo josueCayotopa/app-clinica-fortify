@@ -20,5 +20,6 @@ class Departamento_Region extends Model
     {
         return $this->belongsTo(Nacionalidad::class, 'nacionalidad_id');
     }
+    
 
 }

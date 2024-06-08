@@ -59,7 +59,8 @@ class DatabaseSeeder extends Seeder
           // VinculoFamiliarSeeder::class,
           // MotivoBajaDHSeeder::class,
           // TipoSuspensionSeeder::class,
-          TipoComprobanteSeeder::class,
+           // TipoComprobanteSeeder::class,
+           UitSeeder::class,
 
 
 

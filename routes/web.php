@@ -1,11 +1,17 @@
 <?php
 
+use App\Http\Controllers\AfpsdescuentosController;
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\CategoriaCargoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\UbigeoController;
+use App\Http\Controllers\UITController;
 use App\Http\Controllers\UserControlles;
+use App\Models\CargoCategoria;
 use App\Models\Sucursal;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
@@ -50,9 +56,32 @@ Route::group(
 
         Route::get('/home/empleados/empleado', [EmpleadoController::class, 'index'])->name('empleado.index');
         Route::resource('empresas', EmpresaController::class);
-        Route::get('get-provincias', [EmpresaController::class, 'getProvincias'])->name('getProvincias');
-        Route::get('get-distritos', [EmpresaController::class, 'getDistritos'])->name('getDistritos');
+       
         Route::resource('sucursales', SucursalController::class);
+        Route::resource('uits', UITController::class);
+
+        Route::get('/getProvincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
+        Route::get('/getDistritos/{provincia_id}', [UbigeoController::class, 'getDistritos'])->name('getDistritos');
+
+
+        // ruta maestros
+
+        Route::resource('cargos', CargoController::class);
+        // cargo y Categorias
+        Route::get('/vista-categoria', [CategoriaCargoController::class, 'index'])->name('categoria-cargo.indexcargocategoria');
+        Route::delete('/categoria-cargos/{id}', [CategoriaCargoController::class, 'destroy'])->name('categoria-cargos.destroy');
+        Route::get('/editar-relacion-categoria-cargo/{id}', [CategoriaCargoController::class, 'edit'])->name('editar-relacion-categoria-cargo');
+        Route::put('/actualizar-relacion-categoria-cargo/{id}', [CategoriaCargoController::class, 'update'])->name('actualizar-relacion-categoria-cargo');
+        Route::get('categoria-cargo/crear', [CategoriaCargoController::class, 'create'])->name('crear-relacion-categoria-cargo');
+        Route::post('categoria-cargo', [CategoriaCargoController::class, 'store'])->name('guardar-relacion-categoria-cargo');
+
+        // afp y tipo de descuento
+        Route::get('/empleados/maestros/descuentoAfp', [AfpsdescuentosController::class, 'index'])->name('afp.descuentos.index');
+        Route::get('afp-descuentos/{id}/editar', [AfpsdescuentosController::class, 'edit'])->name('editar.afp.descuento');
+        Route::put('afp-descuentos/{id}', [AfpsdescuentosController::class, 'update'])->name('actualizar.afp.descuento');
+        Route::delete('/afpDescuentos/{id}', [AfpsdescuentosController::class, 'destroy'])->name('afpDescuentos.destroy');
+        Route::get('/afp/descuentos/create', [AfpsdescuentosController::class, 'create'])->name('afp.descuentos.create');
+        Route::post('/afp/descuentos', [AfpsdescuentosController::class, 'store'])->name('afp.descuentos.store');
     }
 );
 

@@ -3310,7 +3310,12 @@
     position: relative;
     flex: 1 1 auto
   }
-  
+  .btn-group-toggle .btn {
+    font-size: 0.875rem; /* Tamaño de fuente más pequeño */
+    padding: 0.375rem 0.75rem; /* Ajustar padding para botones más pequeños */
+}
+
+
   .btn-group>.btn-check:checked+.btn,.btn-group>.btn-check:focus+.btn,.btn-group>.btn:hover,.btn-group>.btn:focus,.btn-group>.btn:active,.btn-group>.btn.active,.btn-group-vertical>.btn-check:checked+.btn,.btn-group-vertical>.btn-check:focus+.btn,.btn-group-vertical>.btn:hover,.btn-group-vertical>.btn:focus,.btn-group-vertical>.btn:active,.btn-group-vertical>.btn.active {
     z-index: 1
   }

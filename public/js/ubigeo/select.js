@@ -1,55 +1,74 @@
 $(document).ready(function() {
-    $('#departamentos').on('change', function() {
+    var oldDepartamentoId = "{{ old('departamento_id') }}";
+    var oldProvinciaId = "{{ old('provincia_id') }}";
+    var oldDistritoId = "{{ old('distrito_id') }}";
+
+    if (oldDepartamentoId) {
+        loadProvincias(oldDepartamentoId, oldProvinciaId);
+    }
+
+    if (oldProvinciaId) {
+        loadDistritos(oldProvinciaId, oldDistritoId);
+    }
+
+    $('#departamento_id').on('change', function() {
         var departamentoId = $(this).val();
-        var url = $(this).data('get-provincias');
-        if (departamentoId) {
-            $.ajax({
-                url: url,
-                type: 'GET',
-                data: {
-                    departamento_id: departamentoId
-                },
-                success: function(data) {
-                    $('#provincias').empty().append(
-                        '<option value="" disabled selected>Selecciona una Provincia</option>'
-                        );
-                    $.each(data, function(key, value) {
-                        $('#provincias').append('<option value="' + key + '">' +
-                            value + '</option>');
-                    });
-                }
-            });
-        } else {
-            $('#provincias').empty().append(
-                '<option value="" disabled selected>Selecciona una Provincia</option>');
-            $('#distritos').empty().append(
-                '<option value="" disabled selected>Selecciona un Distrito</option>');
-        }
+        loadProvincias(departamentoId);
     });
 
-    $('#provincias').on('change', function() {
+    $('#provincia_id').on('change', function() {
         var provinciaId = $(this).val();
-        var url = $(this).data('get-distritos');
-        if (provinciaId) {
+        loadDistritos(provinciaId);
+    });
+
+    function loadProvincias(departamentoId, selectedProvinciaId = null) {
+        if (departamentoId) {
             $.ajax({
-                url: url,
+                url: "{{ url('getProvincias') }}/" + departamentoId,
                 type: 'GET',
-                data: {
-                    provincia_id: provinciaId
-                },
+                dataType: 'json',
                 success: function(data) {
-                    $('#distritos').empty().append(
+                    $('#provincia_id').empty().prop('disabled', false).append(
+                        '<option value="" disabled selected>Selecciona una Provincia</option>'
+                    );
+                    $('#distrito_id').empty().prop('disabled', true).append(
                         '<option value="" disabled selected>Selecciona un Distrito</option>'
-                        );
+                    );
                     $.each(data, function(key, value) {
-                        $('#distritos').append('<option value="' + key + '">' +
-                            value + '</option>');
+                        $('#provincia_id').append('<option value="' + key + '"' + (
+                                selectedProvinciaId == key ? ' selected' : '') +
+                            '>' + value + '</option>');
                     });
                 }
             });
         } else {
-            $('#distritos').empty().append(
+            $('#provincia_id').empty().prop('disabled', true).append(
+                '<option value="" disabled selected>Selecciona una Provincia</option>');
+            $('#distrito_id').empty().prop('disabled', true).append(
                 '<option value="" disabled selected>Selecciona un Distrito</option>');
         }
-    });
+    }
+
+    function loadDistritos(provinciaId, selectedDistritoId = null) {
+        if (provinciaId) {
+            $.ajax({
+                url: "{{ url('getDistritos') }}/" + provinciaId,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#distrito_id').empty().prop('disabled', false).append(
+                        '<option value="" disabled selected>Selecciona un Distrito</option>'
+                    );
+                    $.each(data, function(key, value) {
+                        $('#distrito_id').append('<option value="' + key + '"' + (
+                                selectedDistritoId == key ? ' selected' : '') +
+                            '>' + value + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('#distrito_id').empty().prop('disabled', true).append(
+                '<option value="" disabled selected>Selecciona un Distrito</option>');
+        }
+    }
 });

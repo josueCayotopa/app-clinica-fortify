@@ -8,6 +8,7 @@ use App\Models\Distrito;
 use App\Models\Empresa;
 use App\Models\Nacionalidad;
 use App\Models\Provincia;
+use App\Models\Tipo_moneda;
 use App\Models\TipoDocumento;
 use App\Models\Via;
 use App\Models\Zona;
@@ -49,22 +50,20 @@ class EmpresaController extends Controller
         $zonas = Zona::all()->pluck('descripcion', 'id');
         $vias = Via::all()->pluck('descripcion', 'id');
         $paises = Nacionalidad::all()->pluck('descripcion', 'id');
+        $tipo_monedas = Tipo_moneda::all()->pluck('descripcion', 'id'); // Añadir esto
 
-        return view('configuracion.empresa.create', compact('tipo_documentos', 'departamentos', 'provincias', 'distritos', 'zonas', 'vias', 'paises'));
+        return view('configuracion.empresa.create', compact('tipo_documentos', 'departamentos', 'provincias', 'distritos', 'zonas', 'vias', 'paises', 'tipo_monedas'));
     }
 
 
     public function store(EmpresaRequest $request)
     {
-
-        
-
         $distrito = Distrito::find($request->distrito_id);
         if (!$distrito) {
             return redirect()->back()->withErrors(['distrito_id' => 'El distrito seleccionado no es válido.'])->withInput();
         }
-
-        Empresa::create([
+    
+        $empresa = Empresa::create([
             'codigo_empresa' => $request->codigo_empresa,
             'direccion' => $request->direccion,
             'razon_social' => $request->razon_social,
@@ -77,20 +76,18 @@ class EmpresaController extends Controller
             'email' => $request->email,
             'numero_telefono' => $request->numero_telefono,
             'codigo_ubigeo' => $distrito->codigo,
-            
-            'departamento_id' => $request->departamentos,
-            'provincia_id' => $request->provincias,
-            'distrito_id' => $request->distritos,
+            'departamento_id' => $request->departamento_id,
+            'provincia_id' => $request->provincia_id,
+            'distrito_id' => $request->distrito_id,
             'zona_id' => $request->zona_id,
             'via_id' => $request->via_id,
             'pais_id' => $request->pais_id,
-            'tipo_moneda' => 1,
-
-
+            'tipo_moneda_id' => $request->tipo_moneda, // Corrected to tipo_moneda_id
         ]);
-
+    
         return redirect()->route('empresas.index')->with('success', 'Empresa creada exitosamente.');
     }
+    
 
 
     public function show(Empresa $empresa)
@@ -102,6 +99,19 @@ class EmpresaController extends Controller
     public function edit(Empresa $empresa)
     {
         //
+
+
+    $tipo_documentos = TipoDocumento::all()->pluck('descripcion', 'id');
+    $departamentos = Departamento_Region::all()->pluck('descripcion', 'id');
+    $provincias = Provincia::all()->pluck('descripcion', 'id');
+    $distritos = Distrito::all()->pluck('descripcion', 'id');
+    $zonas = Zona::all()->pluck('descripcion', 'id');
+    $vias = Via::all()->pluck('descripcion', 'id');
+    $paises = Nacionalidad::all()->pluck('descripcion', 'id');
+    $tipo_monedas = Tipo_Moneda::all()->pluck('descripcion', 'id');
+
+    return view('configuracion.empresa.edit', compact('empresa', 'tipo_documentos', 'departamentos', 'provincias', 'distritos', 'zonas', 'vias', 'paises', 'tipo_monedas'));
+
     }
 
 
@@ -112,7 +122,10 @@ class EmpresaController extends Controller
 
     public function destroy(Empresa $empresa)
     {
-        //
+        // Eliminar la empresa
+        $empresa->delete();
+    
+        return redirect()->route('empresas.index')->with('success', 'Empresa eliminada exitosamente.');
     }
     public function getProvincias(Request $request)
     {
@@ -134,4 +147,5 @@ class EmpresaController extends Controller
             return response()->json(['error' => 'Error al obtener los distritos'], 500);
         }
     }
+    
 }
