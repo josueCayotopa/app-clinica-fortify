@@ -63,17 +63,17 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('profesion.index') }}" class="menu-link">
                                 <div data-i18n="Ventas">Profesiones</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('zona.index') }}" class="menu-link">
                                 <div data-i18n="Ventas">Zonas</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="" class="menu-link">
+                            <a href="{{ route('institucion.index') }}" class="menu-link">
                                 <div data-i18n="Ventas">Instituciones</div>
                             </a>
                         </li>

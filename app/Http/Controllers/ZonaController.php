@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ZonaStoreRequest;
+use App\Models\Zona;
 use Illuminate\Http\Request;
 
 class ZonaController extends Controller
@@ -13,7 +15,9 @@ class ZonaController extends Controller
      */
     public function index()
     {
-        //
+    
+        $zonas = Zona::paginate(10);
+        return view('empleados.planillas.zonas.index', compact('zonas'));
     }
 
     /**
@@ -32,9 +36,11 @@ class ZonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ZonaStoreRequest $request)
     {
-        //
+        Zona::create($request->validated());
+
+        return redirect()->route('zona.index')->with('success', 'Zona creada correctamente');
     }
 
     /**
@@ -66,9 +72,17 @@ class ZonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ZonaStoreRequest $request, $id)
     {
-        //
+            $zonaId = Zona::findOrFail($id);
+    
+            $zona = $request->only('descrip_zona');
+            $zonaId->update($zona);
+    
+            
+            return redirect()->route('zona.index')->with('success', 'Zona actualizada exitosamente');
+
+        
     }
 
     /**
@@ -77,8 +91,12 @@ class ZonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Zona $zona)
     {
-        //
+        
+        $zona->delete();
+        return redirect()->route('zona.index')->with('success', 'Zona borrada exitosamente');
+
+
     }
 }

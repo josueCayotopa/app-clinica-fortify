@@ -18,17 +18,10 @@
     <h4>Conocimientos</h4>
     <div class="search-container mb-3">
         <div class="input-group me-3">
-            <select class="form-select" id="filter-by">
-                <option value="" disabled selected>--Seleccione--</option>
-                <option value="">hola</option>
-                <option value="">hola</option>  
-                <option value="">hola</option>
-                <option value="">hola</option>
-                <option value="">hola</option>
-            </select>
+        
         </div>
         <div class="input-group flex-grow-1">
-            <input type="text" class="form-control" id="search-input" placeholder="BUSCAR">
+        
         </div>
         
         <button type="button" class="btn btn-primary ms-3 open-modal-btn-new" 
