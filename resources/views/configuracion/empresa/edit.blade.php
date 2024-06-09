@@ -294,5 +294,6 @@
         </div>
     </div>
     <script src="{{ asset('/js/ubigeo/selecteditar.js') }}"></script>
+
     {{-- <script src="{{ asset('js/tabs.js') }}"></script> ---- --}}
 @endsection

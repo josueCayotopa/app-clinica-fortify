@@ -300,4 +300,5 @@
             }
         });
     </script>
+    
 @endsection

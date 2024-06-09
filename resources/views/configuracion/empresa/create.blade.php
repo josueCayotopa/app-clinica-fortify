@@ -283,6 +283,7 @@
 
     {{-- <script src="{{ asset('js/tabs.js') }}"></script> ---- --}}
 
+
     <script>
         $(document).ready(function() {
             var oldDepartamentoId = '{{ old('departamento_id') }}';

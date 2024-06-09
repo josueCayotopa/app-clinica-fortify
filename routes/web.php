@@ -3,11 +3,14 @@
 use App\Http\Controllers\AfpsdescuentosController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\CategoriaCargoController;
+use App\Http\Controllers\ConceptoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\TipoTrabajadorIpssController;
 use App\Http\Controllers\UbigeoController;
 use App\Http\Controllers\UITController;
 use App\Http\Controllers\UserControlles;
@@ -59,11 +62,16 @@ Route::group(
        
         Route::resource('sucursales', SucursalController::class);
         Route::resource('uits', UITController::class);
+        // rutas para ubigeo 
 
         Route::get('/getProvincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
         Route::get('/getDistritos/{provincia_id}', [UbigeoController::class, 'getDistritos'])->name('getDistritos');
 
+        // rutas para tipo trabajador ipss
+        Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
+        
+        
         // ruta maestros
 
         Route::resource('cargos', CargoController::class);
@@ -82,6 +90,13 @@ Route::group(
         Route::delete('/afpDescuentos/{id}', [AfpsdescuentosController::class, 'destroy'])->name('afpDescuentos.destroy');
         Route::get('/afp/descuentos/create', [AfpsdescuentosController::class, 'create'])->name('afp.descuentos.create');
         Route::post('/afp/descuentos', [AfpsdescuentosController::class, 'store'])->name('afp.descuentos.store');
+        
+        //Fromulas 
+
+        Route::resource('formulas', FormulaController::class);
+        // conceptos
+        Route::resource('conceptos', ConceptoController::class);
+    
     }
 );
 

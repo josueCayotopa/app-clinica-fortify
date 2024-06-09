@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\ConceptosCuentas;
 use App\Models\Tipo_moneda;
 use App\Models\TipoPago;
 use Illuminate\Database\Seeder;
@@ -60,8 +61,11 @@ class DatabaseSeeder extends Seeder
           // MotivoBajaDHSeeder::class,
           // TipoSuspensionSeeder::class,
            // TipoComprobanteSeeder::class,
-           UitSeeder::class,
-
+          // UitSeeder::class,
+          // FormulaSeeder::class,
+         // ConceptoSunatSeeder::class,
+          //ConceptosSeeder::class,
+          ConceptosCuentasSeeder::class,
 
 
         ]);

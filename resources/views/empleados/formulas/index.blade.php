@@ -9,7 +9,7 @@
         @endif
         <div class="el-row is-justify-space-between row-bg">
             <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
-                <h5>Listado de UIT</h5>
+                <h5>Listado de Formulas </h5>
             </div>
             <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
 
@@ -74,26 +74,26 @@
                 <div class="el-table__header-wrapper">
                     <table class="el-table__header" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
                         <colgroup>
-                            <col name="el-table_1_column_1" width="70">
-                            <col name="el-table_1_column_2" width="80">
+                            <col name="el-table_1_column_1" width="30%">
+                            <col name="el-table_1_column_2" width="40%">
 
-                            <col name="el-table_1_column_7" width="90">
+                            <col name="el-table_1_column_7" width="30%">
                         </colgroup>
                         <thead class="">
                             <tr class="">
                                 <th class="el-table_1_column_1 is-leaf el-table__cell" colspan="1" rowspan="1"
                                     style="background: rgb(250, 251, 254);">
-                                    <div class="cell">Año Proceso<!----><!----></div>
+                                    <div class="cell">Codigo</div>
                                 </th>
                                 <th class="el-table_1_column_2 is-leaf el-table__cell" colspan="1" rowspan="1"
                                     style="background: rgb(250, 251, 254);">
-                                    <div class="cell">Número de UIT Deducible<!----><!----></div>
+                                    <div class="cell">Descripcion</div>
                                 </th>
 
 
                                 <th class="el-table_1_column_7 is-right is-leaf el-table__cell" colspan="1"
                                     rowspan="1" style="background: rgb(250, 251, 254);">
-                                    <div class="cell">Opciones<!----><!----></div>
+                                    <div class="cell">Opciones</div>
                                 </th>
                             </tr>
                         </thead>
@@ -106,37 +106,37 @@
                                 <table class="el-table__body" cellspacing="0" cellpadding="0" border="0"
                                     style="table-layout: fixed; width: 100%;">
                                     <colgroup>
-                                        <col name="el-table_1_column_1" width="40%">
+                                        <col name="el-table_1_column_1" width="30%">
                                         <col name="el-table_1_column_2" width="40%">
 
-                                        <col name="el-table_1_column_7" width="20%">
+                                        <col name="el-table_1_column_7" width="30%">
                                     </colgroup><!--v-if-->
                                     <tbody tabindex="-1">
-                                        @foreach ($uits as $uit)
+                                        @foreach ($formulas as $formula)
                                             <tr class="el-table__row">
                                                 <td class="el-table_1_column_1 el-table__cell" rowspan="1"
                                                     colspan="1">
                                                     <div class="cell">
-                                                        {{ $uit->ano_proceso }}
+                                                        {{ $formula->codigo}}
 
                                                     </div>
                                                 </td>
                                                 <td class="el-table_1_column_2 el-table__cell" rowspan="1"
                                                     colspan="1">
                                                     <div class="cell">
-                                                        {{ $uit->num_uit_deducible }}
+                                                        {{ $formula->descripcion }}
 
                                                     </div>
                                                 </td>
                                                 <td class="el-table_1_column_7 is-right el-table__cell" rowspan="1" colspan="1">
                                                     <div class="cell" style="display: flex; justify-content: flex-end; gap: 5px;">
                                                         <!-- Botón de edición -->
-                                                        <a href="{{ route('uits.edit', $uit->ano_proceso) }}" class="el-button el-button--primary el-button--small" type="button">
+                                                        <a href="{{ route('uits.edit', $formula->codigo) }}" class="el-button el-button--primary el-button--small" type="button">
                                                             <span><i class='bx bx-edit-alt'></i></span>
                                                         </a>
                                                 
                                                         <!-- Botón de eliminación -->
-                                                        <form action="{{ route('uits.destroy', $uit->ano_proceso) }}" method="POST" onsubmit="return confirm('¿Seguro?')">
+                                                        <form action="{{ route('uits.destroy',$formula->codigo) }}" method="POST" onsubmit="return confirm('¿Seguro?')">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button aria-disabled="false" type="submit" class="el-button el-button--primary el-button--small">
@@ -173,7 +173,7 @@
 
         <div class="el-pagination is-background el-pagination--small">
 
-            {{ $uits->links() }}
+            {{ $formulas->links() }}
         </div>
 
     </div>
@@ -216,5 +216,5 @@
         });
     </script>
 
-    <script src="{{ asset('/js/validarmodal.js') }}"></script>
+   
 @endsection

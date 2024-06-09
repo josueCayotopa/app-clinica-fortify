@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('u_i_t_s', function (Blueprint $table) {
-            $table->integer('ano_proceso')->length(4)->primary();
-            $table->decimal('num_uit_deducible', 3, 0)->nullable();
+        Schema::create('tipo_trabajador_ipsses', function (Blueprint $table) {
+            $table->string('COD_TRABAJ_IPSS', 2)->primary();
+            $table->string('DES_COD_TRABAJ_IPSS', 50)->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('u_i_t_s');
+        Schema::dropIfExists('tipo_trabajador_ipsses');
     }
 };

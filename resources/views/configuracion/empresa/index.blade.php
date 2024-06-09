@@ -78,4 +78,5 @@
             window.location.href = '{{ route('empresas.create') }}';
         });
     </script>
+
 @endsection

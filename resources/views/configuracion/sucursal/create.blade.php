@@ -285,4 +285,5 @@
             }
         });
     </script>
+    
 @endsection

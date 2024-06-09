@@ -123,12 +123,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('formulas.index') }}" class="menu-link">
                                 <div data-i18n="Ventas">Formulas</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="#" class="menu-link">
+                            <a href="{{ route('conceptos.index') }}" class="menu-link">
                                 <div data-i18n="Ventas">Conceptos</div>
                             </a>
                         </li>
@@ -277,7 +277,6 @@
 
         </li>
         @endcan
-        @can('user_index')
             
       
         <li class="menu-item ">
@@ -296,12 +295,12 @@
 
                 <li class="menu-item">
                     <a href="{{ route('sucursales.index') }}" class="menu-link">
-                        <div data-i18n="empresa"> Sucursales</div>
+                        <div data-i18n="sucursal"> Sucursales</div>
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="{{ route('uits.index') }}" class="menu-link">
-                        <div data-i18n="empresa"> UIT</div>
+                        <div data-i18n="uit"> UIT</div>
                     </a>
                 </li>
                 <li class="menu-item">
@@ -315,7 +314,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <a href="{{ route('tipo_trabajador_ipsses.index') }}" class="menu-link">
                         <div data-i18n="empresa"> Tipo Trabajador ESSALUD</div>
                     </a>
                 </li>
@@ -332,10 +331,6 @@
 
             </ul>
         </li>
-        @endcan
-       
-
-
 
     </ul>
 </aside>
