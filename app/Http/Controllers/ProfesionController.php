@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ZonaStoreRequest;
-use App\Models\Zona;
-use Illuminate\Http\Request;
+use App\Http\Requests\ProfesionStoreRequest;
 
-class ZonaController extends Controller
+use Illuminate\Http\Request;
+use App\Models\Profesion;
+
+class ProfesionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,10 @@ class ZonaController extends Controller
      */
     public function index()
     {
-    
-        $zonas = Zona::paginate(10);
-        return view('empleados.planillas.zonas.index', compact('zonas'));
+        
+        $profesiones=Profesion::paginate(10);
+
+        return view('empleados.planillas.profesiones.index', compact('profesiones'));
     }
 
     /**
@@ -36,11 +38,15 @@ class ZonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ZonaStoreRequest $request)
+    public function store(ProfesionStoreRequest $request)
     {
-        Zona::create($request->validated());
+        //public function store(ConocimientoCreateRequest $request)
+    
+        
+        Profesion::create($request->validated());
 
-        return redirect()->route('zona.index')->with('success', 'Zona creada correctamente');
+        return redirect()->route('profesion.index')->with('success', 'Profesión creada correctamente');
+    
     }
 
     /**
@@ -72,16 +78,17 @@ class ZonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ZonaStoreRequest $request, $id)
+    public function update(ProfesionStoreRequest $request, $id)
     {
-            $zonaId = Zona::findOrFail($id);
+
+            $profesionId = Profesion::findOrFail($id);
     
-            $zona = $request->only('descrip_zona');
-            $zonaId->update($zona);
+            $profesion = $request->only('nombre');
+            $profesionId->update($profesion);
     
             
-            return redirect()->route('zona.index')->with('success', 'Zona actualizada exitosamente');
-
+            return redirect()->route('profesion.index')->with('success', 'Profesión actualizado exitosamente');
+            
         
     }
 
@@ -91,12 +98,9 @@ class ZonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Zona $zona)
+    public function destroy(Profesion $profesion)
     {
-        
-        $zona->delete();
-        return redirect()->route('zona.index')->with('success', 'Zona borrada exitosamente');
-
-
+        $profesion->delete();
+        return redirect()->route('profesion.index')->with('success', 'Profesion borrado exitosamente');
     }
 }

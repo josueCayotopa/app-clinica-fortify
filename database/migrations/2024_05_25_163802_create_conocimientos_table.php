@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('ocupacions', function (Blueprint $table) {
+        Schema::create('conocimientos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre');
+            $table->string('nivel');
+            $table->timestamps();
             
-            $table->string('codigo_sunat');
-           
         });
     }
 
@@ -28,9 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
-        Schema::table('ocupacions', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('conocimientos');
     }
 };

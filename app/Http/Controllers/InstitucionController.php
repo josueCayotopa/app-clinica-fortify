@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ZonaStoreRequest;
-use App\Models\Zona;
+use App\Http\Requests\InstitucionStoreRequest;
+use App\Models\Institucion;
 use Illuminate\Http\Request;
 
-class ZonaController extends Controller
+class InstitucionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,10 @@ class ZonaController extends Controller
      */
     public function index()
     {
-    
-        $zonas = Zona::paginate(10);
-        return view('empleados.planillas.zonas.index', compact('zonas'));
+        $instituciones=Institucion::paginate(10);
+
+        return view('empleados.planillas.instituciones.index', compact('instituciones'));
+
     }
 
     /**
@@ -27,7 +28,7 @@ class ZonaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,11 +37,14 @@ class ZonaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ZonaStoreRequest $request)
+    public function store(InstitucionStoreRequest $request)
     {
-        Zona::create($request->validated());
+    
+        Institucion::create($request->validated());
 
-        return redirect()->route('zona.index')->with('success', 'Zona creada correctamente');
+        return redirect()->route('institucion.index')->with('success', 'Institución creado correctamente');
+
+
     }
 
     /**
@@ -72,17 +76,15 @@ class ZonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ZonaStoreRequest $request, $id)
+    public function update(InstitucionStoreRequest $request, $id)
     {
-            $zonaId = Zona::findOrFail($id);
-    
-            $zona = $request->only('descrip_zona');
-            $zonaId->update($zona);
-    
-            
-            return redirect()->route('zona.index')->with('success', 'Zona actualizada exitosamente');
-
         
+            $insId = Institucion::findOrFail($id);
+    
+            $inst = $request->only('nombre');
+            $insId->update($inst);
+            
+            return redirect()->route('institucion.index')->with('success', 'Institución actualizada exitosamente');
     }
 
     /**
@@ -91,11 +93,10 @@ class ZonaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Zona $zona)
+    public function destroy(Institucion $institucion)
     {
-        
-        $zona->delete();
-        return redirect()->route('zona.index')->with('success', 'Zona borrada exitosamente');
+        $institucion->delete();
+        return redirect()->route('institucion.index')->with('success', 'Institución borrada exitosamente');
 
 
     }
