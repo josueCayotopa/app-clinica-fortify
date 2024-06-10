@@ -10,11 +10,8 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\PermissionController;
-<<<<<<< HEAD
 use App\Http\Controllers\PersonalController;
-=======
 use App\Http\Controllers\ProfesionController;
->>>>>>> 725313d1d2951013ee15787acc6db72dda600925
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
@@ -78,12 +75,9 @@ Route::group(
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
-<<<<<<< HEAD
+
         // empleado
         Route::resource('personals', PersonalController::class);
-=======
-    
-        
         ///Empleados
 
 ////Planillas
@@ -118,15 +112,6 @@ Route::post('/empleados/planillas/institucion',[InstitucionController::class, 's
 Route::delete('/institucion/{institucion}',[InstitucionController::class, 'destroy'])->name('institucion.delete');
 Route::post('/institucion/{id}/edit', [InstitucionController::class, 'update'])->name('institucion.update');
 
-
-
-
-
-
-
-
-
->>>>>>> 725313d1d2951013ee15787acc6db72dda600925
         
         // ruta maestros
 
