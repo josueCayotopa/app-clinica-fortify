@@ -65,7 +65,8 @@ class DatabaseSeeder extends Seeder
           // FormulaSeeder::class,
          // ConceptoSunatSeeder::class,
           //ConceptosSeeder::class,
-          ConceptosCuentasSeeder::class,
+          // ConceptosCuentasSeeder::class,
+          // CategoriaOcupacionalSeeder::class,
 
 
         ]);

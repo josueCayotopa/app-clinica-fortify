@@ -1,156 +1,117 @@
 @extends('home')
+
 @section('home')
     <div class="container mt-5">
         @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-      
-
-        <h4>Usuario</h4>
-
-        <div class="search-container mb-3">
-            <div class="input-group me-3">
-                <select class="form-select" id="filter-by">
-                    <option value="name">Nombre</option>
-                    <option value="username">Usuario</option>
-                    <!-- Agrega más opciones de filtro según tus necesidades -->
-                </select>
+            <div class="alert alert-success">
+                {{ session('success') }}
             </div>
-            <div class="input-group flex-grow-1">
-                <input type="text" class="form-control" id="search-input" placeholder="Buscar">
-            </div>
-            @can('empleado_create')
-                
-           
-            <button class="btn btn-primary ms-3" id="new-button">Nuevo <span><i class='bx bx-user-plus'></i></span>
+        @endif
 
-            </button>
-            @endcan
+        <div class="el-row is-justify-space-between row-bg mb-3">
+            <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
+                <h5>Listado de Personal</h5>
+            </div>
+            <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
+                <button type="button" class="el-button el-button--danger" id="newButton">
+                    <span>Nuevo</span>
+                </button>
+            </div>
         </div>
 
-        <table class="table table-borderless">
-            <thead>
-                <tr>
-                    <th>Numero</th>
-                    <th>Nombre</th>
-                    <th>Usuario</th>
-                    <th>Rol</th>
+        <div class="el-table el-table--fit el-table--striped el-table--enable-row-hover el-table--enable-row-transition el-table--layout-fixed"
+            style="width: 100%;">
+            <div class="el-table__inner-wrapper">
+                <div class="el-table__header-wrapper">
+                    <table class="el-table__header" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+                        <colgroup>
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="15%">
+                            <col width="10%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="el-table__cell">Código</th>
+                                <th class="el-table__cell">Nombre Empresa</th>
+                                <th class="el-table__cell">Nombre Corto</th>
+                                <th class="el-table__cell">Tipo Concepto</th>
+                                <th class="el-table__cell">Cuenta</th>
+                                <th class="el-table__cell">Opciones</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="el-table__body-wrapper">
+                    <div class="el-scrollbar">
+                        <div class="el-scrollbar__wrap el-scrollbar__wrap--hidden-default">
+                            <div class="el-scrollbar__view" style="display: inline-block; vertical-align: middle;">
+                                <table class="el-table__body" cellspacing="0" cellpadding="0" border="0"
+                                    style="width: 100%;">
+                                    <colgroup>
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <col width="15%">
+                                        <col width="10%">
+                                    </colgroup>
+                                    <tbody>
+                                        @foreach ($conceptos as $concepto)
+                                            <tr class="el-table__row">
+                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }}</td>
+                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
+                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
+                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
+                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
+                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
+                                                <td class="el-table__cell"
+                                                    style="display: flex; justify-content: flex-end; gap: 5px;">
+                                                    <!-- Botón de edición -->
+                                                    <button class="el-button el-button--primary el-button--small editButton"
+                                                        data-id="{{ $concepto->COD_CONCEPTO }}">
+                                                        <span><i class='bx bx-edit-alt'></i></span>
+                                                    </button>
 
-                    <th>Email</th>
-                    <th>Fecha</th>
-
-                    <th text-right>Opciones</th>
-                </tr>
-            </thead>
-            <tbody id="user-table">
-               
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                           
-                        </td>
-                        <td></td>
-                        <td></td>
-                        <td text-right>
-                            <div class="action-buttons"
-                                style=" display: flex;
-                            justify-content: center;
-                            margin-top: 20px;">
-                                
-
-                                <a href=" " class="btn btn-outline-primary"
-                                    style="margin: 0 2px;">
-                                    <span><i class='bx bx-show-alt'></i></span>
-                                </a>
-                            
-
-                            
-                                    
-                               
-                                <a href=" " class="btn btn-warning"
-                                    style="margin: 0 2px;">
-                                    <span><i class='bx bx-edit-alt'></i></span>
-                                </a>
-                              
-                           
-                                <div>
-                                    <form action="" method="POST"
-                                        onsubmit="return confirm('seguro?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" style="margin: 0 2px;">
-                                            <span><span><i class='bx bxs-x-circle'></i></span>
-
-                                        </button>
-                                    </form>
-
-                                </div>
-                        
-
+                                                    <!-- Botón de eliminación -->
+                                                    <form
+                                                        action="{{ route('tipo_trabajador_ipsses.destroy', $concepto->COD_CONCEPTO) }}"
+                                                        method="POST" onsubmit="return confirm('¿Seguro?')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="el-button el-button--primary el-button--small deleteButton"
+                                                            data-id="{{ $concepto->COD_CONCEPTO }}">
+                                                            <span><i class='bx bxs-x-circle'></i></span>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
+                        </div>
+                        <div class="el-scrollbar__bar is-horizontal" style="display: none;">
+                            <div class="el-scrollbar__thumb" style="transform: translateX(0%);"></div>
+                        </div>
+                        <div class="el-scrollbar__bar is-vertical" style="display: none;">
+                            <div class="el-scrollbar__thumb" style="transform: translateY(0%);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-
-
-                        </td>
-                    </tr>
-               
-            </tbody>
-        </table>
-
-        <div class="mt-5"> <!-- Mayor separación entre la tabla y el paginador -->
-           
+        <div class="el-pagination is-background el-pagination--small">
+            {{ $conceptos->links() }}
         </div>
     </div>
-    <!-- Modal -->
-    
 
-    <script>
-        document.getElementById('new-button').addEventListener('click', function() {
-            window.location.href = '#';
-        });
-
-      
-    </script>
-    <script>
-        $(document).ready(function(){
-            $('#search-input').on('keyup', function(){
-                var query = $(this).val();
-                var column = $('#filter-by').val();
-    
-                $.ajax({
-                    url: "{{ route('users.search') }}",
-                    type: 'GET',
-                    data: { query: query, column: column },
-                    success: function(response){
-                        var usersHtml = '';
-    
-                        $.each(response, function(i, user){
-                            usersHtml += '<tr>';
-                            usersHtml += '<td>' + user.id + '</td>';
-                            usersHtml += '<td>' + user.name + '</td>';
-                            usersHtml += '<td>' + user.username + '</td>';
-                            usersHtml += '<td>' + user.role + '</td>';
-                            usersHtml += '<td>' + user.email + '</td>';
-                            usersHtml += '<td>' + user.created_at + '</td>';
-                            // Agrega más columnas según tus necesidades
-                            usersHtml += '<td><div class="action-buttons"><!-- Botones de acción --></div></td>';
-                            usersHtml += '</tr>';
-                        });
-    
-                        $('#user-table').html(usersHtml);
-                    }
-                });
-            });
-        });
-    </script>
   
 
-
-
-    </div>
 @endsection

@@ -8,6 +8,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
@@ -70,7 +71,8 @@ Route::group(
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
-        
+        // empleado
+        Route::resource('personals', PersonalController::class);
         
         // ruta maestros
 
