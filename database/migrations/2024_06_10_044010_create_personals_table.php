@@ -66,10 +66,6 @@ return new class extends Migration
             $table->unsignedBigInteger('convenio_id');
 
             
-
- 
-            
-
         
             $table->timestamps();
             // foreig key   
