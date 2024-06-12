@@ -44,7 +44,7 @@
             @foreach ($zonas as $zona)
             <tr>
                 <td>{{ $zona->id }}</td>
-                <td>{{ $zona->descrip_zona }}</td>
+                <td>{{ $zona->descripcion }}</td>
                 <td>{{ $zona->created_at }}</td>
                 <td text-right>
                     <div class="action-buttons"

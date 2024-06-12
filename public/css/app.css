@@ -92,3 +92,13 @@
 .bg-custom {
     background-color: #d63031;
 }
+#nuevoPersonalModal .modal-content {
+    font-size: 12px; /* Ajusta el tamaño de la letra */
+}
+#nuevoPersonalModal .form-control {
+    padding: .25rem .5rem; /* Ajusta el tamaño de los campos de formulario */
+    font-size: 12px; /* Ajusta el tamaño del texto dentro de los campos */
+}
+#nuevoPersonalModal label {
+    font-size: 12px; /* Ajusta el tamaño del texto de las etiquetas */
+}

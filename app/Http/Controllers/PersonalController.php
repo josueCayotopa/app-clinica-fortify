@@ -2,15 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Convenio;
+use App\Models\Departamento_Region;
+use App\Models\Distrito;
+use App\Models\EPS;
+use App\Models\Nacionalidad;
+use App\Models\Nivel_educativo;
+use App\Models\Ocupacion;
+use App\Models\Periodicidad;
 use App\Models\Personal;
+use App\Models\Provincia;
+use App\Models\RegimenPencionario;
+use App\Models\SituacionEPS;
+use App\Models\Tipo_trabajador;
+use App\Models\TipoContratosTrabajo;
+use App\Models\TipoDocumento;
+use App\Models\TipoPago;
+use App\Models\Via;
+use App\Models\Zona;
 use Illuminate\Http\Request;
 
 class PersonalController extends Controller
 {
     public function index()
     {
-        $personals = Personal::all();
-        return view('personals.index', compact('personals'));
+        $tipoDocumentos = TipoDocumento::all()->pluck('descripcion', 'id');
+        $nacionalidades = Nacionalidad::all()->pluck('descripcion', 'id');
+        $departamentos = Departamento_Region::all()->pluck('descripcion', 'id');
+        $provincias = Provincia::all()->pluck('descripcion', 'id');
+        $distritos = Distrito::all()->pluck('descripcion', 'id');
+        $zonas = Zona::all()->pluck('descripcion', 'id');
+        $vias = Via::all()->pluck('descripcion', 'id');
+        $tipoTrabajadores = Tipo_trabajador::all()->pluck('descripcion', 'id');
+        $nivelesEducativos = Nivel_educativo::all()->pluck('descripcion', 'id');
+       
+        $ocupaciones = Ocupacion::all()->pluck('descripcion', 'id');
+        $regimenesPensionarios = RegimenPencionario::all()->pluck('descripcion', 'id');
+        $tiposContratoTrabajo = TipoContratosTrabajo::all()->pluck('descripcion', 'id');
+        $periodicidades = Periodicidad::all()->pluck('descripcion', 'id');
+        $eps = EPS::all()->pluck('descripcion', 'id');
+        $situacionesEPS = SituacionEPS::all()->pluck('descripcion', 'id');
+        $tiposPago = TipoPago::all()->pluck('descripcion', 'id');
+        $convenios = Convenio::all()->pluck('descripcion', 'id');
+        $personals = Personal::paginate(10);
+
+        return view('empleados.empleados.index', compact('personals','tipoDocumentos', 'nacionalidades', 
+        'distritos','zonas', 'vias' ,'tipoTrabajadores','nivelesEducativos', 'ocupaciones' ,
+        'regimenesPensionarios', 'tiposContratoTrabajo','periodicidades','eps','situacionesEPS'
+        , 'tiposPago','convenios','departamentos','provincias'));
     }
 
     /**
@@ -20,7 +59,23 @@ class PersonalController extends Controller
      */
     public function create()
     {
-        return view('personals.create');
+        $tipoDocumentos = TipoDocumento::all()->pluck('descripcion', 'id');;
+        $nacionalidades = Nacionalidad::all()->pluck('descripcion', 'id');;
+        $distritos = Distrito::all();
+        $zonas = Zona::all();
+        $vias = Via::all();
+        $tipoTrabajadores = Tipo_trabajador::all();
+        $nivelesEducativos = Nivel_educativo::all();
+        $ocupaciones = Ocupacion::all();
+        $regimenesPensionarios = RegimenPencionario::all();
+        $tiposContratoTrabajo = TipoContratosTrabajo::all();
+        $periodicidades = Periodicidad::all();
+        $eps = EPS::all();
+        $situacionesEPS = SituacionEPS::all();
+        $tiposPago = TipoPago::all();
+        $convenios = Convenio::all();
+    
+        return response()->json(compact('tipoDocumentos', 'nacionalidades', 'distritos', 'zonas', 'vias', 'tipoTrabajadores', 'nivelesEducativos', 'ocupaciones', 'regimenesPensionarios', 'tiposContratoTrabajo', 'periodicidades', 'eps', 'situacionesEPS', 'tiposPago', 'convenios'));
     }
 
     /**
@@ -32,52 +87,7 @@ class PersonalController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'tipo_documento_id' => 'required|exists:tipo_documentos,id',
-            'numero_documento' => 'required|string|max:15',
-            'apellido_paterno' => 'required|string|max:40',
-            'apellido_materno' => 'required|string|max:40',
-            'nombres' => 'required|string|max:40',
-            'fecha_nacimiento' => 'required|date',
-            'sexo' => 'required|string|max:1',
-            'nacionalidad_id' => 'required|exists:nacionalidades,id',
-            'telefono' => 'nullable|string|max:10',
-            'correo_electronico' => 'nullable|string|max:50',
-            'essalud_vida' => 'required|string|max:1',
-            'domiciliado' => 'required|string|max:1',
-            'via_id' => 'required|exists:vias,id',
-            'nombre_via' => 'nullable|string|max:20',
-            'numero_via' => 'nullable|string|max:4',
-            'interior' => 'nullable|string|max:4',
-            'zona_id' => 'required|exists:zonas,id',
-            'nombre_zona' => 'nullable|string|max:20',
-            'referencia' => 'nullable|string|max:40',
-            'distrito_id' => 'required|exists:distritos,id',
-            'tipo_trabajador_id' => 'required|exists:tipo_trabajadores,id',
-            'regimen_laboral' => 'nullable|string|max:40',
-            'nivel_educativo_id' => 'required|exists:nivel_educativos,id',
-            'ocupacion_id' => 'required|exists:ocupaciones,id',
-            'discapacidad' => 'nullable|string|max:1',
-            'regimen_pensionario_id' => 'required|exists:regimen_pensionarios,id',
-            'fecha_inscripcion_regimen' => 'nullable|date',
-            'CUSPP' => 'nullable|string|max:12',
-            'SCTR_salud' => 'nullable|string|max:1',
-            'SCTR_pension' => 'nullable|string|max:1',
-            'contrato_trabajo_id' => 'required|exists:contratos_trabajos,id',
-            'trabajo_sujeto_alt_acum_atip_desc' => 'nullable|string|max:1',
-            'trabajo_sujeto_jornada_maxima' => 'nullable|string|max:1',
-            'trabajo_sujeto_horario_nocturno' => 'nullable|string|max:1',
-            'ingresos_quinta_categoria' => 'nullable|string|max:1',
-            'sindicalizado' => 'nullable|string|max:1',
-            'periodicidad_id' => 'required|exists:periodicidades,id',
-            'afiliado_eps_servicios_propios' => 'nullable|string|max:1',
-            'eps_id' => 'required|exists:eps,id',
-            'situacion_id' => 'required|exists:situaciones,id',
-            'renta_quinta_categoria' => 'nullable|string|max:1',
-            'situacion_especial_trabajador' => 'nullable|string|max:1',
-            'tipo_pago_id' => 'required|exists:tipo_pagos,id',
-            'afilacion_asegura_pension' => 'nullable|string|max:1',
-            'categoria_ocupacional_trabajador' => 'nullable|string|max:1',
-            'convenio_id' => 'required|exists:convenios,id',
+           
         ]);
 
         $personal = Personal::create($validatedData);
@@ -117,52 +127,7 @@ class PersonalController extends Controller
     public function update(Request $request, Personal $personal)
     {
         $validatedData = $request->validate([
-            'tipo_documento_id' => 'required|exists:tipo_documentos,id',
-            'numero_documento' => 'required|string|max:15',
-            'apellido_paterno' => 'required|string|max:40',
-            'apellido_materno' => 'required|string|max:40',
-            'nombres' => 'required|string|max:40',
-            'fecha_nacimiento' => 'required|date',
-            'sexo' => 'required|string|max:1',
-            'nacionalidad_id' => 'required|exists:nacionalidades,id',
-            'telefono' => 'nullable|string|max:10',
-            'correo_electronico' => 'nullable|string|max:50',
-            'essalud_vida' => 'required|string|max:1',
-            'domiciliado' => 'required|string|max:1',
-            'via_id' => 'required|exists:vias,id',
-            'nombre_via' => 'nullable|string|max:20',
-            'numero_via' => 'nullable|string|max:4',
-            'interior' => 'nullable|string|max:4',
-            'zona_id' => 'required|exists:zonas,id',
-            'nombre_zona' => 'nullable|string|max:20',
-            'referencia' => 'nullable|string|max:40',
-            'distrito_id' => 'required|exists:distritos,id',
-            'tipo_trabajador_id' => 'required|exists:tipo_trabajadores,id',
-            'regimen_laboral' => 'nullable|string|max:40',
-            'nivel_educativo_id' => 'required|exists:nivel_educativos,id',
-            'ocupacion_id' => 'required|exists:ocupaciones,id',
-            'discapacidad' => 'nullable|string|max:1',
-            'regimen_pensionario_id' => 'required|exists:regimen_pensionarios,id',
-            'fecha_inscripcion_regimen' => 'nullable|date',
-            'CUSPP' => 'nullable|string|max:12',
-            'SCTR_salud' => 'nullable|string|max:1',
-            'SCTR_pension' => 'nullable|string|max:1',
-            'contrato_trabajo_id' => 'required|exists:contratos_trabajos,id',
-            'trabajo_sujeto_alt_acum_atip_desc' => 'nullable|string|max:1',
-            'trabajo_sujeto_jornada_maxima' => 'nullable|string|max:1',
-            'trabajo_sujeto_horario_nocturno' => 'nullable|string|max:1',
-            'ingresos_quinta_categoria' => 'nullable|string|max:1',
-            'sindicalizado' => 'nullable|string|max:1',
-            'periodicidad_id' => 'required|exists:periodicidades,id',
-            'afiliado_eps_servicios_propios' => 'nullable|string|max:1',
-            'eps_id' => 'required|exists:eps,id',
-            'situacion_id' => 'required|exists:situaciones,id',
-            'renta_quinta_categoria' => 'nullable|string|max:1',
-            'situacion_especial_trabajador' => 'nullable|string|max:1',
-            'tipo_pago_id' => 'required|exists:tipo_pagos,id',
-            'afilacion_asegura_pension' => 'nullable|string|max:1',
-            'categoria_ocupacional_trabajador' => 'nullable|string|max:1',
-            'convenio_id' => 'required|exists:convenios,id',
+            
         ]);
 
         $personal->update($validatedData);

@@ -13,8 +13,31 @@
                 <h5>Listado de Personal</h5>
             </div>
             <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
-                <button type="button" class="el-button el-button--danger" id="newButton">
+                <button type="button" class="el-button el-button--danger" id="nuevoPersonalBtn" data-toggle="modal"
+                    data-target="#nuevoPersonalModal">
                     <span>Nuevo</span>
+                </button>
+            </div>
+        </div>
+        <div class="el-row is-justify-space-between row-bg">
+            <div class="col-lg-4"><br>
+                <div class="el-input el-input--prefix" style="width: 100%;">
+                    <div class="el-input__wrapper" tabindex="-1">
+                        <span class="el-input__prefix">
+                            <span class="el-input__prefix-inner">
+                                <i class="el-icon el-input__icon"></i>
+                            </span>
+                        </span>
+                        <input class="el-input__inner" type="text" autocomplete="off" tabindex="0" placeholder="Buscar"
+                            id="el-id-4745-11" spellcheck="false" data-ms-editor="true">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="el-col el-col-24 el-col-xs-6 el-col-sm-3">
+                <br>
+                <button aria-disabled="false" type="button" class="el-button el-button--success">
+                    <span class="">Generar Excel</span>
                 </button>
             </div>
         </div>
@@ -61,31 +84,30 @@
                                         <col width="10%">
                                     </colgroup>
                                     <tbody>
-                                        @foreach ($conceptos as $concepto)
+                                        @foreach ($personals as $personal)
                                             <tr class="el-table__row">
-                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }}</td>
-                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
-                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
-                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
-                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
-                                                <td class="el-table__cell">{{ $concepto->DES_NOMBRE }} </td>
+                                                <td class="el-table__cell">{{ $personal->numero_documento }}</td>
+                                                <td class="el-table__cell">{{ $personal->fecha_nacimiento }} </td>
+                                                <td class="el-table__cell">{{ $personal->nombres }} </td>
+                                                <td class="el-table__cell">{{ $personal->telefono }} </td>
+                                                <td class="el-table__cell">{{ $personal->referencia }} </td>
+                                                <td class="el-table__cell">{{ $personal->fecha_inscripcion_regimen }} </td>
                                                 <td class="el-table__cell"
                                                     style="display: flex; justify-content: flex-end; gap: 5px;">
                                                     <!-- Botón de edición -->
                                                     <button class="el-button el-button--primary el-button--small editButton"
-                                                        data-id="{{ $concepto->COD_CONCEPTO }}">
+                                                        data-id="{{ $personal->id }}">
                                                         <span><i class='bx bx-edit-alt'></i></span>
                                                     </button>
 
                                                     <!-- Botón de eliminación -->
-                                                    <form
-                                                        action="{{ route('tipo_trabajador_ipsses.destroy', $concepto->COD_CONCEPTO) }}"
+                                                    <form action="{{ route('presonals.destroy', $personal->id) }}"
                                                         method="POST" onsubmit="return confirm('¿Seguro?')">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit"
                                                             class="el-button el-button--primary el-button--small deleteButton"
-                                                            data-id="{{ $concepto->COD_CONCEPTO }}">
+                                                            data-id="{{ $personal->id }}">
                                                             <span><i class='bx bxs-x-circle'></i></span>
                                                         </button>
                                                     </form>
@@ -108,10 +130,27 @@
         </div>
 
         <div class="el-pagination is-background el-pagination--small">
-            {{ $conceptos->links() }}
+            {{ $personals->links() }}
         </div>
     </div>
 
-  
+    <!-- Modal de creación de nuevo personal -->
+    <div class="modal fade" id="nuevoPersonalModal" tabindex="-1" role="dialog"
+        aria-labelledby="nuevoPersonalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document"> <!-- Cambiado a modal-xl para mayor ancho -->
+            <div class="modal-content">
+                @include('empleados.empleados.create')
+            </div>
+        </div>
+    </div>
 
-@endsection
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      
+    </script>
+
+    @endsection

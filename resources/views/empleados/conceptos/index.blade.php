@@ -113,7 +113,7 @@
     </div>
     <script>
         document.getElementById('new-button').addEventListener('click', function() {
-            window.location.href = '{{ route('personals.create') }}';
+            window.location.href = '{{ route('conceptos.create') }}';
         });
     </script>
 

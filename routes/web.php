@@ -79,7 +79,6 @@ Route::group(
         Route::resource('personals', PersonalController::class);
         Route::resource('pensionistas', PensionistaController::class);
         // ruta maestros
-
         ////Planillas
         /////Conocimientos 
         Route::get('/empleados/planillas/conocimiento', [ConocimientoController::class, 'index'])->name('conocimiento.index');

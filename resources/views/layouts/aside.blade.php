@@ -38,7 +38,7 @@
             <ul class="menu-sub">
                 
                 <li class="menu-item">
-                    <a href="{{ route('empleado.index') }}" class="menu-link">
+                    <a href="{{ route('personals.index') }}" class="menu-link">
                        
                         <div data-i18n="Empleado">Empleado</div>
                     </a>

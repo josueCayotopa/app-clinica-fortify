@@ -29,7 +29,9 @@
     <link rel='stylesheet' href='https://unpkg.com/css-pro-layout@1.1.0/dist/css/css-pro-layout.css'>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
-    <!-- Core CSS -->
+    <!-- Core CSS 
+    
+    -->
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
      <link rel="stylesheet" href="{{ asset('/css/app-cll-crud.css') }}"> 
     <link rel="stylesheet" href="{{ asset('/css/core.css') }}">
@@ -48,7 +50,9 @@
     <script src="{{ asset('/js/helpers.js') }}"></script>
     <script src="{{ asset('/js/config.js') }}"></script>
     <script src="{{ asset('/js/ui-toasts.js') }}"></script>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -69,11 +73,13 @@
 
     <script
     src="https://code.jquery.com/jquery-3.7.1.js"
+    
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
     crossorigin="anonymous"></script>
-
+    
         <script src="{{ asset('/js/perfect-scrollbar.js') }}"></script>
-        <script src="{{ asset('/js/bootstrap.js') }}"></script>
+
+        <script src="{{ asset('/js/bootstrap.esm.js') }}"></script>
         <script src="{{ asset('/js/menu.js') }}"></script>
 
         

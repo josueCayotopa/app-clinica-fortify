@@ -181,11 +181,10 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
 
-        @include('configuracion.uit.create')
-
+        @include('empleados.empleados.create', ['tipoDocumentos' => $tipoDocumentos, 'nacionalidades' => $nacionalidades])
     </div>
     <!-- Modal Editar -->
-  
+    
 
 
 

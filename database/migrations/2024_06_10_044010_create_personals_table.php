@@ -26,7 +26,10 @@ return new class extends Migration
             $table->unsignedBigInteger('nacionalidad_id');
             $table->string('telefono', 10)->nullable();
             $table->string('correo_electronico', 50)->nullable();
+
+
             $table->char('essalud_vida', 1);
+
             $table->char('domiciliado', 1);
             $table->unsignedBigInteger('via_id');
             $table->string('nombre_via', 20)->nullable();
@@ -37,6 +40,8 @@ return new class extends Migration
             $table->string('referencia', 40)->nullable();
             $table->unsignedBigInteger('distrito_id');
             // datos de trabajador
+
+            
             $table->unsignedBigInteger('tipo_trabajador_id');
             $table->string('regimen_laboral', 40)->nullable();
             $table->unsignedBigInteger('nivel_edicativo_id');
@@ -86,8 +91,7 @@ return new class extends Migration
             $table->foreign('situacion_id')->references('id')->on('situacion_e_p_s')->onDelete('cascade');
             $table->foreign('tipo_pago_id')->references('id')->on('tipo_pagos')->onDelete('cascade');
             $table->foreign('convenio_id')->references('id')->on('convenios')->onDelete('cascade');
-
-
+            
         });
     }
 
