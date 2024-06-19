@@ -34,18 +34,18 @@ class Personal extends Model
         'distrito_id',
         'tipo_trabajador_id',
         'regimen_laboral',
-        'nivel_educativo_id',
+        'nivel_edicativo_id',
         'ocupacion_id',
         'discapacidad',
-        'regimen_pensionario_id',
+        'regimen_pencionario_id',
         'fecha_inscripcion_regimen',
         'CUSPP',
         'SCTR_salud',
         'SCTR_pension',
         'contrato_trabajo_id',
         'trabajo_sujeto_alt_acum_atip_desc',
-        'trabajo_sujeto_jornada_maxima',
-        'trabajo_sujeto_horario_nocturno',
+        'trabajo_sujeto_jornda_maxima',
+        'trabajo_sujeto_horario_noctur',
         'ingresos_quinta_categoria',
         'sindicalizado',
         'periodicidad_id',
@@ -57,6 +57,80 @@ class Personal extends Model
         'tipo_pago_id',
         'afilacion_asegura_pension',
         'categoria_ocupacional_trabajador',
-        'convenio_id',
+        'convenio_id'
     ];
+    public function distrito()
+    {
+        return $this->belongsTo(Distrito::class);
+    }
+
+    public function zona()
+    {
+        return $this->belongsTo(Zona::class);
+    }
+
+    public function via()
+    {
+        return $this->belongsTo(Via::class);
+    }
+
+    public function tipoDocumento()
+    {
+        return $this->belongsTo(TipoDocumento::class);
+    }
+
+    public function nacionalidad()
+    {
+        return $this->belongsTo(Nacionalidad::class, 'pais_id');
+    }
+
+    public function tipoTrabajador()
+    {
+        return $this->belongsTo(Tipo_trabajador::class, 'tipo_trabajador_id');
+    }
+
+    public function nivelEducativo()
+    {
+        return $this->belongsTo(Nivel_educativo::class, 'nivel_edicativo_id');
+    }
+
+    public function ocupacion()
+    {
+        return $this->belongsTo(Ocupacion::class, 'ocupacion_id');
+    }
+
+    public function regimenPencionario()
+    {
+        return $this->belongsTo(RegimenPencionario::class, 'regimen_pencionario_id');
+    }
+
+    public function tipoContratoTrabajo()
+    {
+        return $this->belongsTo(TipoContratosTrabajo::class, 'contrato_trabajo_id');
+    }
+
+    public function periodicidad()
+    {
+        return $this->belongsTo(Periodicidad::class, 'periodicidad_id');
+    }
+
+    public function eps()
+    {
+        return $this->belongsTo(EPS::class, 'eps_id');
+    }
+
+    public function situacionEPS()
+    {
+        return $this->belongsTo(SituacionEPS::class, 'situacion_id');
+    }
+
+    public function tipoPago()
+    {
+        return $this->belongsTo(TipoPago::class, 'nivelEducativo');
+    }
+
+    public function convenio()
+    {
+        return $this->belongsTo(Convenio::class, 'convenio_id');
+    }
 }

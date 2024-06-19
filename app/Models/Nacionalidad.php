@@ -17,4 +17,8 @@ class Nacionalidad extends Model
     {
         return $this->hasMany(Empresa::class, 'pais_id');
     }
+    public function personals()
+    {
+        return $this->hasMany(Personal::class, 'nacionalidad_id');
+    }
 }

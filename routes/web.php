@@ -9,6 +9,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\InstitucionController;
+use App\Http\Controllers\PensionistaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\ProfesionController;
@@ -64,56 +65,52 @@ Route::group(
 
         Route::get('/home/empleados/empleado', [EmpleadoController::class, 'index'])->name('empleado.index');
         Route::resource('empresas', EmpresaController::class);
-       
+
         Route::resource('sucursales', SucursalController::class);
         Route::resource('uits', UITController::class);
         // rutas para ubigeo 
-
-        Route::get('/getProvincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
-        Route::get('/getDistritos/{provincia_id}', [UbigeoController::class, 'getDistritos'])->name('getDistritos');
+        Route::get('/get-provincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
+        Route::get('/get-distritos/{provincia_id}', [UbigeoController::class, 'getDistritos'])->name('getDistritos');
 
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
+
 
 
         // empleado
         Route::resource('personals', PersonalController::class);
         ///Empleados
 
-////Planillas
-/////Conocimientos 
-Route::get('/empleados/planillas/conocimiento',[ConocimientoController::class, 'index'])->name('conocimiento.index');
-Route::post('/empleados/planillas/conocimiento',[ConocimientoController::class, 'store'])->name('conocimiento.store');
-Route::post('/conocimiento/{id}', [ConocimientoController::class, 'update'])->name('conocimiento.update');
-Route::delete('/conocimiento/{conocimiento}',[ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
+        ////Planillas
+        /////Conocimientos 
+        Route::get('/empleados/planillas/conocimiento',[ConocimientoController::class, 'index'])->name('conocimiento.index');
+        Route::post('/empleados/planillas/conocimiento',[ConocimientoController::class, 'store'])->name('conocimiento.store');
+        Route::post('/conocimiento/{id}', [ConocimientoController::class, 'update'])->name('conocimiento.update');
+        Route::delete('/conocimiento/{conocimiento}',[ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
+
+        /////Profesiones
+
+        Route::get('/empleados/planillas/profesiones', [ProfesionController::class, 'index'])->name('profesion.index');
+        Route::post('/empleados/planillas/profesiones', [ProfesionController::class, 'store'])->name('profesion.store');
+        Route::delete('/profesion/{profesion}', [ProfesionController::class, 'destroy'])->name('profesion.delete');
+        Route::post('/profesion/{id}', [ProfesionController::class, 'update'])->name('profesion.update');
+
+
+        /////Zonas
+
+        Route::get('/empleados/planillas/zona', [ZonaController::class, 'index'])->name('zona.index');
+        Route::post('/empleados/planillas/zona', [ZonaController::class, 'store'])->name('zona.store');
+        Route::delete('/zona/{zona}', [ZonaController::class, 'destroy'])->name('zona.delete');
+        Route::post('/zona/{id}/edit', [ZonaController::class, 'update'])->name('zona.update');
 
 
 
-/////Profesiones
+        /////Institución
+        Route::get('/empleados/planillas/institucion', [InstitucionController::class, 'index'])->name('institucion.index');
+        Route::post('/empleados/planillas/institucion', [InstitucionController::class, 'store'])->name('institucion.store');
+        Route::delete('/institucion/{institucion}', [InstitucionController::class, 'destroy'])->name('institucion.delete');
+        Route::post('/institucion/{id}/edit', [InstitucionController::class, 'update'])->name('institucion.update');
 
-Route::get('/empleados/planillas/profesiones',[ProfesionController::class, 'index'])->name('profesion.index');
-Route::post('/empleados/planillas/profesiones',[ProfesionController::class, 'store'])->name('profesion.store');
-Route::delete('/profesion/{profesion}',[ProfesionController::class, 'destroy'])->name('profesion.delete');
-Route::post('/profesion/{id}', [ProfesionController::class, 'update'])->name('profesion.update');
-
-
-/////Zonas
-
-Route::get('/empleados/planillas/zona',[ZonaController::class, 'index'])->name('zona.index');
-Route::post('/empleados/planillas/zona',[ZonaController::class, 'store'])->name('zona.store');
-Route::delete('/zona/{zona}',[ZonaController::class, 'destroy'])->name('zona.delete');
-Route::post('/zona/{id}/edit', [ZonaController::class, 'update'])->name('zona.update');
-
-
-
-/////Institución
-Route::get('/empleados/planillas/institucion',[InstitucionController::class, 'index'])->name('institucion.index');
-Route::post('/empleados/planillas/institucion',[InstitucionController::class, 'store'])->name('institucion.store');
-Route::delete('/institucion/{institucion}',[InstitucionController::class, 'destroy'])->name('institucion.delete');
-Route::post('/institucion/{id}/edit', [InstitucionController::class, 'update'])->name('institucion.update');
-
-        
-        // ruta maestros
 
         Route::resource('cargos', CargoController::class);
         // cargo y Categorias
@@ -131,13 +128,12 @@ Route::post('/institucion/{id}/edit', [InstitucionController::class, 'update'])-
         Route::delete('/afpDescuentos/{id}', [AfpsdescuentosController::class, 'destroy'])->name('afpDescuentos.destroy');
         Route::get('/afp/descuentos/create', [AfpsdescuentosController::class, 'create'])->name('afp.descuentos.create');
         Route::post('/afp/descuentos', [AfpsdescuentosController::class, 'store'])->name('afp.descuentos.store');
-        
+
         //Fromulas 
 
         Route::resource('formulas', FormulaController::class);
         // conceptos
         Route::resource('conceptos', ConceptoController::class);
-    
     }
 );
 

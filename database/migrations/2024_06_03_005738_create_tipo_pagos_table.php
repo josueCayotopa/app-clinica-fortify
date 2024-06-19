@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('tipo_pagos', function (Blueprint $table) {
             $table->id();
-
             $table->string('descripcion');
             $table->boolean('estado')->default(true);
             $table->timestamps();

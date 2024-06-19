@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('vias', function (Blueprint $table) {
             $table->id();
-            $table->string('descripcion', 255)->notNull();
+            $table->string('descripcion', 255)->nullable();
             $table->timestamps();
         });
     }
