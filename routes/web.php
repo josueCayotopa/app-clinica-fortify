@@ -69,9 +69,8 @@ Route::group(
         Route::resource('sucursales', SucursalController::class);
         Route::resource('uits', UITController::class);
         // rutas para ubigeo 
-
-        Route::get('/getProvincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
-        Route::get('/getDistritos/{provincia_id}', [UbigeoController::class, 'getDistritos'])->name('getDistritos');
+        Route::get('/get-provincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
+        Route::get('/get-distritos/{provincia_id}', [UbigeoController::class, 'getDistritos'])->name('getDistritos');
 
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);

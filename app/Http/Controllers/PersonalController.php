@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriaOcupacional;
 use App\Models\Convenio;
 use App\Models\Departamento_Region;
 use App\Models\Distrito;
@@ -13,6 +14,8 @@ use App\Models\Periodicidad;
 use App\Models\Personal;
 use App\Models\Provincia;
 use App\Models\RegimenPencionario;
+use App\Models\SCTRPension;
+use App\Models\SCTRSalud;
 use App\Models\SituacionEPS;
 use App\Models\Tipo_trabajador;
 use App\Models\TipoContratosTrabajo;
@@ -45,11 +48,14 @@ class PersonalController extends Controller
         $tiposPago = TipoPago::all()->pluck('descripcion', 'id');
         $convenios = Convenio::all()->pluck('descripcion', 'id');
         $personals = Personal::paginate(10);
+        $sctr_pensions=SCTRPension::all()->pluck('descripcion', 'id');
+        $sctr_saluds=SCTRSalud::all()->pluck('descripcion', 'id');
+        $categoriaocupacionales=CategoriaOcupacional::all()->pluck('DESCRIPCION', 'id');
 
         return view('empleados.empleados.index', compact('personals','tipoDocumentos', 'nacionalidades', 
         'distritos','zonas', 'vias' ,'tipoTrabajadores','nivelesEducativos', 'ocupaciones' ,
         'regimenesPensionarios', 'tiposContratoTrabajo','periodicidades','eps','situacionesEPS'
-        , 'tiposPago','convenios','departamentos','provincias'));
+        , 'tiposPago','convenios','departamentos','provincias', 'sctr_pensions', 'sctr_saluds','categoriaocupacionales'));
     }
 
     /**

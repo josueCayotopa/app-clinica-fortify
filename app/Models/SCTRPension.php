@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class SCTRPension extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        
+        'descripcion',
+        
+    ];
 }

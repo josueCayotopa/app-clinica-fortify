@@ -146,6 +146,27 @@
 
             </ul>
         </li>
+        <li class="menu-item ">
+            <a href="#" class="menu-link menu-toggle">
+                <i class='menu-icon bx bx-map-alt'> </i>
+                <div data-i18n="Ventas">Vacaciones</div>
+            </a>
+            <ul class="menu-sub">
+
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div data-i18n="New Sale">Asignar Vacaciones</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div data-i18n="Ventas">calendario de vacaciones</div>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
 
 
         <li class="menu-item  ">
@@ -210,28 +231,7 @@
 
 
 
-        <li class="menu-item ">
-            <a href="#" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-map-alt'> </i>
-                <div data-i18n="Ventas">Vacaciones</div>
-            </a>
-            <ul class="menu-sub">
-
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="New Sale">Nueva Nota</div>
-                    </a>
-                </li>
-
-
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Ventas">Listado</div>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
+       
         @can('user_index')           
         
         <li class="menu-item ">

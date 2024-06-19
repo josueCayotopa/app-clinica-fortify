@@ -128,7 +128,7 @@
                             <div class="col-md-3 mb-3">
                                 <div class="form-group">
                                     <label for="departamento_id">Departamento</label>
-                                    <select class="form-control" id="departamento_id" name="departamento_id" required>
+                                    <select class="form-control" id="departamento_id" name="departamento_id" >
                                         <option value="" disabled {{ old('departamento_id') ? '' : 'selected' }}>
                                             Selecciona un Departamento</option>
                                         @foreach ($departamentos as $id => $descripcion)
