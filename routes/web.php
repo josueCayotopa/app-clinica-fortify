@@ -74,18 +74,19 @@ Route::group(
 
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
+
+
+
         // empleado
         Route::resource('personals', PersonalController::class);
-        Route::resource('pensionistas', PensionistaController::class);
-        // ruta maestros
+        ///Empleados
+
         ////Planillas
         /////Conocimientos 
-        Route::get('/empleados/planillas/conocimiento', [ConocimientoController::class, 'index'])->name('conocimiento.index');
-        Route::post('/empleados/planillas/conocimiento', [ConocimientoController::class, 'store'])->name('conocimiento.store');
+        Route::get('/empleados/planillas/conocimiento',[ConocimientoController::class, 'index'])->name('conocimiento.index');
+        Route::post('/empleados/planillas/conocimiento',[ConocimientoController::class, 'store'])->name('conocimiento.store');
         Route::post('/conocimiento/{id}', [ConocimientoController::class, 'update'])->name('conocimiento.update');
-        Route::delete('/conocimiento/{conocimiento}', [ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
-
-
+        Route::delete('/conocimiento/{conocimiento}',[ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
 
         /////Profesiones
 
@@ -109,6 +110,7 @@ Route::group(
         Route::post('/empleados/planillas/institucion', [InstitucionController::class, 'store'])->name('institucion.store');
         Route::delete('/institucion/{institucion}', [InstitucionController::class, 'destroy'])->name('institucion.delete');
         Route::post('/institucion/{id}/edit', [InstitucionController::class, 'update'])->name('institucion.update');
+
 
         Route::resource('cargos', CargoController::class);
         // cargo y Categorias
