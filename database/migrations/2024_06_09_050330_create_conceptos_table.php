@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('conceptos', function (Blueprint $table) {
             $table->string('COD_CONCEPTO', 4)->primary();
-
             $table->unsignedBigInteger('COD_EMPRESA');
             $table->foreign('COD_EMPRESA')->references('id')->on('empresas');
-
             $table->string('DES_NOMBRE')->nullable();
             $table->string('DES_NOMBRE_CORTO', 10)->nullable();
             $table->string('NUM_VER_PLAN_CUENTAS', 3)->nullable();

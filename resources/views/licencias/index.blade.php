@@ -10,7 +10,7 @@
 
         <div class="el-row is-justify-space-between row-bg mb-3">
             <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
-                <h5>Listado de Personal</h5>
+                <h5>Solicitud de Licencias</h5>
             </div>
             <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
                 <button type="button" class="el-button el-button--danger" id="nuevoPersonalBtn" data-toggle="modal"
@@ -86,17 +86,17 @@
                                     <tbody>
                                         @foreach ($personals as $personal)
                                             <tr class="el-table__row">
-                                                <td class="el-table__cell">{{ $personal->numero_documento }}</td>
-                                                <td class="el-table__cell">{{ $personal->fecha_nacimiento }} </td>
-                                                <td class="el-table__cell">{{ $personal->nombres }} </td>
-                                                <td class="el-table__cell">{{ $personal->telefono }} </td>
-                                                <td class="el-table__cell">{{ $personal->referencia }} </td>
-                                                <td class="el-table__cell">{{ $personal->fecha_inscripcion_regimen }} </td>
+                                                <td class="el-table__cell">{{  }}</td>
+                                                <td class="el-table__cell">{{ }} </td>
+                                                <td class="el-table__cell">{{  }} </td>
+                                                <td class="el-table__cell">{{  }} </td>
+                                                <td class="el-table__cell">{{  }} </td>
+                                                <td class="el-table__cell">{{  }} </td>
                                                 <td class="el-table__cell"
                                                     style="display: flex; justify-content: flex-end; gap: 5px;">
                                                     <!-- Botón de edición -->
                                                     <button class="el-button el-button--primary el-button--small editButton"
-                                                        data-id="{{ $personal->id }}">
+                                                        data-id="#">
                                                         <span><i class='bx bx-edit-alt'></i></span>
                                                     </button>
 
@@ -107,7 +107,7 @@
                                                         @method('DELETE')
                                                         <button type="submit"
                                                             class="el-button el-button--primary el-button--small deleteButton"
-                                                            data-id="{{ $personal->id }}">
+                                                            data-id="#">
                                                             <span><i class='bx bxs-x-circle'></i></span>
                                                         </button>
                                                     </form>
@@ -130,16 +130,15 @@
         </div>
 
         <div class="el-pagination is-background el-pagination--small">
-            {{ $personals->links() }}
+            {{  }}
         </div>
     </div>
-
     <!-- Modal de creación de nuevo personal -->
     <div class="modal fade" id="nuevoPersonalModal" tabindex="-1" role="dialog"
         aria-labelledby="nuevoPersonalModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document"> <!-- Cambiado a modal-xl para mayor ancho -->
             <div class="modal-content">
-                @include('empleados.empleados.create')
+                @include('solicitud_licencias.create')
             </div>
         </div>
     </div>
@@ -149,39 +148,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ asset('/js/ubigeo/ubigeo.js') }}"></script>
-
-    <script src="{{ asset('/js/personals/imagen.js') }}"></script>
-    <script src="{{ asset('/js/personals/curriculum.js') }}"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Manejar la apertura del modal
-            document.getElementById('nuevoPersonalBtn').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('show');
-            });
-
-            // Manejar el cierre del modal desde el botón de cerrar en el header
-            document.getElementById('modal-close-button').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('hide');
-            });
-
-            document.getElementById('modal-cancel-button').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('hide');
-            });
-
-            // Manejar el cierre del modal después de enviar el formulario
-            document.getElementById('modal-form').addEventListener('submitButton', function(event) {
-                event.preventDefault(); // Prevenir el envío del formulario
-                // Puedes añadir aquí la lógica de validación antes de enviar el formulario
-                this.submit(); // Enviar el formulario después de la validación
-                $('#nuevoPersonalModal').modal('hide');
-            });
-
-        });
-    </script>
-
-   
+    <script src="{{ asset('/js/ubigeo/ubigeo.js')}}"></script>
 @endsection

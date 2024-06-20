@@ -102,3 +102,57 @@
 #nuevoPersonalModal label {
     font-size: 12px; /* Ajusta el tamaño del texto de las etiquetas */
 }
+
+.image-upload-wrapper {
+    position: relative;
+}
+
+#imagenPreviewWrapper {
+    position: relative;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    overflow: hidden;
+}
+
+#imagenPreview {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#cancelarImagenBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+.file-upload-wrapper {
+    position: relative;
+}
+
+
+

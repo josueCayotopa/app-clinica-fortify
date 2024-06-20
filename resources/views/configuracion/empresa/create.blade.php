@@ -128,14 +128,13 @@
                             <div class="col-md-3 mb-3">
                                 <div class="form-group">
                                     <label for="departamento_id">Departamento</label>
-                                    <select class="form-control" id="departamento_id" name="departamento_id" >
+                                    <select class="form-control" id="departamento_id" name="departamento_id">
                                         <option value="" disabled {{ old('departamento_id') ? '' : 'selected' }}>
                                             Selecciona un Departamento</option>
                                         @foreach ($departamentos as $id => $descripcion)
                                             <option value="{{ $id }}"
                                                 {{ old('departamento_id', $sucursal->departamento_id ?? '') == $id ? 'selected' : '' }}>
-                                                {{ $descripcion }}
-                                            </option>
+                                                {{ $descripcion }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('departamento_id'))
@@ -147,9 +146,17 @@
                                 <div class="form-group">
                                     <label for="provincia_id">Provincia</label>
                                     <select class="form-control" id="provincia_id" name="provincia_id"
-                                        {{ old('provincia_id') ? '' : 'disabled' }} required>
+                                        {{ old('provincia_id') ? '' : 'disabled' }}>
                                         <option value="" disabled {{ old('provincia_id') ? '' : 'selected' }}>
-                                            Selecciona una Provincia</option>
+                                            Selecciona
+                                            una Provincia</option>
+                                        @if (old('provincia_id'))
+                                            @foreach ($provincias as $id => $descripcion)
+                                                <option value="{{ $id }}"
+                                                    {{ old('provincia_id') == $id ? 'selected' : '' }}>{{ $descripcion }}
+                                                </option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                     @if ($errors->has('provincia_id'))
                                         <span class="error text-danger">{{ $errors->first('provincia_id') }}</span>
@@ -160,15 +167,25 @@
                                 <div class="form-group">
                                     <label for="distrito_id">Distrito</label>
                                     <select class="form-control" id="distrito_id" name="distrito_id"
-                                        {{ old('distrito_id') ? '' : 'disabled' }} required>
+                                        {{ old('distrito_id') ? '' : 'disabled' }}>
                                         <option value="" disabled {{ old('distrito_id') ? '' : 'selected' }}>
-                                            Selecciona un Distrito</option>
+                                            Selecciona
+                                            un Distrito</option>
+                                        @if (old('distrito_id'))
+                                            @foreach ($distritos as $id => $descripcion)
+                                                <option value="{{ $id }}"
+                                                    {{ old('distrito_id') == $id ? 'selected' : '' }}>{{ $descripcion }}
+                                                </option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                     @if ($errors->has('distrito_id'))
                                         <span class="error text-danger">{{ $errors->first('distrito_id') }}</span>
                                     @endif
                                 </div>
                             </div>
+
+
 
 
                         </div>
@@ -283,81 +300,6 @@
 
     {{-- <script src="{{ asset('js/tabs.js') }}"></script> ---- --}}
 
-
-    <script>
-        $(document).ready(function() {
-            var oldDepartamentoId = '{{ old('departamento_id') }}';
-            var oldProvinciaId = '{{ old('provincia_id') }}';
-            var oldDistritoId = '{{ old('distrito_id') }}';
-
-            if (oldDepartamentoId) {
-                loadProvincias(oldDepartamentoId, oldProvinciaId);
-            }
-
-            if (oldProvinciaId) {
-                loadDistritos(oldProvinciaId, oldDistritoId);
-            }
-
-            $('#departamento_id').on('change', function() {
-                var departamentoId = $(this).val();
-                loadProvincias(departamentoId);
-            });
-
-            $('#provincia_id').on('change', function() {
-                var provinciaId = $(this).val();
-                loadDistritos(provinciaId);
-            });
-
-            function loadProvincias(departamentoId, selectedProvinciaId = null) {
-                if (departamentoId) {
-                    $.ajax({
-                        url: '{{ url('getProvincias') }}/' + departamentoId,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#provincia_id').empty().prop('disabled', false).append(
-                                '<option value="" disabled selected>Selecciona una Provincia</option>'
-                            );
-                            $('#distrito_id').empty().prop('disabled', true).append(
-                                '<option value="" disabled selected>Selecciona un Distrito</option>'
-                            );
-                            $.each(data, function(key, value) {
-                                $('#provincia_id').append('<option value="' + key + '"' + (
-                                        selectedProvinciaId == key ? ' selected' : '') +
-                                    '>' + value + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#provincia_id').empty().prop('disabled', true).append(
-                        '<option value="" disabled selected>Selecciona una Provincia</option>');
-                    $('#distrito_id').empty().prop('disabled', true).append(
-                        '<option value="" disabled selected>Selecciona un Distrito</option>');
-                }
-            }
-
-            function loadDistritos(provinciaId, selectedDistritoId = null) {
-                if (provinciaId) {
-                    $.ajax({
-                        url: '{{ url('getDistritos') }}/' + provinciaId,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#distrito_id').empty().prop('disabled', false).append(
-                                '<option value="" disabled selected>Selecciona un Distrito</option>'
-                            );
-                            $.each(data, function(key, value) {
-                                $('#distrito_id').append('<option value="' + key + '"' + (
-                                        selectedDistritoId == key ? ' selected' : '') +
-                                    '>' + value + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#distrito_id').empty().prop('disabled', true).append(
-                        '<option value="" disabled selected>Selecciona un Distrito</option>');
-                }
-            }
-        });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('/js/ubigeo/ubigeo.js') }}"></script>
 @endsection

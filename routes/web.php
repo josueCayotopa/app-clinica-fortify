@@ -14,6 +14,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\ProfesionController;
 use App\Http\Controllers\RolController;
+use App\Http\Controllers\SolicitudLicenciasController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
 use App\Http\Controllers\UbigeoController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\UITController;
 use App\Http\Controllers\UserControlles;
 use App\Http\Controllers\ZonaController;
 use App\Models\CargoCategoria;
+use App\Models\SolicitudLicencias;
 use App\Models\Sucursal;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
@@ -134,16 +136,15 @@ Route::group(
         Route::resource('formulas', FormulaController::class);
         // conceptos
         Route::resource('conceptos', ConceptoController::class);
+
+        // Solicitud de Licencias 
+        Route::resource('solicitud_licencias',SolicitudLicenciasController::class);
+
+
+
+
     }
 );
-
-// permisos
-
-//roles
-
-
-///Empleados
-
 
 Route::get('/too-many-requests', function (Request $request) {
     return view('errors.429', ['retry_after' => $request->query('retry_after', 60)]);

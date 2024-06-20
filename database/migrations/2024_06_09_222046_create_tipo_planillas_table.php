@@ -30,6 +30,8 @@ return new class extends Migration
             $table->decimal('NUM_PORC_ADELA_QUINCE', 5, 2)->nullable();
             $table->string('TIP_APLICA_PRESTAMO', 2)->nullable();
             $table->timestamps();
+
+            
         });
     }
 

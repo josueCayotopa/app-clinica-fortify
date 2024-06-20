@@ -22,6 +22,8 @@ class Personal extends Model
         'nacionalidad_id',
         'telefono',
         'correo_electronico',
+        'imagen',
+        'curriculum',
         'essalud_vida',
         'domiciliado',
         'via_id',
