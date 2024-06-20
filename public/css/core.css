@@ -12953,9 +12953,9 @@
     margin-top: 1.5rem !important
   }
   
-  /* .mt-5 {
-    margin-top: 3rem !important
-  } */
+  .mt-5 {
+    margin-top: 5px;
+  } 
   
   .mt-auto {
     margin-top: auto !important
@@ -19184,8 +19184,8 @@
   }
   
   .container,.container-fluid,.container-sm,.container-md,.container-lg,.container-xl,.container-xxl {
-    padding-right: 1rem;
-    padding-left: 1rem
+    /* padding-right: 1rem;
+    padding-left: 1rem */
   }
   
   @media(min-width: 992px) {
