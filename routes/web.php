@@ -154,8 +154,7 @@ Route::group(
 
         Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
 
-    }
-);
+    
 
 
         // Solicitud de Licencias 
