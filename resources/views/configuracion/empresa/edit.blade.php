@@ -133,51 +133,59 @@
                             <div class="col-md-3 mb-3">
                                 <div class="form-group">
                                     <label for="departamento_id">Departamento</label>
-                                    <select class="form-control" id="departamento_id" name="departamento_id"
-                                        data-get-provincias="{{ route('getProvincias') }}">
+                                    <select class="form-control" id="departamento_id" name="departamento_id">
                                         <option value="" disabled>Selecciona un Departamento</option>
-                                        <!-- No agregamos opciones aquí, las agregaremos dinámicamente con JavaScript -->
+                                        @foreach ($departamentos as $id => $departamento)
+                                            <option value="{{ $id }}"
+                                                {{ $empresa->departamento_id == $id ? 'selected' : '' }}>
+                                                {{ $departamento }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @if ($errors->has('departamento_id'))
                                         <span class="error text-danger">{{ $errors->first('departamento_id') }}</span>
                                     @endif
                                 </div>
                             </div>
-
+            
                             <div class="col-md-3 mb-3">
                                 <div class="form-group">
                                     <label for="provincia_id">Provincia</label>
-                                    <select class="form-control" id="provincia_id" name="provincia_id"
-                                        data-get-distritos="{{ route('getDistritos') }}">
+                                    <select class="form-control" id="provincia_id" name="provincia_id">
                                         <option value="" disabled>Selecciona una Provincia</option>
+                                        @foreach ($provincias as $id => $descripcion)
+                                            <option value="{{ $id }}"
+                                                {{ $empresa->provincia_id == $id ? 'selected' : '' }}>
+                                                {{ $descripcion }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @if ($errors->has('provincia_id'))
                                         <span class="error text-danger">{{ $errors->first('provincia_id') }}</span>
                                     @endif
                                 </div>
                             </div>
-
+            
                             <div class="col-md-3 mb-3">
                                 <div class="form-group">
                                     <label for="distrito_id">Distrito</label>
                                     <select class="form-control" id="distrito_id" name="distrito_id">
                                         <option value="" disabled>Selecciona un Distrito</option>
+                                        @foreach ($distritos as $id => $descripcion)
+                                            <option value="{{ $id }}"
+                                                {{ $empresa->distrito_id == $id ? 'selected' : '' }}>
+                                                {{ $descripcion }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                     @if ($errors->has('distrito_id'))
                                         <span class="error text-danger">{{ $errors->first('distrito_id') }}</span>
                                     @endif
                                 </div>
                             </div>
+                        </div>
+            
 
-                            <!-- Este div contendrá las opciones de departamento generadas en Blade -->
-                            <div id="departamentos-options" style="display: none;">
-                                @foreach ($departamentos as $id => $departamento)
-                                    <option value="{{ $id }}"
-                                        {{ old('departamento_id', $empresa->departamento_id ?? '') == $id ? 'selected' : '' }}>
-                                        {{ $departamento }}
-                                    </option>
-                                @endforeach
-                            </div>
 
 
                         </div>

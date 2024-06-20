@@ -29,9 +29,11 @@
         </li>
     </ul>
     <!-- Contenido de las pestañas -->
-    <div class="tab-content" id="personalTabContent">
-        <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
-            <form>
+    <form id="personalForm" method="POST" action="{{ route('personals.store') }}">
+        @csrf
+        <div class="tab-content" id="personalTabContent">
+            <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+
                 <div class="row">
                     <div class="col-md-2 mb-3">
                         <div class="form-group">
@@ -123,6 +125,31 @@
                             @endif
                         </div>
                     </div>
+                    <div class="col-md-2 mb-3">
+                        <div class="form-group">
+                            <label for="imagen">Imagen</label>
+                            <div class="image-upload-wrapper">
+                                <div id="imagenPreviewWrapper" style="display: none;">
+                                    <img id="imagenPreview" src="#" alt="Vista previa de la imagen"
+                                        style="width: 100%; height: auto; object-fit: cover;">
+                                    <span id="cancelarImagenBtn">&times;</span>
+                                </div>
+                                <label for="imagen" class="btn btn-primary btn-sm">
+                                    <input type="file" name="imagen" class="form-control-file d-none"
+                                        id="imagen" accept="image/*">
+                                    Seleccionar Archivo
+                                </label>
+                                <small id="fileLabel" class="form-text text-muted">Ningún archivo seleccionado</small>
+                                <small class="form-text text-muted">Tipos de archivo permitidos: JPG, PNG, GIF. Tamaño
+                                    máximo: 2MB.</small>
+                            </div>
+                            @if ($errors->has('imagen'))
+                                <span class="error text-danger">{{ $errors->first('imagen') }}</span>
+                            @endif
+                        </div>
+                    </div>
+
+
                     <div class="col-md-3 mb-3">
                         <div class="form-group">
                             <label for="telefono">Telefono</label>
@@ -173,7 +200,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-2 mb-3">
                         <div class="form-group">
                             <label for="departamento_id">Departamento</label>
                             <select class="form-control" id="departamento_id" name="departamento_id">
@@ -190,7 +217,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-2 mb-3">
                         <div class="form-group">
                             <label for="provincia_id">Provincia</label>
                             <select class="form-control" id="provincia_id" name="provincia_id"
@@ -255,7 +282,7 @@
                         <div class="form-group">
                             <label for="nombre_via">Nombre de Via</label>
                             <input type="text" class="form-control" placeholder="Nombre via" name="nombre_via"
-                                value="{{ old('nombre_via') }}" required>
+                                value="{{ old('nombre_via') }}">
                             @if ($errors->has('nombre_via'))
                                 <span class="error text-danger">{{ $errors->first('nombre_via') }}</span>
                             @endif
@@ -267,7 +294,7 @@
                         <div class="form-group">
                             <label for="numero_via">Numero via</label>
                             <input type="text" class="form-control" placeholder="Numero via" name="numero_via"
-                                value="{{ old('numero_via') }}" required>
+                                value="{{ old('numero_via') }}">
                             @if ($errors->has('numero_via'))
                                 <span class="error text-danger">{{ $errors->first('numero_via') }}</span>
                             @endif
@@ -277,7 +304,7 @@
                         <div class="form-group">
                             <label for="interior">Interior</label>
                             <input type="text" class="form-control" placeholder="Interior" name="interior"
-                                value="{{ old('interior') }}" required>
+                                value="{{ old('interior') }}">
                             @if ($errors->has('interior'))
                                 <span class="error text-danger">{{ $errors->first('interior') }}</span>
                             @endif
@@ -304,7 +331,7 @@
                         <div class="form-group">
                             <label for="zona_id">Numero Zona</label>
                             <input type="text" class="form-control" placeholder="Nombre de Zona" name="zona_id"
-                                value="{{ old('zona_id') }}" required>
+                                value="{{ old('zona_id') }}">
                             @if ($errors->has('zona_id'))
                                 <span class="error text-danger">{{ $errors->first('zona_id') }}</span>
                             @endif
@@ -314,7 +341,7 @@
                         <div class="form-group">
                             <label for="referencia">Referencia</label>
                             <input type="text" class="form-control" placeholder="Referencia" name="referencia"
-                                value="{{ old('referencia') }}" required>
+                                value="{{ old('referencia') }}">
                             @if ($errors->has('referencia'))
                                 <span class="error text-danger">{{ $errors->first('referencia') }}</span>
                             @endif
@@ -323,10 +350,10 @@
 
                 </div>
 
-            </form>
-        </div>
-        <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="contacto-tab">
-            <form>
+
+            </div>
+            <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="contacto-tab">
+
                 <div class="row">
                     <p>Datos de Trabajador</p>
                     <div class="col-md-3 mb-3">
@@ -403,6 +430,27 @@
 
                 </div>
                 <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <div class="form-group">
+                            <label for="curriculum">Curriculum (PDF/Word)</label>
+                            <div class="file-upload-wrapper">
+                                <label for="curriculum" class="btn btn-primary btn-sm">
+                                    <input type="file" name="curriculum" class="form-control-file d-none"
+                                        id="curriculum" accept=".pdf,.docx">
+                                    Seleccionar Archivo
+                                </label>
+                                <small id="curriculumLabel" class="form-text text-muted">Ningún archivo
+                                    seleccionado</small>
+                                <small class="form-text text-muted">Tipos de archivo permitidos: PDF, Word (.pdf,
+                                    .docx). Tamaño máximo: 5MB.</small>
+                            </div>
+                            @if ($errors->has('curriculum'))
+                                <span class="error text-danger">{{ $errors->first('curriculum') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <p> Datos del regimen pencionario</p>
                     <div class="col-md-3 mb-3">
                         <div class="form-group">
@@ -435,10 +483,10 @@
                     <div class="col-md-2 mb-3">
                         <div class="form-group">
                             <label for="CUSPP">CUSPP</label>
-                            <input type="text" class="form-control" placeholder="CUSPP" name="referencia"
-                                value="{{ old('referencia') }}" required>
-                            @if ($errors->has('referencia'))
-                                <span class="error text-danger">{{ $errors->first('referencia') }}</span>
+                            <input type="text" class="form-control" placeholder="CUSPP" name="CUSPP"
+                                value="{{ old('CUSPP') }}" >
+                            @if ($errors->has('CUSPP'))
+                                <span class="error text-danger">{{ $errors->first('CUSPP') }}</span>
                             @endif
                         </div>
                     </div>
@@ -556,10 +604,10 @@
 
 
                 </div>
-            </form>
-        </div>
-        <div class="tab-pane fade" id="laboral" role="tabpanel" aria-labelledby="laboral-tab">
-            <form>
+
+            </div>
+            <div class="tab-pane fade" id="laboral" role="tabpanel" aria-labelledby="laboral-tab">
+
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="form-group">
@@ -594,7 +642,8 @@
                             <label for="eps_id">Tipo EPS</label>
                             <select class="form-control" id="eps_id" name="eps_id">
                                 @foreach ($eps as $id => $eps_des)
-                                    <option value="{{ $id }}" {{ old('eps_id') == $id ? 'selected' : '' }}>
+                                    <option value="{{ $id }}"
+                                        {{ old('eps_id') == $id ? 'selected' : '' }}>
                                         {{ $eps_des }}</option>
                                 @endforeach
                                 <option value="" disabled>Selecciona un Tipo</option>
@@ -718,19 +767,21 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal-footer">
-    <div class="modal-footer">
-        <footer class="el-dialog__footer">
-            <span class="dialog-footer">
 
-                <button type="button" class="el-button" data-dismiss="modal">Cancelar</button>
-                <button type="submit" class="el-button el-button--primary">Guardar</button>
-            </span>
-        </footer>
-    </div>
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+            <footer class="el-dialog__footer">
+                <span class="dialog-footer">
+
+                    <button type="button" class="el-button" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="el-button el-button--primary" id="submitButton"  onclick="validateAndSubmit()"> Confirmar</button>
+                </span>
+            </footer>
+        </div>
+    </form>
 
 </div>
