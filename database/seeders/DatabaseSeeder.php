@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-      $this->call([EventSeeder::class]);
+      // $this->call([EventSeeder::class]);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             
-           /*
-            PermissionSeeder::class,
+           
+            /* //PermissionSeeder::class,
             RoleSeeder::class,
             RoleHasPermissionSeeder::class,
             UserSeeder::class,
@@ -40,35 +40,35 @@ class DatabaseSeeder extends Seeder
             DepartamentoRegionSeeder::class,
             TipoEstablecimientoSeeder::class,
             ViaSeeder::class,
-            ZonaSeeder::class,
-            */
+            ZonaSeeder::class, */
+           
           // ProvinciaSeeder::class,
           // DistritoSeeder::class,
-          //ViaSeeder::class,
-          //ZonaSeeder::class,
-          //NivelEducativoSeeder::class,
-          //TipoTrabajadorsSeeder::class,
-          //TipoMonedasSeeder::class,
+          // ViaSeeder::class,
+          // ZonaSeeder::class,
+          // NivelEducativoSeeder::class,
+          // TipoTrabajadorsSeeder::class,
+          // TipoMonedasSeeder::class,
           // TipoCambioSeeder::class,
-          //OcupacionSeeder::class,
+          // OcupacionSeeder::class,
           // RegimenPensionarioSeeder::class,
           // TiposContatosTrabajoSeeder::class,
           // PeriodicidadSeeder::class,
-          // EPSSeeder::class,
-          // SituacionEPSSeeder::class,
-          // TipoPagoSeeder::class,
-          // MotivoFinPeriodoSeeder::class,
-          // TipoModalidadFormativaSeeder::class,
-          // VinculoFamiliarSeeder::class,
-          // MotivoBajaDHSeeder::class,
-          // TipoSuspensionSeeder::class,
-           // TipoComprobanteSeeder::class,
-          // UitSeeder::class,
-          // FormulaSeeder::class,
-         // ConceptoSunatSeeder::class,
-          //ConceptosSeeder::class,
-          // ConceptosCuentasSeeder::class,
-          // CategoriaOcupacionalSeeder::class,
+        //   EPSSeeder::class,
+        //   SituacionEPSSeeder::class,
+        //   TipoPagoSeeder::class,
+        //   MotivoFinPeriodoSeeder::class,
+        //   TipoModalidadFormativaSeeder::class,
+        //   VinculoFamiliarSeeder::class,
+        //   MotivoBajaDHSeeder::class,
+        //   TipoSuspensionSeeder::class,
+        //    TipoComprobanteSeeder::class,
+        //   UitSeeder::class,
+        //   FormulaSeeder::class,
+        //  ConceptoSunatSeeder::class,
+        //   ConceptosSeeder::class,
+           //ConceptosCuentasSeeder::class,
+          //CategoriaOcupacionalSeeder::class,
 
 
         ]);

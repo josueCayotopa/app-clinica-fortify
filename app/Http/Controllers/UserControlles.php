@@ -27,7 +27,9 @@ class UserControlles extends Controller
         abort_if( Gate::denies('user_index'), 403);
 
         // $users=User::all();
+        
         $users = User::paginate(10);
+        
         return view('users.index', compact('users'));
     }
     public function search(Request $request)
@@ -121,6 +123,6 @@ class UserControlles extends Controller
     {
         $userCount = User::count();
 
-        return view('dasboard.index',compact('userCount'));
+        return view('dashboard.index',compact('userCount'));
     }
 }

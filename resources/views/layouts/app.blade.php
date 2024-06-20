@@ -28,21 +28,42 @@
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css'>
     <link rel='stylesheet' href='https://unpkg.com/css-pro-layout@1.1.0/dist/css/css-pro-layout.css'>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
-    <!-- Core CSS 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <!-- Core CSS
     
     -->
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-     <link rel="stylesheet" href="{{ asset('/css/app-cll-crud.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('/css/app-cll-crud.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/core.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/theme-default.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/demo.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/apex-charts.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/perfect-scrollbar.css') }}">
-  
-    
-    <!-- Vendors CSS -->
-   
+
+
+    <!-- dashboard -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+
+    <link rel="stylesheet" href="{{ asset('./style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="{{ asset('assets_copy/modules/jqvmap/dist/jqvmap.min.css') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_copy/modules/weather-icon/css/weather-is"') }} ">
+    <link rel="stylesheet" href="{{ asset('assets_copy/modules/weather-icon/css/weather-icons-wind.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets_copy/modules/summernote/summernote-bs4.css') }} ">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('assets_copy/css/style.css') }} ">
+
+
+
+
 
     <!-- Page CSS -->
 
@@ -50,18 +71,22 @@
     <script src="{{ asset('/js/helpers.js') }}"></script>
     <script src="{{ asset('/js/config.js') }}"></script>
     <script src="{{ asset('/js/ui-toasts.js') }}"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-   
-   
-    
 
-    
+
+
+
+
     <!-- Scripts -->
 
 </head>
@@ -71,18 +96,15 @@
     @yield('content')
 
 
-    <script
-    src="https://code.jquery.com/jquery-3.7.1.js"
-    
-    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-    crossorigin="anonymous"></script>
-    
-        <script src="{{ asset('/js/perfect-scrollbar.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
 
-        <script src="{{ asset('/js/bootstrap.esm.js') }}"></script>
-        <script src="{{ asset('/js/menu.js') }}"></script>
+    <script src="{{ asset('/js/perfect-scrollbar.js') }}"></script>
 
-        
+    <script src="{{ asset('/js/bootstrap.esm.js') }}"></script>
+    <script src="{{ asset('/js/menu.js') }}"></script>
+
+
 
 
     <!-- endbuild -->
@@ -95,15 +117,15 @@
 
     <!-- Page JS -->
     <script src="{{ asset('/js/dashboards-analytics.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     </script>
 
-    
+
 
 </body>
 

@@ -50,7 +50,7 @@ Route::group(
     ['middleware' => 'auth'],
     function () {
 
-        Route::get('/home/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home.dashboard');
+        Route::get('/home/dashboard', [App\Http\Controllers\HomeController::class, 'getUsuarios'])->name('home.dashboard');
         Route::get('/users/create', [UserControlles::class, 'create'])->name('users.create');
         Route::post('/users', [UserControlles::class, 'store'])->name('users.store');
         Route::get('/users/index', [UserControlles::class, 'index'])->name('users.index');
@@ -151,6 +151,8 @@ Route::group(
 
         Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
 
+        //numero de ususarios
+        
     }
 );
 
