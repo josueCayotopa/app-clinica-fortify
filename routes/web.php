@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AfpsdescuentosController;
+use App\Http\Controllers\AsignarVacacionesController;
+use App\Http\Controllers\CalendarioVacacionesController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\CategoriaCargoController;
 use App\Http\Controllers\ConceptoController;
@@ -134,6 +136,21 @@ Route::group(
         Route::resource('formulas', FormulaController::class);
         // conceptos
         Route::resource('conceptos', ConceptoController::class);
+
+
+
+
+        //Vacciones
+
+        /// Asignar vacaciones
+
+        Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
+
+
+        ///Calendario vaciones
+
+        Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
+
     }
 );
 
