@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Models\User;
+use com_exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Role;
@@ -112,5 +113,14 @@ class UserControlles extends Controller
 
         $user->delete();
         return redirect()->route('users.index');
+    }
+
+
+
+    public function countUsers()
+    {
+        $userCount = User::count();
+
+        return view('dasboard.index',compact('userCount'));
     }
 }

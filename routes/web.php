@@ -134,6 +134,8 @@ Route::group(
         Route::resource('formulas', FormulaController::class);
         // conceptos
         Route::resource('conceptos', ConceptoController::class);
+
+        Route::get('/dashboard', [UserControlles::class, 'countUsers']);
     }
 );
 
