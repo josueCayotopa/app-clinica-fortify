@@ -133,6 +133,34 @@
 
 
 
+
+
+    <!--
+
+                            <script>
+                                $(document).ready(function() {
+
+                                    $('.open-modal-btn-new').on('click', function(event) {
+                                        event.preventDefault();
+                                        var modalId = $(this).data('modal');
+                                        $('#' + modalId).modal('show');
+                                    });
+
+
+                                    $('.open-modal-editar').on('click', function(event) {
+
+                                        event.preventDefault();
+                                        var modalId = $(this).data('modal');
+                                        $('#' + modalId).modal('show');
+
+                                    });
+
+                                });
+                            </script>
+
+                            -->
+
+
     <!-- Modal Nuevo conocimiento-->
 
     <div id="modalnuevo" class="modal fade" tabindex="-1" role="dialog">

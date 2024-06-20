@@ -149,39 +149,86 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ asset('/js/ubigeo/ubigeo.js') }}"></script>
-
-    <script src="{{ asset('/js/personals/imagen.js') }}"></script>
-    <script src="{{ asset('/js/personals/curriculum.js') }}"></script>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Manejar la apertura del modal
-            document.getElementById('nuevoPersonalBtn').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('show');
+        $(document).ready(function() {
+            $('#departamento_id').change(function() {
+                var departamentoId = $(this).val();
+                if(departamentoId) {
+                    $.ajax({
+                        url: '/get-provincias/' + departamentoId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#provincia_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
+                            $.each(data, function(key, value) {
+                                $('#provincia_id').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                            $('#distrito_id').empty().prop('disabled', true).append('<option value="" disabled selected>Selecciona un Distrito</option>');
+                        }
+                    });
+                } else {
+                    $('#provincia_id').empty().prop('disabled', true);
+                    $('#distrito_id').empty().prop('disabled', true);
+                }
             });
-
-            // Manejar el cierre del modal desde el botón de cerrar en el header
-            document.getElementById('modal-close-button').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('hide');
+    
+            $('#provincia_id').change(function() {
+                var provinciaId = $(this).val();
+                if(provinciaId) {
+                    $.ajax({
+                        url: '/get-distritos/' + provinciaId,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#distrito_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona un Distrito</option>');
+                            $.each(data, function(key, value) {
+                                $('#distrito_id').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#distrito_id').empty().prop('disabled', true);
+                }
             });
-
-            document.getElementById('modal-cancel-button').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('hide');
-            });
-
-            // Manejar el cierre del modal después de enviar el formulario
-            document.getElementById('modal-form').addEventListener('submitButton', function(event) {
-                event.preventDefault(); // Prevenir el envío del formulario
-                // Puedes añadir aquí la lógica de validación antes de enviar el formulario
-                this.submit(); // Enviar el formulario después de la validación
-                $('#nuevoPersonalModal').modal('hide');
-            });
-
+    
+            // Cargar provincias y distritos si los valores antiguos existen después de la validación
+            var oldDepartamentoId = '{{ old('departamento_id', $sucursal->departamento_id ?? '') }}';
+            var oldProvinciaId = '{{ old('provincia_id', $sucursal->provincia_id ?? '') }}';
+            var oldDistritoId = '{{ old('distrito_id', $sucursal->distrito_id ?? '') }}';
+    
+            if(oldDepartamentoId) {
+                $('#departamento_id').val(oldDepartamentoId).trigger('change');
+            }
+    
+            if(oldProvinciaId) {
+                $.ajax({
+                    url: '/get-provincias/' + oldDepartamentoId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#provincia_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
+                        $.each(data, function(key, value) {
+                            $('#provincia_id').append('<option value="'+ key +'" '+ (key == oldProvinciaId ? 'selected' : '') +'>'+ value +'</option>');
+                        });
+    
+                        if(oldDistritoId) {
+                            $.ajax({
+                                url: '/get-distritos/' + oldProvinciaId,
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function(data) {
+                                    $('#distrito_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona un Distrito</option>');
+                                    $.each(data, function(key, value) {
+                                        $('#distrito_id').append('<option value="'+ key +'" '+ (key == oldDistritoId ? 'selected' : '') +'>'+ value +'</option>');
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+            }
         });
     </script>
-
-   
 @endsection

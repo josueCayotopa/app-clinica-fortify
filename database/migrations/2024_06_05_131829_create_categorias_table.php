@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->string('codigo', 15);
             $table->string('descripcion');
             $table->string('nivel', 15); 

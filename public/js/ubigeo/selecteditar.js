@@ -1,57 +1,96 @@
 $(document).ready(function() {
-    // Cargar provincias al seleccionar un departamento
-    $('#departamento_id').change(function() {
-        var departamento_id = $(this).val();
-        if (departamento_id) {
-            $.ajax({
-                url: "{{ route('getProvincias') }}",
-                type: 'GET',
-                data: {
-                    departamento_id: departamento_id
-                },
-                success: function(response) {
-                    $('#provincia_id').empty();
-                    $('#distrito_id').empty();
-                    $('#provincia_id').removeAttr('disabled');
-                    $('#provincia_id').append('<option value="" disabled>Selecciona una Provincia</option>');
-                    $.each(response, function(key, value) {
-                        $('#provincia_id').append('<option value="' + key + '">' + value + '</option>');
-                    });
+    var oldDepartamentoId = "{{ old('departamento_id', $empresa->departamento_id ?? '') }}";
+    var oldProvinciaId = "{{ old('provincia_id', $empresa->provincia_id ?? '') }}";
+    var oldDistritoId = "{{ old('distrito_id', $empresa->distrito_id ?? '') }}";
+
+    // Cargar departamentos
+    cargarDepartamentos(oldDepartamentoId, function() {
+        // Una vez cargados los departamentos, cargar provincias si hay un departamento seleccionado previamente
+        if (oldDepartamentoId) {
+            cargarProvincias(oldDepartamentoId, oldProvinciaId, function() {
+                // Una vez cargadas las provincias, cargar distritos si hay una provincia seleccionada previamente
+                if (oldProvinciaId) {
+                    cargarDistritos(oldProvinciaId, oldDistritoId);
                 }
             });
-        } else {
-            $('#provincia_id').empty();
-            $('#distrito_id').empty();
-            $('#provincia_id').attr('disabled', 'disabled');
         }
     });
 
-    // Cargar distritos al seleccionar una provincia
-    $('#provincia_id').change(function() {
-        var provincia_id = $(this).val();
-        if (provincia_id) {
+    // Manejar el cambio en el departamento
+    $('#departamento_id').on('change', function() {
+        var departamentoId = $(this).val();
+        cargarProvincias(departamentoId, null);
+        $('#distrito_id').empty().append('<option value="" disabled selected>Selecciona un Distrito</option>');
+    });
+
+    // Manejar el cambio en la provincia
+    $('#provincia_id').on('change', function() {
+        var provinciaId = $(this).val();
+        cargarDistritos(provinciaId, null);
+    });
+
+    // Función para cargar departamentos
+    function cargarDepartamentos(selectedDepartamentoId, callback) {
+        var departamentoSelect = $('#departamento_id');
+        departamentoSelect.empty().append('<option value="" disabled selected>Selecciona un Departamento</option>');
+        departamentoSelect.append($('#departamentos-options').html()); // Agregar opciones de departamento desde la vista
+        if (selectedDepartamentoId) {
+            departamentoSelect.val(selectedDepartamentoId);
+        }
+        if (callback) callback();
+    }
+
+    // Función para cargar provincias
+    function cargarProvincias(departamentoId, selectedProvinciaId, callback) {
+        var url = $('#departamento_id').data('get-provincias');
+        if (departamentoId) {
             $.ajax({
-                url: "{{ route('getDistritos') }}",
+                url: url,
                 type: 'GET',
                 data: {
-                    provincia_id: provincia_id
+                    departamento_id: departamentoId
                 },
-                success: function(response) {
-                    $('#distrito_id').empty();
-                    $('#distrito_id').removeAttr('disabled');
-                    $('#distrito_id').append('<option value="" disabled>Selecciona un Distrito</option>');
-                    $.each(response, function(key, value) {
-                        $('#distrito_id').append('<option value="' + key + '">' + value + '</option>');
+                success: function(data) {
+                    var provinciaSelect = $('#provincia_id');
+                    provinciaSelect.empty().append('<option value="" disabled selected>Selecciona una Provincia</option>');
+                    $.each(data, function(key, value) {
+                        provinciaSelect.append('<option value="' + key + '">' + value + '</option>');
                     });
+                    if (selectedProvinciaId) {
+                        provinciaSelect.val(selectedProvinciaId).trigger('change');
+                    }
+                    if (callback) callback();
                 }
             });
         } else {
-            $('#distrito_id').empty();
-            $('#distrito_id').attr('disabled', 'disabled');
+            $('#provincia_id').empty().append('<option value="" disabled selected>Selecciona una Provincia</option>');
+            $('#distrito_id').empty().append('<option value="" disabled selected>Selecciona un Distrito</option>');
         }
-    });
+    }
 
-    // Mantener selección dinámica al cargar la página
-    $('#departamento_id').change();
-    $('#provincia_id').change();
+    // Función para cargar distritos
+    function cargarDistritos(provinciaId, selectedDistritoId) {
+        var url = $('#provincia_id').data('get-distritos');
+        if (provinciaId) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {
+                    provincia_id: provinciaId
+                },
+                success: function(data) {
+                    var distritoSelect = $('#distrito_id');
+                    distritoSelect.empty().append('<option value="" disabled selected>Selecciona un Distrito</option>');
+                    $.each(data, function(key, value) {
+                        distritoSelect.append('<option value="' + key + '">' + value + '</option>');
+                    });
+                    if (selectedDistritoId) {
+                        distritoSelect.val(selectedDistritoId);
+                    }
+                }
+            });
+        } else {
+            $('#distrito_id').empty().append('<option value="" disabled selected>Selecciona un Distrito</option>');
+        }
+    }
 });
