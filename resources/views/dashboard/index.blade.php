@@ -27,7 +27,7 @@
                             <h4>Personas</h4>
                         </div>
                         <div class="card-body">
-                            <h4> {{ $userCount }}</h4>
+                            <h4> {{ $usuarios }}</h4>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             <h4>Trabajando</h4>
                         </div>
                         <div class="card-body">
-                            1,201
+                            <h4> {{ $onlineUsers }} </h4>
                         </div>
                     </div>
                 </div>
