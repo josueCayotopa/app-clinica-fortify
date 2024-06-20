@@ -155,13 +155,13 @@
             <ul class="menu-sub">
 
                 <li class="menu-item">
-                    <a href="{{ route('vacaciones.asignar.index') }}" class="menu-link">
+                    <a href="#" class="menu-link">
                         <div data-i18n="New Sale">Asignar Vacaciones</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('vacaciones.calendario.index') }}" class="menu-link">
-                        <div data-i18n="Ventas">Calendario de vacaciones</div>
+                    <a href="#" class="menu-link">
+                        <div data-i18n="Ventas">calendario de vacaciones</div>
                     </a>
                 </li>
                 
