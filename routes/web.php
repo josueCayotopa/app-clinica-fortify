@@ -38,9 +38,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 
@@ -50,7 +47,7 @@ Route::group(
     ['middleware' => 'auth'],
     function () {
 
-        Route::get('/home/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home.dashboard');
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.dashboard');
         Route::get('/users/create', [UserControlles::class, 'create'])->name('users.create');
         Route::post('/users', [UserControlles::class, 'store'])->name('users.store');
         Route::get('/users/index', [UserControlles::class, 'index'])->name('users.index');
