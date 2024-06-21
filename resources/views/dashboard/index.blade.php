@@ -151,7 +151,7 @@
 
 
     <!-- partial -->
-    
+
     <script src="{{ asset('./script.js') }}"></script>
 
     <!-- Graficos CHARTS -->
@@ -176,6 +176,10 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('assets_copy/js/page/index-0.js') }} "></script>
+
+    {{-- datos geoespaciales --}}
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
 
     <!-- Template JS File -->
     <script src="{{ asset('assets_copy/js/scripts.js') }} "></script>

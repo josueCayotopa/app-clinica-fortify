@@ -360,9 +360,9 @@
     display: none !important
   }
   
-  button,[type=button],[type=reset],[type=submit] {
+  /* button,[type=button],[type=reset],[type=submit] {
     -webkit-appearance: button
-  }
+  } */
   
   button:not(:disabled),[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled) {
     cursor: pointer
@@ -413,7 +413,7 @@
   
   [type=search] {
     outline-offset: -2px;
-    -webkit-appearance: textfield
+    /* -webkit-appearance: textfield */
   }
   
   ::-webkit-search-decoration {
@@ -426,7 +426,7 @@
   
   ::file-selector-button {
     font: inherit;
-    -webkit-appearance: button
+    /* -webkit-appearance: button */
   }
   
   output {
@@ -19155,8 +19155,6 @@
   
   body {
     text-rendering: optimizeLegibility;
-    font-smoothing: antialiased;
-    -moz-font-feature-settings: "liga" on;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale
   }
@@ -19183,10 +19181,10 @@
     visibility: visible
   }
   
-  .container,.container-fluid,.container-sm,.container-md,.container-lg,.container-xl,.container-xxl {
-    /* padding-right: 1rem;
-    padding-left: 1rem */
-  }
+  /* .container,.container-fluid,.container-sm,.container-md,.container-lg,.container-xl,.container-xxl {
+    padding-right: 1rem;
+    padding-left: 1rem
+  } */
   
   @media(min-width: 992px) {
     .container,.container-fluid,.container-sm,.container-md,.container-lg,.container-xl,.container-xxl {
@@ -19366,7 +19364,7 @@
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
-    user-drag: none
+    /* user-drag: none */
   }
   
   .ui-stars {
