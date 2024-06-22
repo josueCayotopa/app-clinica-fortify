@@ -134,6 +134,24 @@ Route::group(
         // conceptos
         Route::resource('conceptos', ConceptoController::class);
 
+
+
+
+
+        //Vacciones
+
+        /// Asignar vacaciones
+
+        Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
+
+
+        ///Calendario vaciones
+
+        Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
+
+    
+
+
         // Solicitud de Licencias 
         Route::resource('solicitud_licencias',SolicitudLicenciasController::class);
 
