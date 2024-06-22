@@ -14,7 +14,7 @@
 
                 <label for="recipient-name" class="col-form-label">Profesion</label>
                 <input type="text" class="form-control" id="nombre" name="descrip_zona"
-                value="{{ $zona->descrip_zona }}" >
+                value="{{ $zona->descripcion }}" >
 
             </div>
             
