@@ -57,4 +57,5 @@ class Empresa extends Model
     {
         return $this->belongsTo(Tipo_Moneda::class, 'tipo_moneda_id');
     }
+   
 }

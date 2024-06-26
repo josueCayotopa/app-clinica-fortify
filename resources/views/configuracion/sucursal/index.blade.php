@@ -14,7 +14,7 @@
             </div>
             <input type="search" id="search-input" class="form-control" placeholder="Buscar por nombre o usuario">
             @can('user_create')
-                <button class="btn btn-primary ms-3" id="new-button" > Nuevo <span><i class='bx bx-user-plus'></i></span>
+                <button class="btn btn-primary ms-3" id="new-button"> Nuevo <span><i class='bx bx-user-plus'></i></span>
 
                 </button>
             @endcan
@@ -41,15 +41,14 @@
                         <td>{{ $sucursal->email }}</td>
 
                         <td text-right>
-                            <div class="action-buttons"
-                            style="display: flex; justify-content: flex-end; gap: 5px;">
-                                
+                            <div class="action-buttons" style="display: flex; justify-content: flex-end; gap: 5px;">
+
 
                                 @can('user_edit')
-                                <a href=" {{ route('sucursales.edit', $sucursal->id) }}" class="el-button el-button--primary el-button--small editButton"
-                                    >
-                                    <span><i class='bx bx-edit-alt'></i></span>
-                                </a>
+                                    <a href=" {{ route('sucursales.edit', $sucursal->id) }}"
+                                        class="el-button el-button--primary el-button--small editButton">
+                                        <span><i class='bx bx-edit-alt'></i></span>
+                                    </a>
                                 @endcan
                                 @can('user_create')
                                     <div>
@@ -81,14 +80,14 @@
             {{ $sucursales->links() }}
         </div>
     </div>
-    
+
     <script>
         document.getElementById('new-button').addEventListener('click', function() {
             window.location.href = '{{ route('sucursales.create') }}';
         });
     </script>
 
-   {{--<script src="{{ asset('/js/modalempresa.js') }}"></script>--}}
+    {{-- <script src="{{ asset('/js/modalempresa.js') }}"></script> --}}
 
 
 
