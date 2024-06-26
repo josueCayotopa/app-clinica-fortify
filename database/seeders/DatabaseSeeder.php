@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-      $this->call([EventSeeder::class]);
+      
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
@@ -29,12 +29,13 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             
-           /*
+           
             PermissionSeeder::class,
             RoleSeeder::class,
             RoleHasPermissionSeeder::class,
             UserSeeder::class,
             
+            /*
             Tipo_DocumentoSeeder::class,
             NacionalidadSeeder::class,
             DepartamentoRegionSeeder::class,

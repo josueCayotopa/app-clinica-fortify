@@ -154,6 +154,11 @@
             <ul class="menu-sub">
 
                 <li class="menu-item">
+                    <a href="#" class="menu-link">
+                        <div data-i18n="New Sale">Solicitar Vacaciones</div>
+                    </a>
+                </li>
+                <li class="menu-item">
                     <a href="{{ route('vacaciones.asignar.index') }}" class="menu-link">
                         <div data-i18n="New Sale">Asignar Vacaciones</div>
                     </a>
@@ -237,7 +242,7 @@
         <li class="menu-item ">
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-map-alt'> </i>
-                <div data-i18n="Ventas">usuarios</div>
+                <div data-i18n="Ventas">Usuarios</div>
             </a>
             <ul class="menu-sub">
 
