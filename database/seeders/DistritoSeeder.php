@@ -17,7 +17,7 @@ class DistritoSeeder extends Seeder
     {
         //
         $data=[
-        
+            
         ];
 
    DB::table('distritos')->insert($data);

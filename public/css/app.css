@@ -194,3 +194,8 @@
 .scroll-container::-webkit-scrollbar-track {
     background-color: #f1f1f1;
 }
+.fixed-position
+{
+    position: fixed;
+
+}

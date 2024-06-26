@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -21,9 +23,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    /* public function getUsuarios()
+    {
+        $userCount = User::count();
+
+        return view('dashboard.index',compact('userCount'));
+        
+    }
+
+    
+
     public function index()
     {
-        return view('dashboard.index');
+        $onlineUsers = User::countOnlineUsers();
 
+        return view('dashboard.index', compact('onlineUsers'));
+    } */
+
+    public function dashboard()
+    {
+        // Contar los usuarios en línea
+        $onlineUsers = User::countOnlineUsers();
+        
+        // Obtener todos los usuarios
+        $usuarios = User::getUsuarios();
+        
+        // Pasar ambos datos a la vista
+        return view('dashboard.index', compact('onlineUsers', 'usuarios'));
     }
 }

@@ -10,7 +10,7 @@
         <h5 id="txtmensaje" class="toast-body" style="color: white"></h5>
         <!-- <div class="toast-body">Fruitcake chocolate bar tootsie roll gummies gummies jelly beans cake.</div> -->
     </div>
-    <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-wrapper layout-content-navbar "style="height: 100%; ">
         <div class="layout-container">
             <!-- Menu -->
             @include('layouts.aside')
@@ -21,14 +21,14 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper d-flex flex-column flex-grow-1 overflow-hidden">
-                    <div class="container-xxl flex-grow-1 container-p-y d-flex flex-column overflow-hidden">
-                        <div class="row flex-grow-1 overflow-hidden">
+                    <div class="container-xxl flex-grow-1 container-p-y d-flex flex-column overflow-hidden" style="height: 100%; width:100%;">
+                        <div class="row flex-grow-1 overflow-hidden" style="height: 100%; ">
                             <div class="col-lg-12 mb-4 order-0 d-flex flex-column h-100">
-                                <div class="card flex-grow-1 d-flex flex-column h-100">
+                                <div class="card flex-grow-1 d-flex flex-column h-100" >
                                     <div class="d-flex align-items-end row flex-grow-1 h-100">
-                                        <div class="col-md-12 h-100 d-flex flex-column">
-                                            <div class="card-body flex-grow-1 d-flex flex-column p-0">
-                                                <main class="main-content flex-grow-1 overflow-auto">
+                                        <div class="col-md-12 h-100 d-flex flex-column" >
+                                            <div class="card-body flex-grow-2 d-flex flex-column p-4"style="height: 100%;">
+                                                <main class="main-content flex-grow-1 overflow-auto" >
                                                     @yield('main')
                                                 </main>
                                             </div>

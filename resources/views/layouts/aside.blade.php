@@ -16,9 +16,10 @@
         </a>
     </div>
 
-    <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-1">
+
+
+    <ul class="menu-inner py-1 overflow-auto">
 
         <!-- Dashboard -->
         <li class="menu-item active">
@@ -36,10 +37,10 @@
                 <div data-i18n="Ventas">Empleados</div>
             </a>
             <ul class="menu-sub">
-                
+
                 <li class="menu-item">
                     <a href="{{ route('personals.index') }}" class="menu-link">
-                       
+
                         <div data-i18n="Empleado">Empleado</div>
                     </a>
                 </li>
@@ -137,21 +138,23 @@
                                 <div data-i18n="Ventas">Acumuacion de conceptos</div>
                             </a>
                         </li>
-                       
+
 
                     </ul>
 
                 </li>
+
+
             </ul>
         </li>
         <li class="menu-item ">
             @can('vacaciones')
-            <a href="#" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-map-alt'> </i>
-                <div data-i18n="Ventas">Vacaciones</div>
-            </a>
-             @endcan
-            
+                <a href="#" class="menu-link menu-toggle">
+                    <i class='menu-icon bx bx-map-alt'> </i>
+                    <div data-i18n="Ventas">Vacaciones</div>
+                </a>
+            @endcan
+
             <ul class="menu-sub">
 
                 <li class="menu-item">
@@ -169,14 +172,29 @@
                         <div data-i18n="Ventas">Calendario de vacaciones</div>
                     </a>
                 </li>
-                
+
                 <li class="menu-item">
-                    <a href="{{ route('solicitud_licencias.index')}}" class="menu-link">
+                    <a href="{{ route('solicitud_licencias.index') }}" class="menu-link">
                         <div data-i18n="Ventas">Solicitar Licencias</div>
                     </a>
                 </li>
             </ul>
         </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link menu-toggle">
+                <i class='menu-icon bx bx-file'> </i>
+                <div data-i18n="asistencia">Asistencia</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('asistenciaa.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Asistencia</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
         <li class="menu-item  ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-id-card'></i>
@@ -239,54 +257,49 @@
 
 
 
-       
-        @can('user_index')           
-        
-        <li class="menu-item ">
-            <a href="#" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-map-alt'> </i>
-                <div data-i18n="Ventas">Usuarios</div>
-            </a>
-            <ul class="menu-sub">
 
-                <li class="menu-item">
-                    <a href="{{ route('users.create') }}" class="menu-link">
-                        <div data-i18n="New Sale">Nuevo Usuario</div>
-                    </a>
-                </li>
+        @can('user_index')
+
+            <li class="menu-item ">
+                <a href="#" class="menu-link menu-toggle">
+                    <i class='menu-icon bx bx-map-alt'> </i>
+                    <div data-i18n="Ventas">Usuarios</div>
+                </a>
+                <ul class="menu-sub">
+
+                    <li class="menu-item">
+                        <a href="{{ route('users.create') }}" class="menu-link">
+                            <div data-i18n="New Sale">Nuevo Usuario</div>
+                        </a>
+                    </li>
 
 
-                <li class="menu-item">
-                    <a href="{{ route('users.index') }}" class="menu-link">
-                        <div data-i18n="Ventas">Usuarios</div>
-                    </a>
-                </li>
-                @can('role_index')
-                    
-                
-                <li class="menu-item">
-                    <a href="{{ route('roles.index') }}" class="menu-link">
-                        <div data-i18n="Ventas">Roles</div>
-                    </a>
-                </li>
-                @endcan
-                @can('permission_index')
-                    
-               
-                <li class="menu-item">
-                    <a href="{{ route('permissions.index') }}" class="menu-link">
-                        <div data-i18n="Ventas">Permisos</div>
-                    </a>
-                </li>
-                
-                @endcan
+                    <li class="menu-item">
+                        <a href="{{ route('users.index') }}" class="menu-link">
+                            <div data-i18n="Ventas">Usuarios</div>
+                        </a>
+                    </li>
+                    @can('role_index')
+                        <li class="menu-item">
+                            <a href="{{ route('roles.index') }}" class="menu-link">
+                                <div data-i18n="Ventas">Roles</div>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('permission_index')
+                        <li class="menu-item">
+                            <a href="{{ route('permissions.index') }}" class="menu-link">
+                                <div data-i18n="Ventas">Permisos</div>
+                            </a>
+                        </li>
+                    @endcan
 
-            </ul>
+                </ul>
 
-        </li>
+            </li>
         @endcan
-            
-      
+
+
         <li class="menu-item ">
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-map-alt'> </i>
@@ -341,4 +354,5 @@
         </li>
 
     </ul>
+
 </aside>

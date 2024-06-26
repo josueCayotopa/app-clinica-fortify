@@ -1,12 +1,12 @@
 @extends('home')
 
 @section('home')
-    <div class="container">
+    <div class="container" style="height: 100%; width:100%;">
 
         <form action="{{ route('guardar-relacion-categoria-cargo') }}" method="POST">
             @csrf
 
-            <div class="border rounded p-3 mb-3">
+            <div class="border rounded p-3 mb-3" >
                 <h6 class="border-bottom pb-2 mb-3">Nueva Categoria Laboral</h6>
                 <div class="row">
 
