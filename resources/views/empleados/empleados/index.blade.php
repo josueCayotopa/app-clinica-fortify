@@ -2,19 +2,14 @@
 
 @section('home')
     <div class="container mt-5">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+        @include('layouts.messege')
 
         <div class="el-row is-justify-space-between row-bg mb-3">
             <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
                 <h5>Listado de Personal</h5>
             </div>
             <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
-                <button type="button" class="el-button el-button--danger" id="nuevoPersonalBtn" data-toggle="modal"
-                    data-target="#nuevoPersonalModal">
+                <button type="button" class="el-button el-button--danger" id="nuevoPersonalBtn">
                     <span>Nuevo</span>
                 </button>
             </div>
@@ -95,10 +90,13 @@
                                                 <td class="el-table__cell"
                                                     style="display: flex; justify-content: flex-end; gap: 5px;">
                                                     <!-- Botón de edición -->
-                                                    <button class="el-button el-button--primary el-button--small editButton"
-                                                        data-id="{{ $personal->id }}">
-                                                        <span><i class='bx bx-edit-alt'></i></span>
-                                                    </button>
+
+                                                    @can('user_edit')
+                                                        <a href=" {{ route('personals.edit', $sucursal->id) }}"
+                                                            class="el-button el-button--primary el-button--small editButton">
+                                                            <span><i class='bx bx-edit-alt'></i></span>
+                                                        </a>
+                                                    @endcan
 
                                                     <!-- Botón de eliminación -->
                                                     <form action="{{ route('presonals.destroy', $personal->id) }}"
@@ -135,15 +133,17 @@
     </div>
 
     <!-- Modal de creación de nuevo personal -->
-    <div class="modal fade" id="nuevoPersonalModal" tabindex="-1" role="dialog"
-        aria-labelledby="nuevoPersonalModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document"> <!-- Cambiado a modal-xl para mayor ancho -->
-            <div class="modal-content">
-                @include('empleados.empleados.create')
-            </div>
-        </div>
-    </div>
+    <script src="{{ asset('/js/ubigeo/ubigeo.js') }}"></script>
 
+    <script src="{{ asset('/js/personals/imagen.js') }}"></script>
+    <script src="{{ asset('/js/personals/curriculum.js') }}"></script>
+
+
+    <script>
+        document.getElementById('nuevoPersonalBtn').addEventListener('click', function() {
+            window.location.href = '{{ route('personals.create') }}';
+        });
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -151,37 +151,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ asset('/js/ubigeo/ubigeo.js') }}"></script>
-
-    <script src="{{ asset('/js/personals/imagen.js') }}"></script>
-    <script src="{{ asset('/js/personals/curriculum.js') }}"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Manejar la apertura del modal
-            document.getElementById('nuevoPersonalBtn').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('show');
-            });
-
-            // Manejar el cierre del modal desde el botón de cerrar en el header
-            document.getElementById('modal-close-button').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('hide');
-            });
-
-            document.getElementById('modal-cancel-button').addEventListener('click', function() {
-                $('#nuevoPersonalModal').modal('hide');
-            });
-
-            // Manejar el cierre del modal después de enviar el formulario
-            document.getElementById('modal-form').addEventListener('submitButton', function(event) {
-                event.preventDefault(); // Prevenir el envío del formulario
-                // Puedes añadir aquí la lógica de validación antes de enviar el formulario
-                this.submit(); // Enviar el formulario después de la validación
-                $('#nuevoPersonalModal').modal('hide');
-            });
-
-        });
-    </script>
-
-   
 @endsection

@@ -1,11 +1,7 @@
 @extends('home')
 @section('home')
     <div class="container mt-5">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+        @include('layouts.messege')
         <h4> Sucursales </h4>
 
         <div class="search-container mb-3">
@@ -46,21 +42,14 @@
 
                         <td text-right>
                             <div class="action-buttons"
-                                style=" display: flex;
-                            justify-content: center;
-                            margin-top: 20px;">
-                                @can('user_show')
-                                    <a href=" {{ route('sucursales.show', $sucursal->id) }}" class="btn btn-outline-primary"
-                                        style="margin: 0 2px;">
-                                        <span><i class='bx bx-show-alt'></i></span>
-                                    </a>
-                                @endcan
+                            style="display: flex; justify-content: flex-end; gap: 5px;">
+                                
 
                                 @can('user_edit')
-                                    <a href=" {{ route('sucursales.edit', $sucursal->id) }}" class="btn btn-warning"
-                                        style="margin: 0 2px;">
-                                        <span><i class='bx bx-edit-alt'></i></span>
-                                    </a>
+                                <a href=" {{ route('sucursales.edit', $sucursal->id) }}" class="el-button el-button--primary el-button--small editButton"
+                                    >
+                                    <span><i class='bx bx-edit-alt'></i></span>
+                                </a>
                                 @endcan
                                 @can('user_create')
                                     <div>

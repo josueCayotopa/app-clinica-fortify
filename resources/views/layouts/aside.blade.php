@@ -94,7 +94,7 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="afp.descuentos.index" class="menu-link">
+                            <a href="{{ route('afp.descuentos.index') }}" class="menu-link">
                                 <div data-i18n="Ventas">AFP y DESC.</div>
                             </a>
                         </li>

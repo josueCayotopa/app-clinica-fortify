@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    use HasFactory;
+   //
+
+   use HasFactory;
+
+
+  
     protected $fillable = [
+        'empresa_id',
         'codigo',
         'descripcion', 
         'nivel',
@@ -20,6 +26,11 @@ class Categoria extends Model
     {
         return $this->belongsToMany(Cargo::class, 'categoria_cargo');
     }
+    public function empresas()
+    {
+        return $this->belongsToMany(Empresa::class, 'empresa_id');
+    }
+
         
         
 

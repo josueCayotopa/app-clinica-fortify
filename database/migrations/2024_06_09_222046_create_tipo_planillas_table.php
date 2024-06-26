@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string('TIP_APLICA_PRESTAMO', 2)->nullable();
             $table->timestamps();
 
-            
         });
     }
 

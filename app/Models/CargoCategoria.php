@@ -8,21 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class CargoCategoria extends Model
 {
     use HasFactory;
-    protected $table = 'categoria_cargos';
+
+    protected $fillable = [
+        'empresa_id', 'categoria_id', 'cargo_id', 'descripcion', 'codigo_sunat', 'ind_directivo'
+    ];
 
     public function categoria()
     {
         return $this->belongsTo(Categoria::class);
     }
 
-    public function cargo()
-    {
-        return $this->belongsTo(Cargo::class);
-    }
-    protected $fillable = [
-        'categoria_id',
-        'cargo_id',
-    ];
-    
 
 }

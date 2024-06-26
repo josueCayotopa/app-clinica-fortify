@@ -104,6 +104,6 @@ class UITController extends Controller
     {
         $uit = Uit::findOrFail($id);
         $uit->delete();
-        return redirect()->route('uits.index')->with('success', 'Asignación de UIT eliminada exitosamente.');
+        return redirect()->route('uits.index')->with('warning', 'Asignación de UIT eliminada exitosamente.');
     }
 }

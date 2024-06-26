@@ -27,7 +27,7 @@ class CargoController extends Controller
 
         Cargo::create($request->all());
 
-        return redirect()->route('crear-relacion-categoria-cargo')->with('success', 'Cargo creado exitosamente.');
+        return response()->json(['success' => 'Cargo creado exitosamente.'], 200);
     }
 
     public function edit(Cargo $cargo)
@@ -50,7 +50,13 @@ class CargoController extends Controller
     public function destroy(Cargo $cargo)
     {
         $cargo->delete();
-      
+
         return redirect()->route('cargos.index')->with('success', 'Cargo eliminado exitosamente.');
+    }
+
+    public function getAllCargos()
+    {
+        $cargos = Cargo::all();
+        return response()->json($cargos);
     }
 }

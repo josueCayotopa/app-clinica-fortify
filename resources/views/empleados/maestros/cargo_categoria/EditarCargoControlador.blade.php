@@ -1,79 +1,156 @@
 @extends('home')
 
 @section('home')
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <div class="card w-85">
-        <div class="card-header">
-            <h3 class="card-title text-center">Editar Relación entre Categoría y Cargo</h3>
-        </div>
-        <div class="card-body">
-            <form action="{{ route('actualizar-relacion-categoria-cargo', $categoriaCargo->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-
-                <!-- Campos de Categoría -->
+    <div class="container">
+        <form action="{{ route('actualizar-relacion-categoria-cargo', $categoria->id) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="border rounded p-3 mb-3">
+                <h6 class="border-bottom pb-2 mb-3">Nueva Categoria Laboral</h6>
                 <div class="row">
-                    <div class="form-group col-md-2">
-                        <label for="codigo_categoria">Código Categoría:</label>
-                        <input type="text" name="codigo_categoria" id="codigo_categoria" class="form-control" value="{{ $categoria->codigo }}">
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="descripcion_categoria">Descripción Categoría:</label>
-                        <input type="text" name="descripcion_categoria" id="descripcion_categoria" class="form-control" value="{{ $categoria->descripcion }}">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="nivel_categoria">Nivel:</label>
-                        <input type="text" name="nivel_categoria" id="nivel_categoria" class="form-control" value="{{ $categoria->nivel }}">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="factor_hora_extra">Factor Hora Extra:</label>
-                        <input type="text" name="factor_hora_extra" id="factor_hora_extra" class="form-control" value="{{ $categoria->factor_hora_extra }}">
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="factor_dia_viaje">Factor Día Viaje:</label>
-                        <input type="text" name="factor_dia_viaje" id="factor_dia_viaje" class="form-control" value="{{ $categoria->factor_dia_viaje }}">
-                    </div>
-                </div>
 
-                <!-- Tabla de Cargos -->
-                <div class="form-group">
-                    <br>
-                    <label for="selected_cargo_id">Cargos:</label>
+                    <!-- Campos de Categoría -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="empresa_id">Empresa<span class="campo-obligatorio">*</span></label>
+                            <select class="form-control" id="empresa_id" name="empresa_id" required>
+                                @foreach ($empresas as $id => $nombre_comercial)
+                                    <option value="{{ $id }}"
+                                        {{ old('empresa_id', $categoria->empresa_id ?? '') == $id ? 'selected' : '' }}>
+                                        {{ $nombre_comercial }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('empresa_id'))
+                                <span class="text-danger">{{ $errors->first('empresa_id') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="codigo">Código Categoría<span class="campo-obligatorio">*</span></label>
+                            <input id="codigo" type="text" class="form-control" name="codigo"
+                                value="{{ old('codigo', $categoria->codigo) }}" readonly>
+                            @if ($errors->has('codigo'))
+                                <span class="error text-danger">{{ $errors->first('codigo') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="descripcion">Descripción Categoría<span class="campo-obligatorio">*</span></label>
+                            <input id="descripcion" type="text" class="form-control" name="descripcion"
+                                value="{{ old('descripcion', $categoria->descripcion) }}" readonly>
+                            @if ($errors->has('descripcion'))
+                                <span class="error text-danger">{{ $errors->first('descripcion') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="nivel">Nivel:<span class="campo-obligatorio">*</span></label>
+                            <input id="nivel" type="text" class="form-control" name="nivel"
+                                value="{{ old('nivel', $categoria->nivel) }}" readonly>
+                            @if ($errors->has('nivel'))
+                                <span class="error text-danger">{{ $errors->first('nivel') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="factor_hora_extra">Factor de pago por hora extra<span
+                                    class="campo-obligatorio">*</span></label>
+                            <input id="factor_hora_extra" type="text" class="form-control" name="factor_hora_extra"
+                                value="{{ old('factor_hora_extra', $categoria->factor_hora_extra) }}" readonly>
+                            @if ($errors->has('factor_hora_extra'))
+                                <span class="error text-danger">{{ $errors->first('factor_hora_extra') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="factor_dia_viaje">Factor de pago por viaje<span
+                                    class="campo-obligatorio">*</span></label>
+                            <input id="factor_dia_viaje" type="text" class="form-control" name="factor_dia_viaje"
+                                value="{{ old('factor_dia_viaje', $categoria->factor_dia_viaje) }}" readonly>
+                            @if ($errors->has('factor_dia_viaje'))
+                                <span class="error text-danger">{{ $errors->first('factor_dia_viaje') }}</span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-                <div class="scroll-container" style="max-height: 300px; overflow-y: auto;">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Código Cargo</th>
-                                <th>Descripción Cargo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($cargos as $cargo)
-                            <tr>
-                                <td>
-                                    <input type="radio" name="selected_cargo_id" value="{{ $cargo->id }}" {{ $cargo->id == $categoriaCargo->cargo_id ? 'checked' : '' }} required>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" name="codigo_cargo[{{ $cargo->id }}]" value="{{ $cargo->codigo }}">
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" name="descripcion_cargo[{{ $cargo->id }}]" value="{{ $cargo->descripcion }}">
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            </div>
 
-                <!-- Botones de acción -->
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Actualizar</button>
-                    <a href="{{ route('categoria-cargo.indexcargocategoria') }}" class="btn btn-secondary">Cancelar</a>
+            <!-- Tabla de Cargos -->
+            <h6 class="border-bottom pb-2 mb-3">Cargos</h6>
+
+            <div class="scroll-container" style="max-height: 300px; overflow-y: auto;">
+
+                <table class="table table-striped table-hover table-responsive" id="dynamicTable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Seleccionar</th>
+                            <th>Código Cargo</th>
+                            <th>Descripción Cargo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($cargos as $cargo)
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="cargos[]" value="{{ $cargo->id }}"
+                                        {{ $categoriaCargos->contains('cargo_id', $cargo->id) ? 'checked' : '' }}>
+                                </td>
+                                <td>{{ $cargo->codigo }}</td>
+                                <td>{{ $cargo->descripcion }}</td>
+                                <td></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <!-- Botón para agregar nueva fila -->
+            <div class="form-group">
+                <button type="button" id="addRow" class="el-button el-button--primary">Añadir Cargo</button>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="row">
+                <div class="col-md-12 gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="el-button el-button--primary" name="accion" value="crear_relacion">Crear
+                        Relación</button>
+
+                    <a href="{{ route('categoria-cargo.indexcargocategoria') }}"
+                        class="el-button el-button--danger">Cancelar</a>
                 </div>
-            </form>
-        </div>
+            </div>
+
+        </form>
     </div>
-</div>
+    <script>
+        document.getElementById('addRow').addEventListener('click', function() {
+            var tableBody = document.querySelector('#dynamicTable tbody');
+            var newRow = document.createElement('tr');
+
+            newRow.innerHTML = `
+                <td><input type="checkbox" name="new_cargos[]" checked></td>
+                <td><input type="text" name="new_codigo_cargo[]" class="form-control" required></td>
+                <td><input type="text" name="new_descripcion_cargo[]" class="form-control" required></td>
+                <td><button type="button" class="el-button el-button--danger remove-row"><span><i class='bx bxs-x-circle'></i></span></button></td>
+            `;
+
+            tableBody.appendChild(newRow);
+
+            newRow.querySelector('.remove-row').addEventListener('click', function() {
+                this.closest('tr').remove();
+            });
+        });
+
+        document.querySelectorAll('.remove-row').forEach(function(button) {
+            button.addEventListener('click', function() {
+                this.closest('tr').remove();
+            });
+        });
+    </script>
 @endsection

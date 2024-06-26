@@ -4,6 +4,7 @@ use App\Http\Controllers\AfpsdescuentosController;
 use App\Http\Controllers\AsignarVacacionesController;
 use App\Http\Controllers\CalendarioVacacionesController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\CargosCategoriasController;
 use App\Http\Controllers\CategoriaCargoController;
 use App\Http\Controllers\ConceptoController;
 use App\Http\Controllers\ConocimientoController;
@@ -40,9 +41,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 
@@ -52,7 +51,7 @@ Route::group(
     ['middleware' => 'auth'],
     function () {
 
-        Route::get('/home/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home.dashboard');
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home.dashboard');
         Route::get('/users/create', [UserControlles::class, 'create'])->name('users.create');
         Route::post('/users', [UserControlles::class, 'store'])->name('users.store');
         Route::get('/users/index', [UserControlles::class, 'index'])->name('users.index');
@@ -118,13 +117,18 @@ Route::group(
 
         Route::resource('cargos', CargoController::class);
         // cargo y Categorias
+        Route::get('/categoria/{id}/cargos', [CategoriaCargoController::class, 'getCargos'])->name('categoria-cargos.get-cargos');
         Route::get('/vista-categoria', [CategoriaCargoController::class, 'index'])->name('categoria-cargo.indexcargocategoria');
         Route::delete('/categoria-cargos/{id}', [CategoriaCargoController::class, 'destroy'])->name('categoria-cargos.destroy');
         Route::get('/editar-relacion-categoria-cargo/{id}', [CategoriaCargoController::class, 'edit'])->name('editar-relacion-categoria-cargo');
         Route::put('/actualizar-relacion-categoria-cargo/{id}', [CategoriaCargoController::class, 'update'])->name('actualizar-relacion-categoria-cargo');
         Route::get('categoria-cargo/crear', [CategoriaCargoController::class, 'create'])->name('crear-relacion-categoria-cargo');
         Route::post('categoria-cargo', [CategoriaCargoController::class, 'store'])->name('guardar-relacion-categoria-cargo');
+        Route::delete('/categoria-cargos/{id}', [CategoriaCargoController::class, 'Categoriadestroy'])->name('categorias.destroy');
+        Route::delete('/eliminar-cargo/{cargo}', [CategoriaCargoController::class,'eliminarCargo'])->name('eliminar-cargo');
+        // cargos y categorias Josue 
 
+       
         // afp y tipo de descuento
         Route::get('/empleados/maestros/descuentoAfp', [AfpsdescuentosController::class, 'index'])->name('afp.descuentos.index');
         Route::get('afp-descuentos/{id}/editar', [AfpsdescuentosController::class, 'edit'])->name('editar.afp.descuento');

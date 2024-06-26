@@ -2,11 +2,7 @@
 
 @section('home')
     <div class="container mt-5">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+        @include('layouts.messege')
         <div class="el-row is-justify-space-between row-bg">
             <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
                 <h5>Listado de UIT</h5>

@@ -16,44 +16,42 @@
             @include('layouts.aside')
 
             <div class="layout-page">
-
                 @include('layouts.nav')
                 <!-- / Navbar -->
+
                 <!-- Content wrapper -->
-                <div class="content-wrapper">
-                    <div class="container-xxl flex-grow-1 container-p-y">
-                        <div class="row">
-                            <div class="col-lg-12 mb-4 order-0">
-                                <div class="card">
-                                    <div class="d-flex align-items-end row">
-                                        <div class="col-md-12">
-                                            <div class="card-body">
-                                                <main>
+                <div class="content-wrapper d-flex flex-column flex-grow-1 overflow-hidden">
+                    <div class="container-xxl flex-grow-1 container-p-y d-flex flex-column overflow-hidden">
+                        <div class="row flex-grow-1 overflow-hidden">
+                            <div class="col-lg-12 mb-4 order-0 d-flex flex-column h-100">
+                                <div class="card flex-grow-1 d-flex flex-column h-100">
+                                    <div class="d-flex align-items-end row flex-grow-1 h-100">
+                                        <div class="col-md-12 h-100 d-flex flex-column">
+                                            <div class="card-body flex-grow-1 d-flex flex-column p-0">
+                                                <main class="main-content flex-grow-1 overflow-auto">
                                                     @yield('main')
                                                 </main>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-
                             </div>
-                            <!-- / Content -->
-
-                            <!-- Footer -->
-                            @include('layouts.footer')
-                            <!-- / Footer -->
-
-                            <div class="content-backdrop fade"></div>
                         </div>
-                        <!-- Content wrapper -->
-                    </div>
-                    <!-- / Layout page -->
-                </div>
+                        <!-- / Content -->
 
-                <!-- Overlay -->
-                <div class="layout-overlay layout-menu-toggle"></div>
+                        <!-- Footer -->
+                        @include('layouts.footer')
+                        <!-- / Footer -->
+
+                        <div class="content-backdrop fade"></div>
+                    </div>
+                </div>
+                <!-- / Content wrapper -->
             </div>
-            <!-- / Layout wrapper -->
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
 @endsection
