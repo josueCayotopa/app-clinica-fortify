@@ -26,6 +26,8 @@ return new class extends Migration
             $table->unsignedBigInteger('nacionalidad_id');
             $table->string('telefono', 10)->nullable();
             $table->string('correo_electronico', 50)->nullable();
+            $table->string('imagen')->nullable(); 
+            $table->string('curriculum')->nullable(); 
 
 
             $table->char('essalud_vida', 1);
@@ -53,6 +55,7 @@ return new class extends Migration
             $table->string('CUSPP', 12)->nullable();
             $table->char('SCTR_salud', 1)->nullable();
             $table->char('SCTR_pension', 1)->nullable();
+            
             $table->unsignedBigInteger('contrato_trabajo_id');
             $table->char('trabajo_sujeto_alt_acum_atip_desc', 1)->nullable();
             $table->char('trabajo_sujeto_jornda_maxima', 1)->nullable();
