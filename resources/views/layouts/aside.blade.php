@@ -36,10 +36,10 @@
                 <div data-i18n="Ventas">Empleados</div>
             </a>
             <ul class="menu-sub">
-                
+
                 <li class="menu-item">
                     <a href="{{ route('personals.index') }}" class="menu-link">
-                       
+
                         <div data-i18n="Empleado">Empleado</div>
                     </a>
                 </li>
@@ -137,12 +137,12 @@
                                 <div data-i18n="Ventas">Acumuacion de conceptos</div>
                             </a>
                         </li>
-                       
+
 
                     </ul>
 
                 </li>
-            
+
 
             </ul>
         </li>
@@ -165,6 +165,19 @@
                 </li>
 
 
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#" class="menu-link menu-toggle">
+                <i class='menu-icon bx bx-file'> </i>
+                <div data-i18n="asistencia">Asistencia</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{{ route('asistenciaa.index') }}}" class="menu-link">
+                        <div data-i18n="Ventas">Asistencia</div>
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -231,9 +244,9 @@
 
 
 
-       
-        @can('user_index')           
-        
+
+        @can('user_index')
+
         <li class="menu-item ">
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-map-alt'> </i>
@@ -254,8 +267,8 @@
                     </a>
                 </li>
                 @can('role_index')
-                    
-                
+
+
                 <li class="menu-item">
                     <a href="{{ route('roles.index') }}" class="menu-link">
                         <div data-i18n="Ventas">Roles</div>
@@ -263,22 +276,22 @@
                 </li>
                 @endcan
                 @can('permission_index')
-                    
-               
+
+
                 <li class="menu-item">
                     <a href="{{ route('permissions.index') }}" class="menu-link">
                         <div data-i18n="Ventas">Permisos</div>
                     </a>
                 </li>
-                
+
                 @endcan
 
             </ul>
 
         </li>
         @endcan
-            
-      
+
+
         <li class="menu-item ">
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-map-alt'> </i>

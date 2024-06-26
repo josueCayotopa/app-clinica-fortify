@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AfpsdescuentosController;
 use App\Http\Controllers\AsignarVacacionesController;
+use App\Http\Controllers\AsistenciaController;
 use App\Http\Controllers\CalendarioVacacionesController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\CategoriaCargoController;
@@ -45,7 +46,7 @@ Route::get('/', function () {
 
 
 
-// usuarios 
+// usuarios
 Route::group(
     ['middleware' => 'auth'],
     function () {
@@ -71,13 +72,16 @@ Route::group(
 
         Route::resource('sucursales', SucursalController::class);
         Route::resource('uits', UITController::class);
-        // rutas para ubigeo 
+        // rutas para ubigeo
         Route::get('/get-provincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
         Route::get('/get-distritos/{provincia_id}', [UbigeoController::class, 'getDistritos'])->name('getDistritos');
 
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
+        //ruta para asistencia
+        // routes/web.php
+        Route::get('/asistenciaa', [AsistenciaController::class, 'index'])->name('asistenciaa.index');
 
 
         // empleado
@@ -85,7 +89,7 @@ Route::group(
         ///Empleados
 
         ////Planillas
-        /////Conocimientos 
+        /////Conocimientos
         Route::get('/empleados/planillas/conocimiento',[ConocimientoController::class, 'index'])->name('conocimiento.index');
         Route::post('/empleados/planillas/conocimiento',[ConocimientoController::class, 'store'])->name('conocimiento.store');
         Route::post('/conocimiento/{id}', [ConocimientoController::class, 'update'])->name('conocimiento.update');
@@ -132,7 +136,7 @@ Route::group(
         Route::get('/afp/descuentos/create', [AfpsdescuentosController::class, 'create'])->name('afp.descuentos.create');
         Route::post('/afp/descuentos', [AfpsdescuentosController::class, 'store'])->name('afp.descuentos.store');
 
-        //Fromulas 
+        //Fromulas
 
         Route::resource('formulas', FormulaController::class);
         // conceptos
@@ -153,7 +157,7 @@ Route::group(
         Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
 
         //numero de ususarios
-        
+
     }
 );
 
