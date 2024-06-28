@@ -23,17 +23,37 @@ class RolController extends Controller
       }
   
       $roles = $query->paginate(5);
-  
-      return view('users.roles.index', compact('roles'));
+      if ($request->ajax()) {
+        return response()->json([
+            'view' => view('users.roles.index', compact('roles'))->render(),
+            'url' => route('roles.index', $request->query())
+        ]);}
+    
 
+    return view('home')->with([
+        'view' => 'users.roles.index',
+        'data' => compact('roles'),
+    ]);
+     
    }
-   public  function create()
+   public  function create(Request $request)
    {
       abort_if( Gate::denies('role_create'), 403);
       $permissions=Permission::all()->pluck('name', 'id');
      
-    
-    return view('users.roles.create', compact('permissions'));
+      if ($request->ajax()) {
+        return response()->json([
+            'view' => view('users.roles.create', compact('permissions'))->render(),
+            'url' => route('roles.create', $request->query())
+        ]);
+       
+     }
+
+     return view('home')->with([
+         'view' => 'users.roles.create',
+         'data' => compact('permissions'),
+     ]);
+
     
    }
    public  function store(RolCreateRequest $request)
@@ -47,22 +67,44 @@ class RolController extends Controller
     return redirect()->route('roles.index')->with('success', 'Rol creado correctamente');
     
    }
-   public  function show(Role $role)
+   public  function show(Role $role, Request $request)
    {
       abort_if( Gate::denies('role_show'), 403);
     $role->load('permissions');
-    return view('users.roles.show', compact('role'));
+   
+    if ($request->ajax()) {
+        return response()->json([
+            'view' => view('users.roles.show', compact('role'))->render(),
+            'url' => route('roles.show', $request->query())
+        ]);
+    
+  }
+
+  return view('home')->with([
+      'view' => 'users.roles.show',
+      'data' => compact('role'),
+  ]);
     
    }
 
-   public  function edit(Role $role)
+   public  function edit(Role $role, Request $request)
    {
       abort_if( Gate::denies('role_edit'), 403);
       $permissions=Permission::all()->pluck('name','id');
       $role->load('permissions');
 
-      return view('users.roles.edit', compact('role','permissions'));
-
+      
+      if ($request->ajax()) {
+        return response()->json([
+            'view' => view('users.roles.edit', compact('role', 'permissions'))->render(),
+            'url' => route('roles.edit', $request->query())
+        ]);
+     }
+   
+     return view('home')->with([
+         'view' => 'users.roles.edit',
+         'data' => compact('role','permissions'),
+     ]);
    }
    public  function update(RolEditRequest $request,$id)
    {
@@ -73,7 +115,7 @@ class RolController extends Controller
     $roleid->update($role);
     $roleid->permissions()->sync($request->input('permissions',[]));
 
-    return redirect()->route('roles.index')->with('success', 'Rol creado conrectamente  actualizado conrrectamente');
+    return redirect()->route('roles.index')->with('success', 'Rol  actualizado conrrectamente');
     
 
 
@@ -83,7 +125,7 @@ class RolController extends Controller
       abort_if( Gate::denies('role_destroy'), 403);
 
     $role->delete();
-    return redirect()->route('roles.index');      
+    return redirect()->route('roles.index')->with('danger', 'Rol  eliminado conrrectamente');;      
     
    }
 }

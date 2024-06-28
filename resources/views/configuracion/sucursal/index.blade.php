@@ -1,27 +1,47 @@
-@extends('home')
-@section('home')
-    <div class="container mt-5">
+<div class="container mt-5">
+    @include('layouts.messege')
+    <div id="messages">
         @include('layouts.messege')
-        <h4> Sucursales </h4>
-
-        <div class="search-container mb-3">
-            <div class="input-group me-3">
-                <select class="form-select" id="filter-by">
-                    <option value="name">Nombre</option>
-                    <option value="username">Usuario</option>
-                    <!-- Agrega más opciones de filtro según tus necesidades -->
-                </select>
-            </div>
-            <input type="search" id="search-input" class="form-control" placeholder="Buscar por nombre o usuario">
+    </div>
+    <div class="el-row is-justify-space-between row-bg mb-3">
+        <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
+            <h5>Listado de Afp</h5>
+        </div>
+        <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
             @can('user_create')
-                <button class="btn btn-primary ms-3" id="new-button"> Nuevo <span><i class='bx bx-user-plus'></i></span>
+                <button class="el-button el-button--primary" id="new-button"> Nuevo <span><i
+                            class='bx bx-user-plus'></i></span>
 
                 </button>
             @endcan
         </div>
+    </div>
+    <div class="el-row is-justify-space-between row-bg">
+        <div class="col-lg-4"><br>
+            <div class="el-input el-input--prefix" style="width: 100%;">
+                <div class="el-input__wrapper" tabindex="-1">
+                    <span class="el-input__prefix">
+                        <span class="el-input__prefix-inner">
+                            <i class="el-icon el-input__icon"></i>
+                        </span>
+                    </span>
+                    <input class="el-input__inner" type="text" autocomplete="off" tabindex="0" placeholder="Buscar"
+                        id="el-id-4745-11" spellcheck="false" data-ms-editor="true">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+        <div class="el-col el-col-24 el-col-xs-6 el-col-sm-3">
+            <br>
+            <button aria-disabled="false" type="button" class="el-button el-button--success">
+                <span class="">Generar Excel</span>
+            </button>
+        </div>
+    </div>
 
-        <table class="table table-borderless">
-            <thead>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
                 <tr>
                     <th>Nombre Sucursal</th>
                     <th>Telefono</th>
@@ -75,23 +95,23 @@
                 @endforeach
             </tbody>
         </table>
-
-        <div class="mt-5"> <!-- Mayor separación entre la tabla y el paginador -->
-            {{ $sucursales->links() }}
-        </div>
     </div>
 
-    <script>
-        document.getElementById('new-button').addEventListener('click', function() {
-            window.location.href = '{{ route('sucursales.create') }}';
-        });
-    </script>
-
-    {{-- <script src="{{ asset('/js/modalempresa.js') }}"></script> --}}
-
-
-
-
+    <div class="mt-5"> <!-- Mayor separación entre la tabla y el paginador -->
+        {{ $sucursales->links() }}
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-@endsection
+</div>
+
+<script>
+    document.getElementById('new-button').addEventListener('click', function() {
+        window.location.href = '{{ route('sucursales.create') }}';
+    });
+</script>
+
+{{-- <script src="{{ asset('/js/modalempresa.js') }}"></script> --}}
+
+
+
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>

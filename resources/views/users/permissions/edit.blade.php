@@ -1,5 +1,4 @@
-@extends('home')
-@section('home')
+
     <div class="container mt-5">
         <h5 class="mb-4">Crear Permiso</h5>
         <form id="registroForm" method="post" action="{{ route('permissions.update',$permission->id) }}" autocomplete="off">
@@ -35,7 +34,7 @@
                     @endcan
                     @can('permission_edit')
 
-                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-3 ">Guardar</button>
+                    <button type="submit" class="btn btn-primary btn-block mt-3 ">Guardar</button>
                     
                     @endcan
 
@@ -44,4 +43,3 @@
         </form>
     </div>
 
-@endsection

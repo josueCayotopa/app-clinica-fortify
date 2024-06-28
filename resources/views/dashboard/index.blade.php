@@ -1,6 +1,5 @@
-@extends('home')
-@section('home')
-    <div class="container mt-5 cajaDash "style="height: 100%;">
+
+    <div class="container mt-5 cajaDash">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                 <div class="card card-statistic-1 bg-custom">
@@ -184,4 +183,3 @@
     <!-- Template JS File -->
     <script src="{{ asset('assets_copy/js/scripts.js') }} "></script>
     <script src="{{ asset('assets_copy/js/custom.js') }} "></script>
-@endsection

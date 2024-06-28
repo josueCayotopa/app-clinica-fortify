@@ -20,13 +20,24 @@ class SucursalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $sucursales = Sucursal::paginate(5);
-        return view('configuracion.sucursal.index', compact('sucursales'));
+
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.sucursal.index', compact('sucursales'))->render(),
+                'url' => route('sucursales.index', $request->query())
+            ]);
+        }
+
+        return view('home')->with([
+            'view' => 'configuracion.sucursal.index',
+            'data' => compact('sucursales'),
+        ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $empresas = Empresa::pluck('nombre_comercial', 'id');
         $departamentos = Departamento_Region::pluck('descripcion', 'id');
@@ -34,7 +45,32 @@ class SucursalController extends Controller
         $distritos = Distrito::pluck('descripcion', 'id');
         $zonas = Zona::pluck('descripcion', 'id');
         $vias = Via::pluck('descripcion', 'id');
-        return view('configuracion.sucursal.create', compact('empresas', 'departamentos', 'provincias', 'distritos', 'zonas', 'vias'));
+
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.sucursal.create', compact(
+                    'empresas',
+                    'departamentos',
+                    'provincias',
+                    'distritos',
+                    'zonas',
+                    'vias'
+                ))->render(),
+                'url' => route('sucursales.create', $request->query())
+            ]);
+        }
+
+        return view('home')->with([
+            'view' => 'configuracion.sucursal.create',
+            'data' => compact(
+                'empresas',
+                'departamentos',
+                'provincias',
+                'distritos',
+                'zonas',
+                'vias'
+            ),
+        ]);
     }
 
     public function store(Request $request)
@@ -95,7 +131,7 @@ class SucursalController extends Controller
         return view('sucursales.show', compact('sucursal'));
     }
 
-    public function edit(Sucursal $sucursale)
+    public function edit(Sucursal $sucursale, Request $request)
     {
         $empresas = Empresa::pluck('nombre_comercial', 'id');
         $departamentos = Departamento_Region::pluck('descripcion', 'id');
@@ -104,7 +140,34 @@ class SucursalController extends Controller
         $zonas = Zona::pluck('descripcion', 'id');
         $vias = Via::pluck('descripcion', 'id');
 
-        return view('configuracion.sucursal.edit', compact('sucursale', 'empresas', 'departamentos', 'provincias', 'distritos', 'zonas', 'vias'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.sucursal.edit', compact(
+                    'sucursale',
+                    'empresas',
+                    'departamentos',
+                    'provincias',
+                    'distritos',
+                    'zonas',
+                    'vias'
+                ))->render(),
+                'url' => route('sucursales.edit', $request->query())
+            ]);
+            
+        }
+
+        return view('home')->with([
+            'view' => 'configuracion.sucursal.edit',
+            'data' => compact(
+                'sucursale',
+                'empresas',
+                'departamentos',
+                'provincias',
+                'distritos',
+                'zonas',
+                'vias'
+            ),
+        ]);
     }
 
     public function update(Request $request, $id)

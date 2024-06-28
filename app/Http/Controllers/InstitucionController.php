@@ -13,11 +13,20 @@ class InstitucionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $instituciones=Institucion::paginate(10);
-
-        return view('empleados.planillas.instituciones.index', compact('instituciones'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.planillas.instituciones.index', compact('instituciones'))->render(),
+                'url' => route('institucion.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'empleados.planillas.instituciones.index',
+            'data' => compact('instituciones'),
+        ]);
+        
 
     }
 

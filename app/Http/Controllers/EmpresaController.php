@@ -22,14 +22,20 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-
-
         // $users=User::all();
-        $empresas = Empresa::paginate(10);
-        return view('configuracion.empresa.index', compact('empresas'));
+        $empresas = Empresa::paginate(5);
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.empresa.index', compact('empresas'))->render(),
+                'url' => route('empresa.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'configuracion.empresa.index',
+            'data' => compact('empresas'),
+        ]);
     }
 
     /**
@@ -37,7 +43,7 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
 
@@ -51,8 +57,50 @@ class EmpresaController extends Controller
         $vias = Via::all()->pluck('descripcion', 'id');
         $paises = Nacionalidad::all()->pluck('descripcion', 'id');
         $tipo_monedas = Tipo_moneda::all()->pluck('descripcion', 'id'); // Añadir esto
+        if ($request->ajax()) {
+            if ($request->ajax()) {
+                return response()->json([
+                    'view' => view('configuracion.empresa.create', compact(
+                        'tipo_documentos',
+                        'departamentos',
+                        'provincias',
+                        'distritos',
+                        'zonas',
+                        'vias',
+                        'paises',
+                        'tipo_monedas'
+                    ))->render(),
+                    'url' => route('empresa.create', $request->query())
+                ]);
+            }
+            return view('home')->with([
+                'view' => 'configuracion.empresa.index',
+                'data' => compact(
+                    'tipo_documentos',
+                    'departamentos',
+                    'provincias',
+                    'distritos',
+                    'zonas',
+                    'vias',
+                    'paises',
+                    'tipo_monedas'
+                ),
+            ]);
+        }
 
-        return view('configuracion.empresa.create', compact('tipo_documentos', 'departamentos', 'provincias', 'distritos', 'zonas', 'vias', 'paises', 'tipo_monedas'));
+        return view('home')->with([
+            'view' => 'configuracion.empresa.create',
+            'data' => compact(
+                'tipo_documentos',
+                'departamentos',
+                'provincias',
+                'distritos',
+                'zonas',
+                'vias',
+                'paises',
+                'tipo_monedas'
+            ),
+        ]);
     }
 
 
@@ -62,7 +110,7 @@ class EmpresaController extends Controller
         if (!$distrito) {
             return redirect()->back()->withErrors(['distrito_id' => 'El distrito seleccionado no es válido.'])->withInput();
         }
-    
+
         $empresa = Empresa::create([
             'codigo_empresa' => $request->codigo_empresa,
             'direccion' => $request->direccion,
@@ -84,10 +132,10 @@ class EmpresaController extends Controller
             'pais_id' => $request->pais_id,
             'tipo_moneda_id' => $request->tipo_moneda, // Corrected to tipo_moneda_id
         ]);
-    
+
         return redirect()->route('empresas.index')->with('success', 'Empresa creada exitosamente.');
     }
-    
+
 
 
     public function show(Empresa $empresa)
@@ -96,22 +144,51 @@ class EmpresaController extends Controller
     }
 
 
-    public function edit(Empresa $empresa)
+    public function edit(Empresa $empresa, Request $request)
     {
         //
 
 
-    $tipo_documentos = TipoDocumento::all()->pluck('descripcion', 'id');
-    $departamentos = Departamento_Region::all()->pluck('descripcion', 'id');
-    $provincias = Provincia::all()->pluck('descripcion', 'id');
-    $distritos = Distrito::all()->pluck('descripcion', 'id');
-    $zonas = Zona::all()->pluck('descripcion', 'id');
-    $vias = Via::all()->pluck('descripcion', 'id');
-    $paises = Nacionalidad::all()->pluck('descripcion', 'id');
-    $tipo_monedas = Tipo_Moneda::all()->pluck('descripcion', 'id');
+        $tipo_documentos = TipoDocumento::all()->pluck('descripcion', 'id');
+        $departamentos = Departamento_Region::all()->pluck('descripcion', 'id');
+        $provincias = Provincia::all()->pluck('descripcion', 'id');
+        $distritos = Distrito::all()->pluck('descripcion', 'id');
+        $zonas = Zona::all()->pluck('descripcion', 'id');
+        $vias = Via::all()->pluck('descripcion', 'id');
+        $paises = Nacionalidad::all()->pluck('descripcion', 'id');
+        $tipo_monedas = Tipo_Moneda::all()->pluck('descripcion', 'id');
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.empresa.edit', compact(
+                    'empresa',
+                    'tipo_documentos',
+                    'departamentos',
+                    'provincias',
+                    'distritos',
+                    'zonas',
+                    'vias',
+                    'paises',
+                    'tipo_monedas'
+                ))->render(),
+                'url' => route('empresa.edit', $request->query())
+            ]);
+            
+        }
 
-    return view('configuracion.empresa.edit', compact('empresa', 'tipo_documentos', 'departamentos', 'provincias', 'distritos', 'zonas', 'vias', 'paises', 'tipo_monedas'));
-
+        return view('home')->with([
+            'view' => 'configuracion.empresa.edit',
+            'data' => compact(
+                'empresa',
+                'tipo_documentos',
+                'departamentos',
+                'provincias',
+                'distritos',
+                'zonas',
+                'vias',
+                'paises',
+                'tipo_monedas'
+            ),
+        ]);
     }
 
 
@@ -124,28 +201,7 @@ class EmpresaController extends Controller
     {
         // Eliminar la empresa
         $empresa->delete();
-    
+
         return redirect()->route('empresas.index')->with('success', 'Empresa eliminada exitosamente.');
     }
-    public function getProvincias(Request $request)
-    {
-        try {
-            $provincias = Provincia::where('departamento_id', $request->departamento_id)->pluck('descripcion', 'id');
-            return response()->json($provincias);
-        } catch (\Exception $e) {
-            // Manejar la excepción aquí
-            return response()->json(['error' => 'Error al obtener las provincias'], 500);
-        }
-    }
-    public function getDistritos(Request $request)
-    {
-        try {
-            $distritos = Distrito::where('provincia_id', $request->provincia_id)->pluck('descripcion', 'id');
-            return response()->json($distritos);
-        } catch (\Exception $e) {
-            // Manejar la excepción aquí
-            return response()->json(['error' => 'Error al obtener los distritos'], 500);
-        }
-    }
-    
 }

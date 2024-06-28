@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
     <div class="container mt-5">
         @include('layouts.messege')
         <div class="el-row is-justify-space-between row-bg">
@@ -213,4 +211,3 @@
     </script>
 
     <script src="{{ asset('/js/validarmodal.js') }}"></script>
-@endsection

@@ -40,15 +40,21 @@ class HomeController extends Controller
         return view('dashboard.index', compact('onlineUsers'));
     } */
 
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        // Contar los usuarios en línea
         $onlineUsers = User::countOnlineUsers();
-        
-        // Obtener todos los usuarios
         $usuarios = User::getUsuarios();
-        
-        // Pasar ambos datos a la vista
-        return view('dashboard.index', compact('onlineUsers', 'usuarios'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('dashboard.index', compact('onlineUsers', 'usuarios'))->render(),
+                'url' => route('dashboard.index', $request->query())
+            ]);
+        }
+
+        return view('home')->with([
+            'view' => 'dashboard.index',
+            'data' => compact('onlineUsers', 'usuarios'),
+        ]);
+       
     }
 }

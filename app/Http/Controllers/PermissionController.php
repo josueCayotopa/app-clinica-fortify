@@ -16,12 +16,23 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         abort_if( Gate::denies('permission_index'), 403);
         $permissions=Permission::paginate(5);
-        return view('users.permissions.index', compact('permissions'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('users.permissions.index', compact('permissions'))->render(),
+                'url' => route('permissions.index', $request->query())
+            ]);
+            
+        }
+        return view('home')->with([
+            'view' => 'users.permissions.index',
+            'data' => compact('permissions'),
+        ]);
+        
     }
 
     /**
@@ -29,11 +40,25 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
         abort_if( Gate::denies('permission_create'), 403);
-        return view('users.permissions.create');
+        
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('users.permissions.create')->render(),
+                'url' => route('permissions.create', $request->query())
+            ]);
+            
+        }
+   
+        return view('home')->with([
+            'view' => 'users.permissions.create',
+            
+        ]);
+
+       
     }
 
     /**
@@ -56,12 +81,24 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($permission)
+    public function show($permission,Request $request )
     {
         abort_if( Gate::denies('permission_show'), 403);
         //
         $permission = Permission::find($permission);
-        return view('users.permissions.show', compact('permission'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('users.permissions.show',compact('permission'))->render(),
+                'url' => route('permissions.show', $request->query())
+            ]);
+         
+        }
+   
+        return view('home')->with([
+            'view' => 'users.permissions.show',
+            'data' => compact('permission'),
+        ]);
+       
 
 
 
@@ -75,11 +112,24 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permission $permission)
+    public function edit(Permission $permission ,Request $request)
     {
         abort_if( Gate::denies('permission_edit'), 403);
         //
-        return view('users.permissions.edit', compact('permission'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('users.permissions.edit',compact('permission'))->render(),
+                'url' => route('permissions.edit', $request->query())
+            ]);
+          
+        }
+   
+        return view('home')->with([
+            'view' => 'users.permissions.edit',
+            'data' => compact('permission'),
+        ]);
+       
+        
     }
 
     /**
@@ -96,6 +146,7 @@ class PermissionController extends Controller
         $permissionid = Permission::findOrFail($id);
         $permission = $request->only('name');
         $permissionid->update($permission);
+
         return redirect()->route('permissions.index')->with('success', 'Permiso creado conrectamente  actualizado conrrectamente');
     }
 

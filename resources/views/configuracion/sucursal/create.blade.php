@@ -1,6 +1,4 @@
-@extends('home')
-
-@section('home')
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs">
@@ -35,8 +33,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="nombre_sucursal">Nombre de Sucursal</label>
-                                    <input id="nombre_sucursal" type="text" class="form-control" name="nombre_sucursal"
-                                        placeholder="Nombre de sucursal" value="{{ old('nombre_sucursal') }}">
+                                    <input id="nombre_sucursal" type="text" class="form-control"
+                                        name="nombre_sucursal" placeholder="Nombre de sucursal"
+                                        value="{{ old('nombre_sucursal') }}">
                                     @if ($errors->has('nombre_sucursal'))
                                         <span class="error text-danger">{{ $errors->first('nombre_sucursal') }}</span>
                                     @endif
@@ -113,7 +112,8 @@
                                         @if (old('provincia_id'))
                                             @foreach ($provincias as $id => $descripcion)
                                                 <option value="{{ $id }}"
-                                                    {{ old('provincia_id') == $id ? 'selected' : '' }}>{{ $descripcion }}
+                                                    {{ old('provincia_id') == $id ? 'selected' : '' }}>
+                                                    {{ $descripcion }}
                                                 </option>
                                             @endforeach
                                         @endif
@@ -134,7 +134,8 @@
                                         @if (old('distrito_id'))
                                             @foreach ($distritos as $id => $descripcion)
                                                 <option value="{{ $id }}"
-                                                    {{ old('distrito_id') == $id ? 'selected' : '' }}>{{ $descripcion }}
+                                                    {{ old('distrito_id') == $id ? 'selected' : '' }}>
+                                                    {{ $descripcion }}
                                                 </option>
                                             @endforeach
                                         @endif
@@ -150,11 +151,13 @@
                                 <div class="form-group">
                                     <label for="zona_id">Zona</label>
                                     <select class="form-control" id="zona_id" name="zona_id">
-                                        <option value="" disabled {{ old('zona_id') ? '' : 'selected' }}>Selecciona
+                                        <option value="" disabled {{ old('zona_id') ? '' : 'selected' }}>
+                                            Selecciona
                                             una Zona</option>
                                         @foreach ($zonas as $id => $zona)
                                             <option value="{{ $id }}"
-                                                {{ old('zona_id') == $id ? 'selected' : '' }}>{{ $zona }}</option>
+                                                {{ old('zona_id') == $id ? 'selected' : '' }}>{{ $zona }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('zona_id'))
@@ -166,11 +169,13 @@
                                 <div class="form-group">
                                     <label for="via_id">Vía</label>
                                     <select class="form-control" id="via_id" name="via_id">
-                                        <option value="" disabled {{ old('via_id') ? '' : 'selected' }}>Selecciona
+                                        <option value="" disabled {{ old('via_id') ? '' : 'selected' }}>
+                                            Selecciona
                                             una Vía</option>
                                         @foreach ($vias as $id => $via)
                                             <option value="{{ $id }}"
-                                                {{ old('via_id') == $id ? 'selected' : '' }}>{{ $via }}</option>
+                                                {{ old('via_id') == $id ? 'selected' : '' }}>{{ $via }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('via_id'))
@@ -195,12 +200,14 @@
                                         <label
                                             class="btn btn-outline-success btn-sm {{ old('estado', $sucursal->estado ?? 1) == 1 ? 'active' : '' }}">
                                             <input type="radio" name="estado" value="1" autocomplete="off"
-                                                {{ old('estado', $sucursal->estado ?? 1) == 1 ? 'checked' : '' }}> Activo
+                                                {{ old('estado', $sucursal->estado ?? 1) == 1 ? 'checked' : '' }}>
+                                            Activo
                                         </label>
                                         <label
                                             class="btn btn-outline-danger btn-sm {{ old('estado', $sucursal->estado ?? 1) == 0 ? 'active' : '' }}">
                                             <input type="radio" name="estado" value="0" autocomplete="off"
-                                                {{ old('estado', $sucursal->estado ?? 1) == 0 ? 'checked' : '' }}> Inactivo
+                                                {{ old('estado', $sucursal->estado ?? 1) == 0 ? 'checked' : '' }}>
+                                            Inactivo
                                         </label>
                                     </div>
                                 </div>
@@ -211,7 +218,7 @@
                             <div class="col-md-12 gap-2 d-md-flex justify-content-md-end">
                                 <!-- Botón en la parte derecha con más separación -->
                                 @can('user_create')
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-3 ">Crear</button>
+                                    <button type="submit" class="el-button el-button--danger ">Crear</button>
                                 @endcan
                             </div>
                         </div>
@@ -220,11 +227,10 @@
             </div>
         </div>
     </div>
+</div>
 
 
-    <script src="{{ asset('js/tabs.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ asset('/js/ubigeo/ubigeo.js') }}"></script>
-
-@endsection
+<script src="{{ asset('js/tabs.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('/js/ubigeo/ubigeo.js') }}"></script>

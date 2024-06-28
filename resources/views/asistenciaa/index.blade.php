@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
     {{--<div class="container mt-5">
         <h1 class="mb-4">Lista de Asistencias</h1>
 
@@ -194,4 +192,4 @@
     <!-- Scripts de Bootstrap -->
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> --}}
     </body>
-@endsection
+

@@ -10,18 +10,40 @@ use Illuminate\Http\Request;
 
 class AfpsdescuentosController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $afpDescuentos = Afpsdescuentos::with(['afp', 'tipoDescuento'])->get();
-        return view('empleados.maestros.afp.afp.index', compact('afpDescuentos'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.maestros.afp.afp.index', compact('afpDescuentos'))->render(),
+                'url' => route('afp.descuentos.index', $request->query())
+            ]);
+        }
+
+        return view('home')->with([
+            'view' => 'empleados.maestros.afp.afp.index',
+            'data' => compact('afpDescuentos'),
+        ]);
+  
     }
 
-     public function edit($id)
+     public function edit($id,Request $request)
     {
         $afpDescuento = Afpsdescuentos::findOrFail($id);
         $afp = Afp::findOrFail($afpDescuento->afp_id);
         $tiposDescuentos = TipoDescuentos::all();
-        return view('empleados.maestros.descuentoAfp.editarafpdescuento', compact('afpDescuento', 'afp', 'tiposDescuentos'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.maestros.descuentoAfp.editarafpdescuento', compact('afpDescuento', 'afp', 'tiposDescuentos'))->render(),
+                'url' => route('afp.descuentos.edit', $request->query())
+            ]);
+        }
+
+        return view('home')->with([
+            'view' => 'empleados.maestros.descuentoAfp.editarafpdescuento',
+            'data' => compact('afpDescuento', 'afp', 'tiposDescuentos'),
+        ]);
+        
     }
 
     public function update(Request $request, $id)
@@ -80,12 +102,22 @@ class AfpsdescuentosController extends Controller
         $afpDescuento->delete();
         return redirect()->route('afp.descuentos.index')->with('success', 'Descuento AFP eliminado con éxito');
     }
-    public function create()
+    public function create(Request $request)
 {
    
     $tiposDescuentos = TipoDescuentos::all();
+    if ($request->ajax()) {
+        return response()->json([
+            'view' => view('empleados.maestros.afp.afp.create', compact('tiposDescuentos'))->render(),
+            'url' => route('afp.descuentos.edit', $request->query())
+        ]);
+    }
 
-    return view('empleados.maestros.afp.afp.create', compact('tiposDescuentos'));
+    return view('home')->with([
+        'view' => 'empleados.maestros.afp.afp.create',
+        'data' => compact('tiposDescuentos'),
+    ]);
+
 }
 public function store(Request $request)
 {

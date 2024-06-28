@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Cargo;
 use App\Models\Categoria;
-
 use App\Models\CargoCategoria;
 use App\Models\CategoriaCargo;
 use App\Models\Empresa;
@@ -12,12 +11,21 @@ use Illuminate\Http\Request;
 
 class CategoriaCargoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $categorias = CategoriaCargo::with('categoria')->get()->unique('categoria_id');
 
         $categoriasCargos = CategoriaCargo::with('categoria', 'cargo')->get();
-        return view('empleados.maestros.cargo_categoria.vistacargocategoria', compact('categoriasCargos', 'categorias'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.maestros.cargo_categoria.vistacargocategoria', compact('categoriasCargos', 'categorias'))->render(),
+                'url' => route('categoria-cargo.indexcargocategoria', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'empleados.maestros.cargo_categoria.vistacargocategoria',
+            'data' => compact('categoriasCargos', 'categorias'),
+        ]);
     }
     public function Categoriadestroy($id)
     {
@@ -38,8 +46,8 @@ class CategoriaCargoController extends Controller
             // Eliminar el cargo
             $categoriaCargo = CategoriaCargo::findOrFail($cargoid);
             $categoriaCargo->delete(); // Solo elimina la relación, no los cargos
-            
-            
+
+
             return response()->json(['message' => 'Cargo eliminado con éxito'], 200);
         } catch (\Exception $e) {
             // Manejar cualquier error que ocurra durante la eliminación
@@ -50,15 +58,22 @@ class CategoriaCargoController extends Controller
         }
     }
 
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $empresas = Empresa::pluck('nombre_comercial', 'id');
         $categoria = Categoria::findOrFail($id);
         $cargos = Cargo::all();
         $categoriaCargos = CategoriaCargo::where('categoria_id', $id)->get();
-
-
-        return view('empleados.maestros.cargo_categoria.EditarCargoControlador', compact('empresas', 'categoriaCargos', 'categoria', 'cargos'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.maestros.cargo_categoria.EditarCargoControlador', compact('empresas', 'categoriaCargos', 'categoria', 'cargos'))->render(),
+                'url' => route('editar-relacion-categoria-cargo', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'empleados.maestros.cargo_categoria.EditarCargoControlador',
+            'data' => compact('empresas', 'categoriaCargos', 'categoria', 'cargos'),
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -134,18 +149,26 @@ class CategoriaCargoController extends Controller
 
             // Redireccionar con mensaje de éxito
             return redirect()->route('categoria-cargo.indexcargocategoria')->with('success', 'Cartegoria editada con exito');
-
         } catch (\Exception $e) {
             // Manejar errores y redireccionar con mensaje de error
             return redirect()->back()->with('error', 'Error al actualizar la categoría: ' . $e->getMessage());
         }
     }
-    public function create()
+    public function create(Request $request)
     {
         $cargos = Cargo::all();
         $empresas = Empresa::pluck('nombre_comercial', 'id');
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.maestros.cargo_categoria.CrearCargoCategoria', compact('cargos', 'empresas'))->render(),
+                'url' => route('crear-relacion-categoria-cargo', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'empleados.maestros.cargo_categoria.CrearCargoCategoria',
+            'data' => compact('cargos', 'empresas'),
+        ]);
 
-        return view('empleados.maestros.cargo_categoria.CrearCargoCategoria', compact('cargos', 'empresas'));
     }
 
 

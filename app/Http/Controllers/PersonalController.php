@@ -27,7 +27,7 @@ use Illuminate\Http\Request;
 
 class PersonalController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $tipoDocumentos = TipoDocumento::all()->pluck('descripcion', 'id');
         $nacionalidades = Nacionalidad::all()->pluck('descripcion', 'id');
@@ -49,27 +49,58 @@ class PersonalController extends Controller
         $sctr_saluds = SCTRSalud::all()->pluck('descripcion', 'id');
         $categoriaocupacionales = CategoriaOcupacional::all()->pluck('DESCRIPCION', 'id');
 
-        return view('empleados.empleados.index', compact(
-            'personals',
-            'tipoDocumentos',
-            'nacionalidades',
-            'departamentos',
-            'zonas',
-            'vias',
-            'tipoTrabajadores',
-            'nivelesEducativos',
-            'ocupaciones',
-            'regimenesPensionarios',
-            'tiposContratoTrabajo',
-            'periodicidades',
-            'eps',
-            'situacionesEPS',
-            'tiposPago',
-            'convenios',
-            'sctr_pensions',
-            'sctr_saluds',
-            'categoriaocupacionales'
-        ));
+
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.empleados.index', compact(
+                    'personals',
+                    'tipoDocumentos',
+                    'nacionalidades',
+                    'departamentos',
+                    'zonas',
+                    'vias',
+                    'tipoTrabajadores',
+                    'nivelesEducativos',
+                    'ocupaciones',
+                    'regimenesPensionarios',
+                    'tiposContratoTrabajo',
+                    'periodicidades',
+                    'eps',
+                    'situacionesEPS',
+                    'tiposPago',
+                    'convenios',
+                    'sctr_pensions',
+                    'sctr_saluds',
+                    'categoriaocupacionales'
+                ))->render(),
+                'url' => route('personals.index', $request->query())
+            ]);
+        }
+
+        return view('home')->with([
+            'view' => 'empleados.empleados.index',
+            'data' => compact(
+                'personals',
+                'tipoDocumentos',
+                'nacionalidades',
+                'departamentos',
+                'zonas',
+                'vias',
+                'tipoTrabajadores',
+                'nivelesEducativos',
+                'ocupaciones',
+                'regimenesPensionarios',
+                'tiposContratoTrabajo',
+                'periodicidades',
+                'eps',
+                'situacionesEPS',
+                'tiposPago',
+                'convenios',
+                'sctr_pensions',
+                'sctr_saluds',
+                'categoriaocupacionales'
+            ),
+        ]);
     }
 
 
@@ -78,7 +109,7 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $tipoDocumentos = TipoDocumento::all()->pluck('descripcion', 'id');
         $nacionalidades = Nacionalidad::all()->pluck('descripcion', 'id');
@@ -95,39 +126,73 @@ class PersonalController extends Controller
         $situacionesEPS = SituacionEPS::all()->pluck('descripcion', 'id');
         $tiposPago = TipoPago::all()->pluck('descripcion', 'id');
         $convenios = Convenio::all()->pluck('descripcion', 'id');
-       
+
         $sctr_pensions = SCTRPension::all()->pluck('descripcion', 'id');
         $sctr_saluds = SCTRSalud::all()->pluck('descripcion', 'id');
         $categoriaocupacionales = CategoriaOcupacional::all()->pluck('DESCRIPCION', 'id');
         $provincias = Provincia::pluck('descripcion', 'id');
         $distritos = Distrito::pluck('descripcion', 'id');
-        return view('empleados.empleados.create', compact(
-           
-            'tipoDocumentos',
-            'nacionalidades',
-            'departamentos','provincias', 'distritos',
-            'zonas',
-            'vias',
-            'tipoTrabajadores',
-            'nivelesEducativos',
-            'ocupaciones',
-            'regimenesPensionarios',
-            'tiposContratoTrabajo',
-            'periodicidades',
-            'eps',
-            'situacionesEPS',
-            'tiposPago',
-            'convenios',
-            'sctr_pensions',
-            'sctr_saluds',
-            'categoriaocupacionales'
-        )); 
-     }
+      
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.empleados.create', compact(
+                    'tipoDocumentos',
+                    'nacionalidades',
+                    'departamentos',
+                    'provincias',
+                    'distritos',
+                    'zonas',
+                    'vias',
+                    'tipoTrabajadores',
+                    'nivelesEducativos',
+                    'ocupaciones',
+                    'regimenesPensionarios',
+                    'tiposContratoTrabajo',
+                    'periodicidades',
+                    'eps',
+                    'situacionesEPS',
+                    'tiposPago',
+                    'convenios',
+                    'sctr_pensions',
+                    'sctr_saluds',
+                    'categoriaocupacionales'
+                ))->render(),
+                'url' => route('personals.create', $request->query())
+            ]);
+        }
 
-    
-    
-     public function store(Request $request)
+        return view('home')->with([
+            'view' => 'empleados.empleados.create',
+            'data' => compact(
+                'tipoDocumentos',
+                'nacionalidades',
+                'departamentos',
+                'provincias',
+                'distritos',
+                'zonas',
+                'vias',
+                'tipoTrabajadores',
+                'nivelesEducativos',
+                'ocupaciones',
+                'regimenesPensionarios',
+                'tiposContratoTrabajo',
+                'periodicidades',
+                'eps',
+                'situacionesEPS',
+                'tiposPago',
+                'convenios',
+                'sctr_pensions',
+                'sctr_saluds',
+                'categoriaocupacionales'
+            ),
+        ]);
+    }
+
+
+
+    public function store(Request $request)
     {
+
         $request->validate([
             'tipo_documento_id' => 'required|exists:tipo_documentos,id',
             'numero_documento' => 'required|string|max:20|min:7',
@@ -273,9 +338,63 @@ class PersonalController extends Controller
      * @param  \App\Models\Personal  $personal
      * @return \Illuminate\Http\Response
      */
-    public function edit(Personal $personal)
+    public function edit(Personal $personal,Request $request)
     {
-        return view('personals.edit', compact('personal'));
+        
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.empleados.edit', compact(
+                    'tipoDocumentos',
+                    'nacionalidades',
+                    'departamentos',
+                    'provincias',
+                    'distritos',
+                    'zonas',
+                    'vias',
+                    'tipoTrabajadores',
+                    'nivelesEducativos',
+                    'ocupaciones',
+                    'regimenesPensionarios',
+                    'tiposContratoTrabajo',
+                    'periodicidades',
+                    'eps',
+                    'situacionesEPS',
+                    'tiposPago',
+                    'convenios',
+                    'sctr_pensions',
+                    'sctr_saluds',
+                    'categoriaocupacionales'
+                ))->render(),
+                'url' => route('personals.edit', $request->query())
+            ]);
+        }
+
+        return view('home')->with([
+            'view' => 'empleados.empleados.edit',
+            'data' => compact(
+                'tipoDocumentos',
+                'nacionalidades',
+                'departamentos',
+                'provincias',
+                'distritos',
+                'zonas',
+                'vias',
+                'tipoTrabajadores',
+                'nivelesEducativos',
+                'ocupaciones',
+                'regimenesPensionarios',
+                'tiposContratoTrabajo',
+                'periodicidades',
+                'eps',
+                'situacionesEPS',
+                'tiposPago',
+                'convenios',
+                'sctr_pensions',
+                'sctr_saluds',
+                'categoriaocupacionales'
+            ),
+        ]);
+        
     }
 
     /**
@@ -293,5 +412,4 @@ class PersonalController extends Controller
 
         return redirect()->route('personals.index')->with('success', 'Personal updated successfully.');
     }
-    
 }

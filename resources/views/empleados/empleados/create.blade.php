@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
     <div class="container">
 
         <ul class="nav nav-tabs" id="personalTab" role="tablist">
@@ -845,4 +843,4 @@
 
     <script src="{{ asset('/js/personals/imagen.js') }}"></script>
     <script src="{{ asset('/js/personals/curriculum.js') }}"></script>
-@endsection
+

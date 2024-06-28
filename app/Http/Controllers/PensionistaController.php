@@ -10,18 +10,38 @@ class PensionistaController extends Controller
         /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $pensionistas = Pensionista::all();
         return view('pensionistas.index', compact('pensionistas'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('pensionistas.index', compact('pensionistas'))->render(),
+                'url' => route('pensionistas.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'pensionistas.index',
+            'data' => compact('pensionistas'),
+        ]);
+        
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('pensionistas.create');
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('pensionistas.create')->render(),
+                'url' => route('pensionistas.create', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'pensionistas.create',
+            
+        ]);
     }
 
     /**
@@ -57,10 +77,22 @@ class PensionistaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($id,Request $request )
     {
+
         $pensionista = Pensionista::findOrFail($id);
-        return view('pensionistas.edit', compact('pensionista'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('pensionistas.edit', compact('pensionista'))->render(),
+                'url' => route('pensionistas.edit', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'pensionistas.edit',
+            'data'=>compact('pensionista'),
+            
+        ]);
+        
     }
 
     /**

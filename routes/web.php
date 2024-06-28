@@ -72,6 +72,7 @@ Route::group(
         Route::resource('empresas', EmpresaController::class);
 
         Route::resource('sucursales', SucursalController::class);
+        Route::resource('pensionistas', PensionistaController::class);
         Route::resource('uits', UITController::class);
         // rutas para ubigeo
         Route::get('/get-provincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
@@ -82,7 +83,7 @@ Route::group(
 
         //ruta para asistencia
         // routes/web.php
-        Route::get('/asistenciaa', [AsistenciaController::class, 'index'])->name('asistenciaa.index');
+        Route::get('/asistenciaa', [AsistenciaController::class, 'index'])->name('asistencia.index');
 
 
         // empleado

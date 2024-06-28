@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             
            
-            PermissionSeeder::class,
+            /* PermissionSeeder::class,
             RoleSeeder::class,
             RoleHasPermissionSeeder::class,
-            UserSeeder::class,
+            UserSeeder::class, */
             
             /*
             Tipo_DocumentoSeeder::class,
@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
           RegimenPensionarioSeeder::class,
           TiposContatosTrabajoSeeder::class,
           PeriodicidadSeeder::class, */
-          EPSSeeder::class,
+          /* EPSSeeder::class,
           SituacionEPSSeeder::class,
           TipoPagoSeeder::class,
           MotivoFinPeriodoSeeder::class,
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
          ConceptoSunatSeeder::class,
           ConceptosSeeder::class,
            ConceptosCuentasSeeder::class,
-          CategoriaOcupacionalSeeder::class,
+          CategoriaOcupacionalSeeder::class, */
 
 
         ]);

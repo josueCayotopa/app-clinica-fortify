@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
     <div class="container">
         <ul class="nav nav-tabs" id="personalTab" role="tablist">
             <li class="nav-item">
@@ -77,4 +75,3 @@
     <script src="{{ asset('js/personals/curriculum.js') }}"></script>
 
     <!-- Tu script personalizado va aquí, si es necesario -->
-@endsection

@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
 <div class="container mt-5">
     <h5 class="mb-4">Editar Usuario</h5>
     <form id="registroForm" method="post" action="{{ route('users.update', $user->id) }}" autocomplete="off">
@@ -108,5 +106,3 @@
     </form>
 </div>
 
- 
-@endsection

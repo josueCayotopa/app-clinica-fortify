@@ -7,10 +7,20 @@ use App\Models\Asistencia;
 
 class AsistenciaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $asistencias = Asistencia::all();
-        return view('asistenciaa.index', compact('asistencias'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('asistenciaa.index', compact('asistencias'))->render(),
+                'url' => route('asistencia.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'asistenciaa.index',
+            'data' => compact('asistencias'),
+        ]);
+       
     }
 
     // Supongamos que esta función recibe los datos del sistema biométrico y los guarda

@@ -7,10 +7,20 @@ use Illuminate\Http\Request;
 
 class TipoTrabajadorIpssController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $tipoTrabajadorIpsses = TipoTrabajadorIpss::paginate(10);
-        return view('configuracion.tipo_trabajador_ipss.index', compact('tipoTrabajadorIpsses'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.tipo_trabajador_ipss.index', compact('tipoTrabajadorIpsses'))->render(),
+                'url' => route('tipo_trabajador_ipsses.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'configuracion.tipo_trabajador_ipss.index',
+            'data' => compact('tipoTrabajadorIpsses'),
+        ]);
+       
     }
 
     public function store(Request $request)

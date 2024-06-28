@@ -1,6 +1,4 @@
-@extends('home')
-
-@section('home')
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs">
@@ -12,8 +10,8 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="datos-empresa">
-                    <form id="form-datos-empresa" method="POST" action="{{ route('sucursales.update',$sucursale->id) }}"
-                        autocomplete="0off">
+                    <form id="form-datos-empresa" method="POST"
+                        action="{{ route('sucursales.update', $sucursale->id) }}" autocomplete="0off">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -36,8 +34,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="nombre_sucursal">Nombre de Sucursal</label>
-                                    <input id="nombre_sucursal" type="text" class="form-control" name="nombre_sucursal"
-                                        placeholder="Nombre de sucursal" value="{{ old('nombre_sucursal', $sucursale->nombre_sucursal) }}" required>
+                                    <input id="nombre_sucursal" type="text" class="form-control"
+                                        name="nombre_sucursal" placeholder="Nombre de sucursal"
+                                        value="{{ old('nombre_sucursal', $sucursale->nombre_sucursal) }}" required>
                                     @if ($errors->has('nombre_sucursal'))
                                         <span class="error text-danger">{{ $errors->first('nombre_sucursal') }}</span>
                                     @endif
@@ -47,7 +46,7 @@
                                 <div class="form-group">
                                     <label for="telefono">Telefono</label>
                                     <input type="text" class="form-control" placeholder="Telefono" name="telefono"
-                                        value="{{ old('telefono',$sucursale->telefono) }}" required>
+                                        value="{{ old('telefono', $sucursale->telefono) }}" required>
                                     @if ($errors->has('telefono'))
                                         <span class="error text-danger">{{ $errors->first('telefono') }}</span>
                                     @endif
@@ -67,7 +66,7 @@
                                 <div class="form-group">
                                     <label for="fax">Fax</label>
                                     <input type="text" class="form-control" placeholder="Fax" name="fax"
-                                        value="{{ old('fax',$sucursale->fax) }}" required>
+                                        value="{{ old('fax', $sucursale->fax) }}" required>
                                     @if ($errors->has('fax'))
                                         <span class="error text-danger">{{ $errors->first('fax') }}</span>
                                     @endif
@@ -145,7 +144,8 @@
                                 <div class="form-group">
                                     <label for="zona_id">Zona</label>
                                     <select class="form-control" id="zona_id" name="zona_id" required>
-                                        <option value="" disabled {{ old('zona_id') ? '' : 'selected' }}>Selecciona
+                                        <option value="" disabled {{ old('zona_id') ? '' : 'selected' }}>
+                                            Selecciona
                                             una Zona</option>
                                         @foreach ($zonas as $id => $zona)
                                             <option value="{{ $id }}"
@@ -164,7 +164,8 @@
                                 <div class="form-group">
                                     <label for="via_id">Vía</label>
                                     <select class="form-control" id="via_id" name="via_id" required>
-                                        <option value="" disabled {{ old('via_id') ? '' : 'selected' }}>Selecciona
+                                        <option value="" disabled {{ old('via_id') ? '' : 'selected' }}>
+                                            Selecciona
                                             una Vía</option>
                                         @foreach ($vias as $id => $via)
                                             <option value="{{ $id }}"
@@ -182,7 +183,8 @@
                                 <div class="form-group">
                                     <label for="des_direccion">Direccion</label>
                                     <input type="text" class="form-control" placeholder="Direccion"
-                                        name="des_direccion" value="{{ old('des_direccion', $sucursale->des_direccion) }}" required>
+                                        name="des_direccion"
+                                        value="{{ old('des_direccion', $sucursale->des_direccion) }}" required>
                                     @if ($errors->has('des_direccion'))
                                         <span class="error text-danger">{{ $errors->first('des_direccion') }}</span>
                                     @endif
@@ -195,12 +197,14 @@
                                         <label
                                             class="btn btn-outline-success btn-sm {{ old('estado', $sucursale->estado ?? 1) == 1 ? 'active' : '' }}">
                                             <input type="radio" name="estado" value="1" autocomplete="off"
-                                                {{ old('estado', $sucursale->estado ?? 1) == 1 ? 'checked' : '' }}> Activo
+                                                {{ old('estado', $sucursale->estado ?? 1) == 1 ? 'checked' : '' }}>
+                                            Activo
                                         </label>
                                         <label
                                             class="btn btn-outline-danger btn-sm {{ old('estado', $sucursale->estado ?? 1) == 0 ? 'active' : '' }}">
                                             <input type="radio" name="estado" value="0" autocomplete="off"
-                                                {{ old('estado', $sucursale->estado ?? 1) == 0 ? 'checked' : '' }}> Inactivo
+                                                {{ old('estado', $sucursale->estado ?? 1) == 0 ? 'checked' : '' }}>
+                                            Inactivo
                                         </label>
                                     </div>
                                 </div>
@@ -220,85 +224,84 @@
             </div>
         </div>
     </div>
+</div>
 
 
-    <script src="{{ asset('js/tabs.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            var oldDepartamentoId = '{{ old('departamento_id') }}';
-            var oldProvinciaId = '{{ old('provincia_id') }}';
-            var oldDistritoId = '{{ old('distrito_id') }}';
+<script src="{{ asset('js/tabs.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        var oldDepartamentoId = '{{ old('departamento_id') }}';
+        var oldProvinciaId = '{{ old('provincia_id') }}';
+        var oldDistritoId = '{{ old('distrito_id') }}';
 
-            if (oldDepartamentoId) {
-                loadProvincias(oldDepartamentoId, oldProvinciaId);
-            }
+        if (oldDepartamentoId) {
+            loadProvincias(oldDepartamentoId, oldProvinciaId);
+        }
 
-            if (oldProvinciaId) {
-                loadDistritos(oldProvinciaId, oldDistritoId);
-            }
+        if (oldProvinciaId) {
+            loadDistritos(oldProvinciaId, oldDistritoId);
+        }
 
-            $('#departamento_id').on('change', function() {
-                var departamentoId = $(this).val();
-                loadProvincias(departamentoId);
-            });
-
-            $('#provincia_id').on('change', function() {
-                var provinciaId = $(this).val();
-                loadDistritos(provinciaId);
-            });
-
-            function loadProvincias(departamentoId, selectedProvinciaId = null) {
-                if (departamentoId) {
-                    $.ajax({
-                        url: '{{ url('getProvincias') }}/' + departamentoId,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#provincia_id').empty().prop('disabled', false).append(
-                                '<option value="" disabled selected>Selecciona una Provincia</option>'
-                            );
-                            $('#distrito_id').empty().prop('disabled', true).append(
-                                '<option value="" disabled selected>Selecciona un Distrito</option>'
-                            );
-                            $.each(data, function(key, value) {
-                                $('#provincia_id').append('<option value="' + key + '"' + (
-                                        selectedProvinciaId == key ? ' selected' : '') +
-                                    '>' + value + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#provincia_id').empty().prop('disabled', true).append(
-                        '<option value="" disabled selected>Selecciona una Provincia</option>');
-                    $('#distrito_id').empty().prop('disabled', true).append(
-                        '<option value="" disabled selected>Selecciona un Distrito</option>');
-                }
-            }
-
-            function loadDistritos(provinciaId, selectedDistritoId = null) {
-                if (provinciaId) {
-                    $.ajax({
-                        url: '{{ url('getDistritos') }}/' + provinciaId,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data) {
-                            $('#distrito_id').empty().prop('disabled', false).append(
-                                '<option value="" disabled selected>Selecciona un Distrito</option>'
-                            );
-                            $.each(data, function(key, value) {
-                                $('#distrito_id').append('<option value="' + key + '"' + (
-                                        selectedDistritoId == key ? ' selected' : '') +
-                                    '>' + value + '</option>');
-                            });
-                        }
-                    });
-                } else {
-                    $('#distrito_id').empty().prop('disabled', true).append(
-                        '<option value="" disabled selected>Selecciona un Distrito</option>');
-                }
-            }
+        $('#departamento_id').on('change', function() {
+            var departamentoId = $(this).val();
+            loadProvincias(departamentoId);
         });
-    </script>
-    
-@endsection
+
+        $('#provincia_id').on('change', function() {
+            var provinciaId = $(this).val();
+            loadDistritos(provinciaId);
+        });
+
+        function loadProvincias(departamentoId, selectedProvinciaId = null) {
+            if (departamentoId) {
+                $.ajax({
+                    url: '{{ url('getProvincias') }}/' + departamentoId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#provincia_id').empty().prop('disabled', false).append(
+                            '<option value="" disabled selected>Selecciona una Provincia</option>'
+                        );
+                        $('#distrito_id').empty().prop('disabled', true).append(
+                            '<option value="" disabled selected>Selecciona un Distrito</option>'
+                        );
+                        $.each(data, function(key, value) {
+                            $('#provincia_id').append('<option value="' + key + '"' + (
+                                    selectedProvinciaId == key ? ' selected' : '') +
+                                '>' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#provincia_id').empty().prop('disabled', true).append(
+                    '<option value="" disabled selected>Selecciona una Provincia</option>');
+                $('#distrito_id').empty().prop('disabled', true).append(
+                    '<option value="" disabled selected>Selecciona un Distrito</option>');
+            }
+        }
+
+        function loadDistritos(provinciaId, selectedDistritoId = null) {
+            if (provinciaId) {
+                $.ajax({
+                    url: '{{ url('getDistritos') }}/' + provinciaId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#distrito_id').empty().prop('disabled', false).append(
+                            '<option value="" disabled selected>Selecciona un Distrito</option>'
+                        );
+                        $.each(data, function(key, value) {
+                            $('#distrito_id').append('<option value="' + key + '"' + (
+                                    selectedDistritoId == key ? ' selected' : '') +
+                                '>' + value + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#distrito_id').empty().prop('disabled', true).append(
+                    '<option value="" disabled selected>Selecciona un Distrito</option>');
+            }
+        }
+    });
+</script>

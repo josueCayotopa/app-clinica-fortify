@@ -1,5 +1,4 @@
-@extends('home')
-@section('home')
+
 <div class="container user-details" style="margin-top: 20px;
 display: flex;
 justify-content: center;
@@ -39,4 +38,3 @@ background-color: #f8f9fa;">
         </div>
     </div>
 </div>
-@endsection

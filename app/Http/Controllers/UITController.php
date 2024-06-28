@@ -10,15 +10,33 @@ use Illuminate\Support\Facades\Validator;
 
 class UITController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $uits = Uit::paginate(5);
-        return view('configuracion.uit.index', compact('uits'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.uit.index', compact('uits'))->render(),
+                'url' => route('uits.index', $request->query())
+            ]);}
+        return view('home')->with([
+            'view' => 'configuracion.uit.index',
+            'data' => compact('uits'),
+        ]);
+        
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('configuracion.uit.create');
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.uit.create')->render(),
+                'url' => route('uits.create', $request->query())
+            ]);}
+        return view('home')->with([
+            'view' => 'configuracion.uit.create',
+         
+        ]);
+       
     }
 
     public function store(Request $request)
@@ -54,12 +72,20 @@ class UITController extends Controller
         return view('configuracion.uit.show', compact('uit'));
     }
 
-    public function edit($ano_proceso)
+    public function edit($ano_proceso, Request $request)
     {
         $uit = Uit::where('ano_proceso', $ano_proceso)->firstOrFail();
         $valoresMensuales = UitMensual::where('ano_proceso', $ano_proceso)->get();
-
-        return view('configuracion.uit.edit', compact('uit', 'valoresMensuales'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('configuracion.uit.edit', compact('uit', 'valoresMensuales'))->render(),
+                'url' => route('uits.edit', $request->query())
+            ]);}
+        return view('home')->with([
+            'view' => 'configuracion.uit.edit',
+            'data' => compact('uit', 'valoresMensuales'),
+        ]);
+ 
     }
 
     public function update(Request $request, $ano_proceso)

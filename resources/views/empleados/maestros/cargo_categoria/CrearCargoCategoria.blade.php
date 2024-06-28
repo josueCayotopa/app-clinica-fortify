@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
     <div class="container" style="height: 100%; width:100%;">
 
         <form action="{{ route('guardar-relacion-categoria-cargo') }}" method="POST">
@@ -168,4 +166,3 @@
             });
         });
     </script>
-@endsection

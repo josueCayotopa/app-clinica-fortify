@@ -12,7 +12,7 @@ class CalendarioVacacionesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $all_events=Event::all();
@@ -23,13 +23,22 @@ class CalendarioVacacionesController extends Controller
                 'title' => $event->evento,
                 'start' => $event->fecha_inicio,
                 'end' => $event->fecha_final
-
-
             ];
+           
+            
+        }
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('vacaciones.calendario.index', compact('events'))->render(),
+                'url' => route('vacaciones.calendario.index', $request->query())
+            ]);
         }
 
-
-        return view('vacaciones.calendario.index', compact('events'));   
+        return view('home')->with([
+            'view' => 'vacaciones.calendario.index',
+            'data' => compact('events'),
+        ]);
+       
     }
 
     /**

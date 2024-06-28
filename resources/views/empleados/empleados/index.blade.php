@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
     <div class="container mt-5">
         @include('layouts.messege')
 
@@ -143,4 +141,3 @@
 
 
    
-@endsection

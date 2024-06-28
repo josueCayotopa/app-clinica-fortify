@@ -12,11 +12,21 @@ class SolicitudLicenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $licencias = SolicitudLicencias::paginate(5);
-        return view('licencias.index', compact('licencias'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('licencias.index', compact('licencias'))->render(),
+                'url' => route('solicitud_licencias.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'licencias.index',
+            'data' => compact('licencias'),
+        ]);
+        
 
     }
 

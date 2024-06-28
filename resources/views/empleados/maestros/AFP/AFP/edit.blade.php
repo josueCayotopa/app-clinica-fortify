@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
 <div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="card w-85">
         <div class="card-header">
@@ -140,4 +138,3 @@
         toggleInputs(); // Initial call to set the correct state on page load
     });
 </script>
-@endsection

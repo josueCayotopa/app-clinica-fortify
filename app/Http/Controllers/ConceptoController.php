@@ -12,11 +12,19 @@ class ConceptoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $conceptos = Concepto::paginate(10);
-        
-        
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.conceptos.index', compact('conceptos'))->render(),
+                'url' => route('conceptos.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'empleados.conceptos.index',
+            'data' => compact('conceptos'),
+        ]);
         return view('empleados.conceptos.index', compact('conceptos'));
     }
 

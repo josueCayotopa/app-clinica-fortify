@@ -187,7 +187,7 @@
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('asistenciaa.index') }}" class="menu-link">
+                    <a href="{{ route('asistencia.index') }}" class="menu-link">
                         <div data-i18n="Ventas">Asistencia</div>
                     </a>
                 </li>
@@ -275,7 +275,7 @@
 
 
                     <li class="menu-item">
-                        <a href="{{ route('users.index') }}" class="menu-link">
+                        <a href="{{ route('users.index') }}" class="menu-link load-ajax-page">
                             <div data-i18n="Ventas">Usuarios</div>
                         </a>
                     </li>

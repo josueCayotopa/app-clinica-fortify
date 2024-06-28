@@ -13,11 +13,21 @@ class ZonaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
     
-        $zonas = Zona::paginate(10);
-        return view('empleados.planillas.zonas.index', compact('zonas'));
+        $zonas = Zona::paginate(5);
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.planillas.zonas.index', compact('zonas'))->render(),
+                'url' => route('zona.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'empleados.planillas.zonas.index',
+            'data' => compact('zonas'),
+        ]);
+        
     }
 
     /**

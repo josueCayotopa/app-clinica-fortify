@@ -1,6 +1,4 @@
-@extends('home')
 
-@section('home')
     <div class="container mt-5">
         <h5 class="mb-4">Crear Permiso</h5>
         <form id="registroForm" method="post" action="{{ route('permissions.store') }}" autocomplete="off">
@@ -39,6 +37,7 @@
                 <div class="col-md-12 gap-2 d-md-flex justify-content-md-end">
                     <!-- Botón en la parte derecha con más separación -->
                     @can('permission_create')
+                    <a href="{{ route('permissions.index') }}" class="btn btn-secondary btn-lg btn-block mt-3">Cancelar</a>
 
                     <button type="submit" class="btn btn-primary btn-lg btn-block mt-3 ">Crear</button>
                     @endcan
@@ -58,4 +57,4 @@ border-radius: 5px;
 z-index: 1000; /* Asegurar que esté en frente */"
  >¡Guardado con éxito!</div>
  --}}
-@endsection
+

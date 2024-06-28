@@ -1,6 +1,4 @@
-@extends('home')
-
-@section('home')
+<div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
 
@@ -291,7 +289,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 text-right d-md-flex justify-content-md-end">
-                                <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+                                <a href="{{ route('empresas.index') }}" class="el-button el-button--danger">Cancelar</a>
+                                <button type="submit" class="el-button el-button--primary">Guardar</button>
                             </div>
                         </div>
                     </div>
@@ -301,7 +300,7 @@
             </div>
         </div>
     </div>
+</div>
     <script src="{{ asset('/js/ubigeo/selecteditar.js') }}"></script>
 
     {{-- <script src="{{ asset('js/tabs.js') }}"></script> ---- --}}
-@endsection

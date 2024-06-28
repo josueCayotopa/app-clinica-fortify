@@ -14,12 +14,21 @@ class ProfesionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         
         $profesiones=Profesion::paginate(10);
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.planillas.profesiones.index', compact('profesiones'))->render(),
+                'url' => route('profesion.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'empleados.planillas.profesiones.index',
+            'data' => compact('profesiones'),
+        ]);
 
-        return view('empleados.planillas.profesiones.index', compact('profesiones'));
     }
 
     /**

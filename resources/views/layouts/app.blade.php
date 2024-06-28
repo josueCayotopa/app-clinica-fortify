@@ -126,7 +126,33 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+        <script>
+            $(document).ready(function() {
+                $('.load-ajax-page').on('click', function(event) {
+                    event.preventDefault();
+                    var url = $(this).attr('href');
+                    fetchPage(url);
+                });
+        
+                function fetchPage(url) {
+                    $.ajax({
+                        url: url,
+                        success: function(data) {
+                            $('#dynamic-content').html(data.view);
+                            window.history.pushState({}, '', data.url);
+                        },
+                        error: function() {
+                            alert('La página no pudo ser cargada.');
+                        }
+                    });
+                }
+        
+                window.onpopstate = function() {
+                    var url = window.location.href;
+                    fetchPage(url);
+                };
+            });
+        </script>
 
 </body>
 
