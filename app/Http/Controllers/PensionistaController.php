@@ -13,7 +13,7 @@ class PensionistaController extends Controller
     public function index(Request $request)
     {
         $pensionistas = Pensionista::all();
-        return view('pensionistas.index', compact('pensionistas'));
+        
         if ($request->ajax()) {
             return response()->json([
                 'view' => view('pensionistas.index', compact('pensionistas'))->render(),

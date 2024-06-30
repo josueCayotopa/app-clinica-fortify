@@ -7,16 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pensionista extends Model
 {
+    protected $table = 'pencionistas';
     use HasFactory;
     protected $fillable = [
-        'tipo_documento_id',
+        'tipo_documento_id', 
+        'tipo_pensionista_id', 
         'numero_documento',
-        'tipo_trabajador_id',
-        'regimen_pencionario_id',
+        'tipo_trabajador_id', 
+        'regimen_pencionario_id', 
         'fecha_inscirpcion',
         'cuspp',
-        'situacion_e_p_s_id',
-        'tipo_pago_id',
+        'situacion_e_p_s_id', 
+        'tipo_pago_id', 
+        'tipo_banco_id', 
+        'numero_bancaria',
+        'monto_pago',
+        'periodo_laboral_id', 
+        'derechohabientes',
+        'remuneracion_pencionista_id', 
+        'sucursal_establecimiento_laboral_id', 
+
     ];
 
     // Definir las relaciones
@@ -44,5 +54,29 @@ class Pensionista extends Model
     {
         return $this->belongsTo(TipoPago::class);
     }
+    public function tipoBanco()
+    {
+        return $this->belongsTo(TipoBanco::class);
+    }
 
+    public function sucursalEstablecimientoLaboral()
+    {
+        return $this->belongsTo(SucursalEstablecimientoLaboral::class);
+    }
+    public function periodoLaboral()
+    {
+        return $this->belongsTo(PeriodoLaboral::class);
+    }
+
+    public function remuneracionPencionista()
+    {
+        return $this->belongsTo(RemuneracionPencionista::class);
+    }
+    public function tipoPensionista()
+    {
+        return $this->belongsTo(Tipo_trabajador::class);
+    }
+
+
+    
 }

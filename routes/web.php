@@ -81,9 +81,7 @@ Route::group(
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
-        //ruta para asistencia
-        // routes/web.php
-        Route::get('/asistenciaa', [AsistenciaController::class, 'index'])->name('asistencia.index');
+        
 
 
         // empleado
@@ -170,10 +168,14 @@ Route::group(
         // Solicitud de Licencias 
         Route::resource('solicitud_licencias',SolicitudLicenciasController::class);
 
-
-
+        //ruta para asistencia
+        // routes/web.php
+        Route::get('/asistenciaa', [AsistenciaController::class, 'index'])->name('asistencia.index');
 
         //numero de ususarios
+
+        //pensionistas
+        Route::get('/pensionistas', [PensionistaController::class,'index'])->name('pensionistas.index');
 
     }
 );

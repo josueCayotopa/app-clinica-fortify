@@ -194,6 +194,20 @@
             </ul>
         </li>
 
+        <li class="menu-item">
+            <a href="#" class="menu-link menu-toggle">
+                <i class='menu-icon bx bx-file'> </i>
+                <div data-i18n="pensionistas">Pensionista</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('pensionistas.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Pensionista</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
 
         <li class="menu-item  ">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
