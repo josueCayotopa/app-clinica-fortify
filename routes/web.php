@@ -80,8 +80,9 @@ Route::group(
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
         //ruta para asistencia
-        // routes/web.php
-        Route::get('/asistenciaa', [AsistenciaController::class, 'index'])->name('asistenciaa.index');
+        Route::get('asistencias', [AsistenciaController::class, 'index'])->name('asistencia.index');
+        Route::post('asistencias/import', [AsistenciaController::class, 'import'])->name('asistencia.import');
+
 
 
         // empleado
@@ -90,10 +91,10 @@ Route::group(
 
         ////Planillas
         /////Conocimientos
-        Route::get('/empleados/planillas/conocimiento',[ConocimientoController::class, 'index'])->name('conocimiento.index');
-        Route::post('/empleados/planillas/conocimiento',[ConocimientoController::class, 'store'])->name('conocimiento.store');
+        Route::get('/empleados/planillas/conocimiento', [ConocimientoController::class, 'index'])->name('conocimiento.index');
+        Route::post('/empleados/planillas/conocimiento', [ConocimientoController::class, 'store'])->name('conocimiento.store');
         Route::post('/conocimiento/{id}', [ConocimientoController::class, 'update'])->name('conocimiento.update');
-        Route::delete('/conocimiento/{conocimiento}',[ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
+        Route::delete('/conocimiento/{conocimiento}', [ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
 
         /////Profesiones
 

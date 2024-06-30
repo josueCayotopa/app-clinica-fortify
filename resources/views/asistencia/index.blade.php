@@ -167,28 +167,39 @@
         <h1 class="mb-4">Registro de Asistencias</h1>
 
         <!-- Tabla de Asistencias -->
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Fecha</th>
-                <th>Hora de Entrada</th>
-                <th>Hora de Salida</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($asistencias as $asistencia)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $asistencia->nombre }}</td>
-                    <td>{{ $asistencia->fecha }}</td>
-                    <td>{{ $asistencia->hora_entrada ?? 'No registrada' }}</td>
-                    <td>{{ $asistencia->hora_salida ?? 'No registrada' }}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+        <form action="{{ route('asistencia.import') }} " method="POST" enctype="multipart/form-data" class="container mt-5">
+            @csrf
+            <div class="mb-3">
+                <label for="file" class="form-label">Subir archivo de asistencia</label>
+                <input type="file" name="file" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Cargar Asistencia</button>
+        </form>
+        <div class="container mt-5">
+            <h2 class="mb-4">Registros de Asistencia</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID Empleado</th>
+                        <th>Fecha</th>
+                        <th>Hora de Entrada</th>
+                        <th>Hora de Salida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($asistencias as $asistencia)
+                        <tr>
+                            <td>{{ $asistencia->empleado_id }}</td>
+                            <td>{{ $asistencia->fecha->format('d-m-Y') }}</td>
+                            <td>{{ $asistencia->hora_entrada }}</td>
+                            <td>{{ $asistencia->hora_salida }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        
+        
     </div>
 
     <!-- Scripts de Bootstrap -->

@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asistencia extends Model
 {
+    protected $fillable = [
+        'empleado_id',
+        'fecha',
+        'hora_entrada',
+        'hora_salida',
+    ];
+    
     use HasFactory;
 }
