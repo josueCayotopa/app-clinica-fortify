@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('remuneracions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('trabajador_id');
-            $table->string('concepto_id', 4);  // Ajuste aquí para que coincida con la longitud de COD_CONCEPTO
+            $table->unsignedBigInteger('concepto_sunat_id')->nullable();
+            // Ajuste aquí para que coincida con la longitud de COD_CONCEPTO
             $table->decimal('monto_devengado', 7, 2)->nullable();
             $table->decimal('monto_pagado', 7, 2)->nullable();
             $table->timestamps();
-            $table->foreign('trabajador_id')->references('id')->on('personals')->onDelete('cascade');
-            $table->foreign('concepto_id')->references('COD_CONCEPTO')->on('conceptos')->onDelete('cascade');  // Ajuste aquí para referenciar a COD_CONCEPTO
+            $table->foreign('concepto_sunat_id')->references('id')->on('concepto_sunats');  // Ajuste aquí para referenciar a COD_CONCEPTO
         });
     }
 

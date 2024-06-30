@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('e_p_s', function (Blueprint $table) {
             $table->id();
-            $table->string('ruc');
-            $table->string('descripcion');
-            $table->boolean('estado')->default(true);
+            $table->string('ruc')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->boolean('estado')->default(true)->nullable();
             $table->timestamps();
         });
     }

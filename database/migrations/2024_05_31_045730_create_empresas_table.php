@@ -15,25 +15,26 @@ return new class extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo_empresa');
-            $table->string('razon_social');
-            $table->string('direccion');
-            $table->string('nombre_comercial');
-            $table->string('ruc_empresa');
-            $table->string('numero_decreto_supremo');
+            $table->string('codigo_empresa')->nullable();
+            $table->string('razon_social')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('nombre_comercial')->nullable();
+            $table->string('ruc_empresa')->nullable();
+            $table->string('numero_decreto_supremo')->nullable();
             
-            $table->string('nombre_representante_legal');
-            $table->unsignedBigInteger('tipo_documento_id');
-            $table->string('numero_documento');
-            $table->string('email');
-            $table->string('numero_telefono');
-            $table->string('codigo_ubigeo');
-            $table->unsignedBigInteger('departamento_id');
-            $table->unsignedBigInteger('provincia_id');
-            $table->unsignedBigInteger('distrito_id');
-            $table->unsignedBigInteger('zona_id');
-            $table->unsignedBigInteger('via_id');
-            $table->unsignedBigInteger('pais_id');
+            $table->string('nombre_representante_legal')->nullable();
+            $table->unsignedBigInteger('tipo_documento_id')->nullable();
+            $table->string('numero_documento')->nullable();
+            $table->string('email')->nullable();
+            $table->string('numero_telefono')->nullable();
+            $table->string('codigo_ubigeo')->nullable();
+            $table->unsignedBigInteger('departamento_id')->nullable();
+            $table->unsignedBigInteger('provincia_id')->nullable();
+            $table->unsignedBigInteger('distrito_id')->nullable();
+            $table->unsignedBigInteger('zona_id')->nullable();
+            $table->unsignedBigInteger('via_id')->nullable();
+            $table->unsignedBigInteger('pais_id')->nullable();
+
             $table->foreign('tipo_documento_id')->references('id')->on('tipo_documentos');
             $table->foreign('departamento_id')->references('id')->on('departamento__regions');
             $table->foreign('provincia_id')->references('id')->on('provincias');
@@ -41,6 +42,8 @@ return new class extends Migration
             $table->foreign('zona_id')->references('id')->on('zonas');
             $table->foreign('via_id')->references('id')->on('vias');
             $table->foreign('pais_id')->references('id')->on('nacionalidad');
+            $table->unsignedBigInteger('tipo_moneda_id')->nullable();
+            $table->foreign('tipo_moneda_id')->references('id')->on('tipo_monedas');
             $table->timestamps();
 
         });

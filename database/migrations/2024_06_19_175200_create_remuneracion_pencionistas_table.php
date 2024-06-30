@@ -16,15 +16,12 @@ return new class extends Migration
         
             Schema::create('remuneracion_pencionistas', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('pensionista_id'); // Definir la columna primero
-                $table->string('concepto_id', 4);
+                $table->unsignedBigInteger('concepto_sunat_id')->nullable();  // Ajuste aquí para que coincida con la longitud de COD_CONCEPTO
                 $table->decimal('monto_devengado', 7, 2)->nullable();
                 $table->decimal('monto_pagado', 7, 2)->nullable();
                 $table->timestamps();
-            
-                // Añadir las claves foráneas después de definir las columnas
-                $table->foreign('pensionista_id')->references('id')->on('pensionistas')->onDelete('cascade');
-                $table->foreign('concepto_id')->references('COD_CONCEPTO')->on('conceptos')->onDelete('cascade');
+                $table->foreign('concepto_sunat_id')->references('id')->on('concepto_sunats');  // Ajuste aquí para referenciar a COD_CONCEPTO
+         
             });
         
     }

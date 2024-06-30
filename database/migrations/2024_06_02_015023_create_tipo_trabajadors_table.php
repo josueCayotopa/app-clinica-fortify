@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tipo_trabajadors', function (Blueprint $table) {
             $table->id();
             $table->string('codigo_sunat', 10)->notNull(); 
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->timestamps();
             $table->boolean('estado')->default(true);
         });

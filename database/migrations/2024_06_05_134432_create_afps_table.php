@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('afps', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 15); 
-            $table->string('nombre'); 
-            $table->boolean('estado')->default(false); 
+            $table->string('codigo', 15)->nullable(); 
+            $table->string('nombre')->nullable(); 
+            $table->boolean('estado')->default(false)->nullable(); 
             $table->date('fecha_baja')->nullable(); 
             $table->timestamps(); 
 

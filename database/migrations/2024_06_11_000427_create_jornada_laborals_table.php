@@ -15,13 +15,12 @@ return new class extends Migration
     {
         Schema::create('jornada_laborals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('trabajador_id');
-            $table->integer('horas_trabajadas');           
-            $table->integer('minutos_trabajados');         
+            $table->integer('horas_trabajadas')->nullable();           
+            $table->integer('minutos_trabajados')->nullable();          
             $table->integer('horas_sobretiempo')->nullable(); 
             $table->integer('minutos_sobretiempo')->nullable(); 
             $table->timestamps();
-            $table->foreign('trabajador_id')->references('id')->on('personals')->onDelete('cascade');
+          
         });
     }
     /**

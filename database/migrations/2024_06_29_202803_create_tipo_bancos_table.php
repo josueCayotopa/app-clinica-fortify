@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('empresas', function (Blueprint $table) {
-            //
-            $table->unsignedBigInteger('tipo_moneda_id')->nullable();
-
-            // Si deseas agregar una restricción de clave externa
-            $table->foreign('tipo_moneda_id')->references('id')->on('tipo_monedas');
+        Schema::create('tipo_bancos', function (Blueprint $table) {
+            $table->id();
+             $table->string('descripcion', 100)->nullable();
+            $table->timestamps();
         });
     }
 
@@ -29,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('empresas', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('tipo_bancos');
     }
 };

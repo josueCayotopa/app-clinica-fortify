@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('tipos_descuentos', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 15); 
-            $table->year('anio_proceso'); 
+            $table->string('codigo', 15)->nullable(); 
+            $table->year('anio_proceso')->nullable(); 
             $table->tinyInteger('mes_proceso')->unsigned(); 
-            $table->string('descripcion', 255); 
+            $table->string('descripcion', 255)->nullable(); 
             $table->decimal('porcentaje_descuento', 5, 2)->check('porcentaje_descuento >= 0 AND porcentaje_descuento <= 100'); 
-            $table->char('indice_tope', 1)->check('indice_tope IN ("N", "S")'); 
+            $table->char('indice_tope', 1)->check('indice_tope IN ("N", "S")')->nullable(); 
             $table->decimal('importe_tope', 15, 2)->nullable();
             $table->timestamps();
 

@@ -15,18 +15,15 @@ return new class extends Migration
     {
         Schema::create('periodo_laborals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('personal_id');
-            $table->unsignedBigInteger('categoria_id');
+            $table->unsignedBigInteger('categoria_periodos_id')->nullable();
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->unsignedBigInteger('motivo_fin_id');
-            $table->unsignedBigInteger('modalidad_formativa_id');
             $table->timestamps();
             // motivo_fin_periodos
-            $table->foreign('personal_id')->references('id')->on('personals')->onDelete('cascade');
-            $table->foreign('categoria_id')->references('id')->on('categoria_sunats')->onDelete('cascade');
-            $table->foreign('motivo_fin_id')->references('id')->on('motivo_fin_periodos')->onDelete('cascade');
-            $table->foreign('modalidad_formativa_id')->references('id')->on('tipo_modalidad_formativas')->onDelete('cascade');
+            $table->foreign('categoria_periodos_id')->references('id')->on('categoria_periodos');
+            $table->foreign('motivo_fin_id')->references('id')->on('motivo_fin_periodos');
+         
         });
     }
 

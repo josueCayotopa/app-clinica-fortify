@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('tipo_comprobantes', function (Blueprint $table) {
             $table->id(); 
-            $table->string('codigo_sunat');
-            $table->string('descripcion');
-            $table->boolean('estado')->default(true);
+            $table->string('codigo_sunat')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->boolean('estado')->default(true)->nullable();
             $table->timestamps(); 
         });
     }

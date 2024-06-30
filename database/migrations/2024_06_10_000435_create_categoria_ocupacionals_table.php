@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('categoria_ocupacionals', function (Blueprint $table) {
             $table->id();
-            $table->string('DESCRIPCION')->nullable();
+            $table->string('descripcion')->nullable();
             $table->timestamps();
         });
     }

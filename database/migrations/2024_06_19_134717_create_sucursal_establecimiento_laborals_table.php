@@ -15,13 +15,11 @@ return new class extends Migration
     {
         Schema::create('sucursal_establecimiento_laborals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sucursal_id');
-            $table->unsignedBigInteger('trabajador_id');
-            $table->unsignedBigInteger('empresa_id');
+            $table->unsignedBigInteger('sucursalpropio_id')->nullable();
+            $table->unsignedBigInteger('empresa_me_dastacan_id')->nullable();
             $table->timestamps();
-            $table->foreign('sucursal_id')->references('id')->on('sucursals')->onDelete('cascade');
-            $table->foreign('trabajador_id')->references('id')->on('personals')->onDelete('cascade');
-            $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
+            $table->foreign('sucursalpropio_id')->references('id')->on('sucursals');
+            $table->foreign('empresa_me_dastacan_id')->references('id')->on('empresa_me_destacans');
         });
 
     }

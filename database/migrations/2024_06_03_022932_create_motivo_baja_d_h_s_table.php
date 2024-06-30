@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('motivo_baja_d_h_s', function (Blueprint $table) {
             $table->id(); 
-            $table->string('descripcion');
-            $table->boolean('estado')->default(true);
+            $table->string('descripcion')->nullable();
+            $table->boolean('estado')->default(true)->nullable();
             $table->timestamps(); 
         });
     }

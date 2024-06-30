@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('situacion_e_p_s', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo_sunat');
-            $table->string('descripcion');
-            $table->boolean('afiliado_eps')->default(true);
-            $table->boolean('estado');
+            $table->string('codigo_sunat')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->boolean('afiliado_eps')->default(true)->nullable();
+            $table->boolean('estado')->nullable();
             $table->timestamps();
         });
     }

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('regimen_pencionarios', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo_sunat');
-            $table->string('descripcion');
+            $table->string('codigo_sunat')->nullable();
+            $table->string('descripcion')->nullable();
             $table->boolean('estado')->default(true);
             $table->timestamps();
         });

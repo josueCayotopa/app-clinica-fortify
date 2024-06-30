@@ -15,14 +15,12 @@ return new class extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->foreign('empresa_id')->references('id')->on('empresas');
-            $table->string('codigo', 15);
-            $table->string('descripcion');
-            $table->string('nivel', 15); 
-            $table->decimal('factor_hora_extra', 8, 2); 
-            $table->decimal('factor_dia_viaje', 8, 2);
+            $table->string('codigo', 15)->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('nivel', 15)->nullable(); 
+            $table->decimal('factor_hora_extra', 8, 2)->nullable(); 
+            $table->decimal('factor_dia_viaje', 8, 2)->nullable();
             $table->timestamps();
-
         });
     }
 

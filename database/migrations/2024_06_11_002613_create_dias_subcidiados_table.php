@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('dias_subcidiados', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('trabajador_id');
-            $table->unsignedBigInteger('tipo_suspencion_id');    
+            $table->unsignedBigInteger('trabajador_id')->nullable(); 
+            $table->unsignedBigInteger('tipo_suspencion_id')->nullable();   
             $table->date('fecha_inicio')->nullable();        
             $table->date('fecha_fin')->nullable();     
             $table->timestamps();
-            $table->foreign('trabajador_id')->references('id')->on('personals')->onDelete('cascade');
             $table->foreign('tipo_suspencion_id')->references('id')->on('tipo_suspensions')->onDelete('cascade');
         
         });
