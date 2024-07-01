@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             
            
-          /*   PermissionSeeder::class,
+            /* PermissionSeeder::class,
             RoleSeeder::class,
             RoleHasPermissionSeeder::class,
             UserSeeder::class,
@@ -42,9 +42,9 @@ class DatabaseSeeder extends Seeder
             DepartamentoRegionSeeder::class,
             TipoEstablecimientoSeeder::class,
             ViaSeeder::class,
-            ZonaSeeder::class,  */
+            ZonaSeeder::class, */ 
            
-         /*  ProvinciaSeeder::class,
+          /* ProvinciaSeeder::class,
           DistritoSeeder::class,
           ViaSeeder::class,
           ZonaSeeder::class,
@@ -71,9 +71,11 @@ class DatabaseSeeder extends Seeder
          ConceptoSunatSeeder::class,
          // ConceptosSeeder::class,
            //ConceptosCuentasSeeder::class,
-          CategoriaOcupacionalSeeder::class, */
+          CategoriaOcupacionalSeeder::class,
+          TipoPensionistaSeeder::class,
+          TipoBancoSeeder::class, */
 
-          //por completar : seederTipoPensionista seederTipóbANCO
+          
 
 
         ]);

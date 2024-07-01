@@ -138,6 +138,7 @@
 
 <body>
     <div class="container mt-5">
+        
         {{-- @if (session('success')) --}}
         <div class="el-row is-justify-space-between row-bg">
             <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
@@ -259,6 +260,38 @@
 
                     </tr>
                 </thead>
+
+                {{-- prueba de tbody --}}
+                <tbody>
+                    @forelse ($pensionistas as $pensionista)
+                        <tr>
+                            <td>{{ $pensionista->id }}</td>
+                            <td>{{ $pensionista->tipoDocumento->descripcion ?? 'N/A' }}</td>
+                            <td>{{ $pensionista->numero_documento }}</td>
+                            <td>{{ $pensionista->tipoTrabajador->descripcion ?? 'N/A' }}</td>
+                            <td>{{ $pensionista->regimenPencionario->descripcion ?? 'N/A' }}</td>
+                            <td>{{ $pensionista->fecha_inscripcion }}</td>
+                            <td>{{ $pensionista->cuspp }}</td>
+                            <td>{{ $pensionista->situacionEPS->nombre ?? 'N/A' }}</td>
+                            <td>{{ $pensionista->tipoPago->nombre ?? 'N/A' }}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{{ route('pensionistas.show', $pensionista->id) }}" class="btn btn-info btn-sm">Ver</a>
+                                    <a href="{{ route('pensionistas.edit', $pensionista->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="{{ route('pensionistas.destroy', $pensionista->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar este pensionista?');" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="10" class="text-center">No se encontraron pensionistas.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
                 
             </table>
         </div>
@@ -313,7 +346,7 @@
             </table>
         </div>
        {{--  <div class="d-flex justify-content-center mt-4">
-            {{ $pencionistas->links() }}
+            {{ $pensionistas->links() }}
         </div> --}}
     </div> 
 

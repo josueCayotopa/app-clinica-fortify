@@ -76,7 +76,7 @@
                                         <col width="15%">
                                         <col width="10%">
                                     </colgroup>
-                                    <tbody>
+                                    {{-- <tbody>
                                         @foreach ($personals as $personal)
                                             <tr class="el-table__row">
                                                 <td class="el-table__cell">{{ $personal->numero_documento }}</td>
@@ -109,7 +109,7 @@
                                                 </td>
                                             </tr>
                                         @endforeach
-                                    </tbody>
+                                    </tbody> --}}
                                 </table>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
         </div>
 
         <div class="el-pagination is-background el-pagination--small">
-            {{ $personals->links() }}
+            {{-- {{ $personals->links() }} --}}
         </div>
     </div>
 
