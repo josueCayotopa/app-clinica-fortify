@@ -204,7 +204,7 @@ select.form-control:not([size]):not([multiple]) {
     background-image: url("../img/visa.png"); }
 
 .form-group {
-  margin-bottom: 25px; }
+  margin-bottom: 2px; }
   .form-group .control-label,
   .form-group > label {
     font-weight: 600;

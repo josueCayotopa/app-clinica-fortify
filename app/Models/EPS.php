@@ -13,8 +13,9 @@ class EPS extends Model
         'descripcion',
         'estado'
     ];
-    public function personals()
+    
+    public function trabajadores()
     {
-    return $this->hasMany(Personal::class, 'eps_id');
+        return $this->hasMany(Trabajador::class, 'eps_id');
     }
 }
