@@ -73,6 +73,8 @@ class DatabaseSeeder extends Seeder
            //ConceptosCuentasSeeder::class,
           CategoriaOcupacionalSeeder::class, */
 
+          //por completar : seederTipoPensionista seederTipóbANCO
+
 
         ]);
     }

@@ -177,6 +177,11 @@ Route::group(
         //pensionistas
         Route::get('/pensionistas', [PensionistaController::class,'index'])->name('pensionistas.index');
 
+        //create pensionista
+        
+        Route::get('/pensionistas/create', [PensionistaController::class,'create'])->name('pensionistas.create');
+        
+        Route::post('/pensionistas', [PensionistaController::class,'store'])->name('pensionistas.store');
     }
 );
 

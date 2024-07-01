@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pensionista;
+use App\Models\PeriodoLaboral;
+use App\Models\RegimenPencionario;
+use App\Models\RemuneracionPencionista;
+use App\Models\SituacionEPS;
+use App\Models\SucursalEstablecimientoLaboral;
+use App\Models\TipoBanco;
+use App\Models\TipoPago;
+use App\Models\TipoPensionista;
 use Illuminate\Http\Request;
 
 class PensionistaController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         $pensionistas = Pensionista::all();
-        
+
         if ($request->ajax()) {
             return response()->json([
                 'view' => view('pensionistas.index', compact('pensionistas'))->render(),
@@ -24,7 +32,6 @@ class PensionistaController extends Controller
             'view' => 'pensionistas.index',
             'data' => compact('pensionistas'),
         ]);
-        
     }
 
     /**
@@ -32,16 +39,40 @@ class PensionistaController extends Controller
      */
     public function create(Request $request)
     {
+        $tipoPensionistas = TipoPensionista::all();
+        $regimenPencionarios = RegimenPencionario::all();
+        $situacionEPS = SituacionEPS::all();
+        $tipoPagos = TipoPago::all();
+        $tipoBancos = TipoBanco::all();
+        $periodoLaborales = PeriodoLaboral::all();
+        $remuneracionPensionistas = RemuneracionPencionista::all();
+        $sucursalEstablecimientos = SucursalEstablecimientoLaboral::all();
+
+        $data = compact(
+            'tipoPensionistas',
+            'regimenPencionarios',
+            'situacionEPS',
+            'tipoPagos',
+            'tipoBancos',
+            'periodoLaborales',
+            'remuneracionPensionistas',
+            'sucursalEstablecimientos'
+        );
         if ($request->ajax()) {
             return response()->json([
-                'view' => view('pensionistas.create')->render(),
+                'view' => view('pensionistas.create', $data)->render(),
                 'url' => route('pensionistas.create', $request->query())
             ]);
         }
         return view('home')->with([
+            /* 'view' => view('pensionistas.create', $data)->render(),
+            'data' => compact('data', $request->query()) */
             'view' => 'pensionistas.create',
-            
+            'data' => $data,
+
         ]);
+
+        /* return view('pensionistas.create', $data); */
     }
 
     /**
@@ -62,6 +93,8 @@ class PensionistaController extends Controller
 
         $pensionista = Pensionista::create($validatedData);
 
+
+
         return redirect()->route('pensionistas.index')->with('success', 'Pensionista creado exitosamente.');
     }
 
@@ -77,7 +110,7 @@ class PensionistaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id,Request $request )
+    public function edit($id, Request $request)
     {
 
         $pensionista = Pensionista::findOrFail($id);
@@ -89,10 +122,9 @@ class PensionistaController extends Controller
         }
         return view('home')->with([
             'view' => 'pensionistas.edit',
-            'data'=>compact('pensionista'),
-            
+            'data' => compact('pensionista'),
+
         ]);
-        
     }
 
     /**

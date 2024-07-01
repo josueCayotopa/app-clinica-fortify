@@ -144,10 +144,12 @@
                 <h5>Listado de Pensionistas</h5>
             </div>
             <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
-    
-                <button aria-disabled="false" type="button" class="el-button el-button--danger" id="new-button">
-                    <span>Nuevo</span>
-                </button>
+                <a href="{{ route('pensionistas.create') }}">
+                    <button aria-disabled="false" type="button" class="el-button el-button--danger" id="new-button">
+                        <span>Nuevo</span>
+                    </button>
+                </a>
+                
             </div>
         </div>
 
