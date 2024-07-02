@@ -34,7 +34,7 @@
         <li class="menu-item">
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-group'></i>
-                <div data-i18n="Ventas">Empleados</div>
+                <div data-i18n="Ventas">Personal</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
