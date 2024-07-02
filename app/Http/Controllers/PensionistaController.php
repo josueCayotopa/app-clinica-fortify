@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriaCargo;
+use App\Models\Departamento_Region;
+use App\Models\Distrito;
+use App\Models\Nacionalidad;
+use App\Models\Nivel_educativo;
+use App\Models\Ocupacion;
 use App\Models\Pensionista;
 use App\Models\PeriodoLaboral;
+use App\Models\Provincia;
 use App\Models\RegimenPencionario;
 use App\Models\RemuneracionPencionista;
 use App\Models\SituacionEPS;
 use App\Models\SucursalEstablecimientoLaboral;
 use App\Models\TipoBanco;
+use App\Models\TipoDocumento;
 use App\Models\TipoPago;
 use App\Models\TipoPensionista;
+use App\Models\Via;
+use App\Models\Zona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PensionistaController extends Controller
 {
@@ -39,8 +50,18 @@ class PensionistaController extends Controller
      */
     public function create(Request $request)
     {
+        abort_if(Gate::denies('user_create'), 403);
+        $departamentos = Departamento_Region::pluck('descripcion', 'id');
+        $provincias = Provincia::pluck('descripcion', 'id');
+        $distritos = Distrito::pluck('descripcion', 'id');
+        $zonas = Zona::pluck('descripcion', 'id');
+        $vias = Via::pluck('descripcion', 'id');
+        $tipoDocumento = TipoDocumento::pluck('descripcion', 'id');
+        $nacionalidad = Nacionalidad::pluck('descripcion', 'id');
         $tipoPensionistas = TipoPensionista::all();
-        $regimenPencionarios = RegimenPencionario::all();
+        $nivel_educativo = Nivel_educativo::pluck('descripcion', 'id');
+        $ocupacion = Ocupacion::pluck('descripcion', 'id');
+        $regimenPencionarios = RegimenPencionario::all();      
         $situacionEPS = SituacionEPS::all();
         $tipoPagos = TipoPago::all();
         $tipoBancos = TipoBanco::all();

@@ -9,11 +9,8 @@ class Pensionista extends Model
 {
     protected $table = 'pencionistas';
     use HasFactory;
-    protected $fillable = [
-        'tipo_documento_id', 
+    protected $fillable = [ 
         'tipo_pensionista_id', 
-        'numero_documento',
-        'tipo_trabajador_id', 
         'regimen_pencionario_id', 
         'fecha_inscirpcion',
         'cuspp',
@@ -30,27 +27,16 @@ class Pensionista extends Model
     ];
 
     // Definir las relaciones
-    public function tipoDocumento()
-    {
-        return $this->belongsTo(TipoDocumento::class);
-    }
 
-    public function tipoTrabajador()
+    public function tipoPensionista()
     {
-        return $this->belongsTo(Tipo_trabajador::class);
+        return $this->belongsTo(TipoPensionista::class);
     }
 
     public function regimenPencionario()
     {
         return $this->belongsTo(RegimenPencionario::class);
     }
-    public function tipoDocumento()
-    {
-        return $this->belongsTo(TipoDocumento::class);
-    }
-
-
-    
 
     public function situacionEPS()
     {
@@ -62,4 +48,24 @@ class Pensionista extends Model
         return $this->belongsTo(TipoPago::class);
     }
 
+    public function tipoBanco()
+    {
+        return $this->belongsTo(TipoBanco::class);
+    }
+    
+    public function periodoLaboral()
+    {
+        return $this->belongsTo(PeriodoLaboral::class);
+    }
+    
+    public function remuneracionPensionista()
+    {
+        return $this->belongsTo(RemuneracionPencionista::class);
+    }
+    
+    public function sucursalEstablecimientoLaboral()
+    {
+        return $this->belongsTo(SucursalEstablecimientoLaboral::class);
+    }
+    
 }
