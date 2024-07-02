@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreign('empresa_destaco_id')->references('id')->on('empresas_destacos');
             $table->timestamps();
         });
+        
     }
 
     /**

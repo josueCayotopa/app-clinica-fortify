@@ -21,14 +21,14 @@
 
                 <!-- Content wrapper -->
                 <div class="content-wrapper d-flex flex-column flex-grow-1 overflow-hidden">
-                    <div class="container-xxl flex-grow-1 container-p-y d-flex flex-column overflow-hidden" style="height: 100%; width:100%;">
+                    <div class="container-xxl flex-grow-0 container-p-y d-flex flex-column overflow-hidden" style="height: 100%; width:100%;">
                         <div class="row flex-grow-1 overflow-hidden" style="height: 100%; width:100%;">
-                            <div class="col-lg-12 mb-4 order-0 d-flex flex-column h-100" style="height: 100%; width:100%; ">
-                                <div class="card flex-grow-1 d-flex flex-column h-100"style="height: 100%; width:100%; " >
-                                    <div class="d-flex align-items-end row flex-grow-1 h-100">
-                                        <div class="col-md-12 h-100 d-flex flex-column" style="width:100%; "  >
-                                            <div class="card-body flex-grow-2 d-flex flex-column  overflow-auto">
-                                                <main class="main-content flex-grow-1 " style="height: 100%; width:100%; " >
+                            <div class="col-lg-12 mb-0 order-0 d-flex flex-column h-100" style="height: 100%; width:100%; ">
+                                <div class="card flex-grow-0 d-flex flex-column h-100"style="height: 100%; width:100%; " >
+                                    <div class="d-flex align-items-end row flex-grow-0 h-100">
+                                        <div class="col-md-12 h-100 d-flex flex-column" style="width:100%; height: 100%;"  >
+                                            <div class="card flex-grow-0 d-flex flex-column ml-1 mr-1  overflow-auto"  style="width:100%; height: 100%;" >
+                                                <main class="main-content flex-grow-0 " style="height: 100%;  " >
                                                     @yield('main')
                                                 </main>
                                             </div>

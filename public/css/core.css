@@ -616,7 +616,7 @@
   
   @media(min-width: 768px) {
     .container-md,.container-sm,.container {
-        max-width:720px
+        max-width:98%
     }
   }
   
@@ -8801,7 +8801,7 @@
   }
   
   .tab-content {
-    padding: 1.5rem;
+    padding: 0.0rem;
     border-radius: .375rem
   }
   

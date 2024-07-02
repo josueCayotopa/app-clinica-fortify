@@ -24,6 +24,7 @@ class UserControlles extends Controller
         }
 
         $users = $users->paginate(5);
+        
         if ($request->ajax()) {
             return response()->json([
                 'view' => view('users.index', compact('users'))->render(),

@@ -13,4 +13,8 @@ class SCTRSalud extends Model
         'descripcion',
         
     ];
+    public function trabajadores()
+    {
+        return $this->hasMany(Trabajador::class, 'sctrsalud_id');
+    }
 }

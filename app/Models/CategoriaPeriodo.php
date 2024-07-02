@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MotivoFinPeriodo extends Model
+class CategoriaPeriodo extends Model
 {
     use HasFactory;
-    protected $fillable = 
-    [
-        'descripcion',
-        'estado',
-];
+    protected $fillable = ['descripcion'];
 
     public function periodoLaborals()
     {

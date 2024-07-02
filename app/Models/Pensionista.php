@@ -30,7 +30,12 @@ class Pensionista extends Model
     ];
 
     // Definir las relaciones
-    public function tipoPensionista()
+    public function tipoDocumento()
+    {
+        return $this->belongsTo(TipoDocumento::class);
+    }
+
+    public function tipoTrabajador()
     {
         return $this->belongsTo(Tipo_trabajador::class);
     }
@@ -56,25 +61,5 @@ class Pensionista extends Model
     {
         return $this->belongsTo(TipoPago::class);
     }
-    public function tipoBanco()
-    {
-        return $this->belongsTo(TipoBanco::class);
-    }
 
-    public function sucursalEstablecimientoLaboral()
-    {
-        return $this->belongsTo(SucursalEstablecimientoLaboral::class);
-    }
-    public function periodoLaboral()
-    {
-        return $this->belongsTo(PeriodoLaboral::class);
-    }
-
-    public function remuneracionPencionista()
-    {
-        return $this->belongsTo(RemuneracionPencionista::class);
-    }
-    
-
-    
 }
