@@ -31,6 +31,10 @@ class DatabaseSeeder extends Seeder
             
            
           /*   PermissionSeeder::class,
+          
+            /*
+
+ PermissionSeeder::class,
             RoleSeeder::class,
             RoleHasPermissionSeeder::class,
             UserSeeder::class,
@@ -45,6 +49,8 @@ class DatabaseSeeder extends Seeder
             ZonaSeeder::class,  */
            
          /*  ProvinciaSeeder::class,
+          
+          /* ProvinciaSeeder::class,
           DistritoSeeder::class,
           ViaSeeder::class,
           ZonaSeeder::class,
@@ -56,6 +62,10 @@ class DatabaseSeeder extends Seeder
           RegimenPensionarioSeeder::class,
           TiposContatosTrabajoSeeder::class,
           PeriodicidadSeeder::class, */
+
+
+         
+
 
           /* EPSSeeder::class,
           SituacionEPSSeeder::class,
@@ -72,6 +82,9 @@ class DatabaseSeeder extends Seeder
          // ConceptosSeeder::class,
            //ConceptosCuentasSeeder::class,
           CategoriaOcupacionalSeeder::class, */
+         
+          
+          //CategoriaOcupacionalSeeder::class,
 
 
         ]);

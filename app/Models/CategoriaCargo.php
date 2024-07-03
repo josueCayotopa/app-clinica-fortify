@@ -21,7 +21,10 @@ class CategoriaCargo extends Model
     }
     protected $fillable = [
         'categoria_id',
-        'cargo_id',];
-
-
+        'cargo_id',
+    ];
+    public function trabajadores()
+    {
+        return $this->hasMany(Trabajador::class, 'categoria_cargo_id');
+    }
 }

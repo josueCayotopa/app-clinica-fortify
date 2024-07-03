@@ -44,7 +44,6 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="col-md-2 mb-3">
                                 <div class="form-group">
                                     <label for="numero_documento">Número de Documento<span
@@ -69,14 +68,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2 mb-3">
+                           <div class="col-md-2 mb-3">
                                 <div class="form-group">
-                                    <label for="apellido_materno">Apellido Materno<span
+                                    <label for="apellido_paterno">Apellido Paterno<span
                                             class="campo-obligatorio">*</span></label>
-                                    <input type="text" class="form-control" id="apellido_materno" name="apellido_materno"
-                                        placeholder="Apellido Materno" value="{{ old('apellido_materno') }}">
-                                    @if ($errors->has('apellido_materno'))
-                                        <span class="error text-danger">{{ $errors->first('apellido_materno') }}</span>
+                                    <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno"
+                                        placeholder="Apellido Paterno" value="{{ old('apellido_paterno') }}">
+                                    @if ($errors->has('apellido_paterno'))
+                                        <span class="error text-danger">{{ $errors->first('apellido_paterno') }}</span>
                                     @endif
                                 </div>
                             </div>

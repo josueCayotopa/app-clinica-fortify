@@ -34,14 +34,18 @@
         <li class="menu-item">
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-group'></i>
-                <div data-i18n="Ventas">Empleados</div>
+                <div data-i18n="Ventas">Personal</div>
             </a>
             <ul class="menu-sub">
-
                 <li class="menu-item">
                     <a href="{{ route('personals.index') }}" class="menu-link">
+                        <div data-i18n="Empleado">Personal</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('trabajadores.index') }}" class="menu-link">
 
-                        <div data-i18n="Empleado">Empleado</div>
+                        <div data-i18n="Empleado">Trabajador</div>
                     </a>
                 </li>
 
