@@ -104,6 +104,7 @@ class TrabajadorController extends Controller
         $tipoContratosTrabajo = TipoContratosTrabajo::pluck('descripcion', 'id');
         $periodicidad = Periodicidad::pluck('descripcion', 'id');
         $eps = EPS::pluck('descripcion', 'id');
+        $situacioneps=SituacionEPS::pluck('descripcion', 'id');
         $situacionTrabajador = SituacionTrabajador::pluck('descripcion', 'id');
         $tipoPago = TipoPago::pluck('descripcion', 'id');
         $tipoBanco = TipoBanco::pluck('descripcion', 'id');
@@ -137,6 +138,7 @@ class TrabajadorController extends Controller
                     'tipoContratosTrabajo',
                     'periodicidad',
                     'eps',
+                    'situacioneps',
                     'situacionTrabajador',
                     'tipoPago',
                     'tipoBanco',
@@ -175,6 +177,7 @@ class TrabajadorController extends Controller
                 'tipoContratosTrabajo',
                 'periodicidad',
                 'eps',
+                'situacioneps',
                 'situacionTrabajador',
                 'tipoPago',
                 'tipoBanco',

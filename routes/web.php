@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\EmpresaExport;
 use App\Http\Controllers\AfpsdescuentosController;
 use App\Http\Controllers\AsignarVacacionesController;
 use App\Http\Controllers\AsistenciaController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\ConocimientoController;
 use App\Http\Controllers\DatosPersonalController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\PensionistaController;
@@ -65,13 +67,12 @@ Route::group(
 
         Route::put('/users/{user}', [UserControlles::class, 'update'])->name('users.update');
         Route::delete('/users/{user}', [UserControlles::class, 'destroy'])->name('users.delete');
-
-
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RolController::class);
 
         Route::get('/home/empleados/empleado', [EmpleadoController::class, 'index'])->name('empleado.index');
         Route::resource('empresas', EmpresaController::class);
+        Route::get('/exportar/empresa', [ExportController::class,'export'])->name('exportar.empresa');
 
         Route::resource('sucursales', SucursalController::class);
         Route::resource('pensionistas', PensionistaController::class);

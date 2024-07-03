@@ -47,7 +47,7 @@
                       <h6 class="border-bottom pb-2 mb-1">Datos Personales</h6>
                       <div class="row scrollable-row">
 
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
                                   <label for="tipo_documento_id">Tipo de Documento <span
                                           class="campo-obligatorio">*</span></label>
@@ -68,7 +68,7 @@
                               </div>
                           </div>
 
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
                                   <label for="numero_documento">Número de Documento<span
                                           class="campo-obligatorio">*</span></label>
@@ -80,7 +80,7 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
                                   <label for="apellido_paterno">Apellido Paterno<span
                                           class="campo-obligatorio">*</span></label>
@@ -92,19 +92,19 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
-                                  <label for="apellido_paterno">Apellido Paterno<span
+                                  <label for="apellido_materno">Apellido Materno<span
                                           class="campo-obligatorio">*</span></label>
-                                  <input type="text" class="form-control" id="apellido_paterno"
-                                      name="apellido_paterno" placeholder="Apellido Paterno"
-                                      value="{{ old('apellido_paterno') }}">
-                                  @if ($errors->has('apellido_paterno'))
-                                      <span class="error text-danger">{{ $errors->first('apellido_paterno') }}</span>
+                                  <input type="text" class="form-control" id="apellido_materno"
+                                      name="apellido_materno" placeholder="Apellido Materno"
+                                      value="{{ old('apellido_materno') }}">
+                                  @if ($errors->has('apellido_materno'))
+                                      <span class="error text-danger">{{ $errors->first('apellido_materno') }}</span>
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
                                   <label for="nombres">Nombre<span class="campo-obligatorio">*</span></label>
                                   <input type="text" class="form-control" id="nombres" name="nombres"
@@ -114,7 +114,7 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
                                   <label for="fecha_nacimiento">Fecha de Nacimiento<span
                                           class="campo-obligatorio">*</span></label>
@@ -126,7 +126,7 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
                                   <label>Sexo<span class="campo-obligatorio">*</span></label>
                                   <div class="form-check">
@@ -144,7 +144,7 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
                                   <label for="telefono">Telefono</label>
                                   <input type="text" class="form-control" id="telefono" name="telefono"
@@ -154,7 +154,7 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group">
                                   <label for="correo_electronico"> Correo </label>
                                   <input type="email" class="form-control" id="correo_electronico"
@@ -166,7 +166,7 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-3 mb-1">
+                          <div class="col-md-6 mb-1">
                               <div class="form-group form-check">
                                   <input type="checkbox" class="form-check-input" id="essalud_vida"
                                       name="essalud_vida">
@@ -177,8 +177,10 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-2 mb-3">
+                          <div class="col-md-6 mb-3">
+                            <p>Ingrese su Foto</p>
                               <div class="image-upload-wrapper">
+                               
                                   <div class="image-upload-wrapper"
                                       onclick="document.getElementById('imageUpload').click();">
                                       <i class='bx bx-landscape'></i>
@@ -195,8 +197,10 @@
                               @endif
 
                           </div>
-                          <div class="col-md-2 mb-3">
+                          <div class="col-md-6 mb-1">
+                            <p>Ingrese el curriculum</p>
                               <div class="file-upload-wrapper">
+                                
                                   <div class="file-upload-wrapper"
                                       onclick="document.getElementById('fileUpload').click();">
                                       <i class='bx bxs-file-doc'></i>

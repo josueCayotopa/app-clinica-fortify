@@ -23,6 +23,22 @@
         </div>
         <div class="col-md-6 mb-1">
             <div class="form-group">
+            <label for="situacion_trabajador_id">Tipo Trabajador<span class="campo-obligatorio">*</span></label>
+           
+                @foreach ($situacionTrabajador as $id => $situacionTrabajador)
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="situacion_trabajador_id"
+                        value="{{ $id }}"
+                        >
+                        <label class="form-check-label">
+                            {{ $situacionTrabajador }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
                 <label for="regimen_laboral">Regimen Laboral<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="regimen_laboral" name="regimen_laboral">
                     <option value="" disabled>Selecciona un Tipo</option>
@@ -94,6 +110,36 @@
                 @endif
             </div>
         </div>
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="trabajo_sujeto_alt_acum_atip_desc">El trabajador esta sujeton </label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="trabajo_sujeto_alt_acum_atip_desc" id="trabajo_sujeto_alt_acum_atip_desc" checked>
+                    <label class="form-check-label" for="trabajo_sujeto_alt_acum_atip_desc">Regimen alternativo/acumulativo o atipicode jornada de trabajo y descansos</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="ingresos_quinta_categoria">Categoria </label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="ingresos_quinta_categoria" id="ingresos_quinta_categoria" >
+                    <label class="form-check-label" for="ingresos_quinta_categoria">Trabajador de 5 categoria </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="sindicalizado">Es sindicalisado </label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="sindicalizado" id="sindicalizado" >
+                    <label class="form-check-label" for="sindicalizado">Trabajador sindicalisado </label>
+                </div>
+            </div>
+        </div>
+
+        
 
     </div>
 </div>

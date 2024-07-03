@@ -140,6 +140,14 @@
                 fetchPage(url);
             };
         });
+        document.addEventListener('DOMContentLoaded', function() {
+            var textInputs = document.querySelectorAll('input[type="text"]');
+            textInputs.forEach(function(input) {
+                input.addEventListener('input', function() {
+                    input.value = input.value.toUpperCase();
+                });
+            });
+        });
     </script>
 
 </body>

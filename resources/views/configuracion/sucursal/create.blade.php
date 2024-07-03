@@ -14,7 +14,7 @@
                         autocomplete="0off">
                         @csrf
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="empresa_id">Empresa</label>
                                     <select class="form-control" id="empresa_id" name="empresa_id" required>
@@ -30,7 +30,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="nombre_sucursal">Nombre de Sucursal</label>
                                     <input id="nombre_sucursal" type="text" class="form-control"
@@ -41,17 +41,17 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="telefono">Telefono</label>
-                                    <input type="text" class="form-control" placeholder="Telefono" name="telefono"
+                                    <input type="text" maxlength="9" class="form-control" placeholder="Telefono" name="telefono"
                                         value="{{ old('telefono') }}">
                                     @if ($errors->has('telefono'))
                                         <span class="error text-danger">{{ $errors->first('telefono') }}</span>
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">Correo Electrónico</label>
                                     <input type="email" class="form-control" placeholder="Correo Electrónico"
@@ -61,7 +61,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="fax">Fax</label>
                                     <input type="text" class="form-control" placeholder="Fax" name="fax"
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-2">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="fecha_inicio">Fecha de Inicio</label>
                                     <input type="date" class="form-control datepicker" id="fecha_inicio"
@@ -84,7 +84,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="departamento_id">Departamento</label>
                                     <select class="form-control" id="departamento_id" name="departamento_id">
@@ -101,7 +101,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="provincia_id">Provincia</label>
                                     <select class="form-control" id="provincia_id" name="provincia_id"
@@ -123,7 +123,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="distrito_id">Distrito</label>
                                     <select class="form-control" id="distrito_id" name="distrito_id"
@@ -145,9 +145,8 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
+
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="zona_id">Zona</label>
                                     <select class="form-control" id="zona_id" name="zona_id">
@@ -165,7 +164,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="via_id">Vía</label>
                                     <select class="form-control" id="via_id" name="via_id">
@@ -183,7 +182,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="des_direccion">Direccion</label>
                                     <input type="text" class="form-control" placeholder="Direccion"

@@ -30,6 +30,7 @@
         </div>
         <div class="el-col el-col-24 el-col-xs-6 el-col-sm-3">
             <br>
+          
             <button aria-disabled="false" type="button" class="el-button el-button--success"><!--v-if-->
                 <span class="">Generar Excel</span>
             </button>
@@ -204,6 +205,8 @@
     document.getElementById('new-button').addEventListener('click', function() {
         window.location.href = '{{ route('trabajadores.create') }}';
     });
+    
+    export_button
 </script>
 
 

@@ -28,8 +28,6 @@ return new class extends Migration
             $table->string('telefono', 10)->nullable();
             $table->string('correo_electronico', 50)->nullable();
             $table->char('essalud_vida', 1)->nullable(); 
-
-
             $table->char('domiciliado', 1)->nullable(); 
             $table->unsignedBigInteger('via_id')->nullable(); 
             $table->string('nombre_via', 20)->nullable();
@@ -39,13 +37,11 @@ return new class extends Migration
             $table->string('nombre_zona', 20)->nullable();
             $table->string('referencia', 40)->nullable();
             $table->unsignedBigInteger('distrito_id')->nullable(); 
-
             // trabajadores
             $table->unsignedBigInteger('trabajador_id')->nullable(); 
             $table->unsignedBigInteger('pensionista_id')->nullable(); 
             $table->unsignedBigInteger('trabajador_cuarta_categoria_id')->nullable(); 
             $table->unsignedBigInteger('modaliad_formativa_id')->nullable(); 
-
             $table->timestamps();
             // foreig key   
             $table->foreign('distrito_id')->references('id')->on('distritos');
@@ -58,6 +54,7 @@ return new class extends Migration
             $table->foreign('pensionista_id')->references('id')->on('pencionistas');
             $table->foreign('trabajador_cuarta_categoria_id')->references('id')->on('trabajador_cuarta_categorias');
             $table->foreign('modaliad_formativa_id')->references('id')->on('modalidad_formativas');
+        
         });
     }
 

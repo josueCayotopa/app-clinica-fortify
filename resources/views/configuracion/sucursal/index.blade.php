@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="card-body mt-5">
     @include('layouts.messege')
     <div id="messages">
         @include('layouts.messege')
