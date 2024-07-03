@@ -39,7 +39,7 @@ class PensionistaController extends Controller
     {
         abort_if(Gate::denies('user_index'), 403);
 
-        /* $pensionistas = Pensionista::all();
+        $pensionistas = Pensionista::all();
 
         if ($request->ajax()) {
             return response()->json([
@@ -50,7 +50,7 @@ class PensionistaController extends Controller
         return view('home')->with([
             'view' => 'pensionistas.index',
             'data' => compact('pensionistas'),
-        ]); */
+        ]);
 
         $query = DatosPersonal::query();
 
@@ -176,7 +176,7 @@ class PensionistaController extends Controller
             'nivel_educativo_id' => 'required|exists:nivel_educativos,id',
         ]);
 
-        $pensionistas = Pensionista::create($validatedData);
+        $pensionista = Pensionista::create($validatedData);
 
 
 
@@ -188,7 +188,7 @@ class PensionistaController extends Controller
      */
     public function show($id)
     {
-        $pensionistas = Pensionista::findOrFail($id);
+        $pensionista = Pensionista::findOrFail($id);
         return view('pensionistas.show', compact('pensionista'));
     }
 
@@ -198,7 +198,7 @@ class PensionistaController extends Controller
     public function edit($id, Request $request)
     {
 
-        $pensionistas = Pensionista::findOrFail($id);
+        $pensionista = Pensionista::findOrFail($id);
         if ($request->ajax()) {
             return response()->json([
                 'view' => view('pensionistas.edit', compact('pensionista'))->render(),
@@ -229,8 +229,8 @@ class PensionistaController extends Controller
             'nivel_educativo_id' => 'required|exists:nivel_educativos,id',
         ]);
 
-        $pensionistas = Pensionista::findOrFail($id);
-        $pensionistas->update($validatedData);
+        $pensionista = Pensionista::findOrFail($id);
+        $pensionista->update($validatedData);
 
         return redirect()->route('pensionistas.index')->with('success', 'Pensionista actualizado exitosamente.');
     }
@@ -240,8 +240,8 @@ class PensionistaController extends Controller
      */
     public function destroy($id)
     {
-        $pensionistas = Pensionista::findOrFail($id);
-        $pensionistas->delete();
+        $pensionista = Pensionista::findOrFail($id);
+        $pensionista->delete();
 
         return redirect()->route('pensionistas.index')->with('success', 'Pensionista eliminado exitosamente.');
     }
