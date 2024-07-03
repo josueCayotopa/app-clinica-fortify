@@ -13,7 +13,6 @@ class Pensionista extends Model
         'tipo_documento_id', 
         'tipo_pensionista_id', 
         'numero_documento',
-        'tipo_trabajador_id', 
         'regimen_pencionario_id', 
         'fecha_inscirpcion',
         'cuspp',
@@ -44,13 +43,6 @@ class Pensionista extends Model
     {
         return $this->belongsTo(RegimenPencionario::class);
     }
-    public function tipoDocumento()
-    {
-        return $this->belongsTo(TipoDocumento::class);
-    }
-
-
-    
 
     public function situacionEPS()
     {

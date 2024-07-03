@@ -64,11 +64,55 @@
         </form>
     </div>
 </body> --}}
+<style>
+
+</style>
+
+<header>
+   
+        <ul class="nav nav-tabs" id="personalTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
+                    aria-controls="general" aria-selected="true">General</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="beneficios-tab" data-toggle="tab" href="#domicilio" role="tab"
+                    aria-controls="beneficios" aria-selected="false">Domicilio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="contacto-tab" data-toggle="tab" href="#laboral" role="tab"
+                    aria-controls="contacto" aria-selected="false">Laboral</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#regimen" role="tab"
+                    aria-controls="laboral" aria-selected="false">Regimen Pensionario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#pLaboral" role="tab"
+                    aria-controls="laboral" aria-selected="false">Periodo Laboral</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#remuneracion" role="tab"
+                    aria-controls="laboral" aria-selected="false">Remuneracion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#sucural" role="tab"
+                    aria-controls="laboral" aria-selected="false">Sucursal</a>
+            </li>
+
+            {{-- <li class="nav-item">
+                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#contacto" role="tab"
+                    aria-controls="laboral" aria-selected="false">Beneficios</a>
+            </li> --}}
 
 
+            
+        </ul>
+    
+</header>
 
 <div class="container mt-5">
-    <ul class="nav nav-tabs" id="personalTab" role="tablist">
+    {{-- <ul class="nav nav-tabs" id="personalTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
                 aria-controls="general" aria-selected="true">General</a>
@@ -86,7 +130,7 @@
                 aria-controls="laboral" aria-selected="false">Beneficios</a>
         </li>
         
-    </ul>
+    </ul> --}}
 
 
 
@@ -95,7 +139,7 @@
         <div class="tab-content">
             {{-- DATOS GENERALES --}}
             <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
-                <div class="border rounded p-3 mb-3">
+                {{-- <div class="border rounded p-3 mb-3">
                     <h6 class="border-bottom pb-2 mb-3">Datos personales</h6>
                     <div class="row">
                         <div class="col-md-4 mb-3">
@@ -105,6 +149,15 @@
                                     <option value="" disabled {{ old('tipo_documento_id') ? '' : 'selected' }}>
                                         Selecciona Tipo de Documento
                                     </option>
+                                    
+                                    @foreach ($tipoDocumento as $tipo_documento)
+                                    
+                                    <option value="{{ $tipo_documento->id }}" {{ old('tipo_documento_id') == $tipo_documento->id?'selected' : '' }}>
+                                        {{ $tipo_documento->descripcion }}
+                                    </option>
+                                    
+                                    @endforeach
+
                                 </select>
                                 @if ($errors->has('tipo_documento_id'))
                                     <span class="error text-danger">{{ $errors->first('tipo_documento_id') }}</span>
@@ -228,11 +281,12 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+                @include ('pensionistas.general')
             </div>
             {{-- DOMICILIO --}}
             <div class="tab-pane fade" id="domicilio" role="tabpanel" aria-labelledby="laboral-tab">
-                <div class="border rounded p-3 mb-3">
+                {{-- <div class="border rounded p-3 mb-3">
                     <div class="mb-3">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="domiciliado" name="domiciliado">
@@ -370,212 +424,27 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+                {{-- @include ('pensionistas.domicilio'); --}}
             </div>
             {{-- LABORAL --}}
             <div class="tab-pane fade" id="laboral" role="tabpanel" aria-labelledby="contacto-tab">
-                <div class="border rounded p-3 mb-3">
-                    <h6 class="border-bottom pb-2 mb-3">Datos Laborales</h6>
-                    <div class="row">
-                        <!-- Primera Columna -->
-                        <div class="col-md-4 mb-3">
-                            <div class="form-group">
-                                <label for="tipo_trabajador_id">Tipo Trabajador<span class="campo-obligatorio">*</span></label>
-                                <select class="form-control" id="tipo_pensionista_id" name="tipo_pensionista_id" required>
-                                    <option value="" disabled {{ old('pensionista_id') ? '' : 'selected' }}>Selecciona un Tipo</option>
-                                    {{-- @foreach ($tipoTrabajadores as $id => $tipo_trabajador)
-                                    <option value="{{ $id }}" {{ old('tipo_trabajador_id') == $id ? 'selected' : '' }}>
-                                        {{ $tipo_trabajador }}
-                                    </option>
-                                    @endforeach --}}
-
-                                    @foreach ($tipoPensionistas as $id => $tipo)
-                                    <option value="{{$tipo->id}}"{{old('pensionista_id') == $id ? '' : ''}}>
-                                        {{$tipo->descripcion}}
-                                    </option>
-                                    
-                                    @endforeach
-
-                                        {{-- <option value="">Seleccione Tipo Pensionista</option>
-                                        @foreach ($tipoPensionistas as $tipo)
-                                            <option value="{{ $tipo->id }}">{{ $tipo->descripcion }}</option>
-                                        @endforeach --}}
-                                
-                                    
-                                </select>
-                                @if ($errors->has('tipo_trabajador_id'))
-                                    <span class="error text-danger">{{ $errors->first('tipo_trabajador_id') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="regimen_laboral">Régimen Laboral<span class="campo-obligatorio">*</span></label>
-                                <select class="form-control" id="regimen_laboral" name="regimen_laboral">
-                                    <option value="" disabled {{true ? '' : 'selected'}}>Selecciona un Tipo</option>
-                                    <option value="0" selected>Privado</option>
-                                    <option value="1">Público</option>
-                                </select>
-                                @if ($errors->has('regimen_laboral'))
-                                    <span class="error text-danger">{{ $errors->first('regimen_laboral') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="nivel_edicativo_id">Nivel de Educación<span class="campo-obligatorio">*</span></label>
-                                <select class="form-control" id="nivel_edicativo_id" name="nivel_edicativo_id">
-                                    <option value="" disabled {{ old('nivel_edicativo_id') ? '' : 'selected' }}>Selecciona un Tipo</option>
-                                    {{-- @foreach ($nivelesEducativos as $id => $nivel_educativo)
-                                    <option value="{{ $id }}" {{ old('nivel_edicativo_id') == $id ? 'selected' : '' }}>
-                                        {{ $nivel_educativo }}
-                                    </option>
-                                    @endforeach --}}
-                                </select>
-                                @if ($errors->has('nivel_edicativo_id'))
-                                    <span class="error text-danger">{{ $errors->first('nivel_edicativo_id') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="ocupacion_id">Asignar Ocupación<span class="campo-obligatorio">*</span></label>
-                                <select class="form-control" id="ocupacion_id" name="ocupacion_id">
-                                    {{-- @foreach ($ocupaciones como $id => $ocupacion)
-                                    <option value="{{ $id }}" {{ old('ocupacion_id') == $id ? 'selected' : '' }}>
-                                        {{ $ocupacion }}
-                                    </option>
-                                    @endforeach --}}
-                                    <option value="" disabled>Selecciona un Tipo</option>
-                                </select>
-                                @if ($errors->has('ocupacion_id'))
-                                    <span class="error text-danger">{{ $errors->first('ocupacion_id') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                        
-                        <!-- Segunda Columna -->
-                        <div class="col-md-4 mb-3">
-                            <div class="form-group">
-                                <label for="curriculum">Curriculum (PDF/Word)<span class="campo-obligatorio">*</span></label>
-                                <div class="file-upload-wrapper">
-                                    <label for="curriculum" class="btn btn-primary btn-sm">
-                                        <input type="file" name="curriculum" class="form-control-file d-none" id="curriculum" accept=".pdf,.docx">
-                                        Seleccionar Archivo
-                                    </label>
-                                </div>
-                                @if ($errors->has('curriculum'))
-                                    <span class="error text-danger">{{ $errors->first('curriculum') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="regimen_pensionario_id">Régimen pensionario del trabajador<span class="campo-obligatorio">*</span></label>
-                                <select class="form-control" id="regimen_pensionario_id" name="regimen_pensionario_id">
-                                    {{-- @foreach ($regimenesPensionarios como $id => $regimen_pensionario)
-                                    <option value="{{ $id }}" {{ old('regimen_pensionario_id') == $id ? 'selected' : '' }}>
-                                        {{ $regimen_pensionario }}
-                                    </option>
-                                    @endforeach --}}
-                                    <option value="" disabled>Selecciona un Tipo</option>
-                                </select>
-                                @if ($errors->has('regimen_pensionario_id'))
-                                    <span class="error text-danger">{{ $errors->first('regimen_pensionario_id') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="CUSPP">Fecha de Inscripción al Régimen</label>
-                                <input type="date" class="form-control" id="CUSPP" name="CUSPP" placeholder="00/00/00" value="{{ old('CUSPP') }}">
-                                @if ($errors->has('CUSPP'))
-                                    <span class="error text-danger">{{ $errors->first('CUSPP') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="CUSPP">CUSPP</label>
-                                <input type="text" class="form-control" placeholder="CUSPP" name="CUSPP" value="{{ old('CUSPP') }}">
-                                @if ($errors->has('CUSPP'))
-                                    <span class="error text-danger">{{ $errors->first('CUSPP') }}</span>
-                                @endif
-                            </div>
-                        </div>
-            
-                        <!-- Tercera Columna -->
-                        <div class="col-md-4 mb-3">
-                            <div class="form-group">
-                                <label for="sctr_pensions_id">SCTR Pensión</label>
-                                <select class="form-control" id="sctr_pensions_id" name="sctr_pensions_id">
-                                    {{-- @foreach ($sctr_pensions como $id => $sctr_pension)
-                                    <option value="{{ $id }}" {{ old('sctr_pensions_id') == $id ? 'selected' : '' }}>
-                                        {{ $sctr_pension }}
-                                    </option>
-                                    @endforeach --}}
-                                    <option value="" disabled>Selecciona un Tipo</option>
-                                </select>
-                                @if ($errors->has('sctr_pensions_id'))
-                                    <span class="error text-danger">{{ $errors->first('sctr_pensions_id') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="SCTR_salud">SCTR Salud</label>
-                                <select class="form-control" id="SCTR_salud" name="SCTR_salud">
-                                    {{-- @foreach ($sctr_saluds como $id => $sctr_salud)
-                                    <option value="{{ $id }}" {{ old('SCTR_salud') == $id ? 'selected' : '' }}>
-                                        {{ $sctr_salud }}
-                                    </option>
-                                    @endforeach --}}
-                                    <option value="" disabled>Selecciona un Tipo</option>
-                                </select>
-                                @if ($errors->has('SCTR_salud'))
-                                    <span class="error text-danger">{{ $errors->first('SCTR_salud') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="contrato_trabajo_id">Contrato de Trabajo</label>
-                                <select class="form-control" id="contrato_trabajo_id" name="contrato_trabajo_id">
-                                    {{-- @foreach ($tiposContratoTrabajo como $id => $tipoContratoTrabajo)
-                                    <option value="{{ $id }}" {{ old('contrato_trabajo_id') == $id ? 'selected' : '' }}>
-                                        {{ $tipoContratoTrabajo }}
-                                    </option>
-                                    @endforeach --}}
-                                    <option value="" disabled>Selecciona un Tipo</option>
-                                </select>
-                                @if ($errors->has('contrato_trabajo_id'))
-                                    <span class="error text-danger">{{ $errors->first('contrato_trabajo_id') }}</span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="trabajo_sujeto_alt_acum_atip_desc"></label>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="trabajo_sujeto_alt_acum_atip_desc" id="trabajo_sujeto_alt_acum_atip_desc">
-                                    <label class="form-check-label" for="trabajo_sujeto_alt_acum_atip_desc">¿Trabajador sujeto a régimen alternativo, acumulativo o atípico de jornada de trabajo y descanso?</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="trabajo_sujeto_jornda_maxima"></label>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="trabajo_sujeto_jornda_maxima" id="trabajo_sujeto_jornda_maxima">
-                                    <label class="form-check-label" for="trabajo_sujeto_jornda_maxima">¿Trabajador sujeto a jornada de trabajo máxima?</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="trabajo_sujeto_horario_noctur"></label>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="trabajo_sujeto_horario_noctur" id="trabajo_sujeto_horario_noctur">
-                                    <label class="form-check-label" for="trabajo_sujeto_horario_noctur">¿Trabajador sujeto a horario nocturno?</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="ingresos_quinta_categoria"></label>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="ingresos_quinta_categoria" id="ingresos_quinta_categoria">
-                                    <label class="form-check-label" for="ingresos_quinta_categoria">¿Tiene otros ingresos de Quinta Categoría?</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="sindicalizado"></label>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="sindicalizado" id="sindicalizado">
-                                    <label class="form-check-label" for="sindicalizado">¿Es sindicalizado?</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @include ('pensionistas.laboral');
+            </div> 
+                
+            <div class="tab-pane fade" id="regimen" role="tabpanel" aria-labelledby="laboral-tab">
+                @include ('pensionistas.regimenpensionario');
             </div>
-            
+
+            <div class="tab-pane fade" id="pLaboral" role="tabpanel" aria-labelledby="contacto-tab">
+                @include ('pensionistas.pLaboral');
+            </div>
+            <div class="tab-pane fade" id="remuneracion" role="tabpanel" aria-labelledby="contacto-tab">
+                @include ('pensionistas.remuneracion');
+            </div>
+            <div class="tab-pane fade" id="pension" role="tabpanel" aria-labelledby="contacto-tab">
+                @include ('pensionistas.sucursal');
+            </div>
             {{-- CONTACTO Y OTROS --}}
             <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="laboral-tab">
 
@@ -783,7 +652,7 @@
                 <label for="regimen_pencionario_id">Régimen Pensionario</label>
                 <select class="form-control" id="regimen_pencionario_id" name="regimen_pencionario_id" required>
                     <option value="">Seleccione Régimen Pensionario</option>
-                    @foreach ($regimenPencionarios as $regimen)
+                    @foreach ($regimenPencionario as $regimen)
                         <option value="{{ $regimen->id }}">{{ $regimen->descripcion }}</option>
                     @endforeach
                 </select>
