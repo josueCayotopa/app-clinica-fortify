@@ -183,6 +183,13 @@ Route::group(
 
         //numero de ususarios
 
+
+        //Cuarta categoria
+
+        Route::resource('cuarta_categoria', TrabajadorCuartaCategoriaController::class);
+
+
+
     }
 );
 
