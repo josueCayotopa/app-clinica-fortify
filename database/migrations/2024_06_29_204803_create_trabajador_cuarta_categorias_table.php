@@ -29,8 +29,6 @@ return new class extends Migration
             $table->unsignedBigInteger('sucursal_establecimiento_laboral_id')->nullable();
             $table->unsignedBigInteger('comprobante_cuarta_id')->nullable();
 
-            
-            
             $table->timestamps();
             
             $table->foreign('periodo_laboral_id')->references('id')->on('periodo_laborals');

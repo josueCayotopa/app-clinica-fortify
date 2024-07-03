@@ -13,8 +13,9 @@ class TipoPago extends Model
         'estado'
     ];
 
-    public function personals()
+    public function trabajadores()
     {
-        return $this->hasMany(Personal::class, 'tipo_pago_id');
+        return $this->hasMany(Trabajador::class,'tipo_pago_id');
     }
+
 }

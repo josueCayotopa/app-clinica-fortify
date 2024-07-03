@@ -16,7 +16,7 @@ class Sucursal extends Model
         'fax',
         'email',
         'fecha_inicio',
-        'codigo_ubigeo', // Aquí está definido solo una vez
+        'codigo_ubigeo',
         'departamento_id',
         'provincia_id',
         'distrito_id',
@@ -24,36 +24,44 @@ class Sucursal extends Model
         'via_id',
         'des_direccion',
         'estado',
+        'tipo_establecimiento_id',
+        'denominacion_establecimiento',
+        'centro_riesgo',
+        'tasa_sctr_essalud'
     ];
 
-    // Relaciones con otras tablas
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
+
     public function departamento()
     {
         return $this->belongsTo(Departamento_Region::class, 'departamento_id');
     }
-    
+
     public function provincia()
     {
         return $this->belongsTo(Provincia::class, 'provincia_id');
     }
-    
+
     public function distrito()
     {
         return $this->belongsTo(Distrito::class, 'distrito_id');
     }
-    
+
     public function zona()
     {
         return $this->belongsTo(Zona::class, 'zona_id');
     }
-    
+
     public function via()
     {
         return $this->belongsTo(Via::class, 'via_id');
     }
-    
-    public function empresa()
+
+    public function tipoEstablecimiento()
     {
-        return $this->belongsTo(Empresa::class, 'empresa_id');
+        return $this->belongsTo(Tipo_Establecimiento::class, 'tipo_establecimiento_id');
     }
 }

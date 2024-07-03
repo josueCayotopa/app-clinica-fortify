@@ -13,4 +13,8 @@ class SCTRPension extends Model
         'descripcion',
         
     ];
+    public function trabajadores()
+    {
+        return $this->hasMany(Trabajador::class, 'sctrpension_id');
+    }
 }

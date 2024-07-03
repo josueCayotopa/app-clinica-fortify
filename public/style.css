@@ -717,7 +717,12 @@ select {
     grid-column: span 12 / auto;
   }
 }
-
+.scrollable-row {
+  height:100%; /* Altura específica para el contenido con scroll */
+  font-size: 0.9em; /* Ajustar el tamaño de la fuente para que sea más pequeña */
+  padding: 5px; /* Espacio interno opcional */
+  margin-bottom: 5px; /* Espacio debajo del div */
+}
 
 
 

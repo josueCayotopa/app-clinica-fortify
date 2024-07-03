@@ -14,9 +14,9 @@ class RegimenPencionario extends Model
         'estado'
 
     ];
-    public function personals()
+    public function trabajadores()
     {
-        return $this->hasMany(Personal::class, 'regimen_pencionario_id');
+        return $this->hasMany(Trabajador::class, 'regimen_pencionario_id');
     }
     
 
