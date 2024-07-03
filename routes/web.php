@@ -21,6 +21,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\SolicitudLicenciasController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
+use App\Http\Controllers\TrabajadorCuartaCategoriaController;
 use App\Http\Controllers\UbigeoController;
 use App\Http\Controllers\UITController;
 use App\Http\Controllers\UserControlles;
@@ -174,6 +175,13 @@ Route::group(
 
 
         //numero de ususarios
+
+
+        //Cuarta categoria
+
+        Route::resource('cuarta_categoria', TrabajadorCuartaCategoriaController::class);
+
+
 
     }
 );

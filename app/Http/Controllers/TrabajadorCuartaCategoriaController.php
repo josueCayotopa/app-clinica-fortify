@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TrabajadorCuartaCategoria;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class TrabajadorCuartaCategoriaController extends Controller
@@ -14,7 +15,15 @@ class TrabajadorCuartaCategoriaController extends Controller
      */
     public function index()
     {
-        //
+           
+        
+        
+        return view('home')->with([
+            'view' => 'empleados.cuarta_categoria.index'
+            
+        ]);
+
+
     }
 
     /**
@@ -24,7 +33,14 @@ class TrabajadorCuartaCategoriaController extends Controller
      */
     public function create()
     {
-        //
+        
+
+
+
+        return view('home')->with([
+            'view' => 'empleados.cuarta_categoria.create'
+            
+        ]);
     }
 
     /**

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tipo_banco_id')->nullable();
             $table->string('numero_bancaria', 40)->nullable();
             $table->string('monto_pago', 40)->nullable();
+            
             // tablas para el calculo de planilla
             $table->unsignedBigInteger('periodo_laboral_id')->nullable();
             $table->unsignedBigInteger('jornada_laboral_id')->nullable();
@@ -28,7 +29,6 @@ return new class extends Migration
             $table->unsignedBigInteger('dias_no_subcidiado_id')->nullable();
             $table->unsignedBigInteger('sucursal_establecimiento_laboral_id')->nullable();
             $table->unsignedBigInteger('comprobante_cuarta_id')->nullable();
-
             
             
             $table->timestamps();
