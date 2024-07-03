@@ -54,8 +54,7 @@
     </div>
 
 </body>
- --}}
-
+--}}
 
 {{--  <body>
     <div class="container mt-5">
@@ -263,7 +262,7 @@
 
                 {{-- prueba de tbody --}}
                 <tbody>
-                    @forelse ($pensionistas as $pensionista)
+                    {{-- @forelse ($pensionistas as $pensionista)
                         <tr>
                             <td>{{ $pensionista->id }}</td>
                             <td>{{ $pensionista->tipoDocumento->descripcion ?? 'N/A' }}</td>
@@ -290,7 +289,7 @@
                         <tr>
                             <td colspan="10" class="text-center">No se encontraron pensionistas.</td>
                         </tr>
-                    @endforelse
+                    @endforelse --}}
                 </tbody>
                 
             </table>

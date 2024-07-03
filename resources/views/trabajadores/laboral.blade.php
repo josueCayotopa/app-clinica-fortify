@@ -2,7 +2,7 @@
     <h6 class="border-bottom pb-2 mb-3">Datos Laborales</h6>
     <div class="row">
 
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="tipo_trabajador_id">Tipo Trabajador<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="tipo_trabajador_id" name="tipo_trabajador_id">
@@ -21,7 +21,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="regimen_laboral">Regimen Laboral<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="regimen_laboral" name="regimen_laboral">
@@ -35,7 +35,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="nivel_edicativo_id">Nivel de educacion<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="nivel_edicativo_id" name="nivel_edicativo_id">
@@ -54,7 +54,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="ocupacion_id">Asignar Ocupacion <span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="ocupacion_id" name="ocupacion_id">
@@ -69,7 +69,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="discapacidad">Discapacidad</label>
                 <div class="form-check">
@@ -79,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="ocupacion_id">Tipo Contrato <span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="contrato_trabajo_id" name="contrato_trabajo_id">

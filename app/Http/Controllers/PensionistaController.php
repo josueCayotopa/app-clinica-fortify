@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoriaCargo;
+use App\Models\CategoriaPeriodo;
 use App\Models\Departamento_Region;
 use App\Models\Distrito;
+use App\Models\MotivoFinPeriodo;
 use App\Models\Nacionalidad;
 use App\Models\Nivel_educativo;
 use App\Models\Ocupacion;
@@ -16,11 +17,16 @@ use App\Models\RemuneracionPencionista;
 use App\Models\SituacionEPS;
 use App\Models\SucursalEstablecimientoLaboral;
 use App\Models\TipoBanco;
+use App\Models\TipoContratosTrabajo;
 use App\Models\TipoDocumento;
 use App\Models\TipoPago;
 use App\Models\TipoPensionista;
 use App\Models\Via;
 use App\Models\Zona;
+use App\Models\ConceptoSunat;
+use App\Models\DatosPersonal;
+use App\Models\ModalidadFormativa;
+use App\Models\Sucursal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -31,7 +37,9 @@ class PensionistaController extends Controller
      */
     public function index(Request $request)
     {
-        $pensionistas = Pensionista::all();
+        abort_if(Gate::denies('user_index'), 403);
+
+        /* $pensionistas = Pensionista::all();
 
         if ($request->ajax()) {
             return response()->json([
@@ -42,6 +50,34 @@ class PensionistaController extends Controller
         return view('home')->with([
             'view' => 'pensionistas.index',
             'data' => compact('pensionistas'),
+        ]); */
+
+        $query = DatosPersonal::query();
+
+        // Filtrar por número de documento (dni)
+        if ($request->has('dni')) {
+            $dni = $request->input('dni');
+            $query->where('numero_documento', 'like', "%$dni%");
+        }
+
+        // Filtrar por nombre
+        if ($request->has('nombre')) {
+            $nombre = $request->input('nombre');
+            $query->where('nombres', 'like', "%$nombre%");
+        }
+
+        $datosPersonales = $query->paginate(5); // Paginar los resultados
+
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('pensionistas.index', compact('datosPersonales'))->render(),
+                'url' => route('pensionistas.index', $request->query())
+            ]);
+        }
+
+        return view('home')->with([
+            'view' => 'pensionistas.index',
+            'data' => compact('datosPersonales'),
         ]);
     }
 
@@ -50,34 +86,61 @@ class PensionistaController extends Controller
      */
     public function create(Request $request)
     {
-        abort_if(Gate::denies('user_create'), 403);
-        $departamentos = Departamento_Region::pluck('descripcion', 'id');
-        $provincias = Provincia::pluck('descripcion', 'id');
-        $distritos = Distrito::pluck('descripcion', 'id');
-        $zonas = Zona::pluck('descripcion', 'id');
-        $vias = Via::pluck('descripcion', 'id');
-        $tipoDocumento = TipoDocumento::pluck('descripcion', 'id');
-        $nacionalidad = Nacionalidad::pluck('descripcion', 'id');
-        $tipoPensionistas = TipoPensionista::all();
+        // datos generales
+        $tipoDocumento = TipoDocumento::all();
+        //laborales
         $nivel_educativo = Nivel_educativo::pluck('descripcion', 'id');
         $ocupacion = Ocupacion::pluck('descripcion', 'id');
-        $regimenPencionarios = RegimenPencionario::all();      
+        $tipoContrato = TipoContratosTrabajo::pluck('descripcion', 'id');
+        //datosPensionista
+        $tipoPensionistas = TipoPensionista::all();
+        $regimenPencionario = RegimenPencionario::all();
+        $modalidadFormativa = ModalidadFormativa::all();
+
+        //periodolaboral
+        $categoriaPeriodo = CategoriaPeriodo::pluck('descripcion', 'id');
+        $motivoFinPeriodo = MotivoFinPeriodo::pluck('descripcion', 'id');
+
+        $conceptoSunat = ConceptoSunat::all();
         $situacionEPS = SituacionEPS::all();
         $tipoPagos = TipoPago::all();
         $tipoBancos = TipoBanco::all();
         $periodoLaborales = PeriodoLaboral::all();
         $remuneracionPensionistas = RemuneracionPencionista::all();
         $sucursalEstablecimientos = SucursalEstablecimientoLaboral::all();
+        //datosDomicilio
+        $nacionalidad = Nacionalidad::pluck('descripcion', 'id');
+        $departamentos = Departamento_Region::pluck('descripcion', 'id');
+        $provincias = Provincia::pluck('descripcion', 'id');
+        $distritos = Distrito::pluck('descripcion', 'id');
+        $zonas = Zona::pluck('descripcion', 'id');
+        $vias = Via::pluck('descripcion', 'id');
+
+        //sucursal
+        $sucursalPropio = Sucursal::all();
+
 
         $data = compact(
             'tipoPensionistas',
-            'regimenPencionarios',
+            'tipoDocumento',
+            'regimenPencionario',
             'situacionEPS',
             'tipoPagos',
+            'nivel_educativo',
             'tipoBancos',
             'periodoLaborales',
             'remuneracionPensionistas',
-            'sucursalEstablecimientos'
+            'sucursalEstablecimientos',
+            'categoriaPeriodo',
+            'motivoFinPeriodo',
+            'conceptoSunat',
+            'nacionalidad',
+            'departamentos',
+            'provincias',
+            'distritos',
+            'zonas',
+            'vias',
+            
         );
         if ($request->ajax()) {
             return response()->json([
@@ -110,9 +173,10 @@ class PensionistaController extends Controller
             'cuspp' => 'required|string|max:12',
             'situacion_e_p_s_id' => 'required|exists:situacion_e_p_s,id',
             'tipo_pago_id' => 'required|exists:tipo_pagos,id',
+            'nivel_educativo_id' => 'required|exists:nivel_educativos,id',
         ]);
 
-        $pensionista = Pensionista::create($validatedData);
+        $pensionistas = Pensionista::create($validatedData);
 
 
 
@@ -124,7 +188,7 @@ class PensionistaController extends Controller
      */
     public function show($id)
     {
-        $pensionista = Pensionista::findOrFail($id);
+        $pensionistas = Pensionista::findOrFail($id);
         return view('pensionistas.show', compact('pensionista'));
     }
 
@@ -134,7 +198,7 @@ class PensionistaController extends Controller
     public function edit($id, Request $request)
     {
 
-        $pensionista = Pensionista::findOrFail($id);
+        $pensionistas = Pensionista::findOrFail($id);
         if ($request->ajax()) {
             return response()->json([
                 'view' => view('pensionistas.edit', compact('pensionista'))->render(),
@@ -162,10 +226,11 @@ class PensionistaController extends Controller
             'cuspp' => 'required|string|max:12',
             'situacion_e_p_s_id' => 'required|exists:situacion_e_p_s,id',
             'tipo_pago_id' => 'required|exists:tipo_pagos,id',
+            'nivel_educativo_id' => 'required|exists:nivel_educativos,id',
         ]);
 
-        $pensionista = Pensionista::findOrFail($id);
-        $pensionista->update($validatedData);
+        $pensionistas = Pensionista::findOrFail($id);
+        $pensionistas->update($validatedData);
 
         return redirect()->route('pensionistas.index')->with('success', 'Pensionista actualizado exitosamente.');
     }
@@ -175,8 +240,8 @@ class PensionistaController extends Controller
      */
     public function destroy($id)
     {
-        $pensionista = Pensionista::findOrFail($id);
-        $pensionista->delete();
+        $pensionistas = Pensionista::findOrFail($id);
+        $pensionistas->delete();
 
         return redirect()->route('pensionistas.index')->with('success', 'Pensionista eliminado exitosamente.');
     }

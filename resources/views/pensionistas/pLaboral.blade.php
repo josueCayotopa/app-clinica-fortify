@@ -6,12 +6,15 @@
                 <label for="categoria_periodos_id">Categoria<span
                         class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="categoria_periodos_id" name="categoria_periodos_id">
+                    <option value="" disabled {{ old('categoria_periodos_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
                     @foreach ($categoriaPeriodo as $id => $categoriaPeriodo)
                         <option value="{{ $id }}"
                             {{ old('categoria_periodos_id') == $id ? 'selected' : '' }}>
                             {{ $categoriaPeriodo }}</option>
                     @endforeach
-                    <option value="" disabled>Selecciona un Tipo</option>
+                    
                 </select>
                 @if ($errors->has('categoria_periodos_id'))
                     <span class="error text-danger">
@@ -45,6 +48,9 @@
                 <label for="motivo_fin_id">Motivo fin del periodo laboral<span
                         class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="motivo_fin_id" name="motivo_fin_id">
+                    <option value="" disabled {{ old('motivo_fin_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
                     @foreach ($motivoFinPeriodo as $id => $motivoFinPeriodo)
                         <option value="{{ $id }}"
                             {{ old('motivo_fin_id') == $id ? 'selected' : '' }}>

@@ -6,12 +6,16 @@
                 <label for="regimen_pencionario_id">Regimen pencionario<span
                         class="campo-obligatorio">*</span><span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="regimen_pencionario_id" name="regimen_pencionario_id">
-                    @foreach ($regimenPencionario as $id => $regimen_pencionario)
-                        <option value="{{ $id }}"
-                            {{ old('regimen_pencionario_id') == $id ? 'selected' : '' }}>
-                            {{ $regimen_pencionario }}</option>
+                    <option value="" disabled {{ old('regimen_pencionario_id') ? '' : 'selected' }}>
+                        Selecciona Regimen Pensionario
+                    </option>
+                    @foreach ($regimenPencionario as $id => $regimen)
+                    
+                        <option value="{{ $regimen->id }}"
+                            {{ old('regimen_pencionario_id') == $id ? '' : '' }}>
+                            {{ $regimen->descripcion }}</option>
                     @endforeach
-                    <option value="" disabled>Selecciona un Tipo</option>
+                    
                 </select>
                 @if ($errors->has('regimen_pencionario_id'))
                     <span class="error text-danger">
@@ -39,8 +43,23 @@
                 @endif
             </div>
         </div>
-
         <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="situacion_e_p_s_id">Situación EPS</label>
+                <select class="form-control" id="situacion_e_p_s_id" name="situacion_e_p_s_id" required>
+                    <option value="" disabled {{ old('situacion_e_p_s_id') ? '' : 'selected' }}>
+                        Seleccione Situación EPS
+                    </option>
+                    
+                    @foreach ($situacionEPS as $situacion)
+                        <option value="{{ $situacion->id }}">{{ $situacion->descripcion }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        
+
+        {{-- <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="sctr_pensions_id">SCTR Pensión </label>
                 <select class="form-control" id="sctr_pensions_id" name="sctr_pensions_id">
@@ -72,6 +91,6 @@
                 @endif
 
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
