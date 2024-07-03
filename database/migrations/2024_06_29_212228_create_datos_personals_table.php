@@ -45,6 +45,7 @@ return new class extends Migration
             $table->unsignedBigInteger('pensionista_id')->nullable(); 
             $table->unsignedBigInteger('trabajador_cuarta_categoria_id')->nullable(); 
             $table->unsignedBigInteger('modaliad_formativa_id')->nullable(); 
+
             $table->timestamps();
             
             // foreig key   

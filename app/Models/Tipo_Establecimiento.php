@@ -9,7 +9,7 @@ class Tipo_Establecimiento extends Model
 {
     use HasFactory;
     protected $fillable = [
-       
         'descripcion',
     ];
+
 }

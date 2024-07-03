@@ -13,4 +13,9 @@ class CategoriaOcupacional extends Model
     protected $fillable = [
         'DESCRIPCION'
     ];
+    
+    public function trabajadores()
+    {
+        return $this->hasMany(Trabajador::class,'categoria_ocupacional_id');
+    }
 }

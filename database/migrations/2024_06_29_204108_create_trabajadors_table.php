@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tipo_trabajador_id')->nullable();
             $table->string('regimen_laboral', 40)->nullable();
             $table->unsignedBigInteger('nivel_edicativo_id')->nullable();
+
             $table->unsignedBigInteger('ocupacion_id')->nullable();
             $table->unsignedBigInteger('categoria_cargo_id')->nullable();
             $table->char('discapacidad', 1)->nullable();
@@ -45,10 +46,7 @@ return new class extends Migration
             
             
             $table->char('renta_quinta_categoria', 1)->nullable();
-
-
             $table->unsignedBigInteger('situacion_trabajador_id')->nullable();
-
 
             $table->unsignedBigInteger('tipo_pago_id')->nullable();
             $table->unsignedBigInteger('tipo_banco_id')->nullable();
@@ -81,7 +79,7 @@ return new class extends Migration
 
 
 
-            $table->foreign('situacion_id')->references('id')->on('situacion_e_p_s');
+            $table->foreign('situacion_id')->references('id')->on('situaciones');
 
 
             $table->foreign('situacion_trabajador_id')->references('id')->on('situacion_trabajadors');

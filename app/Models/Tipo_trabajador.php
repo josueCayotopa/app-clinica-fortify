@@ -14,9 +14,9 @@ class Tipo_trabajador extends Model
         'estado'
     ];
 
-    public function personals()
+    public function trabajadores()
     {
-        return $this->hasMany(Personal::class, 'tipo_trabajador_id');
-    } 
+        return $this->hasMany(Trabajador::class,'tipo_trabajador_id');
+    }
     
 }

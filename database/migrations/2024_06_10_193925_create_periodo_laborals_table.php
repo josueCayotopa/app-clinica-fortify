@@ -20,10 +20,8 @@ return new class extends Migration
             $table->date('fecha_fin');
             $table->unsignedBigInteger('motivo_fin_id');
             $table->timestamps();
-            // motivo_fin_periodos
             $table->foreign('categoria_periodos_id')->references('id')->on('categoria_periodos');
             $table->foreign('motivo_fin_id')->references('id')->on('motivo_fin_periodos');
-         
         });
     }
 

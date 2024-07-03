@@ -9,6 +9,7 @@ use App\Http\Controllers\CargosCategoriasController;
 use App\Http\Controllers\CategoriaCargoController;
 use App\Http\Controllers\ConceptoController;
 use App\Http\Controllers\ConocimientoController;
+use App\Http\Controllers\DatosPersonalController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\FormulaController;
@@ -21,7 +22,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\SolicitudLicenciasController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
-use App\Http\Controllers\TrabajadorCuartaCategoriaController;
+use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\UbigeoController;
 use App\Http\Controllers\UITController;
 use App\Http\Controllers\UserControlles;
@@ -149,6 +150,11 @@ Route::group(
         Route::resource('formulas', FormulaController::class);
         // conceptos
         Route::resource('conceptos', ConceptoController::class);
+        //  personal 
+        Route::resource('datos_personales', DatosPersonalController::class);
+        Route::resource('trabajadores', TrabajadorController::class);
+        
+
 
 
 

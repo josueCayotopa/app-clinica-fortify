@@ -13,8 +13,8 @@ class Convenio extends Model
        
     ];
 
-    public function personals()
+    public function trabajadores()
     {
-        return $this->hasMany(Personal::class, 'convenio_id');
+        return $this->hasMany(Trabajador::class,'convenio_id');
     }
 }

@@ -17,4 +17,8 @@ class Nivel_educativo extends Model
     {
         return $this->hasMany(Personal::class, 'nivel_edicativo_id');
     }
+    public function trabajadores()
+    {
+        return $this->hasMany(Trabajador::class,'nivel_edicativo_id');
+    }
 }
