@@ -1,25 +1,26 @@
-<form action="">
+<div class="border rounded p-3 mb-3">
+    <h6 class="border-bottom pb-2 mb-3">Sucursal</h6>
+    <div class="row">
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="">Distrito<span class="campo-obligatorio">*</span></label>
+                
+                <select class="form-control" id="concepto_sunat_id" name="concepto_sunat_id">
+                    <option value="" disabled {{ old('concepto_sunat_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
+                    @foreach ($conceptoSunat as $id => $conceptoSunat)
+                        <option value="{{ $conceptoSunat->id }}" 
+                            {{ old('concepto_sunat_id') == $id ? '' : '' }}>
+                            {{ $conceptoSunat->descripcion }}</option>
+                    @endforeach
 
-    <div class="border rounded p-3 mb-3">
-        <h6 class="border-bottom pb-2 mb-3">Sucursal</h6>
-        <div class="row">
-            <div class="col-md-6 mb-1">
-                <div class="form-group">
-                    <label for="empresa_id">Empresa<span class="campo-obligatorio">*</span></label>
-                    <select class="form-control" id="empresa_id" name="empresa_id">
-                        <option value="" disabled {{ old('empresa_id') ? '' : 'selected' }}>
-                            Selecciona
-                            un tipo</option>
-                        @foreach ($empresa as $id => $empresaN)
-                            <option value="{{ $empresaN->id }}" {{ old('empresa_id') == $id ? '' : '' }}>
-                                {{ $empresaN->nombre_comercial }}</option>
-                        @endforeach
-                    </select>
-                    @if ($errors->has('empresa_id'))
-                        <span class="error text-danger">
-                            {{ $errors->first('empresa_id') }}</span>
-                    @endif
-                </div>
+                </select>
+                @if ($errors->has('concepto_sunat_id'))
+                    <span class="error text-danger">
+                        {{ $errors->first('concepto_sunat_id') }}</span>
+                @endif
+
             </div>
 
             <div class="col-md-6 mb-1">

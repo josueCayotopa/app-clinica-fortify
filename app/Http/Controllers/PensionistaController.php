@@ -121,10 +121,7 @@ class PensionistaController extends Controller
         $vias = Via::pluck('descripcion', 'id');
 
         //sucursal
-        $sucursalEstablecimiento = SucursalEstablecimientoLaboral::all();
-        $sucursal = Sucursal::all();
-        $empresa = Empresa::all();
-        $empresaDestacan = EmpresaMeDestacan::all();
+        $sucursalPropio = Sucursal::all();
 
 
         $data = compact(

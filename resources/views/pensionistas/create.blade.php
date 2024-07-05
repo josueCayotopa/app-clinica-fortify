@@ -423,7 +423,7 @@
                         </div>
                     </div>
                 </div> --}}
-                {{-- @include ('pensionistas.domicilio'); --}}
+                @include ('pensionistas.domicilio');
             </div>
             {{-- LABORAL --}}
             <div class="tab-pane fade" id="laboral" role="tabpanel" aria-labelledby="contacto-tab">
@@ -443,6 +443,7 @@
             <div class="tab-pane fade" id="sucursal" role="tabpanel" aria-labelledby="contacto-tab">
                 @include ('pensionistas.sucursal');
             </div>
+
             {{-- CONTACTO Y OTROS --}}
             <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="laboral-tab">
 
