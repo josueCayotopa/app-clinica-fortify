@@ -96,7 +96,7 @@
                     aria-controls="laboral" aria-selected="false">Remuneracion</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#sucural" role="tab"
+                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#sucursal" role="tab"
                     aria-controls="laboral" aria-selected="false">Sucursal</a>
             </li>
 
@@ -131,8 +131,6 @@
         </li>
         
     </ul> --}}
-
-
 
     <form action="{{ route('pensionistas.store') }}" id="pensionistaForm" method="POST">
         @csrf
@@ -442,7 +440,7 @@
             <div class="tab-pane fade" id="remuneracion" role="tabpanel" aria-labelledby="contacto-tab">
                 @include ('pensionistas.remuneracion');
             </div>
-            <div class="tab-pane fade" id="pension" role="tabpanel" aria-labelledby="contacto-tab">
+            <div class="tab-pane fade" id="sucursal" role="tabpanel" aria-labelledby="contacto-tab">
                 @include ('pensionistas.sucursal');
             </div>
             {{-- CONTACTO Y OTROS --}}

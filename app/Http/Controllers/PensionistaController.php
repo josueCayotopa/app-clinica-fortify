@@ -25,7 +25,11 @@ use App\Models\Via;
 use App\Models\Zona;
 use App\Models\ConceptoSunat;
 use App\Models\DatosPersonal;
+use App\Models\Empresa;
+use App\Models\EmpresaMeDestacan;
+use App\Models\EstableciminetosPropios;
 use App\Models\ModalidadFormativa;
+use App\Models\Sucursal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -38,7 +42,7 @@ class PensionistaController extends Controller
     {
         abort_if(Gate::denies('user_index'), 403);
 
-        /* $pensionistas = Pensionista::all();
+        $pensionistas = Pensionista::all();
 
         if ($request->ajax()) {
             return response()->json([
@@ -49,7 +53,7 @@ class PensionistaController extends Controller
         return view('home')->with([
             'view' => 'pensionistas.index',
             'data' => compact('pensionistas'),
-        ]); */
+        ]);
 
         $query = DatosPersonal::query();
 
@@ -96,6 +100,7 @@ class PensionistaController extends Controller
         $regimenPencionario = RegimenPencionario::all();
         $modalidadFormativa = ModalidadFormativa::all();
 
+
         //periodolaboral
         $categoriaPeriodo = CategoriaPeriodo::pluck('descripcion', 'id');
         $motivoFinPeriodo = MotivoFinPeriodo::pluck('descripcion', 'id');
@@ -114,6 +119,12 @@ class PensionistaController extends Controller
         $distritos = Distrito::pluck('descripcion', 'id');
         $zonas = Zona::pluck('descripcion', 'id');
         $vias = Via::pluck('descripcion', 'id');
+
+        //sucursal
+        $sucursalEstablecimiento = SucursalEstablecimientoLaboral::all();
+        $sucursal = Sucursal::all();
+        $empresa = Empresa::all();
+        $empresaDestacan = EmpresaMeDestacan::all();
 
 
         $data = compact(
@@ -136,6 +147,10 @@ class PensionistaController extends Controller
             'distritos',
             'zonas',
             'vias',
+            'sucursalEstablecimiento',
+            'sucursal',
+            'empresa',
+            'empresaDestacan',
             
         );
         if ($request->ajax()) {

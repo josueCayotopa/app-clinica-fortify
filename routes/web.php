@@ -83,7 +83,7 @@ Route::group(
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
-        
+
 
 
         // empleado
@@ -92,10 +92,10 @@ Route::group(
 
         ////Planillas
         /////Conocimientos
-        Route::get('/empleados/planillas/conocimiento',[ConocimientoController::class, 'index'])->name('conocimiento.index');
-        Route::post('/empleados/planillas/conocimiento',[ConocimientoController::class, 'store'])->name('conocimiento.store');
+        Route::get('/empleados/planillas/conocimiento', [ConocimientoController::class, 'index'])->name('conocimiento.index');
+        Route::post('/empleados/planillas/conocimiento', [ConocimientoController::class, 'store'])->name('conocimiento.store');
         Route::post('/conocimiento/{id}', [ConocimientoController::class, 'update'])->name('conocimiento.update');
-        Route::delete('/conocimiento/{conocimiento}',[ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
+        Route::delete('/conocimiento/{conocimiento}', [ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
 
         /////Profesiones
 
@@ -131,10 +131,10 @@ Route::group(
         Route::get('categoria-cargo/crear', [CategoriaCargoController::class, 'create'])->name('crear-relacion-categoria-cargo');
         Route::post('categoria-cargo', [CategoriaCargoController::class, 'store'])->name('guardar-relacion-categoria-cargo');
         Route::delete('/categoria-cargos/{id}', [CategoriaCargoController::class, 'Categoriadestroy'])->name('categorias.destroy');
-        Route::delete('/eliminar-cargo/{cargo}', [CategoriaCargoController::class,'eliminarCargo'])->name('eliminar-cargo');
+        Route::delete('/eliminar-cargo/{cargo}', [CategoriaCargoController::class, 'eliminarCargo'])->name('eliminar-cargo');
         // cargos y categorias Josue 
 
-       
+
         // afp y tipo de descuento
         Route::get('/empleados/maestros/descuentoAfp', [AfpsdescuentosController::class, 'index'])->name('afp.descuentos.index');
         Route::get('afp-descuentos/{id}/editar', [AfpsdescuentosController::class, 'edit'])->name('editar.afp.descuento');
@@ -151,7 +151,7 @@ Route::group(
         //  personal 
         Route::resource('datos_personales', DatosPersonalController::class);
         Route::resource('trabajadores', TrabajadorController::class);
-        
+
 
 
 
@@ -169,11 +169,11 @@ Route::group(
 
         Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
 
-    
+
 
 
         // Solicitud de Licencias 
-        Route::resource('solicitud_licencias',SolicitudLicenciasController::class);
+        Route::resource('solicitud_licencias', SolicitudLicenciasController::class);
 
         //ruta para asistencia
         // routes/web.php
@@ -182,13 +182,18 @@ Route::group(
         //numero de ususarios
 
         //pensionistas
-        Route::get('/pensionistas', [PensionistaController::class,'index'])->name('pensionistas.index');
+        Route::get('/pensionistas', [PensionistaController::class, 'index'])->name('pensionistas.index');
 
         //create pensionista
-        
-        Route::get('/pensionistas/create', [PensionistaController::class,'create'])->name('pensionistas.create');
-        
-        Route::post('/pensionistas', [PensionistaController::class,'store'])->name('pensionistas.store');
+
+        Route::get('/pensionistas/create', [PensionistaController::class, 'create'])->name('pensionistas.create');
+
+        Route::post('/pensionistas', [PensionistaController::class, 'store'])->name('pensionistas.store');
+
+
+        Route::get('get-sucursales/{empresa_id}', [SucursalController::class, 'getSucursales']);
+
+        // Route::get('pensionistas/sucursal', [SucursalController::class, 'getSucursales']);
     }
 );
 
