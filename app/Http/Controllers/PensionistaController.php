@@ -42,7 +42,7 @@ class PensionistaController extends Controller
     {
         abort_if(Gate::denies('user_index'), 403);
 
-        $pensionistas = Pensionista::all();
+        $pensionista = Pensionista::all();
 
         if ($request->ajax()) {
             return response()->json([
@@ -52,7 +52,7 @@ class PensionistaController extends Controller
         }
         return view('home')->with([
             'view' => 'pensionistas.index',
-            'data' => compact('pensionistas'),
+            'data' => compact('pensionista'),
         ]);
 
         $query = DatosPersonal::query();
@@ -121,8 +121,9 @@ class PensionistaController extends Controller
         $vias = Via::pluck('descripcion', 'id');
 
         //sucursal
-        $sucursalPropio = Sucursal::all();
-
+        $sucursal = Sucursal::all();
+        $empresa = Empresa::all();
+        $empresaDestacan = EmpresaMeDestacan::all();
 
         $data = compact(
             'tipoPensionistas',
@@ -135,6 +136,7 @@ class PensionistaController extends Controller
             'periodoLaborales',
             'remuneracionPensionistas',
             'sucursalEstablecimientos',
+            'sucursal',
             'categoriaPeriodo',
             'motivoFinPeriodo',
             'conceptoSunat',
@@ -144,8 +146,6 @@ class PensionistaController extends Controller
             'distritos',
             'zonas',
             'vias',
-            'sucursalEstablecimiento',
-            'sucursal',
             'empresa',
             'empresaDestacan',
             
