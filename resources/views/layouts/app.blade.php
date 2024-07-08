@@ -56,7 +56,8 @@
     <link rel="stylesheet" href="{{ asset('assets_copy/modules/weather-icon/css/weather-is"') }} ">
     <link rel="stylesheet" href="{{ asset('assets_copy/modules/weather-icon/css/weather-icons-wind.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets_copy/modules/summernote/summernote-bs4.css') }} ">
-
+    
+    <script src="{{ asset('assets_copy/js/sucursal.js') }} "></script>
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets_copy/css/style.css') }} ">
 

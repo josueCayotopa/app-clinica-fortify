@@ -7,9 +7,9 @@ $(document).ready(function() {
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    $('#provincia_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
+                    $('#sucursal_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
                     $.each(data, function(key, value) {
-                        $('#provincia_id').append('<option value="'+ key +'">'+ value +'</option>');
+                        $('#sucursal_id').append('<option value="'+ key +'">'+ value +'</option>');
                     });
                     $('#distrito_id').empty().prop('disabled', true).append('<option value="" disabled selected>Selecciona un Distrito</option>');
                 }
@@ -76,3 +76,26 @@ $(document).ready(function() {
         });
     }
 });
+
+/* 
+$(document).ready(function() {
+    $('#empresa_id').change(function() {
+        var empresaId= $(this).val();
+        if(empresaId) {
+            $.ajax({
+                url: '/get-sucursales/' + departamentoId,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#sucursal_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
+                    $.each(data, function(key, value) {
+                        $('#sucursal_id').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                    
+                }
+            });
+        } else {
+            // $('#provincia_id').empty().prop('disabled', true);
+        }
+    });
+}); */
