@@ -1,30 +1,30 @@
-$(document).ready(function() {
-    $('#departamento_id').change(function() {
-        var departamentoId = $(this).val();
-        if(departamentoId) {
+/* $(document).ready(function() {
+    $('#empresa_id').change(function() {
+        var empresaID = $(this).val();
+        if(empresaID) {
             $.ajax({
-                url: '/get-provincias/' + departamentoId,
+                url: '/get-sucursales/' + empresaID,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    $('#provincia_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
+                    $('#sucursal_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
                     $.each(data, function(key, value) {
-                        $('#provincia_id').append('<option value="'+ key +'">'+ value +'</option>');
+                        $('#sucursal_id').append('<option value="'+ key +'">'+ value +'</option>');
                     });
                     $('#distrito_id').empty().prop('disabled', true).append('<option value="" disabled selected>Selecciona un Distrito</option>');
                 }
             });
         } else {
-            $('#provincia_id').empty().prop('disabled', true);
+            $('#sucursal_id').empty().prop('disabled', true);
             $('#distrito_id').empty().prop('disabled', true);
         }
     });
 
-    $('#provincia_id').change(function() {
-        var provinciaId = $(this).val();
-        if(provinciaId) {
+    $('#sucursal_id').change(function() {
+        var sucursalID = $(this).val();
+        if(sucursalID) {
             $.ajax({
-                url: '/get-distritos/' + provinciaId,
+                url: '/get-distritos/' + sucursalID,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -40,28 +40,28 @@ $(document).ready(function() {
     });
 
     // Cargar provincias y distritos si los valores antiguos existen después de la validación
-    var oldDepartamentoId = "{{ old('departamento_id', $sucursal->departamento_id ?? '') }}";
-    var oldProvinciaId = "{{ old('provincia_id', $sucursal->provincia_id ?? '') }}";
+    var oldEmpresaID = "{{ old('empresa_id', $sucursal->empresa_id ?? '') }}";
+    var oldSucursalID = "{{ old('sucursal_id', $sucursal->sucursal_id ?? '') }}";
     var oldDistritoId = "{{ old('distrito_id', $sucursal->distrito_id ?? '') }}";
 
-    if(oldDepartamentoId) {
-        $('#departamento_id').val(oldDepartamentoId).trigger('change');
+    if(oldEmpresaID) {
+        $('#empresa_id').val(oldEmpresaID).trigger('change');
     }
 
-    if(oldProvinciaId) {
+    if(oldSucursalID) {
         $.ajax({
-            url: '/get-provincias/' + oldDepartamentoId,
+            url: '/get-provincias/' + oldEmpresaID,
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                $('#provincia_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
+                $('#sucursal_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una Provincia</option>');
                 $.each(data, function(key, value) {
-                    $('#provincia_id').append('<option value="'+ key +'" '+ (key == oldProvinciaId ? 'selected' : '') +'>'+ value +'</option>');
+                    $('#sucursal_id').append('<option value="'+ key +'" '+ (key == oldSucursalID ? 'selected' : '') +'>'+ value +'</option>');
                 });
 
                 if(oldDistritoId) {
                     $.ajax({
-                        url: '/get-distritos/' + oldProvinciaId,
+                        url: '/get-distritos/' + oldSucursalID,
                         type: 'GET',
                         dataType: 'json',
                         success: function(data) {
@@ -76,21 +76,18 @@ $(document).ready(function() {
         });
     }
 });
+ */
 
-
-
-
-/* 
 $(document).ready(function() {
-    $('#sucursal_id').change(function() {
-        var sucursalId = $(this).val();
-        if(sucursalId) {
+    $('#empresa_id').change(function() {
+        var empresaID = $(this).val();
+        if (empresaID) {
             $.ajax({
-                url: '/get-sucursales/' + sucursalId,
+                url: '/get-sucursales/' + empresaID,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
-                    $('#sucursal_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona un Distrito</option>');
+                    $('#sucursal_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una sucursal</option>');
                     $.each(data, function(key, value) {
                         $('#sucursal_id').append('<option value="'+ key +'">'+ value +'</option>');
                     });
@@ -100,4 +97,26 @@ $(document).ready(function() {
             $('#sucursal_id').empty().prop('disabled', true);
         }
     });
-});  */
+
+    // Cargar sucursales si los valores antiguos existen después de la validación
+    var oldEmpresaID = "{{ old('empresa_id', $sucursal->empresa_id ?? '') }}";
+    var oldSucursalID = "{{ old('sucursal_id', $sucursal->sucursal_id ?? '') }}";
+
+    if (oldEmpresaID) {
+        $('#empresa_id').val(oldEmpresaID).trigger('change');
+    }
+
+    if (oldSucursalID) {
+        $.ajax({
+            url: '/get-sucursales/' + oldEmpresaID,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                $('#sucursal_id').empty().prop('disabled', false).append('<option value="" disabled selected>Selecciona una sucursal</option>');
+                $.each(data, function(key, value) {
+                    $('#sucursal_id').append('<option value="'+ key +'" '+ (key == oldSucursalID ? 'selected' : '') +'>'+ value +'</option>');
+                });
+            }
+        });
+    }
+});

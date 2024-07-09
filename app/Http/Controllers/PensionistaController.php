@@ -122,8 +122,8 @@ class PensionistaController extends Controller
 
         //sucursal
         $sucursalEstablecimiento = SucursalEstablecimientoLaboral::all();
-        $sucursal = Sucursal::all();
-        $empresa = Empresa::all();
+        $sucursal = Sucursal::pluck('nombre_sucursal','id');
+        $empresa = Empresa::pluck('nombre_comercial','id');
         $empresaDestacan = EmpresaMeDestacan::all();
 
 

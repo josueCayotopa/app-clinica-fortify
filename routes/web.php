@@ -191,8 +191,7 @@ Route::group(
         Route::post('/pensionistas', [PensionistaController::class, 'store'])->name('pensionistas.store');
 
 
-        Route::get('get-sucursales/{empresa_id}', [SucursalController::class, 'getSucursales']);
-
+        Route::get('/get-sucursales/{empresaID}', [SucursalController::class, 'getSucursales'])->name('getSucursales');
         // Route::get('pensionistas/sucursal', [SucursalController::class, 'getSucursales']);
     }
 );
