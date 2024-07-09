@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ocupacion;
+use App\Models\Tipo_trabajador;
 use Illuminate\Http\Request;
 
 class OcupacionController extends Controller
@@ -12,9 +13,21 @@ class OcupacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $tiposTrabajador = Tipo_trabajador::with('ocupaciones')->get();
+
+        return view('tipos_trabajador.index', compact('tiposTrabajador'));
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('tipo_trabajadores.index', compact('tiposTrabajador'))->render(),
+                'url' => route('tipo_trabajadores.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'tipo_trabajadores.index',
+            'data' => compact('tiposTrabajador'),
+        ]);
     }
 
     /**
@@ -22,6 +35,11 @@ class OcupacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function getOcupaciones($id)
+    {
+        $ocupaciones = Ocupacion::where('tipo_trabajador_id', $id)->get();
+        return response()->json($ocupaciones);
+    }
     public function create()
     {
         //
@@ -81,5 +99,10 @@ class OcupacionController extends Controller
     public function destroy(Ocupacion $ocupacion)
     {
         //
+        $ocupacion->delete();
+    
+        return response()->json([
+            'message' => 'Ocupación eliminada correctamente.'
+        ]);
     }
 }

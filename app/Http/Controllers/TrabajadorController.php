@@ -104,6 +104,7 @@ class TrabajadorController extends Controller
         $tipoContratosTrabajo = TipoContratosTrabajo::pluck('descripcion', 'id');
         $periodicidad = Periodicidad::pluck('descripcion', 'id');
         $eps = EPS::pluck('descripcion', 'id');
+        $situacioneps=SituacionEPS::pluck('descripcion', 'id');
         $situacionTrabajador = SituacionTrabajador::pluck('descripcion', 'id');
         $tipoPago = TipoPago::pluck('descripcion', 'id');
         $tipoBanco = TipoBanco::pluck('descripcion', 'id');
@@ -112,10 +113,11 @@ class TrabajadorController extends Controller
         $categoriaPeriodo = CategoriaPeriodo::pluck('descripcion', 'id');
         $motivoFinPeriodo = MotivoFinPeriodo::pluck('descripcion', 'id');
         $tipoSuspension = TipoSuspension::pluck('descripcion', 'id');
-        $sucursal = Sucursal::pluck('nombre_sucursal', 'id');
+     
+        $sucursales = Sucursal::pluck('nombre_sucursal', 'id');
         $empresaMeDestacan = EmpresaMeDestacan::pluck('razon_social', 'id');
         $conceptoSunat = ConceptoSunat::pluck('descripcion', 'id');
-        $empresa = Empresa::pluck('razon_social', 'id');
+        $empresas = Empresa::pluck('razon_social', 'id');
 
         if ($request->ajax()) {
             return response()->json([
@@ -137,6 +139,7 @@ class TrabajadorController extends Controller
                     'tipoContratosTrabajo',
                     'periodicidad',
                     'eps',
+                    'situacioneps',
                     'situacionTrabajador',
                     'tipoPago',
                     'tipoBanco',
@@ -145,10 +148,11 @@ class TrabajadorController extends Controller
                     'categoriaPeriodo',
                     'motivoFinPeriodo',
                     'tipoSuspension',
-                    'sucursal',
+                    'sucursales',
+                    'empresas',
                     'empresaMeDestacan',
                     'conceptoSunat',
-                    'empresa'
+                 
 
                 ))->render(),
                 'url' => route('trabajadores.create', $request->query())
@@ -175,6 +179,7 @@ class TrabajadorController extends Controller
                 'tipoContratosTrabajo',
                 'periodicidad',
                 'eps',
+                'situacioneps',
                 'situacionTrabajador',
                 'tipoPago',
                 'tipoBanco',
@@ -183,10 +188,11 @@ class TrabajadorController extends Controller
                 'categoriaPeriodo',
                 'motivoFinPeriodo',
                 'tipoSuspension',
-                'sucursal',
+                'sucursales',
+                'empresas',
                 'empresaMeDestacan',
                 'conceptoSunat',
-                'empresa'
+            
             ),
         ]);
 

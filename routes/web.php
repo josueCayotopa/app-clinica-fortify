@@ -1,5 +1,7 @@
 <?php
 
+use App\Exports\EmpresaExport;
+use App\Http\Controllers\AfpDescuentosPensionesController;
 use App\Http\Controllers\AfpsdescuentosController;
 use App\Http\Controllers\AsignarVacacionesController;
 use App\Http\Controllers\AsistenciaController;
@@ -10,26 +12,38 @@ use App\Http\Controllers\CategoriaCargoController;
 use App\Http\Controllers\ConceptoController;
 use App\Http\Controllers\ConocimientoController;
 use App\Http\Controllers\DatosPersonalController;
+use App\Http\Controllers\DerechoHabientesController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\InstitucionController;
+use App\Http\Controllers\OcupacionController;
 use App\Http\Controllers\PensionistaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\ProfesionController;
+use App\Http\Controllers\RegimenPencionarioController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\SolicitudLicenciasController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\TipoTrabajadorController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
 use App\Http\Controllers\TrabajadorController;
+use App\Http\Controllers\TrabajadorCuartaCategoriaController;
 use App\Http\Controllers\UbigeoController;
 use App\Http\Controllers\UITController;
 use App\Http\Controllers\UserControlles;
 use App\Http\Controllers\ZonaController;
+use App\Http\Livewire\PensionRegimes;
+use App\Http\Livewire\RegimenAfpCrud;
 use App\Models\CargoCategoria;
+use App\Models\Ocupacion;
+use App\Models\RegimenPencionario;
 use App\Models\SolicitudLicencias;
 use App\Models\Sucursal;
+use App\Models\Tipo_trabajador;
+use Database\Seeders\OcupacionSeeder;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -65,13 +79,12 @@ Route::group(
 
         Route::put('/users/{user}', [UserControlles::class, 'update'])->name('users.update');
         Route::delete('/users/{user}', [UserControlles::class, 'destroy'])->name('users.delete');
-
-
         Route::resource('permissions', PermissionController::class);
         Route::resource('roles', RolController::class);
 
         Route::get('/home/empleados/empleado', [EmpleadoController::class, 'index'])->name('empleado.index');
         Route::resource('empresas', EmpresaController::class);
+        Route::get('/exportar/empresa', [ExportController::class,'export'])->name('exportar.empresa');
 
         Route::resource('sucursales', SucursalController::class);
         Route::resource('pensionistas', PensionistaController::class);
@@ -79,7 +92,9 @@ Route::group(
         // rutas para ubigeo
         Route::get('/get-provincias/{departamento_id}', [UbigeoController::class, 'getProvincias'])->name('getProvincias');
         Route::get('/get-distritos/{provincia_id}', [UbigeoController::class, 'getDistritos'])->name('getDistritos');
+        Route::get('/get-sucursales/{empresa_id}', [UbigeoController::class, 'getSucursalesByEmpresa']);
 
+        Route::get('/get-ocupaciones/{tipo_trabajador_id}', [UbigeoController::class, 'getOcupacionesByTipoTrabajador']);
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
@@ -123,36 +138,45 @@ Route::group(
 
         Route::resource('cargos', CargoController::class);
         // cargo y Categorias
-        Route::get('/categoria/{id}/cargos', [CategoriaCargoController::class, 'getCargos'])->name('categoria-cargos.get-cargos');
-        Route::get('/vista-categoria', [CategoriaCargoController::class, 'index'])->name('categoria-cargo.indexcargocategoria');
-        Route::delete('/categoria-cargos/{id}', [CategoriaCargoController::class, 'destroy'])->name('categoria-cargos.destroy');
-        Route::get('/editar-relacion-categoria-cargo/{id}', [CategoriaCargoController::class, 'edit'])->name('editar-relacion-categoria-cargo');
-        Route::put('/actualizar-relacion-categoria-cargo/{id}', [CategoriaCargoController::class, 'update'])->name('actualizar-relacion-categoria-cargo');
-        Route::get('categoria-cargo/crear', [CategoriaCargoController::class, 'create'])->name('crear-relacion-categoria-cargo');
-        Route::post('categoria-cargo', [CategoriaCargoController::class, 'store'])->name('guardar-relacion-categoria-cargo');
-        Route::delete('/categoria-cargos/{id}', [CategoriaCargoController::class, 'Categoriadestroy'])->name('categorias.destroy');
-        Route::delete('/eliminar-cargo/{cargo}', [CategoriaCargoController::class,'eliminarCargo'])->name('eliminar-cargo');
-        // cargos y categorias Josue 
+        // Tipo de trabajador y ocupaciones  Josue 
+        Route::resource('tipo_trabajadores', TipoTrabajadorController::class);
+        Route::get('/tipos-trabajador/{id}/ocupaciones', [TipoTrabajadorController::class, 'getOcupaciones']);
+        Route::delete('/ocupaciones/{ocupacion}', [OcupacionController::class, 'destroy'])->name('ocupaciones.destroy');
 
-       
+
         // afp y tipo de descuento
-        Route::get('/empleados/maestros/descuentoAfp', [AfpsdescuentosController::class, 'index'])->name('afp.descuentos.index');
-        Route::get('afp-descuentos/{id}/editar', [AfpsdescuentosController::class, 'edit'])->name('editar.afp.descuento');
-        Route::put('afp-descuentos/{id}', [AfpsdescuentosController::class, 'update'])->name('actualizar.afp.descuento');
-        Route::delete('/afpDescuentos/{id}', [AfpsdescuentosController::class, 'destroy'])->name('afpDescuentos.destroy');
-        Route::get('/afp/descuentos/create', [AfpsdescuentosController::class, 'create'])->name('afp.descuentos.create');
-        Route::post('/afp/descuentos', [AfpsdescuentosController::class, 'store'])->name('afp.descuentos.store');
+       
+      
+        Route::get('/regimen_pensionarios', function () {
+            return view('regimen_pensionarios.indexliveware');
+        })->name('regimen_pensionarios.index');
+        Route::get('/tipo_regimen', function () {
+            return view('regimen_pensionarios.indexafp');
+        })->name('tipo_regimen.index');
+        Route::get('/descuento_pensiones', function () {
+            return view('regimen_pensionarios.indexdescuentos');
+        })->name('descuento_pensiones.index');
+        Route::get('/descuento_pensiones', function () {
+            return view('regimen_pensionarios.indexdescuentos');
+        })->name('descuento_pensiones.index');
 
+
+
+
+
+
+        Route::get('/regimen-afps', RegimenAfpCrud::class)->name('regimen-afps.index');
         //Fromulas
-
         Route::resource('formulas', FormulaController::class);
         // conceptos
         Route::resource('conceptos', ConceptoController::class);
         //  personal 
         Route::resource('datos_personales', DatosPersonalController::class);
         Route::resource('trabajadores', TrabajadorController::class);
+        // agregar hijos 
+        Route::resource('familia',DerechoHabientesController::class);
+ 
         
-
 
 
 
@@ -183,6 +207,19 @@ Route::group(
 
         //pensionistas
         Route::get('/pensionistas', [PensionistaController::class,'index'])->name('pensionistas.index');
+
+        //Cuarta categoria
+
+        Route::resource('cuarta_categoria', TrabajadorCuartaCategoriaController::class);
+
+
+
+
+        //Cuarta categoria
+
+        Route::resource('cuarta_categoria', TrabajadorCuartaCategoriaController::class);
+
+
 
     }
 );

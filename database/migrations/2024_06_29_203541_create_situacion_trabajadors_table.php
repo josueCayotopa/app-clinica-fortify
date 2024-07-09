@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('situacion_trabajadors', function (Blueprint $table) {
             $table->id();
             $table->string('descripcion');
-
             $table->timestamps();
         });
     }

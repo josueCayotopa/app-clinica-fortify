@@ -23,12 +23,62 @@
     </div>
 </div>
 <div class="el-form-item__content">
-    <button aria-disabled="false" type="button"
-        class="el-button el-button--primary"><!--v-if-->
+    <button aria-disabled="false" type="button" class="el-button el-button--primary"><!--v-if-->
         <span class="">+ Agregar Producto
-            
+
         </span>
-        
+
     </button>
-    
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div>Regimen pensionario:</div>
+        <div class="el-select" style="width: 100%;">
+            <div class="el-select__wrapper is-focused el-tooltip__trigger el-tooltip__trigger" tabindex="-1">
+                <!--v-if-->
+                <div class="el-select__selection"><!--v-if-->
+                    <div class="el-select__selected-item el-select__input-wrapper ">
+                        <input type="text" class="el-select__input" autocomplete="off" role="combobox" readonly=""
+                            spellcheck="false" aria-activedescendant="el-id-7518-2" aria-controls="el-id-7518-1"
+                            aria-expanded="false" aria-autocomplete="none" aria-haspopup="listbox" style="width: 11px;"
+                            id="el-id-7518-9"><!--v-if-->
+                    </div>
+                    <div class="el-select__selected-item el-select__placeholder"><span>SALA DE OPERACIONES -
+                            CENTRAL</span></div>
+                </div>
+                <div class="el-select__suffix"><i class="el-icon el-select__caret el-select__icon"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+                            <path fill="currentColor"
+                                d="M831.872 340.864 512 652.672 192.128 340.864a30.592 30.592 0 0 0-42.752 0 29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728 30.592 30.592 0 0 0-42.752 0z">
+                            </path>
+                        </svg></i><!--v-if--><!--v-if--></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4"><br>
+        <div class="el-input el-input--prefix el-input--suffix" style="width: 100%;">
+            <!-- input --><!-- prepend slot --><!--v-if-->
+            <div class="el-input__wrapper" tabindex="-1"><!-- prefix slot --><span class="el-input__prefix"><span
+                        class="el-input__prefix-inner"><i class="el-icon el-input__icon"><svg
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+                                <path fill="currentColor"
+                                    d="m795.904 750.72 124.992 124.928a32 32 0 0 1-45.248 45.248L750.656 795.904a416 416 0 1 1 45.248-45.248zM480 832a352 352 0 1 0 0-704 352 352 0 0 0 0 704">
+                                </path>
+                            </svg></i></span></span><input class="el-input__inner" type="text" autocomplete="off"
+                    tabindex="0" placeholder="Buscar" id="el-id-7518-10" spellcheck="false"
+                    data-ms-editor="true"><!-- suffix slot --><!--v-if--></div><!-- append slot --><!--v-if-->
+        </div>
+    </div>
+    <div class="col-md-2"><br><label class="el-checkbox"><span class="el-checkbox__input"><input
+                    class="el-checkbox__original" type="checkbox"><span class="el-checkbox__inner"></span></span><span
+                class="el-checkbox__label">Incluir stock 0 <!--v-if--></span></label><label
+            class="el-checkbox is-checked"><span class="el-checkbox__input is-checked"><input
+                    class="el-checkbox__original" type="checkbox"><span class="el-checkbox__inner"></span></span><span
+                class="el-checkbox__label">Con Lotes<!--v-if--></span></label></div>
+    <div class="col-md-1"><br><button aria-disabled="false" type="button"
+            class="el-button el-button--success"><!--v-if--><span class="">Excel</span></button></div>
 </div>

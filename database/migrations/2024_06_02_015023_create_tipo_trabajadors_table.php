@@ -15,9 +15,14 @@ return new class extends Migration
     {
         Schema::create('tipo_trabajadors', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('empresa_id');
             $table->string('codigo_sunat', 10)->notNull(); 
             $table->string('descripcion')->nullable();
+            $table->string('nivel', 15)->nullable(); 
+            $table->decimal('factor_hora_extra', 8, 2)->nullable(); 
+            $table->decimal('factor_dia_viaje', 8, 2)->nullable();
             $table->timestamps();
+            $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->boolean('estado')->default(true);
         });
     }

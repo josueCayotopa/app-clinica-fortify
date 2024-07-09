@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DatosPersonal;
+use App\Models\Departamento_Region;
 use App\Models\DerechoHabientes;
+use App\Models\Distrito;
+use App\Models\Provincia;
+use App\Models\Tipo_Establecimiento;
+use App\Models\Via;
+use App\Models\Zona;
 use Illuminate\Http\Request;
 
 class DerechoHabientesController extends Controller
@@ -12,9 +19,26 @@ class DerechoHabientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
+        $query = DerechoHabientes::query();
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('nombre_completo', 'like', "%{$search}%")
+                  ->orWhere('trabajador_id->nombres', 'like', "%{$search}%");
+        }
+        $familia_trabajadores = $query->paginate(5);
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('familia.index', compact('familia_trabajadores'))->render(),
+                'url' => route('familia.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'familia.index',
+            'data' => compact('familia_trabajadores'),
+        ]);
     }
 
     /**
@@ -24,7 +48,13 @@ class DerechoHabientesController extends Controller
      */
     public function create()
     {
-        //
+        $personal = DatosPersonal::pluck('nombre_comercial', 'id');
+        $departamentos = Departamento_Region::pluck('descripcion', 'id');
+        $provincias = Provincia::pluck('descripcion', 'id');
+        $distritos = Distrito::pluck('descripcion', 'id');
+        $zonas = Zona::pluck('descripcion', 'id');
+        $vias = Via::pluck('descripcion', 'id');
+        $tipo_establecimientos = Tipo_Establecimiento::pluck('descripcion', 'id');
     }
 
     /**

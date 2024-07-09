@@ -182,7 +182,7 @@ class CategoriaCargoController extends Controller
             'nivel' => 'required|string|max:255',
             'factor_hora_extra' => 'required|numeric',
             'factor_dia_viaje' => 'required|numeric',
-            'codigo_cargo.*' => 'required|string|max:255',
+            'codigo_cargo.*' => 'string|max:255',
             'descripcion_cargo.*' => 'required|string|max:255',
         ]);
 

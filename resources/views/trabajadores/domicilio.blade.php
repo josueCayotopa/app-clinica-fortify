@@ -11,7 +11,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="nacionalidad_id">Nacionalidad <span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="nacionalidad_id" name="nacionalidad_id">
@@ -27,7 +27,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="departamento_id">Departamento <span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="departamento_id" name="departamento_id">
@@ -43,7 +43,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="provincia_id">Provincia</label>
                 <select class="form-control" id="provincia_id" name="provincia_id"
@@ -64,7 +64,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="distrito_id">Distrito<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="distrito_id" name="distrito_id"
@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="via_id">Vía<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="via_id" name="via_id">
@@ -103,7 +103,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="nombre_via">Nombre de Via<span class="campo-obligatorio">*</span></label>
                 <input type="text" class="form-control" placeholder="Nombre via" name="nombre_via"
@@ -115,7 +115,7 @@
         </div>
   
     
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="numero_via">Numero via</label>
                 <input type="text" class="form-control" placeholder="Numero via" name="numero_via"
@@ -125,7 +125,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="interior">Interior</label>
                 <input type="text" class="form-control" placeholder="Interior" name="interior"
@@ -136,7 +136,7 @@
             </div>
         </div>
 
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="zona_id">Zonas<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="zona_id" name="zona_id">
@@ -153,7 +153,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="zona_id">Numero Zona</label>
                 <input type="text" class="form-control" placeholder="Nombre de Zona" name="zona_id"
@@ -163,7 +163,7 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-3 mb-1">
+        <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="referencia">Referencia</label>
                 <input type="text" class="form-control" placeholder="Referencia" name="referencia"

@@ -79,12 +79,11 @@ return new class extends Migration
 
 
 
-            $table->foreign('situacion_id')->references('id')->on('situaciones');
-
+            $table->foreign('situacion_eps_id')->references('id')->on('situacion_e_p_s');
 
             $table->foreign('situacion_trabajador_id')->references('id')->on('situacion_trabajadors');
            
-           
+                
             $table->foreign('tipo_pago_id')->references('id')->on('tipo_pagos');
             $table->foreign('tipo_banco_id')->references('id')->on('tipo_bancos');
             $table->foreign('categoria_ocupacional_id')->references('id')->on('categoria_ocupacionals');
