@@ -337,6 +337,14 @@
                         <div data-i18n="sucursal"> Sucursales</div>
                     </a>
                 </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('empresaDest.index') }}" class="menu-link">
+                        <div data-i18n="sucursal"> Empresa Destacan</div>
+                    </a>
+                </li>
+
+
                 <li class="menu-item">
                     <a href="{{ route('uits.index') }}" class="menu-link">
                         <div data-i18n="uit"> UIT</div>

@@ -12,6 +12,7 @@ use App\Http\Controllers\ConocimientoController;
 use App\Http\Controllers\DatosPersonalController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\EmpresaMeDestacanController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\PensionistaController;
@@ -183,6 +184,7 @@ Route::group(
 
         //pensionistas
         Route::get('/pensionistas', [PensionistaController::class, 'index'])->name('pensionistas.index');
+        Route::get('/empresaDest',[EmpresaMeDestacanController::class,'index'])->name('empresaDest.index');
 
         //create pensionista
 
@@ -190,9 +192,11 @@ Route::group(
 
         Route::post('/pensionistas', [PensionistaController::class, 'store'])->name('pensionistas.store');
 
+        //create empresaDest
+        Route::get('/empresaDest/create', [EmpresaMeDestacanController::class, 'create'])->name('empresaDest.create');
+        Route::post('/empresaDest', [EmpresaMeDestacanController::class,'store'])->name('empresaDest.store');
 
-        Route::get('get-sucursales/{empresa_id}', [SucursalController::class, 'getSucursales']);
-
+        Route::get('/get-sucursales/{empresaID}', [SucursalController::class, 'getSucursales'])->name('getSucursales');
         // Route::get('pensionistas/sucursal', [SucursalController::class, 'getSucursales']);
     }
 );
