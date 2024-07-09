@@ -17,7 +17,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="empresa_id">Empresa</label>
-                                    <select class="form-control" id="empresa_id" name="empresa_id" required>
+                                    <select class="form-control" id="empresa_id" name="empresa_id">
+                                        <option value="" disabled {{ old('empresa_id') ? '' : 'selected' }}>
+                                            Selecciona Tipo de Documento
+                                        </option>
                                         @foreach ($empresas as $id => $nombre_comercial)
                                             <option value="{{ $id }}"
                                                 {{ old('empresa_id', $sucursal->empresa_id ?? '') == $id ? 'selected' : '' }}>
@@ -27,6 +30,49 @@
                                     </select>
                                     @if ($errors->has('empresa_id'))
                                         <span class="text-danger">{{ $errors->first('empresa_id') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tipo_establecimiento_id">Tipo de establecimiento</label>
+                                    <select class="form-control" id="tipo_establecimiento_id" name="tipo_establecimiento_id">
+                                        <option value="" disabled {{ old('tipo_establecimiento_id', $sucursal->tipo_establecimiento_id ?? '3') == '' ? 'selected' : '' }}>
+                                            Selecciona Tipo de Documento
+                                        </option>
+                                        @foreach ($tipo_establecimientos as $id => $tipo_establecimiento)
+                                            <option value="{{ $id }}"
+                                                {{ old('tipo_establecimiento_id', $sucursal->tipo_establecimiento_id ?? '3') == $id ? 'selected' : '' }}>
+                                                {{ $tipo_establecimiento }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('tipo_establecimiento_id'))
+                                        <span class="text-danger">{{ $errors->first('tipo_establecimiento_id') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="centro_riesgo">El establecimiento es un centro de riesgo</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="centro_riesgo_no"
+                                            name="centro_riesgo" value="0"
+                                            {{ old('centro_riesgo') == '0' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="centro_riesgo_no">
+                                            No es centro de riesgo
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="centro_riesgo_si"
+                                            name="centro_riesgo" value="1"
+                                            {{ old('centro_riesgo') == '1' ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="centro_riesgo_si">
+                                            Es un centro de riesgo
+                                        </label>
+                                    </div>
+                                    @if ($errors->has('centro_riesgo'))
+                                        <span class="text-danger">{{ $errors->first('centro_riesgo') }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -44,8 +90,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="telefono">Telefono</label>
-                                    <input type="text" maxlength="9" class="form-control" placeholder="Telefono" name="telefono"
-                                        value="{{ old('telefono') }}">
+                                    <input type="text" maxlength="9" class="form-control" placeholder="Telefono"
+                                        name="telefono" value="{{ old('telefono') }}">
                                     @if ($errors->has('telefono'))
                                         <span class="error text-danger">{{ $errors->first('telefono') }}</span>
                                     @endif
@@ -61,6 +107,7 @@
                                     @endif
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="fax">Fax</label>
@@ -72,6 +119,23 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="tasa_sctr_essalud">Tasa de Essalud Para este establecimiento (%)</label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" placeholder="Ingresa el %"
+                                            name="tasa_sctr_essalud" value="{{ old('tasa_sctr_essalud') }}"
+                                            min="0" max="100" step="0.01">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                    @if ($errors->has('tasa_sctr_essalud'))
+                                        <span
+                                            class="error text-danger">{{ $errors->first('tasa_sctr_essalud') }}</span>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="fecha_inicio">Fecha de Inicio</label>
@@ -88,7 +152,8 @@
                                 <div class="form-group">
                                     <label for="departamento_id">Departamento</label>
                                     <select class="form-control" id="departamento_id" name="departamento_id">
-                                        <option value="" disabled {{ old('departamento_id') ? '' : 'selected' }}>
+                                        <option value="" disabled
+                                            {{ old('departamento_id') ? '' : 'selected' }}>
                                             Selecciona un Departamento</option>
                                         @foreach ($departamentos as $id => $descripcion)
                                             <option value="{{ $id }}"
@@ -217,7 +282,7 @@
                             <div class="col-md-12 gap-2 d-md-flex justify-content-md-end">
                                 <!-- Botón en la parte derecha con más separación -->
                                 @can('user_create')
-                                    <button type="submit" class="el-button el-button--danger ">Crear</button>
+                                    <button type="submit" class="el-button el-button--primary">Crear</button>
                                 @endcan
                             </div>
                         </div>

@@ -6,19 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+    /** 
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('afpsdescuentos', function (Blueprint $table) {
+        Schema::create('regimen_afps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('afp_id')->constrained('afps')->onDelete('cascade');
-            $table->foreignId('tipo_descuento_id')->constrained('tipos_descuentos')->onDelete('cascade');
+            $table->string('nombre')->unique()->nullable();
+            $table->foreignId('regimen_id')->constrained('regimen_pencionarios');
             $table->timestamps();
-
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('afpsdescuentos');
+        Schema::dropIfExists('regimen_afps');
     }
 };

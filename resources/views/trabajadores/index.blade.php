@@ -206,7 +206,7 @@
         window.location.href = '{{ route('trabajadores.create') }}';
     });
     
-    export_button
+
 </script>
 
 

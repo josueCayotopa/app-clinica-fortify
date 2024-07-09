@@ -52,17 +52,13 @@
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('assets_copy/modules/jqvmap/dist/jqvmap.min.css') }} ">
-    <link rel="stylesheet" href="{{ asset('assets_copy/modules/weather-icon/css/weather-is"') }} ">
-    <link rel="stylesheet" href="{{ asset('assets_copy/modules/weather-icon/css/weather-icons-wind.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets_copy/modules/summernote/summernote-bs4.css') }} ">
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('assets_copy/css/style.css') }} ">
+
 
 
     <!-- Page CSS -->
-
+    <link rel="stylesheet" href="{{ asset('./style.css') }}">
     <!-- Helpers -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
@@ -91,7 +87,7 @@
 
     <script src="{{ asset('/js/perfect-scrollbar.js') }}"></script>
 
-    <script src="{{ asset('/js/bootstrap.esm.js') }}"></script>
+
     <script src="{{ asset('/js/menu.js') }}"></script>
 
 
@@ -114,41 +110,6 @@
 
     </script>
 
-    <script>
-        $(document).ready(function() {
-            $('.load-ajax-page').on('click', function(event) {
-                event.preventDefault();
-                var url = $(this).attr('href');
-                fetchPage(url);
-            });
-
-            function fetchPage(url) {
-                $.ajax({
-                    url: url,
-                    success: function(data) {
-                        $('#dynamic-content').html(data.view);
-                        window.history.pushState({}, '', data.url);
-                    },
-                    error: function() {
-                        alert('La página no pudo ser cargada.');
-                    }
-                });
-            }
-
-            window.onpopstate = function() {
-                var url = window.location.href;
-                fetchPage(url);
-            };
-        });
-        document.addEventListener('DOMContentLoaded', function() {
-            var textInputs = document.querySelectorAll('input[type="text"]');
-            textInputs.forEach(function(input) {
-                input.addEventListener('input', function() {
-                    input.value = input.value.toUpperCase();
-                });
-            });
-        });
-    </script>
 
 </body>
 

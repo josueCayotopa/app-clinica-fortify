@@ -214,7 +214,7 @@
                             <div class="col-md-12 gap-2 d-md-flex justify-content-md-end">
                                 <!-- Botón en la parte derecha con más separación -->
                                 @can('user_create')
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-3 ">Guardar</button>
+                                    <button type="submit" class="el-button el-button--primary btn-lg btn-block mt-3 ">Guardar</button>
                                 @endcan
                             </div>
                         </div>

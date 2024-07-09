@@ -5,7 +5,7 @@
     </div>
     <div class="el-row is-justify-space-between row-bg mb-3">
         <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
-            <h5>Listado de Afp</h5>
+            <h5>Establecimientos Propios</h5>
         </div>
         <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
             @can('user_create')
@@ -76,7 +76,7 @@
                                             onsubmit="return confirm('seguro?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger" type="submit" style="margin: 0 2px;">
+                                            <button class="el-button el-button--primary el-button--small" type="submit" style="margin: 0 2px;">
                                                 <span><span><i class='bx bxs-x-circle'></i></span>
 
                                             </button>

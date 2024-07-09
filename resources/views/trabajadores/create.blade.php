@@ -177,7 +177,7 @@
                                   @endif
                               </div>
                           </div>
-                          <div class="col-md-6 mb-3">
+                          <div class="col-md-6 mb-6">
                             <p>Ingrese su Foto</p>
                               <div class="image-upload-wrapper">
                                
@@ -197,7 +197,7 @@
                               @endif
 
                           </div>
-                          <div class="col-md-6 mb-1">
+                          <div class="col-md-6 mb-6">
                             <p>Ingrese el curriculum</p>
                               <div class="file-upload-wrapper">
                                 

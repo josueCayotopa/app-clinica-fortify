@@ -113,10 +113,11 @@ class TrabajadorController extends Controller
         $categoriaPeriodo = CategoriaPeriodo::pluck('descripcion', 'id');
         $motivoFinPeriodo = MotivoFinPeriodo::pluck('descripcion', 'id');
         $tipoSuspension = TipoSuspension::pluck('descripcion', 'id');
-        $sucursal = Sucursal::pluck('nombre_sucursal', 'id');
+     
+        $sucursales = Sucursal::pluck('nombre_sucursal', 'id');
         $empresaMeDestacan = EmpresaMeDestacan::pluck('razon_social', 'id');
         $conceptoSunat = ConceptoSunat::pluck('descripcion', 'id');
-        $empresa = Empresa::pluck('razon_social', 'id');
+        $empresas = Empresa::pluck('razon_social', 'id');
 
         if ($request->ajax()) {
             return response()->json([
@@ -147,10 +148,11 @@ class TrabajadorController extends Controller
                     'categoriaPeriodo',
                     'motivoFinPeriodo',
                     'tipoSuspension',
-                    'sucursal',
+                    'sucursales',
+                    'empresas',
                     'empresaMeDestacan',
                     'conceptoSunat',
-                    'empresa'
+                 
 
                 ))->render(),
                 'url' => route('trabajadores.create', $request->query())
@@ -186,10 +188,11 @@ class TrabajadorController extends Controller
                 'categoriaPeriodo',
                 'motivoFinPeriodo',
                 'tipoSuspension',
-                'sucursal',
+                'sucursales',
+                'empresas',
                 'empresaMeDestacan',
                 'conceptoSunat',
-                'empresa'
+            
             ),
         ]);
 
