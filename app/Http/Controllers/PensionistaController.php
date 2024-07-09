@@ -185,6 +185,7 @@ class PensionistaController extends Controller
             'situacion_e_p_s_id' => 'required|exists:situacion_e_p_s,id',
             'tipo_pago_id' => 'required|exists:tipo_pagos,id',
             'nivel_educativo_id' => 'required|exists:nivel_educativos,id',
+            
         ]);
 
         $pensionista = Pensionista::create($validatedData);
