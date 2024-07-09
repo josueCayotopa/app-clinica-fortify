@@ -23,6 +23,7 @@ use App\Http\Controllers\SolicitudLicenciasController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
 use App\Http\Controllers\TrabajadorController;
+use App\Http\Controllers\TrabajadorCuartaCategoriaController;
 use App\Http\Controllers\UbigeoController;
 use App\Http\Controllers\UITController;
 use App\Http\Controllers\UserControlles;
@@ -30,6 +31,7 @@ use App\Http\Controllers\ZonaController;
 use App\Models\CargoCategoria;
 use App\Models\SolicitudLicencias;
 use App\Models\Sucursal;
+use App\Models\TrabajadorCuartaCategoria;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
