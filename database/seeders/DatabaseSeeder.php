@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\ConceptosCuentas;
+use App\Models\SituacionTrabajador;
 use App\Models\Tipo_moneda;
 use App\Models\TipoPago;
 use Illuminate\Database\Seeder;
@@ -76,7 +77,10 @@ class DatabaseSeeder extends Seeder
          // ConceptosSeeder::class,
            //ConceptosCuentasSeeder::class,
           CategoriaOcupacionalSeeder::class, */
-
+         
+          
+          //CategoriaOcupacionalSeeder::class,
+        SituacionTrabajadorSeeder::class,
 
         ]);
     }

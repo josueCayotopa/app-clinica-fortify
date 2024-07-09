@@ -8,6 +8,8 @@ use App\Models\Empresa;
 use App\Models\Nacionalidad;
 use App\Models\Provincia;
 use App\Models\Sucursal;
+use App\Models\SucursalEstablecimientoLaboral;
+use App\Models\Tipo_Establecimiento;
 use App\Models\Via;
 use App\Models\Zona;
 use Illuminate\Http\Request;
@@ -22,7 +24,13 @@ class SucursalController extends Controller
      */
     public function index(Request $request)
     {
-        $sucursales = Sucursal::paginate(5);
+        $query = Sucursal::query();
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('nombre_sucursal', 'like', "%{$search}%")
+                  ->orWhere('nombre_sucursal', 'like', "%{$search}%");
+        }
+        $sucursales = $query->paginate(5);
 
         if ($request->ajax()) {
             return response()->json([
@@ -45,6 +53,8 @@ class SucursalController extends Controller
         $distritos = Distrito::pluck('descripcion', 'id');
         $zonas = Zona::pluck('descripcion', 'id');
         $vias = Via::pluck('descripcion', 'id');
+        $tipo_establecimientos = Tipo_Establecimiento::pluck('descripcion', 'id');
+
 
         if ($request->ajax()) {
             return response()->json([
@@ -54,7 +64,8 @@ class SucursalController extends Controller
                     'provincias',
                     'distritos',
                     'zonas',
-                    'vias'
+                    'vias',
+                    'tipo_establecimientos'
                 ))->render(),
                 'url' => route('sucursales.create', $request->query())
             ]);
@@ -68,14 +79,13 @@ class SucursalController extends Controller
                 'provincias',
                 'distritos',
                 'zonas',
-                'vias'
+                'vias',
+                'tipo_establecimientos'
             ),
         ]);
     }
-
     public function store(Request $request)
     {
-
         $request->validate([
             'empresa_id' => 'required|exists:empresas,id',
             'nombre_sucursal' => 'required|string|max:255',
@@ -90,6 +100,7 @@ class SucursalController extends Controller
             'via_id' => 'required|exists:vias,id',
             'des_direccion' => 'required|string|max:255',
             'estado' => 'boolean',
+            'tasa_sctr_essalud' => 'required|numeric|min:0|max:100',
         ]);
 
         // Buscar el distrito por su ID
@@ -116,11 +127,19 @@ class SucursalController extends Controller
         $sucursal->via_id = $request->via_id;
         $sucursal->des_direccion = $request->des_direccion;
         $sucursal->estado = $request->estado;
+        $sucursal->tipo_establecimiento_id = $request->tipo_establecimiento_id;
+        $sucursal->centro_riesgo = $request->centro_riesgo;
+        $sucursal->denominacion_establecimiento = $request->nombre_sucursal;
+        $sucursal->tasa_sctr_essalud = $request->tasa_sctr_essalud;
+
 
         // Obtener y asignar el código ubigeo del distrito
         $sucursal->codigo_ubigeo = $distrito->codigo;
 
         $sucursal->save();
+        $sucursalEstablecimientoLaboral = new SucursalEstablecimientoLaboral();
+        $sucursalEstablecimientoLaboral->sucursalpropio_id = $sucursal->id;
+        $sucursalEstablecimientoLaboral->save();
 
         return redirect()->route('sucursales.index')->with('success', 'Sucursal creada exitosamente.');
     }

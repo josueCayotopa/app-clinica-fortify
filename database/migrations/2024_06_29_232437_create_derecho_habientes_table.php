@@ -48,6 +48,7 @@ return new class extends Migration
             $table->foreign('tipo_documento_id')->references('id')->on('tipo_documentos');
             $table->foreign('vinculo_familiar_id')->references('id')->on('vinculo_familiars');
             $table->foreign('documento_acredita_parternidad_id')->references('id')->on('documento_acredita_parternidads');
+            
             // motivo_baja_d_h_s
             $table->foreign('tipo_baja_id')->references('id')->on('motivo_baja_d_h_s');
             $table->foreign('domicilio_id')->references('id')->on('domicilio_derecho_habientes');

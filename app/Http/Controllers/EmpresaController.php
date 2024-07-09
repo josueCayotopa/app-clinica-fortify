@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EmpresaExport;
 use App\Http\Requests\EmpresaRequest;
 use App\Models\Departamento_Region;
 use App\Models\Distrito;
@@ -14,6 +15,7 @@ use App\Models\Via;
 use App\Models\Zona;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmpresaController extends Controller
 {
@@ -25,7 +27,18 @@ class EmpresaController extends Controller
     public function index(Request $request)
     {
         // $users=User::all();
-        $empresas = Empresa::paginate(5);
+        $query = Empresa::query();
+
+        if ($request->has('search')) {
+            $search = $request->get('search');
+            $query->where('ruc_empresa', 'like', "%{$search}%")
+                  ->orWhere('razon_social', 'like', "%{$search}%");
+        }
+    
+        $empresas = $query->paginate(10);
+
+
+
         if ($request->ajax()) {
             return response()->json([
                 'view' => view('configuracion.empresa.index', compact('empresas'))->render(),
@@ -130,7 +143,7 @@ class EmpresaController extends Controller
             'zona_id' => $request->zona_id,
             'via_id' => $request->via_id,
             'pais_id' => $request->pais_id,
-            'tipo_moneda_id' => $request->tipo_moneda, // Corrected to tipo_moneda_id
+            'tipo_moneda_id' => $request->tipo_moneda_id, // Corrected to tipo_moneda_id
         ]);
 
         return redirect()->route('empresas.index')->with('success', 'Empresa creada exitosamente.');
@@ -192,9 +205,47 @@ class EmpresaController extends Controller
     }
 
 
-    public function update(Request $request, Empresa $empresa)
+    public function update(EmpresaRequest $request, $id)
     {
-        //
+        // Buscar la empresa por ID
+        $empresa = Empresa::find($id);
+    
+        // Verificar si la empresa existe
+        if (!$empresa) {
+            return redirect()->back()->withErrors(['empresa' => 'La empresa no fue encontrada.'])->withInput();
+        }
+    
+        // Verificar si el distrito existe
+        $distrito = Distrito::find($request->distrito_id);
+        if (!$distrito) {
+            return redirect()->back()->withErrors(['distrito_id' => 'El distrito seleccionado no es válido.'])->withInput();
+        }
+    
+        // Actualizar la empresa existente
+        $empresa->update([
+            'codigo_empresa' => $request->codigo_empresa,
+            'direccion' => $request->direccion,
+            'razon_social' => $request->razon_social,
+            'nombre_comercial' => $request->nombre_comercial,
+            'ruc_empresa' => $request->ruc_empresa,
+            'numero_decreto_supremo' => $request->numero_decreto_supremo,
+            'nombre_representante_legal' => $request->nombre_representante_legal,
+            'tipo_documento_id' => $request->tipo_documento_id,
+            'numero_documento' => $request->numero_documento,
+            'email' => $request->email,
+            'numero_telefono' => $request->numero_telefono,
+            'codigo_ubigeo' => $distrito->codigo,
+            'departamento_id' => $request->departamento_id,
+            'provincia_id' => $request->provincia_id,
+            'distrito_id' => $request->distrito_id,
+            'zona_id' => $request->zona_id,
+            'via_id' => $request->via_id,
+            'pais_id' => $request->pais_id,
+            'tipo_moneda_id' => $request->tipo_moneda_id,
+        ]);
+    
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('empresas.index')->with('success', 'Empresa actualizada correctamente.');
     }
 
     public function destroy(Empresa $empresa)
@@ -203,5 +254,11 @@ class EmpresaController extends Controller
         $empresa->delete();
 
         return redirect()->route('empresas.index')->with('success', 'Empresa eliminada exitosamente.');
+    }
+    public function export()
+    {
+
+        
+        
     }
 }

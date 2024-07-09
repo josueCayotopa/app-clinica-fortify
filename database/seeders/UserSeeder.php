@@ -24,22 +24,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt('verano2080'), 
             
         ],
-        [
-            'name' => 'Jorge Luis',
-            'email' => '7144773621@untrm.edu.pe', 
-            'username' => '7144773621', 
-            'password' => bcrypt('12345678'),
-
-        ],
-        [
-            'name' => 'Elias Culqui',
-            'email' => '7565596221@untrm.edu.pe', 
-            'username' => 'eliasculqui', 
-
-            'password' => bcrypt('12348765'), 
-
-        ]
-
     );
         $user->assignRole('admin');
 
