@@ -287,12 +287,18 @@
                 </a>
             </li>
 
-
             <li class="menu-item">
                 <a href="{{ route('sucursales.index') }}" class="menu-link">
                     <div data-i18n="sucursal"> Sucursales</div>
                 </a>
             </li>
+
+            <li class="menu-item">
+                <a href="{{ route('destacan.index') }}" class="menu-link">
+                    <div data-i18n="empresa">Empresa me destacan</div>
+                </a>
+            </li>
+
             <li class="menu-item">
                 <a href="{{ route('uits.index') }}" class="menu-link">
                     <div data-i18n="uit"> UIT</div>

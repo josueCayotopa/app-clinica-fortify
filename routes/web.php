@@ -15,6 +15,7 @@ use App\Http\Controllers\DatosPersonalController;
 use App\Http\Controllers\DerechoHabientesController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\EmpresaMeDestacanController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\InstitucionController;
@@ -236,6 +237,15 @@ Route::group(
         Route::get('/pensionistas/create', [PensionistaController::class, 'create'])->name('pensionistas.create');
 
         Route::post('/pensionistas', [PensionistaController::class, 'store'])->name('pensionistas.store');
+
+        //empresa destacan
+        Route::get('/destacan', [EmpresaMeDestacanController::class,'index'])->name('destacan.index');
+        Route::get('/destacan/create', [EmpresaMeDestacanController::class, 'create'])->name('destacan.create');
+        Route::post('/destacan', [PensionistaController::class, 'store'])->name('destacan.store');
+        Route::get('/destacan/{id}', [EmpresaMeDestacanController::class, 'show'])->name('destacan.show');
+        Route::get('/destacan/{id}/edit', [EmpresaMeDestacanController::class, 'edit'])->name('destacan.edit');
+        Route::delete('/destacan/{id}', [EmpresaMeDestacanController::class, 'destroy'])->name('destacan.destroy');
+
 
     }
 );
