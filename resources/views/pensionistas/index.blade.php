@@ -275,7 +275,6 @@
                             <td>{{ $pensionista->tipoPago->nombre ?? 'N/A' }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('pensionistas.show', $pensionista->id) }}" class="btn btn-info btn-sm">Ver</a>
                                     <a href="{{ route('pensionistas.edit', $pensionista->id) }}" class="btn btn-warning btn-sm">Editar</a>
                                     <form action="{{ route('pensionistas.destroy', $pensionista->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar este pensionista?');" class="d-inline">
                                         @csrf
