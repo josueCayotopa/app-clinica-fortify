@@ -294,8 +294,8 @@
             </li>
 
             <li class="menu-item">
-                <a href="{{ route('destacan.index') }}" class="menu-link">
-                    <div data-i18n="empresa">Empresa me destacan</div>
+                <a href="{{ route('empresasD.index') }}" class="menu-link">
+                    <div data-i18n="empresaD">Empresa me destacan</div>
                 </a>
             </li>
 

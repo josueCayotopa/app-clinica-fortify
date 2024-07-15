@@ -29,6 +29,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\SolicitudLicenciasController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorController;
+use App\Http\Controllers\TipoDeActividadController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
 use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\TrabajadorCuartaCategoriaController;
@@ -230,21 +231,27 @@ Route::group(
 
         Route::resource('cuarta_categoria', TrabajadorCuartaCategoriaController::class);
 
-        Route::get('/pensionistas', [PensionistaController::class, 'index'])->name('pensionistas.index');
+        /* Route::get('/pensionistas', [PensionistaController::class, 'index'])->name('pensionistas.index');
 
         //create pensionista
 
         Route::get('/pensionistas/create', [PensionistaController::class, 'create'])->name('pensionistas.create');
 
-        Route::post('/pensionistas', [PensionistaController::class, 'store'])->name('pensionistas.store');
+        Route::post('/pensionistas', [PensionistaController::class, 'store'])->name('pensionistas.store'); */
+        Route::resource('pensionistas', PensionistaController::class);
+        
 
-        //empresa destacan
-        Route::get('/destacan', [EmpresaMeDestacanController::class,'index'])->name('destacan.index');
-        Route::get('/destacan/create', [EmpresaMeDestacanController::class, 'create'])->name('destacan.create');
-        Route::post('/destacan', [PensionistaController::class, 'store'])->name('destacan.store');
-        Route::get('/destacan/{id}', [EmpresaMeDestacanController::class, 'show'])->name('destacan.show');
-        Route::get('/destacan/{id}/edit', [EmpresaMeDestacanController::class, 'edit'])->name('destacan.edit');
-        Route::delete('/destacan/{id}', [EmpresaMeDestacanController::class, 'destroy'])->name('destacan.destroy');
+
+
+        // Route::get('/destacan', [EmpresaMeDestacanController::class,'index'])->name('destacan.index');
+        // Route::get('/destacan/create', [EmpresaMeDestacanController::class, 'create'])->name('destacan.create');
+        // Route::post('/destacan', [PensionistaController::class, 'store'])->name('destacan.store');
+        // Route::get('/destacan/{id}', [EmpresaMeDestacanController::class, 'show'])->name('destacan.show');
+        // Route::get('/destacan/{id}/edit', [EmpresaMeDestacanController::class, 'edit'])->name('destacan.edit');
+        // Route::delete('/destacan/{id}', [EmpresaMeDestacanController::class, 'destroy'])->name('destacan.destroy');
+        
+        Route::resource('empresasD', EmpresaMeDestacanController::class);
+        Route::resource('tipo_actividad', TipoDeActividadController::class);
 
 
     }

@@ -1,13 +1,13 @@
-<body>
-    <div class="container mt-5">
-        
+
+    <div class="card-body mt-5">
+        @include('layouts.messege')
         {{-- @if (session('success')) --}}
         <div class="el-row is-justify-space-between row-bg">
             <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
                 <h5>Listado de Empresas Destacan</h5>
             </div>
             <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
-                <a href="{{ route('destacan.create') }}">
+                <a href="{{ route('empresasD.create') }}">
                     <button aria-disabled="false" type="button" class="el-button el-button--danger" id="new-button">
                         <span>Nuevo</span>
                     </button>
@@ -119,19 +119,18 @@
 
                 {{-- prueba de tbody --}}
                 <tbody>
-                    @forelse ($empresaDest as $destacan)
+                    @foreach ($empresaDest as $destacan)
                         <tr>
                             <td>{{ $destacan->id }}</td>
                             <td>{{ $destacan->razon_social }}</td>
                             <td>{{ $destacan->direccion }}</td>
                             <td>{{ $destacan->nombre_comercial }}</td>
                             <td>{{ $destacan->ruc_empresa }}</td>
-                            <td>{{ $destacan->codigo_actividad_id->descripcion ?? 'N/A' }}</td>               
+                            <td>{{ $destacan->tipoDeActividad->descripcion ?? 'N/A' }}</td>             
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('destacan.show', $destacan->id) }}" class="btn btn-info btn-sm">Ver</a>
-                                    <a href="{{ route('destacan.edit', $destacan->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                                    <form action="{{ route('destacan.destroy', $destacan->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar este destacan?');" class="d-inline">
+                                    <a href="{{ route('empresasD.edit', $destacan->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                                    <form action="{{ route('empresasD.destroy', $destacan->id) }}" method="POST" onsubmit="return confirm('¿Está seguro de que desea eliminar este destacan?');" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
@@ -139,17 +138,15 @@
                                 </div>
                             </td>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="10" class="text-center">No se encontraron pensionistas.</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
                 
             </table>
+        </div>
+        <div class="mt-4 d-flex justify-content-center"> <!-- Mayor separación entre la tabla y el paginador -->
+            {{ $empresaDest->links() }}
         </div>
 
     </div> 
 
     
-</body>

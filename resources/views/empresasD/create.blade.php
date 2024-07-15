@@ -3,7 +3,7 @@
 
 <div class="container mt_5">
     <h2>Crear Empresa me Destacan</h2>
-    <form action="{{ route('destacan.store') }}" method="POST" autocomplete="off">
+    <form action="{{ route('empresasD.store') }}" method="POST" autocomplete="off">
         @csrf
         <div class="row">
             <div class="col-md-6">
@@ -24,20 +24,29 @@
                     <input type="text" class="form-control" id="ruc_empresa" name="ruc_empresa" maxlength="12" required>
                 </div>
                 
-                <div class="form-group">
-                    <label for="codigo_actividad_id">Tipo de Actividad</label>
-                    <select class="form-control" id="codigo_actividad_id" name="codigo_actividad_id" required>
-                        <option value="">Seleccione tipo de actividad </option>
-                        @foreach ($tipo_actividad as $actividad)
-                            <option value="{{ $actividad->id }}">{{ $actividad->descripcion }}</option>
-                        @endforeach
-                    </select>
+
+                <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        <label for="codigo_actividad_id">Tipo de Actividad</label>
+                        <select class="form-control" id="codigo_actividad_id" name="codigo_actividad_id" required>
+                            <option value="" disabled {{ old('codigo_actividad_id') ? '' : 'selected' }}>Seleccione tipo de actividad </option>
+                            @foreach ($tipo_actividad as $id =>$actividad)
+                                <option value="{{ $id }}"
+                                {{old('codigo_actividad_id') == $id ?  'selected' : ''}}>
+                                {{ $actividad }}</option>
+
+                            @endforeach
+                        </select>
+                        @if ($errors->has('codigo_actividad_id'))
+                        <span class="error text-danger">{{ $errors->first('codigo_actividad_id') }}</span>
+                        @endif
+                    </div>
                 </div>
                 
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <a href="{{ route('destacan.index') }}">
+        <a href="{{ route('empresasD.index') }}">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </a>
 

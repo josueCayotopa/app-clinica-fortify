@@ -42,18 +42,6 @@ class PensionistaController extends Controller
     {
         abort_if(Gate::denies('user_index'), 403);
 
-        $pensionistas = Pensionista::all();
-
-        if ($request->ajax()) {
-            return response()->json([
-                'view' => view('pensionistas.index', compact('pensionistas'))->render(),
-                'url' => route('pensionistas.index', $request->query())
-            ]);
-        }
-        return view('home')->with([
-            'view' => 'pensionistas.index',
-            'data' => compact('pensionistas'),
-        ]);
 
         $query = DatosPersonal::query();
 
