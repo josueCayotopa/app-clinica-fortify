@@ -13,6 +13,7 @@ class PeriodoLaboral extends Model
         'fecha_inicio',
         'fecha_fin',
         'motivo_fin_id',
+        'estado',
     ];
 
     public function categoriaPeriodo()

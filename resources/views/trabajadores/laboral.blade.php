@@ -51,7 +51,8 @@
             <div class="form-group">
                 <label for="ocupacion_id">Asignar Ocupacion <span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="ocupacion_id" name="ocupacion_id">
-                    <option value="" disabled>Selecciona una Ocupación</option>
+                    <option value="" disabled {{ old('ocupacion_id') ? '' : 'selected' }}>Selecciona un Tipo
+                    </option>
                 </select>
                 @if ($errors->has('ocupacion_id'))
                     <span class="error text-danger">{{ $errors->first('ocupacion_id') }}</span>
@@ -91,6 +92,25 @@
         </div>
         <div class="col-md-6 mb-1">
             <div class="form-group">
+                <label for="institucion_id">Institucion <span class="campo-obligatorio">*</span></label>
+                <select class="form-control" id="institucion_id" name="institucion_id">
+                    <option value="" disabled {{ old('institucion_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
+                    @foreach ($instituciones as $id => $instituciones)
+                        <option value="{{ $id }}" {{ old('institucion_id') == $id ? 'selected' : '' }}>
+                            {{ $instituciones }}</option>
+                    @endforeach
+
+                </select>
+                @if ($errors->has('institucion_id'))
+                    <span class="error text-danger">
+                        {{ $errors->first('institucion_id') }}</span>
+                @endif
+            </div>
+        </div>
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
                 <label for="nivel_edicativo_id">Nivel de educacion<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="nivel_edicativo_id" name="nivel_edicativo_id">
                     <option value="" disabled {{ old('nivel_edicativo_id') ? '' : 'selected' }}>
@@ -108,7 +128,25 @@
                 @endif
             </div>
         </div>
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="profecion_id">Profesion<span class="campo-obligatorio">*</span></label>
+                <select class="form-control" id="profecion_id" name="profecion_id">
+                    <option value="" disabled {{ old('profecion_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
+                    @foreach ($profeciones as $id => $profeciones)
+                        <option value="{{ $id }}" {{ old('profecion_id') == $id ? 'selected' : '' }}>
+                            {{ $profeciones }}</option>
+                    @endforeach
 
+                </select>
+                @if ($errors->has('profecion_id'))
+                    <span class="error text-danger">
+                        {{ $errors->first('profecion_id') }}</span>
+                @endif
+            </div>
+        </div>
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="discapacidad">Discapacidad</label>
@@ -123,7 +161,9 @@
             <div class="form-group">
                 <label for="contrato_trabajo_id">Tipo Contrato <span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="contrato_trabajo_id" name="contrato_trabajo_id">
-                    <option value="" disabled>Selecciona un Tipo</option>
+                    <option value="" disabled {{ old('contrato_trabajo_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
                     @foreach ($tipoContratosTrabajo as $id => $tipoContratosTrabajo)
                         <option value="{{ $id }}" {{ old('contrato_trabajo_id') == $id ? 'selected' : '' }}>
                             {{ $tipoContratosTrabajo }}</option>
@@ -135,6 +175,7 @@
                 @endif
             </div>
         </div>
+
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="trabajo_sujeto_alt_acum_atip_desc">El trabajador esta sujeton </label>

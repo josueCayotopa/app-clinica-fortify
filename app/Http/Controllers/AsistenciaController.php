@@ -4,41 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Asistencia;
+use App\Models\DatosPersonal;
 
 class AsistenciaController extends Controller
-{
-    public function index(Request $request)
+{ public function index(Request $request)
     {
-        $asistencias = Asistencia::all();
-        if ($request->ajax()) {
-            return response()->json([
-                'view' => view('asistenciaa.index', compact('asistencias'))->render(),
-                'url' => route('asistencia.index', $request->query())
-            ]);
-        }
-        return view('home')->with([
-            'view' => 'asistenciaa.index',
-            'data' => compact('asistencias'),
-        ]);
-       
+        $fecha = $request->input('fecha', now()->format('Y-m-d'));
+        $asistencias = Asistencia::where('fecha', $fecha)->with('trabajador')->get();
+        $trabajadores = DatosPersonal::all();
+
+        return view('asistenciaa.index', compact('asistencias', 'trabajadores', 'fecha'));
     }
 
-    // Supongamos que esta función recibe los datos del sistema biométrico y los guarda
-    public function registrarEntradaSalida(Request $request)
+    public function marcarTodos(Request $request)
     {
-        $asistencia = Asistencia::firstOrCreate(
-            ['nombre' => $request->nombre, 'fecha' => $request->fecha],
-            ['hora_entrada' => $request->hora_entrada, 'hora_salida' => $request->hora_salida]
-        );
+        $fecha = $request->input('fecha', now()->format('Y-m-d'));
+        $trabajadores = DatosPersonal::all();
 
-        if ($request->hora_entrada) {
-            $asistencia->hora_entrada = $request->hora_entrada;
+        foreach ($trabajadores as $trabajador) {
+            Asistencia::updateOrCreate(
+                ['fecha' => $fecha, 'trabajador_id' => $trabajador->id],
+                ['hora_entrada' => now(), 'hora_salida' => now()]
+            );
         }
-        if ($request->hora_salida) {
-            $asistencia->hora_salida = $request->hora_salida;
-        }
-        $asistencia->save();
 
-        return response()->json(['status' => 'ok']);
+        return redirect()->route('asistencias.index', ['fecha' => $fecha])->with('success', 'Todos los empleados han sido marcados como asistidos.');
     }
 }

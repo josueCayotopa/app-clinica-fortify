@@ -5,18 +5,27 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ConocimientoCreateRequest;
 
 use App\Models\Conocimiento;
-
+use Illuminate\Http\Request;
 
 class ConocimientoController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
 
     {
 
         $conocimientos=Conocimiento::paginate(5);
-
-        return view('empleados.planillas.conocimiento.index', compact('conocimientos') );
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('empleados.planillas.conocimiento.index', compact('conocimientos'))->render(),
+                'url' => route('conocimiento.index', $request->query())
+            ]);
+        }
+        return view('home')->with([
+            'view' => 'empleados.planillas.conocimiento.index',
+            'data' => compact('conocimientos'),
+        ]);
+    
     }
 
 
