@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Distrito;
 use App\Models\Ocupacion;
 use App\Models\Provincia;
+use App\Models\RegimenAfp;
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
 
@@ -34,5 +35,10 @@ class UbigeoController extends Controller
         $ocupaciones = Ocupacion::where('tipo_trabajador_id', $tipo_trabajador_id)->get();
 
         return response()->json($ocupaciones);
+    }
+    public function getAfpsByRegimen(Request $request)
+    {
+        $afps = RegimenAfp::where('regimen_id', $request->regimen_id)->get();
+        return response()->json($afps);
     }
 }

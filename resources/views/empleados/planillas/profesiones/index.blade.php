@@ -20,7 +20,7 @@
         
         </div>
         
-        <button type="button" class="btn btn-primary ms-3 open-modal-btn-new" 
+        <button type="button" class="el-button el-button--primary ms-2 open-modal-btn-new" 
         id="new-button" data-toggle="modal" data-target="#modalNewProfesion"> Nuevo 
         <span><i class='bx bx-user-plus'></i></span> 
         </button>
@@ -49,7 +49,7 @@
                                         justify-content: center;
                                         margin-top: 20px;">
             
-                                <button  class="btn btn-warning " data-toggle="modal"
+                                <button  class="el-button el-button--primary " data-toggle="modal"
                                 data-target="#editProfesion{{ $pro->id }}"                           
                                     style="margin: 0 2px;">
                                     <span><i class='bx bx-edit-alt'></i></span>
@@ -59,7 +59,7 @@
                                         onsubmit="return confirm('¿Seguro que quieres eliminar este elemento? ')">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" style="margin: 0 2px;">
+                                        <button class="el-button el-button--danger" type="submit" style="margin: 0 2px;">
                                             <span><span><i class='bx bxs-user-x'></i></span>
                                         </button>
 
@@ -113,8 +113,8 @@
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <input type="submit" class="btn btn-primary" id="submitButton" value="Guardar">
+            <button type="button" class="el-button el-button--secondary" data-dismiss="modal">Cerrar</button>
+            <input type="submit" class="el-button el-button--primary" id="submitButton" value="Guardar">
         </div>
         </div>
         </form>

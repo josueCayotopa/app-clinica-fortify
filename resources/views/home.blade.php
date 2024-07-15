@@ -1,6 +1,6 @@
 @extends('layouts.home')
 @section('main')
-<div id="dynamic-content">
+    <div id="dynamic-content">
         @if (view()->exists($view))
             @include($view, $data ?? [])
         @else
@@ -8,7 +8,7 @@
         @endif
     </div>
 
-    
+
     <script>
         $(document).ready(function() {
             $(document).on('click', '.pagination a', function(event) {
@@ -16,7 +16,13 @@
                 var url = $(this).attr('href');
                 fetchPage(url);
             });
-    
+
+            $('#search-input').on('input', function() {
+                var search = $(this).val();
+                var url = "{{ route('tipos_descuento.index') }}?search=" + search;
+                fetchPage(url);
+            });
+
             function fetchPage(url) {
                 $.ajax({
                     url: url,
@@ -29,7 +35,7 @@
                     }
                 });
             }
-    
+
             window.onpopstate = function() {
                 var url = window.location.href;
                 fetchPage(url);

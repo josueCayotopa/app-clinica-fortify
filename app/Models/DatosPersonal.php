@@ -33,6 +33,8 @@ class DatosPersonal extends Model
         'nombre_zona',
         'referencia',
         'distrito_id',
+        'institucion_id',
+        'prefesion_id',
         'trabajador_id',
         'pensionista_id',
         'trabajador_cuarta_categoria_id',
@@ -75,10 +77,13 @@ class DatosPersonal extends Model
     {
         return $this->belongsTo(TrabajadorCuartaCategoria::class, 'trabajador_cuarta_categoria_id');
     }
-    public function modaliad_formativa()
+    public function modalidad_formativa()
     {
-        return $this->belongsTo(ModaliadFormativa::class, 'modaliad_formativa_id');
+        return $this->belongsTo(ModalidadFormativa::class, 'modaliad_formativa_id');
     }
-
+    public function asistencias()
+    {
+        return $this->hasMany(Asistencia::class, 'trabajador_id');
+    }
 
 }

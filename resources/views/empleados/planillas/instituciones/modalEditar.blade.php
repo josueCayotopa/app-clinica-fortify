@@ -23,8 +23,8 @@
             </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="submitButton-Editar" >Actualizar</button>
+                    <button type="button" class="el-button el-button--secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="el-button el-button--primary" id="submitButton-Editar" >Actualizar</button>
                 </div>
             </div>
         </form>

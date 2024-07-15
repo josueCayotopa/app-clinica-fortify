@@ -40,14 +40,20 @@
                 <li class="menu-item">
                     <a href="{{ route('personals.index') }}" class="menu-link">
 
-                        <div data-i18n="Empleado">Empleado</div>
                         <div data-i18n="Empleado">Personal</div>
+                       
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="{{ route('trabajadores.index') }}" class="menu-link">
 
                         <div data-i18n="Empleado">Trabajador</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('modalidad_formativa.index') }}" class="menu-link">
+
+                        <div data-i18n="Empleado">Modalidad Formativa</div>
                     </a>
                 </li>
 
@@ -118,11 +124,6 @@
                         <div data-i18n="Ventas">Conceptos</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Ventas">Acumuacion de conceptos</div>
-                    </a>
-                </li>
 
 
             </ul>
@@ -131,13 +132,26 @@
     </ul>
     </li>
     <li class="menu-item ">
-        @can('vacaciones')
-            <a href="#" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-map-alt'> </i>
-                <div data-i18n="Ventas">Vacaciones</div>
-            </a>
-        @endcan
 
+        <a href="#" class="menu-link menu-toggle">
+            <i class='menu-icon bx bx-map-alt'> </i>
+            <div data-i18n="Ventas">Asistencia y Licencias </div>
+        </a>
+        <ul class="menu-sub">
+            <li class="menu-item">
+                <a href=" {{ route('asistencias.index') }}" class="menu-link">
+                    <div data-i18n="New Sale">Asistencias Personal</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="menu-item ">
+
+        <a href="#" class="menu-link menu-toggle">
+            <i class='menu-icon bx bx-map-alt'> </i>
+            <div data-i18n="Ventas">Vacaciones</div>
+        </a>
         <ul class="menu-sub">
 
             <li class="menu-item">
@@ -181,7 +195,12 @@
                 </a>
             </li>
             <li class="menu-item ">
-                <a href="{{ route('descuento_pensiones.index') }}" class="menu-link">
+                <a href="{{ route('tipos_descuento.index') }}" class="menu-link">
+                    <div data-i18n="Productos">Tipo Descuentos</div>
+                </a>
+            </li>
+            <li class="menu-item ">
+                <a href="{{ route('descuentos_pensiones.index') }}" class="menu-link">
                     <div data-i18n="Productos">Descuento Pensiones</div>
                 </a>
             </li>

@@ -19,8 +19,12 @@ return new class extends Migration
             $table->integer('minutos_trabajados')->nullable();          
             $table->integer('horas_sobretiempo')->nullable(); 
             $table->integer('minutos_sobretiempo')->nullable(); 
+            $table->string('descripcion')->nullable(); 
+            $table->integer('numero_dias_semana')->nullable(); 
+            $table->time('hora_ingreso')->nullable(); 
+            $table->time('hora_salida')->nullable(); 
+
             $table->timestamps();
-          
         });
     }
     /**

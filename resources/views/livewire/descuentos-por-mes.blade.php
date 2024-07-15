@@ -1,3 +1,6 @@
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 <div class="card-body mt-5 mb-1">
     @if (session()->has('message'))
         <div class="alert alert-success">
@@ -23,19 +26,18 @@
             </div>
             <div class="col-md-4 mb-3">
                 <div class="form-group">
-                    <label for="descuento_id">Descuento <button type="button" class="btn btn-link primary"
-                            id="openAddDescuentoModal">
+                    <label for="descuento_id">Descuento
+                        <button type="button" class="btn btn-link primary" id="openAddDescuentoModal">
                             Crear
-                        </button></label>
+                        </button>
+                    </label>
                     <div class="input-group">
                         <select wire:model="descuento_id" class="form-control">
                             <option value="">Seleccionar Descuento</option>
                             @foreach ($descuentos as $descuento)
                                 <option value="{{ $descuento->id }}">{{ $descuento->descripcion }}</option>
                             @endforeach
-
                         </select>
-
                     </div>
                     @error('descuento_id')
                         <span class="text-danger">{{ $message }}</span>
@@ -120,8 +122,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="addDescuentoModal" tabindex="-1" aria-labelledby="addDescuentoModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="addDescuentoModal" tabindex="-1" aria-labelledby="addDescuentoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -133,15 +134,14 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="descuento_descripcion">Descripción</label>
-                    <input type="text" class="form-control" id="descuento_descripcion"
-                        wire:model="descuento_descripcion">
+                    <input type="text" class="form-control" id="descuento_descripcion" wire:model="descuento_descripcion">
                     @error('descuento_descripcion')
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="closeModalButton">Cerrar</button>
+                <button type="button" class="btn btn-secondary" id="closeModalButton" data-dismiss="modal">Cerrar</button>
                 <button type="button" wire:click.prevent="addDescuento" class="btn btn-primary">Guardar</button>
             </div>
         </div>
@@ -151,38 +151,11 @@
 <script>
     document.addEventListener('livewire:load', function() {
         @this.on('closeModal', function() {
-            document.getElementById('closeModalButton').click();
+            $('#addDescuentoModal').modal('hide');
         });
 
-        // Auto-focus input field when modal is shown
-        const myModal = document.getElementById('addDescuentoModal');
-        document.getElementById('openAddDescuentoModal').addEventListener('click', () => {
-            myModal.style.display = 'block';
-            document.body.classList.add('modal-open');
-            myModal.classList.add('show');
-            myModal.style.display = 'block';
-            myModal.removeAttribute('aria-hidden');
-            myModal.setAttribute('aria-modal', 'true');
-            myModal.setAttribute('role', 'dialog');
-            document.getElementById('descuento_descripcion').focus();
-        });
-
-        document.getElementById('closeModalButton').addEventListener('click', () => {
-            myModal.style.display = 'none';
-            document.body.classList.remove('modal-open');
-            myModal.classList.remove('show');
-            myModal.setAttribute('aria-hidden', 'true');
-            myModal.removeAttribute('aria-modal');
-            myModal.removeAttribute('role');
-        });
-
-        myModal.querySelector('.close').addEventListener('click', () => {
-            myModal.style.display = 'none';
-            document.body.classList.remove('modal-open');
-            myModal.classList.remove('show');
-            myModal.setAttribute('aria-hidden', 'true');
-            myModal.removeAttribute('aria-modal');
-            myModal.removeAttribute('role');
+        document.getElementById('openAddDescuentoModal').addEventListener('click', function() {
+            $('#addDescuentoModal').modal('show');
         });
     });
 </script>

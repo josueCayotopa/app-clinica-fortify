@@ -79,12 +79,14 @@
                 <label for="motivo_fin_id">Motivo fin del periodo laboral<span
                         class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="motivo_fin_id" name="motivo_fin_id">
+                    <option value="" disabled {{ old('motivo_fin_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
                     @foreach ($motivoFinPeriodo as $id => $motivoFinPeriodo)
                         <option value="{{ $id }}"
                             {{ old('motivo_fin_id') == $id ? 'selected' : '' }}>
                             {{ $motivoFinPeriodo }}</option>
                     @endforeach
-                    <option value="" disabled>Selecciona un Tipo</option>
                 </select>
                 @if ($errors->has('motivo_fin_id'))
                     <span class="error text-danger">

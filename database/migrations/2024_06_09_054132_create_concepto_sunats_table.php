@@ -28,7 +28,7 @@ return new class extends Migration
             $table->char('sistema_privado_de_pensiones', 1)->nullable();
             $table->char('renta_5ta_categoría_retenciones', 1)->nullable();
             $table->char('essalud_seguro_regular_pensionista', 1)->nullable();
-            $table->char('contrib_solidaria_asistencia previs', 1)->nullable();
+            $table->char('contrib_solidaria_asistencia_sprevis', 1)->nullable();
             $table->timestamps();
         });
     }
