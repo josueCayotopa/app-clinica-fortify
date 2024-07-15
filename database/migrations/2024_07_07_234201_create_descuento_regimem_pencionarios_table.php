@@ -13,17 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('afps', function (Blueprint $table) {
+        Schema::create('descuento_regimem_pencionarios', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 15)->nullable(); 
-            $table->string('nombre')->nullable(); 
-            $table->boolean('estado')->default(false)->nullable(); 
-            $table->date('fecha_baja')->nullable(); 
-            $table->timestamps(); 
-
+            $table->string('descripcion')->unique()->nullable();
+            $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('afps');
+        Schema::dropIfExists('descuento_regimem_pencionarios');
     }
 };

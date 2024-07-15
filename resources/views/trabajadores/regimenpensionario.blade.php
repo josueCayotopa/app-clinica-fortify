@@ -73,5 +73,47 @@
 
             </div>
         </div>
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="afiliado_eps_servicios_propios">Afiliado a EPS</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="afiliado_eps_servicios_propios" id="afiliado_eps_servicios_propios" >
+                    <label class="form-check-label" for="afiliado_eps_servicios_propios">¿El Trabajador es Afiliado a EPS? </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="eps_id"> Seleccione EPS</label>
+                <select class="form-control" id="eps_id" name="eps_id">
+                    <option value="" disabled>Selecciona un Tipo</option>
+                    @foreach ($eps as $id => $nombre_eps)
+                        <option value="{{ $id }}" {{ old('eps_id') == $id ? 'selected' : '' }}>
+                            {{ $nombre_eps }}</option>
+                    @endforeach
+                    
+                </select>
+                @if ($errors->has('eps_id'))
+                    <span class="error text-danger"> {{ $errors->first('eps_id') }}</span>
+                @endif
+
+            </div>
+        </div>
+        <div class="col-md-6 mb-1">
+            <div class="form-group">
+                <label for="situacion_id"> Situacion EPS</label>
+                <select class="form-control" id="situacion_id" name="situacion_id">
+                    <option value="" disabled>Selecciona un Tipo</option>
+                    @foreach ($situacioneps as $id => $situacioneps)
+                        <option value="{{ $id }}" {{ old('situacion_id') == $id ? 'selected' : '' }}>
+                            {{ $situacioneps }}</option>
+                    @endforeach
+                </select>
+                @if ($errors->has('situacion_id'))
+                    <span class="error text-danger"> {{ $errors->first('situacion_id') }}</span>
+                @endif
+
+            </div>
+        </div>
     </div>
 </div>

@@ -25,7 +25,6 @@ class Sucursal extends Model
         'des_direccion',
         'estado',
         'tipo_establecimiento_id',
-        'denominacion_establecimiento',
         'centro_riesgo',
         'tasa_sctr_essalud'
     ];

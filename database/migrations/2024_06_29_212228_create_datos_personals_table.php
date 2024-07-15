@@ -39,13 +39,11 @@ return new class extends Migration
             $table->string('nombre_zona', 20)->nullable();
             $table->string('referencia', 40)->nullable();
             $table->unsignedBigInteger('distrito_id')->nullable(); 
-
             // trabajadores
             $table->unsignedBigInteger('trabajador_id')->nullable(); 
             $table->unsignedBigInteger('pensionista_id')->nullable(); 
             $table->unsignedBigInteger('trabajador_cuarta_categoria_id')->nullable(); 
             $table->unsignedBigInteger('modaliad_formativa_id')->nullable(); 
-
             $table->timestamps();
             
             // foreig key   
@@ -60,7 +58,6 @@ return new class extends Migration
             $table->foreign('pensionista_id')->references('id')->on('pencionistas');
             $table->foreign('trabajador_cuarta_categoria_id')->references('id')->on('trabajador_cuarta_categorias');
             $table->foreign('modaliad_formativa_id')->references('id')->on('modalidad_formativas');
-
         });
     }
 

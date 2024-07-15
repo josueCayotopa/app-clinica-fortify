@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departamento_Region;
+use App\Models\Nacionalidad;
+use App\Models\TipoDocumento;
 use App\Models\TrabajadorCuartaCategoria;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -21,6 +24,7 @@ class TrabajadorCuartaCategoriaController extends Controller
         return view('home')->with([
             'view' => 'empleados.cuarta_categoria.index'
             
+            
         ]);
 
 
@@ -33,12 +37,17 @@ class TrabajadorCuartaCategoriaController extends Controller
      */
     public function create()
     {
-        
+        $tipoDocumento = TipoDocumento::pluck('descripcion', 'id');
+        $nacionalidad = Nacionalidad::pluck('descripcion', 'id');
+        $departamentos = Departamento_Region::pluck('descripcion', 'id');
 
 
 
         return view('home')->with([
-            'view' => 'empleados.cuarta_categoria.create'
+            'view' => 'empleados.cuarta_categoria.create',
+            'data' => compact('tipoDocumento',
+            'nacionalidad',
+            'departamentos')
             
         ]);
     }

@@ -17,7 +17,11 @@ class RegimenPencionario extends Model
     public function trabajadores()
     {
         return $this->hasMany(Trabajador::class, 'regimen_pencionario_id');
+        
+        
     }
-    
-
+    public function afps()
+    {
+        return $this->hasMany(RegimenAfp::class);
+    }
 }

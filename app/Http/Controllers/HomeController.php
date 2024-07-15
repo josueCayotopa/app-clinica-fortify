@@ -51,7 +51,7 @@ class HomeController extends Controller
             ]);
         }
 
-        return view('home')->with([
+        return view('layouts.dashboard')->with([
             'view' => 'dashboard.index',
             'data' => compact('onlineUsers', 'usuarios'),
         ]);
