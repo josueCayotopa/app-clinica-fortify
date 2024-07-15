@@ -723,7 +723,9 @@ select {
   padding: 5px; /* Espacio interno opcional */
   margin-bottom: 5px; /* Espacio debajo del div */
 }
-
+input[type="text"] {
+  text-transform: uppercase;
+}
 
 
 

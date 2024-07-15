@@ -41,7 +41,7 @@ class EmpresaRequest extends FormRequest
             'zona_id' => 'required|exists:zonas,id',
             'via_id' => 'required|exists:vias,id',
             'pais_id' => 'required|exists:nacionalidad,id',
-            'tipo_moneda' => 'required|exists:tipo_monedas,id',
+            'tipo_moneda_id' => 'required|exists:tipo_monedas,id',
         ];
     }
     public function messages()

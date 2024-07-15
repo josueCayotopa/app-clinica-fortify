@@ -262,7 +262,7 @@
 
                 {{-- prueba de tbody --}}
                 <tbody>
-                    @forelse ($pensionista as $pensionista)
+                    @forelse ($datosPersonales as $pensionista)
                         <tr>
                             <td>{{ $pensionista->id }}</td>
                             <td>{{ $pensionista->tipoDocumento->descripcion ?? 'N/A' }}</td>

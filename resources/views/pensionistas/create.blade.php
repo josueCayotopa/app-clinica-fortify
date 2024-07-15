@@ -64,9 +64,6 @@
         </form>
     </div>
 </body> --}}
-<style>
-
-</style>
 
 <header>
    
@@ -76,28 +73,28 @@
                     aria-controls="general" aria-selected="true">General</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="beneficios-tab" data-toggle="tab" href="#domicilio" role="tab"
+                <a class="nav-link" id="domicilio-tab" data-toggle="tab" href="#domicilio" role="tab"
                     aria-controls="beneficios" aria-selected="false">Domicilio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="contacto-tab" data-toggle="tab" href="#laboral" role="tab"
-                    aria-controls="contacto" aria-selected="false">Laboral</a>
+                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#laboral" role="tab"
+                    aria-controls="laboral" aria-selected="false">Laboral</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#regimen" role="tab"
-                    aria-controls="laboral" aria-selected="false">Regimen Pensionario</a>
+                <a class="nav-link" id="regimen-tab" data-toggle="tab" href="#regimen" role="tab"
+                    aria-controls="regimen" aria-selected="false">Regimen Pensionario</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#pLaboral" role="tab"
-                    aria-controls="laboral" aria-selected="false">Periodo Laboral</a>
+                <a class="nav-link" id="pLaboral-tab" data-toggle="tab" href="#pLaboral" role="tab"
+                    aria-controls="plaboral" aria-selected="false">Periodo Laboral</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#remuneracion" role="tab"
-                    aria-controls="laboral" aria-selected="false">Remuneracion</a>
+                <a class="nav-link" id="remuneracion-tab" data-toggle="tab" href="#remuneracion" role="tab"
+                    aria-controls="remuneracion" aria-selected="false">Remuneracion</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#sucursal" role="tab"
-                    aria-controls="laboral" aria-selected="false">Sucursal</a>
+                <a class="nav-link" id="suucursal-tab" data-toggle="tab" href="#sucursal" role="tab"
+                    aria-controls="sucursal" aria-selected="false">Sucursal</a>
             </li>
 
             {{-- <li class="nav-item">
@@ -445,18 +442,18 @@
             </div>
 
             {{-- CONTACTO Y OTROS --}}
-            <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="laboral-tab">
+            {{-- <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="laboral-tab">
 
                 <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="form-group">
                             <label for="periodicidad_id">Periodicidad de la remuneracion</label>
                             <select class="form-control" id="periodicidad_id" name="periodicidad_id">
-                                {{-- @foreach ($periodicidades as $id => $periodicidad)
+                                @foreach ($periodicidades as $id => $periodicidad)
                                     <option value="{{ $id }}"
                                         {{ old('periodicidad_id') == $id ? 'selected' : '' }}>
                                         {{ $periodicidad }}</option>
-                                @endforeach --}}
+                                @endforeach
                                 <option value="" disabled>Selecciona un Tipo</option>
                             </select>
                             @if ($errors->has('periodicidad_id'))
@@ -482,11 +479,11 @@
                         <div class="form-group">
                             <label for="eps_id">Tipo EPS</label>
                             <select class="form-control" id="eps_id" name="eps_id">
-                                {{-- @foreach ($eps as $id => $eps_des)
+                                @foreach ($eps as $id => $eps_des)
                                     <option value="{{ $id }}"
                                         {{ old('eps_id') == $id ? 'selected' : '' }}>
                                         {{ $eps_des }}</option>
-                                @endforeach --}}
+                                @endforeach
                                 <option value="" disabled>Selecciona un Tipo</option>
                             </select>
                             @if ($errors->has('eps_id'))
@@ -499,11 +496,11 @@
                         <div class="form-group">
                             <label for="situacion_id">Situiacion EPS</label>
                             <select class="form-control" id="situacion_id" name="situacion_id">
-                                {{-- @foreach ($situacionesEPS as $id => $situacionEPS)
+                                @foreach ($situacionesEPS as $id => $situacionEPS)
                                     <option value="{{ $id }}"
                                         {{ old('situacion_id') == $id ? 'selected' : '' }}>
                                         {{ $situacionEPS }}</option>
-                                @endforeach --}}
+                                @endforeach
                                 <option value="" disabled>Selecciona un Tipo</option>
                             </select>
                             @if ($errors->has('situacion_id'))
@@ -546,11 +543,11 @@
                         <div class="form-group">
                             <label for="tipo_pago_id">Tipo de Pago </label>
                             <select class="form-control" id="tipo_pago_id" name="tipo_pago_id">
-                                {{-- @foreach ($tiposPago as $id => $tipoPago)
+                                @foreach ($tiposPago as $id => $tipoPago)
                                     <option value="{{ $id }}"
                                         {{ old('tipo_pago_id') == $id ? 'selected' : '' }}>
                                         {{ $tipoPago }}</option>
-                                @endforeach --}}
+                                @endforeach
                                 <option value="" disabled>Selecciona un Tipo</option>
                             </select>
                             @if ($errors->has('tipo_pago_id'))
@@ -575,11 +572,11 @@
                             </label>
                             <select class="form-control" id="categoria_ocupacional_trabajador"
                                 name="categoria_ocupacional_trabajador">
-                                {{-- @foreach ($categoriaocupacionales as $id => $categoriaocupacionale)
+                                @foreach ($categoriaocupacionales as $id => $categoriaocupacionale)
                                     <option value="{{ $id }}"
                                         {{ old('categoria_ocupacional_trabajador') == $id ? 'selected' : '' }}>
                                         {{ $categoriaocupacionale }}</option>
-                                @endforeach --}}
+                                @endforeach
                                 <option value="" disabled>Selecciona un Tipo</option>
                             </select>
                             @if ($errors->has('categoria_ocupacional_trabajador'))
@@ -598,11 +595,11 @@
                         <div class="form-group">
                             <label for="convenio_id"> Convenios Internacionales</label>
                             <select class="form-control" id="convenio_id" name="convenio_id">
-                                {{-- @foreach ($convenios as $id => $convenio)
+                                @foreach ($convenios as $id => $convenio)
                                     <option value="{{ $id }}"
                                         {{ old('convenio_id') == $id ? 'selected' : '' }}>
                                         {{ $convenio }}</option>
-                                @endforeach --}}
+                                @endforeach
                                 <option value="" disabled>Selecciona un Tipo</option>
                             </select>
                             @if ($errors->has('convenio_id'))
@@ -611,11 +608,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            
-            
+            </div> --}}
         </div>
+
         <div class="row">
             <div class="col-md-12 gap-2 d-md-flex justify-content-md-end">
 
@@ -631,125 +626,125 @@
 </div>
 
 </form>
-<h2>Crear Pensionista</h2>
+{{-- <h2>Crear Pensionista</h2>
 
 
-<form action="{{ route('pensionistas.store') }}" method="POST" autocomplete="off">
-    @csrf
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="tipo_pensionista_id">Tipo Pensionista</label>
-                <select class="form-control" id="tipo_pensionista_id" name="tipo_pensionista_id" required>
-                    <option value="">Seleccione Tipo Pensionista</option>
-                    @foreach ($tipoPensionistas as $tipo)
-                        <option value="{{ $tipo->id }}">{{ $tipo->descripcion }}</option>
-                    @endforeach
-                </select>
+    <form action="{{ route('pensionistas.store') }}" method="POST" autocomplete="off">
+        @csrf
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="tipo_pensionista_id">Tipo Pensionista</label>
+                    <select class="form-control" id="tipo_pensionista_id" name="tipo_pensionista_id" required>
+                        <option value="">Seleccione Tipo Pensionista</option>
+                        @foreach ($tipoPensionistas as $tipo)
+                            <option value="{{ $tipo->id }}">{{ $tipo->descripcion }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="regimen_pencionario_id">Régimen Pensionario</label>
+                    <select class="form-control" id="regimen_pencionario_id" name="regimen_pencionario_id" required>
+                        <option value="">Seleccione Régimen Pensionario</option>
+                        @foreach ($regimenPencionario as $regimen)
+                            <option value="{{ $regimen->id }}">{{ $regimen->descripcion }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fecha_inscripcion">Fecha Inscripción</label>
+                    <input type="date" class="form-control" id="fecha_inscripcion" name="fecha_inscripcion" required>
+                </div>
+                <div class="form-group">
+                    <label for="cuspp">CUSPP</label>
+                    <input type="text" class="form-control" id="cuspp" name="cuspp" maxlength="12" required>
+                </div>
+                <div class="form-group">
+                    <label for="situacion_e_p_s_id">Situación EPS</label>
+                    <select class="form-control" id="situacion_e_p_s_id" name="situacion_e_p_s_id" required>
+                        <option value="">Seleccione Situación EPS</option>
+                        @foreach ($situacionEPS as $situacion)
+                            <option value="{{ $situacion->id }}">{{ $situacion->descripcion }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipo_pago_id">Tipo de Pago</label>
+                    <select class="form-control" id="tipo_pago_id" name="tipo_pago_id" required>
+                        <option value="">Seleccione Tipo de Pago</option>
+                        @foreach ($tipoPagos as $tipoPago)
+                            <option value="{{ $tipoPago->id }}">{{ $tipoPago->descripcion }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tipo_banco_id">Tipo de Banco</label>
+                    <select class="form-control" id="tipo_banco_id" name="tipo_banco_id">
+                        <option value="">Seleccione Tipo de Banco</option>
+                        @foreach ($tipoBancos as $tipoBanco)
+                            <option value="{{ $tipoBanco->id }}">{{ $tipoBanco->descripcion }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="regimen_pencionario_id">Régimen Pensionario</label>
-                <select class="form-control" id="regimen_pencionario_id" name="regimen_pencionario_id" required>
-                    <option value="">Seleccione Régimen Pensionario</option>
-                    @foreach ($regimenPencionario as $regimen)
-                        <option value="{{ $regimen->id }}">{{ $regimen->descripcion }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="fecha_inscripcion">Fecha Inscripción</label>
-                <input type="date" class="form-control" id="fecha_inscripcion" name="fecha_inscripcion" required>
-            </div>
-            <div class="form-group">
-                <label for="cuspp">CUSPP</label>
-                <input type="text" class="form-control" id="cuspp" name="cuspp" maxlength="12" required>
-            </div>
-            <div class="form-group">
-                <label for="situacion_e_p_s_id">Situación EPS</label>
-                <select class="form-control" id="situacion_e_p_s_id" name="situacion_e_p_s_id" required>
-                    <option value="">Seleccione Situación EPS</option>
-                    @foreach ($situacionEPS as $situacion)
-                        <option value="{{ $situacion->id }}">{{ $situacion->descripcion }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="tipo_pago_id">Tipo de Pago</label>
-                <select class="form-control" id="tipo_pago_id" name="tipo_pago_id" required>
-                    <option value="">Seleccione Tipo de Pago</option>
-                    @foreach ($tipoPagos as $tipoPago)
-                        <option value="{{ $tipoPago->id }}">{{ $tipoPago->descripcion }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="tipo_banco_id">Tipo de Banco</label>
-                <select class="form-control" id="tipo_banco_id" name="tipo_banco_id">
-                    <option value="">Seleccione Tipo de Banco</option>
-                    @foreach ($tipoBancos as $tipoBanco)
-                        <option value="{{ $tipoBanco->id }}">{{ $tipoBanco->descripcion }}</option>
-                    @endforeach
-                </select>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="numero_bancaria">Número de cuenta Bancaria</label>
+                    <input type="text" class="form-control" id="numero_bancaria" name="numero_bancaria"
+                        maxlength="40">
+                </div>
+
+
+                <div class="form-group">
+                    <label for="monto_pago">Monto de Pago</label>
+
+                    <input type="number" class="form-control" id="monto_pago" name="monto_pago" min="0"
+                        step="1">
+
+                </div>
+
+                <div class="form-group">
+                    <label for="periodo_laboral_id">Periodo Laboral</label>
+                    <select class="form-control" id="periodo_laboral_id" name="periodo_laboral_id">
+                        <option value="">Seleccione Periodo Laboral</option>
+                        @foreach ($periodoLaborales as $periodo)
+                            <option value="{{ $periodo->id }}">{{ $periodo->nombre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="derechohabientes">Derechohabientes</label>
+                    <input type="text" class="form-control" id="derechohabientes" name="derechohabientes"
+                        maxlength="1">
+                </div>
+                <div class="form-group">
+                    <label for="remuneracion_pencionista_id">Remuneración Pensionista</label>
+                    <select class="form-control" id="remuneracion_pencionista_id" name="remuneracion_pencionista_id">
+                        <option value="">Seleccione Remuneración Pensionista</option>
+                        @foreach ($remuneracionPensionistas as $remuneracion)
+                            <option value="{{ $remuneracion->id }}">{{ $remuneracion->nombre }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sucursal_establecimiento_laboral_id">Sucursal Establecimiento Laboral</label>
+                    <select class="form-control" id="sucursal_establecimiento_laboral_id"
+                        name="sucursal_establecimiento_laboral_id">
+                        <option value="">Seleccione Sucursal Establecimiento Laboral</option>
+                        @foreach ($sucursalEstablecimientos as $sucursal)
+                            <option value="{{ $sucursal->id }}">{{ $sucursal->nombre_sucursal }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="numero_bancaria">Número de cuenta Bancaria</label>
-                <input type="text" class="form-control" id="numero_bancaria" name="numero_bancaria"
-                    maxlength="40">
-            </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{{ route('pensionistas.index') }}">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </a>
 
+    </form> --}}
 
-            <div class="form-group">
-                <label for="monto_pago">Monto de Pago</label>
-
-                <input type="number" class="form-control" id="monto_pago" name="monto_pago" min="0"
-                    step="1">
-
-            </div>
-
-            <div class="form-group">
-                <label for="periodo_laboral_id">Periodo Laboral</label>
-                <select class="form-control" id="periodo_laboral_id" name="periodo_laboral_id">
-                    <option value="">Seleccione Periodo Laboral</option>
-                    @foreach ($periodoLaborales as $periodo)
-                        <option value="{{ $periodo->id }}">{{ $periodo->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="derechohabientes">Derechohabientes</label>
-                <input type="text" class="form-control" id="derechohabientes" name="derechohabientes"
-                    maxlength="1">
-            </div>
-            <div class="form-group">
-                <label for="remuneracion_pencionista_id">Remuneración Pensionista</label>
-                <select class="form-control" id="remuneracion_pencionista_id" name="remuneracion_pencionista_id">
-                    <option value="">Seleccione Remuneración Pensionista</option>
-                    @foreach ($remuneracionPensionistas as $remuneracion)
-                        <option value="{{ $remuneracion->id }}">{{ $remuneracion->nombre }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="sucursal_establecimiento_laboral_id">Sucursal Establecimiento Laboral</label>
-                <select class="form-control" id="sucursal_establecimiento_laboral_id"
-                    name="sucursal_establecimiento_laboral_id">
-                    <option value="">Seleccione Sucursal Establecimiento Laboral</option>
-                    @foreach ($sucursalEstablecimientos as $sucursal)
-                        <option value="{{ $sucursal->id }}">{{ $sucursal->nombre_sucursal }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a href="{{ route('pensionistas.index') }}">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-    </a>
-
-</form>
-</div>
 
 
 <script>

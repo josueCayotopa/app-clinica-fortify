@@ -42,18 +42,6 @@ class PensionistaController extends Controller
     {
         abort_if(Gate::denies('user_index'), 403);
 
-        $pensionista = Pensionista::all();
-
-        if ($request->ajax()) {
-            return response()->json([
-                'view' => view('pensionistas.index', compact('pensionistas'))->render(),
-                'url' => route('pensionistas.index', $request->query())
-            ]);
-        }
-        return view('home')->with([
-            'view' => 'pensionistas.index',
-            'data' => compact('pensionista'),
-        ]);
 
         $query = DatosPersonal::query();
 
@@ -183,6 +171,7 @@ class PensionistaController extends Controller
             'situacion_e_p_s_id' => 'required|exists:situacion_e_p_s,id',
             'tipo_pago_id' => 'required|exists:tipo_pagos,id',
             'nivel_educativo_id' => 'required|exists:nivel_educativos,id',
+            
         ]);
 
         $pensionista = Pensionista::create($validatedData);

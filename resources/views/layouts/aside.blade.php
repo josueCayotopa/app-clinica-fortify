@@ -16,10 +16,9 @@
         </a>
     </div>
 
+    <div class="menu-inner-shadow"></div>
 
-
-
-    <ul class="menu-inner py-1 overflow-auto">
+    <ul class="menu-inner py-1">
 
         <!-- Dashboard -->
         <li class="menu-item active">
@@ -37,8 +36,11 @@
                 <div data-i18n="Ventas">Personal</div>
             </a>
             <ul class="menu-sub">
+
                 <li class="menu-item">
                     <a href="{{ route('personals.index') }}" class="menu-link">
+
+                        <div data-i18n="Empleado">Empleado</div>
                         <div data-i18n="Empleado">Personal</div>
                     </a>
                 </li>
@@ -48,15 +50,23 @@
                         <div data-i18n="Empleado">Trabajador</div>
                     </a>
                 </li>
+                <li class="menu-item">
+                    <a href="{{ route('pensionistas.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Pensionista</div>
+                    </a>
+                </li>
+
+                <li class="menu-item">
+                    <a href="{{ route('cuarta_categoria.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Cuarta Categoria </div>
+                    </a>
+                </li>
 
                 <li class="menu-item">
                     <a href="#" class="menu-link">
                         <div data-i18n="Ventas">Generar Contrato</div>
                     </a>
                 </li>
-
-
-
                 <li class="menu-item">
                     <a href="#" class="menu-link menu-toggle">
                         <div data-i18n="Ventas">Tabla para Planilla</div>
@@ -85,300 +95,243 @@
 
                     </ul>
                 </li>
-
-
                 <li class="menu-item">
-                    <a href="#" class="menu-link menu-toggle">
-                        <div data-i18n="New Sale">Maestros</div>
-
+                    <a href="{{ route('tipo_trabajadores.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Ocupaciones</div>
                     </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="{{ route('categoria-cargo.indexcargocategoria') }}" class="menu-link">
-                                <div data-i18n="Ventas">Categorias y Cargo</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="{{ route('afp.descuentos.index') }}" class="menu-link">
-                                <div data-i18n="Ventas">AFP y DESC.</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="Ventas">Relacion AFP al Concepto</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="Ventas">Definicion de Planilla Oficial</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="Ventas">Comprobante Contable</div>
-                            </a>
-                        </li>
-
-                    </ul>
                 </li>
 
+        </li>
+
+        <li class="menu-item">
+            <a href="#" class="menu-link menu-toggle">
+                <div data-i18n="Ventas">Formulas</div>
+            </a>
+            <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="#" class="menu-link menu-toggle">
+                    <a href="{{ route('formulas.index') }}" class="menu-link">
                         <div data-i18n="Ventas">Formulas</div>
                     </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="{{ route('formulas.index') }}" class="menu-link">
-                                <div data-i18n="Ventas">Formulas</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="{{ route('conceptos.index') }}" class="menu-link">
-                                <div data-i18n="Ventas">Conceptos</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="Ventas">Acumuacion de conceptos</div>
-                            </a>
-                        </li>
-
-
-                    </ul>
-
                 </li>
-
-
-            </ul>
-        </li>
-        <li class="menu-item ">
-            @can('vacaciones')
-                <a href="#" class="menu-link menu-toggle">
-                    <i class='menu-icon bx bx-map-alt'> </i>
-                    <div data-i18n="Ventas">Vacaciones</div>
-                </a>
-            @endcan
-
-            <ul class="menu-sub">
-
                 <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="New Sale">Solicitar Vacaciones</div>
+                    <a href="{{ route('formulas.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Formulas</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('vacaciones.asignar.index') }}" class="menu-link">
-                        <div data-i18n="New Sale">Asignar Vacaciones</div>
+                    <a href="{{ route('conceptos.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Conceptos</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="{{ route('vacaciones.calendario.index') }}" class="menu-link">
-                        <div data-i18n="Ventas">Calendario de vacaciones</div>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="{{ route('solicitud_licencias.index') }}" class="menu-link">
-                        <div data-i18n="Ventas">Solicitar Licencias</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="#" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-file'> </i>
-                <div data-i18n="asistencia">Asistencia</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('asistencia.index') }}" class="menu-link">
-                        <div data-i18n="Ventas">Asistencia</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="menu-item">
-            <a href="#" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-file'> </i>
-                <div data-i18n="pensionistas">Pensionista</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('pensionistas.index') }}" class="menu-link">
-                        <div data-i18n="Ventas">Pensionista</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-
-        <li class="menu-item  ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-id-card'></i>
-                <div data-i18n="Account Settings">Beneficios Sociales</div>
-            </a>
-            <ul class="menu-sub">
-
-                <li class="menu-item ">
-                    <a href="#" class="menu-link menu-toggle">
-                        <div data-i18n="Productos">Seguro Medico Fam</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item  ">
-                            <a href="#" class="menu-link">
-                                <div data-i18n="Categories">Plan</div>
-                            </a>
-                        </li>
-
-                    </ul>
-                </li>
-                <li class="menu-item  ">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Categories">Boletas</div>
-                    </a>
-                </li>
-
-
-                <li class="menu-item ">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Brands">Marcas</div>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-
-
-        <li class="menu-item ">
-            <a href="#" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-folder-open'></i>
-                <div data-i18n="Purchases">Formatos Digitales</div>
-            </a>
-            <ul class="menu-sub">
-
                 <li class="menu-item">
                     <a href="#" class="menu-link">
-                        <div data-i18n="New Requirement">Nuevo</div>
+                        <div data-i18n="Ventas">Acumuacion de conceptos</div>
                     </a>
                 </li>
 
-
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Requirements">Lista</div>
-                    </a>
-                </li>
 
             </ul>
+
         </li>
-
-
-
-
-        @can('user_index')
-
-            <li class="menu-item ">
-                <a href="#" class="menu-link menu-toggle">
-                    <i class='menu-icon bx bx-map-alt'> </i>
-                    <div data-i18n="Ventas">Usuarios</div>
-                </a>
-                <ul class="menu-sub">
-
-                    <li class="menu-item">
-                        <a href="{{ route('users.create') }}" class="menu-link">
-                            <div data-i18n="New Sale">Nuevo Usuario</div>
-                        </a>
-                    </li>
-
-
-                    <li class="menu-item">
-                        <a href="{{ route('users.index') }}" class="menu-link load-ajax-page">
-                            <div data-i18n="Ventas">Usuarios</div>
-                        </a>
-                    </li>
-                    @can('role_index')
-                        <li class="menu-item">
-                            <a href="{{ route('roles.index') }}" class="menu-link">
-                                <div data-i18n="Ventas">Roles</div>
-                            </a>
-                        </li>
-                    @endcan
-                    @can('permission_index')
-                        <li class="menu-item">
-                            <a href="{{ route('permissions.index') }}" class="menu-link">
-                                <div data-i18n="Ventas">Permisos</div>
-                            </a>
-                        </li>
-                    @endcan
-
-                </ul>
-
-            </li>
-        @endcan
-
-
-        <li class="menu-item ">
+    </ul>
+    </li>
+    <li class="menu-item ">
+        @can('vacaciones')
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-map-alt'> </i>
-                <div data-i18n="configuracion">Configuracion</div>
+                <div data-i18n="Ventas">Vacaciones</div>
+            </a>
+        @endcan
+
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="New Sale">Solicitar Vacaciones</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('vacaciones.asignar.index') }}" class="menu-link">
+                    <div data-i18n="New Sale">Asignar Vacaciones</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('vacaciones.calendario.index') }}" class="menu-link">
+                    <div data-i18n="Ventas">Calendario de vacaciones</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('solicitud_licencias.index') }}" class="menu-link">
+                    <div data-i18n="Ventas">Solicitar Licencias</div>
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="menu-item  ">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class='menu-icon bx bx-id-card'></i>
+            <div data-i18n="Account Settings">Beneficios </div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item ">
+                <a href="{{ route('regimen_pensionarios.index') }}" class="menu-link">
+                    <div data-i18n="Productos">Pensiones</div>
+                </a>
+            </li>
+            <li class="menu-item ">
+                <a href="{{ route('tipo_regimen.index') }}" class="menu-link">
+                    <div data-i18n="Productos">Tipo Penciones</div>
+                </a>
+            </li>
+            <li class="menu-item ">
+                <a href="{{ route('descuento_pensiones.index') }}" class="menu-link">
+                    <div data-i18n="Productos">Descuento Pensiones</div>
+                </a>
+            </li>
+            <li class="menu-item  ">
+                <a href="{{ route('familia.index') }}" class="menu-link">
+                    <div data-i18n="Categories">Familia</div>
+                </a>
+            </li>
+
+            <li class="menu-item ">
+                <a href="#" class="menu-link">
+                    <div data-i18n="Brands">Marcas</div>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+
+
+    <li class="menu-item ">
+        <a href="#" class="menu-link menu-toggle">
+            <i class='menu-icon bx bx-folder-open'></i>
+            <div data-i18n="Purchases">Formatos Digitales</div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="New Requirement">Nuevo</div>
+                </a>
+            </li>
+
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="Requirements">Lista</div>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+
+
+
+
+    @can('user_index')
+
+        <li class="menu-item ">
+            <a href="#" class="menu-link menu-toggle">
+                <i class='menu-icon bx bx-group'> </i>
+                <div data-i18n="Ventas">Usuarios</div>
             </a>
             <ul class="menu-sub">
 
                 <li class="menu-item">
-                    <a href="{{ route('empresas.index') }}" class="menu-link">
-                        <div data-i18n="empresa">Empresa</div>
+                    <a href="{{ route('users.create') }}" class="menu-link">
+                        <div data-i18n="New Sale">Nuevo Usuario</div>
                     </a>
                 </li>
 
 
                 <li class="menu-item">
-                    <a href="{{ route('sucursales.index') }}" class="menu-link">
-                        <div data-i18n="sucursal"> Sucursales</div>
+                    <a href="{{ route('users.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Usuarios</div>
                     </a>
                 </li>
-
-                <li class="menu-item">
-                    <a href="{{ route('empresaDest.index') }}" class="menu-link">
-                        <div data-i18n="sucursal"> Empresa Destacan</div>
-                    </a>
-                </li>
-
-
-                <li class="menu-item">
-                    <a href="{{ route('uits.index') }}" class="menu-link">
-                        <div data-i18n="uit"> UIT</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('sucursales.index') }}" class="menu-link">
-                        <div data-i18n="empresa"> Descuentos AFP</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('sucursales.index') }}" class="menu-link">
-                        <div data-i18n="empresa"> Semanas</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('tipo_trabajador_ipsses.index') }}" class="menu-link">
-                        <div data-i18n="empresa"> Tipo Trabajador ESSALUD</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('sucursales.index') }}" class="menu-link">
-                        <div data-i18n="empresa"> Tipos de Planillas</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('sucursales.index') }}" class="menu-link">
-                        <div data-i18n="empresa"> Prestamos c/ Conceptos</div>
-                    </a>
-                </li>
+                @can('role_index')
+                    <li class="menu-item">
+                        <a href="{{ route('roles.index') }}" class="menu-link">
+                            <div data-i18n="Ventas">Roles</div>
+                        </a>
+                    </li>
+                @endcan
+                @can('permission_index')
+                    <li class="menu-item">
+                        <a href="{{ route('permissions.index') }}" class="menu-link">
+                            <div data-i18n="Ventas">Permisos</div>
+                        </a>
+                    </li>
+                @endcan
 
             </ul>
+
         </li>
+    @endcan
+
+
+    <li class="menu-item ">
+        <a href="#" class="menu-link menu-toggle">
+            <i class='menu-icon bx bx-cog'> </i>
+            <div data-i18n="configuracion">Configuracion</div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="{{ route('empresas.index') }}" class="menu-link">
+                    <div data-i18n="empresa">Empresa</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <div data-i18n="sucursal"> Sucursales</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('empresasD.index') }}" class="menu-link">
+                    <div data-i18n="empresaD">Empresa me destacan</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('uits.index') }}" class="menu-link">
+                    <div data-i18n="uit"> UIT</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <div data-i18n="empresa"> Descuentos AFP</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <div data-i18n="empresa"> Semanas</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('tipo_trabajador_ipsses.index') }}" class="menu-link">
+                    <div data-i18n="empresa"> Tipo Trabajador ESSALUD</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <div data-i18n="empresa"> Tipos de Planillas</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <div data-i18n="empresa"> Prestamos c/ Conceptos</div>
+                </a>
+            </li>
+
+        </ul>
+    </li>
 
     </ul>
-
 </aside>

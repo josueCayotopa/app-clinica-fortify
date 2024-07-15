@@ -1,4 +1,3 @@
-
 function validateAndSubmit() {
     const form = document.getElementById('modal-form');
     const formData = new FormData(form);
@@ -10,19 +9,26 @@ function validateAndSubmit() {
     // Client-side validation
     const anoProceso = formData.get('ano_proceso');
     const numUitDeducible = formData.get('num_uit_deducible');
-    const meses = formData.getAll('meses[]');
+    const meses = {};
+
+    for (let pair of formData.entries()) {
+        if (pair[0].startsWith('meses[')) {
+            const key = pair[0].match(/meses\[(\d+)\]/)[1];
+            meses[key] = pair[1];
+        }
+    }
 
     if (!anoProceso || anoProceso.length !== 4 || isNaN(anoProceso)) {
         errors.ano_proceso = 'El campo Año Proceso es obligatorio y debe tener 4 dígitos.';
     }
 
-    if (!numUitDeducible || isNaN(numUitDeducible)) {
-        errors.num_uit_deducible = 'El campo Número UIT Deducible es obligatorio y debe ser un número.';
+    if (numUitDeducible && isNaN(numUitDeducible)) {
+        errors.num_uit_deducible = 'El campo Número UIT Deducible debe ser un número.';
     }
 
-    for (let i = 0; i < meses.length; i++) {
-        if (!meses[i] || isNaN(meses[i])) {
-            errors[`meses[${i + 1}]`] = 'El importe para cada mes es obligatorio y debe ser un número.';
+    for (let mes in meses) {
+        if (!meses[mes] || isNaN(meses[mes])) {
+            errors[`meses[${mes}]`] = 'El importe para cada mes es obligatorio y debe ser un número.';
         }
     }
 
@@ -79,4 +85,3 @@ function validateAndSubmit() {
 
     xhr.send(formData);
 }
-
