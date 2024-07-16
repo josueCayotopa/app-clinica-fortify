@@ -16,6 +16,7 @@ use App\Models\Empresa;
 use App\Models\EmpresaMeDestacan;
 use App\Models\EPS;
 use App\Models\Institucion;
+use App\Models\JornadaLaboral;
 use App\Models\MotivoFinPeriodo;
 use App\Models\Nacionalidad;
 use App\Models\Nivel_educativo;
@@ -266,12 +267,23 @@ class TrabajadorController extends Controller
         ]);
 
         // periodo laboral 
-        PeriodoLaboral::create([
+        $periodoLaboral=PeriodoLaboral::create([
             'categoria_periodos_id' => $request->input('categoria_periodos_id'),
             'fecha_inicio' => $request->input('fecha_inicio'),
             'fecha_fin' => $request->input('fecha_fin'),
             'motivo_fin_id' => $request->input('motivo_fin_id'),
         ]);
+        $jornadaLaboral = JornadaLaboral::create([
+            'horas_trabajadas' => $request['horas_trabajadas'],
+            'minutos_trabajados' => $request['minutos_trabajados'],
+            'horas_sobretiempo' => $request['horas_sobretiempo'],
+            'minutos_sobretiempo' => $request['minutos_sobretiempo'],
+            'descripcion' => $request['descripcion'],
+            'numero_dias_semana' => $request['numero_dias_semana'],
+            'hora_ingreso' => $request['hora_ingreso'],
+            'hora_salida' => $request['hora_salida'],
+        ]);
+
 
         // Guardar el nuevo registro en la base de datos
         // Creación y almacenamiento de Trabajador
