@@ -143,6 +143,11 @@
                     <div data-i18n="New Sale">Asistencias Personal</div>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('solicitud_licencias.index') }}" class="menu-link">
+                    <div data-i18n="Ventas">Solicitar Licencias</div>
+                </a>
+            </li>
         </ul>
     </li>
 
@@ -170,11 +175,7 @@
                 </a>
             </li>
 
-            <li class="menu-item">
-                <a href="{{ route('solicitud_licencias.index') }}" class="menu-link">
-                    <div data-i18n="Ventas">Solicitar Licencias</div>
-                </a>
-            </li>
+           
         </ul>
     </li>
     <li class="menu-item  ">
@@ -302,41 +303,13 @@
             </li>
 
 
-            <li class="menu-item">
-                <a href="{{ route('sucursales.index') }}" class="menu-link">
-                    <div data-i18n="sucursal"> Sucursales</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('uits.index') }}" class="menu-link">
-                    <div data-i18n="uit"> UIT</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('sucursales.index') }}" class="menu-link">
-                    <div data-i18n="empresa"> Descuentos AFP</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('sucursales.index') }}" class="menu-link">
-                    <div data-i18n="empresa"> Semanas</div>
-                </a>
-            </li>
+           
             <li class="menu-item">
                 <a href="{{ route('tipo_trabajador_ipsses.index') }}" class="menu-link">
                     <div data-i18n="empresa"> Tipo Trabajador ESSALUD</div>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="{{ route('sucursales.index') }}" class="menu-link">
-                    <div data-i18n="empresa"> Tipos de Planillas</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('sucursales.index') }}" class="menu-link">
-                    <div data-i18n="empresa"> Prestamos c/ Conceptos</div>
-                </a>
-            </li>
+        
 
         </ul>
     </li>

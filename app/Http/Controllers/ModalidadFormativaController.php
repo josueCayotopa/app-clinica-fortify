@@ -30,6 +30,7 @@ use App\Models\RegimenAfp;
 use App\Models\RegimenPencionario;
 use App\Models\SCTRPension;
 use App\Models\SCTRSalud;
+use App\Models\SeguroMedico;
 use App\Models\SituacionEPS;
 use App\Models\SituacionTrabajador;
 use App\Models\Sucursal;
@@ -117,6 +118,7 @@ class ModalidadFormativaController extends Controller
         $afpregimen = RegimenAfp::pluck('nombre', 'id');
         $tipo_descuentos = DescuentoRegimemPencionario::pluck('descripcion', 'id');
         $afpdescuento = AfpDescuentosPensiones::pluck('tipo_comision', 'id');
+        $seguro_medico = SeguroMedico::pluck('descripcion', 'id');
 
 
         return view('modalidad_formativa.create', compact(
@@ -155,6 +157,7 @@ class ModalidadFormativaController extends Controller
             'afpregimen',
             'tipo_descuentos',
             'afpdescuento',
+            'seguro_medico',
         ));
     }
 
@@ -176,22 +179,23 @@ class ModalidadFormativaController extends Controller
             'apellido_materno' => 'required|string|max:255',
             'nombres' => 'required|string|max:255',
             'fecha_nacimiento' => 'required|date',
-            'sexo' => 'required|in:masculino,femenino',
+            'essalud_vida' => 'nullable|in:0,1',
+            'sexo' => 'nullable|in:M,F',
             'telefono' => 'nullable|string|max:20',
             'correo_electronico' => 'nullable|email|max:255',
-            'essalud_vida' => 'nullable|boolean',
+
             'image' => 'nullable|image|max:2048',
             'curriculum' => 'nullable|mimes:pdf|max:2048',
-            'essalud_vida' => 'nullable|boolean',
+
             'domiciliado' => 'nullable|boolean',
             'via_id' => 'nullable|integer',
             'nombre_via' => 'nullable|string|max:50',
             'numero_via' => 'nullable|string|max:10',
             'interior' => 'nullable|string|max:10',
-            'zona_id' => 'nullable|integer',
+            'zona_id' => 'required|exists:zonas,id',
             'nombre_zona' => 'nullable|string|max:50',
             'referencia' => 'nullable|string|max:255',
-            'distrito_id' => 'nullable|integer',
+            'distrito_id' => 'nullable|exists:distritos,id',
             'institucion_id' => 'nullable|integer',
             'prefesion_id' => 'nullable|integer',
 
@@ -263,39 +267,67 @@ class ModalidadFormativaController extends Controller
             'monto_pago' => $validatedData['monto_pago'],
             'periodo_laboral_id' => $periodoLaboral->id,
             'jornada_laboral_id' => $jornadaLaboral->id,
-            'dias_subcidiado_id' => $validatedData['dias_subcidiado_id'],
-            'dias_no_subcidiado_id' => $validatedData['dias_no_subcidiado_id'],
             'sucursal_establecimiento_laboral_id' => $validatedData['sucursal_establecimiento_laboral_id'],
         ]);
 
-        // Crear DatosPersonal
-        $datosPersonal = DatosPersonal::create([
-            'tipo_documento_id' => $validatedData['tipo_documento_id'],
-            'numero_documento' => $validatedData['numero_documento'],
-            'apellido_paterno' => $validatedData['apellido_paterno'],
-            'apellido_materno' => $validatedData['apellido_materno'],
-            'nombres' => $validatedData['nombres'],
-            'fecha_nacimiento' => $validatedData['fecha_nacimiento'],
-            'sexo' => $validatedData['sexo'],
-            'nacionalidad_id' => $validatedData['nacionalidad_id'],
-            'telefono' => $validatedData['telefono'],
-            'correo_electronico' => $validatedData['correo_electronico'],
-            'imagen' => $validatedData['imagen'],
-            'curriculum' => $validatedData['curriculum'],
-            'essalud_vida' => $validatedData['essalud_vida'],
-            'domiciliado' => $validatedData['domiciliado'],
-            'via_id' => $validatedData['via_id'],
-            'nombre_via' => $validatedData['nombre_via'],
-            'numero_via' => $validatedData['numero_via'],
-            'interior' => $validatedData['interior'],
-            'zona_id' => $validatedData['zona_id'],
-            'nombre_zona' => $validatedData['nombre_zona'],
-            'referencia' => $validatedData['referencia'],
-            'distrito_id' => $validatedData['distrito_id'],
-            'institucion_id' => $validatedData['institucion_id'],
-            'prefesion_id' => $validatedData['prefesion_id'],
-            'modaliad_formativa_id' => $modalidadFormativa->id,
-        ]);
+        $datosPersonal = new DatosPersonal();
+        $datosPersonal->tipo_documento_id = $request->tipo_documento_id;
+        $datosPersonal->numero_documento = $request->numero_documento;
+        $datosPersonal->apellido_paterno = $request->apellido_paterno;
+        $datosPersonal->apellido_materno = $request->apellido_materno;
+        $datosPersonal->nombres = $request->nombres;
+        $datosPersonal->fecha_nacimiento = $request->fecha_nacimiento;
+        $datosPersonal->sexo = $request->sexo;
+        $datosPersonal->telefono = $request->telefono;
+        $datosPersonal->correo_electronico = $request->correo_electronico;
+        $datosPersonal->essalud_vida = $request->input('essalud_vida', 0); // Por defecto, si no se envía, será 0
+
+        // Asignar datos de domicilio si está marcado como domiciliado
+        if ($request->has('domiciliado')) {
+            $datosPersonal->domiciliado = true;
+            $datosPersonal->nacionalidad_id = $request->nacionalidad_id;
+            $datosPersonal->departamento_id = $request->departamento_id;
+            $datosPersonal->provincia_id = $request->provincia_id;
+            $datosPersonal->distrito_id = $request->distrito_id;
+            $datosPersonal->via_id = $request->via_id;
+            $datosPersonal->nombre_via = $request->nombre_via;
+            $datosPersonal->numero_via = $request->numero_via;
+            $datosPersonal->interior = $request->interior;
+            $datosPersonal->zona_id = $request->zona_id;
+            $datosPersonal->referencia = $request->referencia;
+        } else {
+            $datosPersonal->domiciliado = false;
+            // Limpiar campos de domicilio si no está marcado como domiciliado
+            $datosPersonal->nacionalidad_id = null;
+            $datosPersonal->departamento_id = null;
+            $datosPersonal->provincia_id = null;
+            $datosPersonal->distrito_id = null;
+            $datosPersonal->via_id = null;
+            $datosPersonal->nombre_via = null;
+            $datosPersonal->numero_via = null;
+            $datosPersonal->interior = null;
+            $datosPersonal->zona_id = null;
+            $datosPersonal->referencia = null;
+        }
+
+        // Manejo de imagen
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $datosPersonal->imagen = basename($imagePath);
+        }
+
+        // Manejo de curriculum
+        if ($request->hasFile('curriculum')) {
+            $curriculumPath = $request->file('curriculum')->store('public/curriculums');
+            $datosPersonal->curriculum = basename($curriculumPath);
+        }
+        $datosPersonal->modalidad_formativa = $modalidadFormativa->id;
+        // Guardar el registro
+        $datosPersonal->save();
+
+        // Redireccionar con mensaje de éxito
+        return redirect()->route('datos_personales.index')
+            ->with('success', 'Datos personales registrados correctamente.');
     }
 
     /**
@@ -315,9 +347,88 @@ class ModalidadFormativaController extends Controller
      * @param  \App\Models\ModalidadFormativa  $modalidadFormativa
      * @return \Illuminate\Http\Response
      */
-    public function edit(ModalidadFormativa $modalidadFormativa)
+    public function edit($id)
     {
         //
+        $modalidadFormativa = DatosPersonal::findOrFail($id);
+        //
+        $departamentos = Departamento_Region::pluck('descripcion', 'id');
+        $provincias = Provincia::pluck('descripcion', 'id');
+        $distritos = Distrito::pluck('descripcion', 'id');
+        $zonas = Zona::pluck('descripcion', 'id');
+        $vias = Via::pluck('descripcion', 'id');
+        $tipoDocumento = TipoDocumento::pluck('descripcion', 'id');
+        $nacionalidad = Nacionalidad::pluck('descripcion', 'id');
+        $tipo_trabajadores = Tipo_trabajador::pluck('descripcion', 'id');
+        $nivel_educativo = Nivel_educativo::pluck('descripcion', 'id');
+        $ocupacion = Ocupacion::pluck('descripcion', 'id');
+        $categoriaCargo = CategoriaCargo::pluck('descripcion', 'id');
+        $regimenPencionario = RegimenPencionario::pluck('descripcion', 'id');
+        $sctrsalud = SCTRSalud::pluck('descripcion', 'id');
+        $sctrpension = SCTRPension::pluck('descripcion', 'id');
+        $tipoContratosTrabajo = TipoContratosTrabajo::pluck('descripcion', 'id');
+        $periodicidad = Periodicidad::pluck('descripcion', 'id');
+        $eps = EPS::pluck('descripcion', 'id');
+        $situacioneps = SituacionEPS::pluck('descripcion', 'id');
+        $situacionTrabajador = SituacionTrabajador::pluck('descripcion', 'id');
+        $tipoPago = TipoPago::pluck('descripcion', 'id');
+        $tipoBanco = TipoBanco::pluck('descripcion', 'id');
+        $categoriaOcupacional = CategoriaOcupacional::pluck('descripcion', 'id');
+        $convenio = Convenio::pluck('descripcion', 'id');
+        $categoriaPeriodo = CategoriaPeriodo::pluck('descripcion', 'id');
+        $motivoFinPeriodo = MotivoFinPeriodo::pluck('descripcion', 'id');
+        $tipoSuspension = TipoSuspension::whereIn('id', [10, 11])->pluck('descripcion', 'id');
+        $instituciones = Institucion::pluck('nombre', 'id');
+        $profeciones = Profesion::pluck('nombre', 'id');
+        $sucursales = Sucursal::pluck('nombre_sucursal', 'id');
+        $empresaMeDestacan = EmpresaMeDestacan::pluck('razon_social', 'id');
+        $conceptoSunat = ConceptoSunat::pluck('descripcion', 'id');
+        $empresas = Empresa::pluck('razon_social', 'id');
+        $afpregimen = RegimenAfp::pluck('nombre', 'id');
+        $tipo_descuentos = DescuentoRegimemPencionario::pluck('descripcion', 'id');
+        $afpdescuento = AfpDescuentosPensiones::pluck('tipo_comision', 'id');
+        $seguro_medico = SeguroMedico::pluck('descripcion', 'id');
+
+
+        return view('modalidad_formativa.create', compact(
+            'departamentos',
+            'provincias',
+            'distritos',
+            'zonas',
+            'vias',
+            'tipoDocumento',
+            'nacionalidad',
+            'tipo_trabajadores',
+            'nivel_educativo',
+            'ocupacion',
+            'categoriaCargo',
+            'regimenPencionario',
+            'sctrsalud',
+            'sctrpension',
+            'tipoContratosTrabajo',
+            'periodicidad',
+            'eps',
+            'situacioneps',
+            'situacionTrabajador',
+            'tipoPago',
+            'tipoBanco',
+            'categoriaOcupacional',
+            'convenio',
+            'categoriaPeriodo',
+            'motivoFinPeriodo',
+            'tipoSuspension',
+            'sucursales',
+            'empresas',
+            'empresaMeDestacan',
+            'conceptoSunat',
+            'profeciones',
+            'instituciones',
+            'afpregimen',
+            'tipo_descuentos',
+            'afpdescuento',
+            'seguro_medico',
+            'modalidadFormativa',
+        ));
     }
 
     /**
