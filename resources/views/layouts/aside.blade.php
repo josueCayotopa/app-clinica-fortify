@@ -155,26 +155,40 @@
 
         <a href="#" class="menu-link menu-toggle">
             <i class='menu-icon bx bx-map-alt'> </i>
-            <div data-i18n="Ventas">Vacaciones</div>
+            <div data-i18n="Ventas">Intranet</div>
         </a>
         <ul class="menu-sub">
 
             <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <div data-i18n="New Sale">Solicitar Vacaciones</div>
+                <a href="#" class="menu-link menu-toggle">
+                    <div data-i18n="Ventas">Licencias y permisos</div>
                 </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Ventas">Solicitud</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Ventas">Asignación</div>
+                        </a>
+                    </li>
+                    
+                </ul>
             </li>
+
             <li class="menu-item">
-                <a href="{{ route('vacaciones.asignar.index') }}" class="menu-link">
-                    <div data-i18n="New Sale">Asignar Vacaciones</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('vacaciones.calendario.index') }}" class="menu-link">
-                    <div data-i18n="Ventas">Calendario de vacaciones</div>
+                <a href="{{ route('vacaciones.index') }}" class="menu-link">
+                    <div data-i18n="New Sale">Asignar</div>
                 </a>
             </li>
 
+            <li class="menu-item">
+                <a href="{{ route('calendario.index') }}" class="menu-link">
+                    <div data-i18n="Ventas">Calendario</div>
+                </a>
+            </li>
            
         </ul>
     </li>

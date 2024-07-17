@@ -35,7 +35,7 @@ class CalendarioVacacionesController extends Controller
         }
 
         return view('home')->with([
-            'view' => 'vacaciones.calendario.index',
+            'view' => 'intranet.vacaciones.calendario.index',
             'data' => compact('events'),
         ]);
        
