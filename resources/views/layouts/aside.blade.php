@@ -131,12 +131,12 @@
     </ul>
     </li>
     <li class="menu-item ">
-        @can('vacaciones')
+        
             <a href="#" class="menu-link menu-toggle">
                 <i class='menu-icon bx bx-map-alt'> </i>
                 <div data-i18n="Ventas">Vacaciones</div>
             </a>
-        @endcan
+        
 
         <ul class="menu-sub">
 
