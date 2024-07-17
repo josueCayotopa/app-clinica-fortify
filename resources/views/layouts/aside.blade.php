@@ -51,6 +51,11 @@
                     </a>
                 </li>
                 <li class="menu-item">
+                    <a href="{{ route('pensionistas.index') }}" class="menu-link">
+                        <div data-i18n="Ventas">Pensionista</div>
+                    </a>
+                </li>
+                <li class="menu-item">
                     <a href="{{ route('modalidad_formativa.index') }}" class="menu-link">
 
                         <div data-i18n="Empleado">Modalidad Formativa</div>
@@ -225,12 +230,7 @@
                 </a>
             </li>
 
-            <li class="menu-item ">
-                <a href="#" class="menu-link">
-                    <div data-i18n="Brands">Marcas</div>
-                </a>
-            </li>
-
+           
         </ul>
     </li>
 
@@ -244,19 +244,68 @@
 
             <li class="menu-item">
                 <a href="#" class="menu-link">
-                    <div data-i18n="New Requirement">Nuevo</div>
+                    <div data-i18n="New Requirement">Boletas de Trabajadores </div>
                 </a>
             </li>
-
-
             <li class="menu-item">
                 <a href="#" class="menu-link">
-                    <div data-i18n="Requirements">Lista</div>
+                    <div data-i18n="Requirements">Comporbante de cuarta</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="Requirements">Pagos de Pensionistas</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="Requirements">Pago por Formacion</div>
                 </a>
             </li>
 
         </ul>
     </li>
+    <li class="menu-item ">
+        <a href="#" class="menu-link menu-toggle">
+            <i class='menu-icon bx bx-folder-open'></i>
+            <div data-i18n="Purchases">Intranet</div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="New Requirement">Boletas de Trabajadores </div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="New Requirement">Solicitar Licencias </div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="New Requirement">Solicitar Vacaciones </div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="Requirements">Comprobante de cuarta</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="Requirements">Pagos de Pensionistas</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" class="menu-link">
+                    <div data-i18n="Requirements">Pago por Formacion</div>
+                </a>
+            </li>
+
+        </ul>
+    </li>
+
 
 
 
@@ -316,8 +365,26 @@
                 </a>
             </li>
 
-
-           
+            <li class="menu-item">
+                <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <div data-i18n="sucursal"> Sucursales</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('uits.index') }}" class="menu-link">
+                    <div data-i18n="uit"> UIT</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <div data-i18n="empresa"> Descuentos AFP</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('sucursales.index') }}" class="menu-link">
+                    <div data-i18n="empresa"> Semanas</div>
+                </a>
+            </li>
             <li class="menu-item">
                 <a href="{{ route('tipo_trabajador_ipsses.index') }}" class="menu-link">
                     <div data-i18n="empresa"> Tipo Trabajador ESSALUD</div>

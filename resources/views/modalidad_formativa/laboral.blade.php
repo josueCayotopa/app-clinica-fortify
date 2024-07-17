@@ -112,20 +112,20 @@
         </div>
         <div class="col-md-6 mb-1">
             <div class="form-group">
-                <label for="profecion_id">Profesion<span class="campo-obligatorio">*</span></label>
-                <select class="form-control" id="profecion_id" name="profecion_id">
-                    <option value="" disabled {{ old('profecion_id') ? '' : 'selected' }}>
+                <label for="prefesion_id">Profesion<span class="campo-obligatorio">*</span></label>
+                <select class="form-control" id="prefesion_id" name="prefesion_id">
+                    <option value="" disabled {{ old('prefesion_id') ? '' : 'selected' }}>
                         Selecciona
                         un tipo</option>
                     @foreach ($profeciones as $id => $profeciones)
-                        <option value="{{ $id }}" {{ old('profecion_id') == $id ? 'selected' : '' }}>
+                        <option value="{{ $id }}" {{ old('prefesion_id') == $id ? 'selected' : '' }}>
                             {{ $profeciones }}</option>
                     @endforeach
 
                 </select>
-                @if ($errors->has('profecion_id'))
+                @if ($errors->has('prefesion_id'))
                     <span class="error text-danger">
-                        {{ $errors->first('profecion_id') }}</span>
+                        {{ $errors->first('prefesion_id') }}</span>
                 @endif
             </div>
         </div>
@@ -133,7 +133,8 @@
             <div class="form-group">
                 <label for="seguro_medico_id">Seguro de Salud<span class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="seguro_medico_id" name="seguro_medico_id">
-                    <option value="" disabled {{ old('seguro_medico_id') ? '' : 'selected' }}>Selecciona un Seguro
+                    <option value="" disabled {{ old('seguro_medico_id') ? '' : 'selected' }}>Selecciona un
+                        Seguro
                     </option>
                     @foreach ($seguro_medico as $id => $seguro_salud)
                         <option value="{{ $id }}" {{ old('seguro_medico_id') == $id ? 'selected' : '' }}>
@@ -145,13 +146,13 @@
                 @endif
             </div>
         </div>
-        
+
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="madre_responsabilidad">Madre con responsabilidad</label>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" name="madre_responsabilidad"
-                        id="madre_responsabilidad">
+                        id="madre_responsabilidad" value="1" {{ old('madre_responsabilidad') ? 'checked' : '' }}>
                     <label class="form-check-label" for="madre_responsabilidad">Aplica</label>
                 </div>
             </div>
@@ -161,11 +162,12 @@
                 <label for="discapacidad">Discapacidad</label>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" name="discapacidad"
-                        id="discapacidad">
+                        id="discapacidad" value="1" {{ old('discapacidad') ? 'checked' : '' }}>
                     <label class="form-check-label" for="discapacidad">Aplica</label>
                 </div>
             </div>
         </div>
+        
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="monto_pagado">Monto Pagado</label>

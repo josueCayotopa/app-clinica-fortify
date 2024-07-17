@@ -122,7 +122,6 @@
         {{ $users->links() }}
     </div>
 </div>
-<!-- Modal -->
 
 <script>
     document.getElementById('new-button').addEventListener('click', function() {

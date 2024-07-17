@@ -1,6 +1,7 @@
 @extends('layouts.home')
 @section('main')
     <div class="container mt-5">
+        @include('layouts.messege')
         <ul class="nav nav-tabs custom-tabs" id="personalTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
@@ -27,7 +28,7 @@
 
 
         </ul>
-        <form id="personalForm" method="POST" action="{{ route('personals.store') }} ">
+        <form id="personalForm" method="POST" action="{{ route('modalidad_formativa.store') }} ">
             @csrf
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
@@ -237,7 +238,7 @@
             </div>
         </form>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

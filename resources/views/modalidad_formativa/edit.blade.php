@@ -27,7 +27,7 @@
 
 
         </ul>
-        <form action="{{ route('modalidades_formativas.update', $modalidadFormativa->id) }}" method="POST">
+        <form action="{{ route('modalidad_formativa.update', $modalidadFormativa->id) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="tab-content">

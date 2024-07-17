@@ -11,4 +11,9 @@ class SeguroMedico extends Model
     protected $fillable = [
         'descripcion'
     ];
+    //modalidadformativa
+    public function modalidadformativa()
+    {
+        return $this->hasMany(ModalidadFormativa::class, 'seguro_medico_id');
+    }
 }

@@ -155,6 +155,7 @@
 
     <!-- Graficos CHARTS -->
     <script src="{{ asset('./graficos.js') }}"></script>
+    
 
     <!-- General JS Scripts -->
     <script src="{{ asset('assets_copy/modules/jquery.min.js') }} "></script>

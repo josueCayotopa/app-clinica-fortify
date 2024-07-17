@@ -31,3 +31,12 @@ class PeriodoLaboral extends Model
         return $this->hasMany(Trabajador::class, 'periodo_laboral_id');
     }
 }
+/* 
+categoria_periodos_id
+fecha_inicio
+fecha_fin
+motivo_fin_id
+created_at
+updated_at
+
+*/

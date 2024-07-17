@@ -43,6 +43,7 @@ use App\Models\TipoSuspension;
 use App\Models\Via;
 use App\Models\Zona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ModalidadFormativaController extends Controller
 {
@@ -169,7 +170,6 @@ class ModalidadFormativaController extends Controller
      */
     public function store(Request $request)
     {
-        //
         // Validar los datos recibidos
         $validatedData = $request->validate([
             // Validaciones para DatosPersonal
@@ -183,27 +183,27 @@ class ModalidadFormativaController extends Controller
             'sexo' => 'nullable|in:M,F',
             'telefono' => 'nullable|string|max:20',
             'correo_electronico' => 'nullable|email|max:255',
-
             'image' => 'nullable|image|max:2048',
             'curriculum' => 'nullable|mimes:pdf|max:2048',
-
-            'domiciliado' => 'nullable|boolean',
+            'domiciliado' => 'nullable|in:0,1',
             'via_id' => 'nullable|integer',
             'nombre_via' => 'nullable|string|max:50',
             'numero_via' => 'nullable|string|max:10',
-            'interior' => 'nullable|string|max:10',
-            'zona_id' => 'required|exists:zonas,id',
+            'interior' => 'nullable|string|max:50',
+            'zona_id' => 'nullable|exists:zonas,id',
             'nombre_zona' => 'nullable|string|max:50',
             'referencia' => 'nullable|string|max:255',
-            'distrito_id' => 'nullable|exists:distritos,id',
-            'institucion_id' => 'nullable|integer',
-            'prefesion_id' => 'nullable|integer',
+            'departamento_id' => 'required|exists:departamento__regions,id',
+            'provincia_id' => 'required|exists:provincias,id',
+            'distrito_id' => 'required|exists:distritos,id',
+            'institucion_id' => 'nullable|exists:institucions,id',
+            'prefesion_id' => 'nullable|exists:profesions,id',
 
             // Validaciones para PeriodoLaboral
-            'categoria_periodos_id' => 'required|integer',
+            'categoria_periodos_id' => 'required|exists:categoria_periodos,id',
             'fecha_inicio' => 'required|date',
             'fecha_fin' => 'nullable|date',
-            'motivo_fin_id' => 'nullable|integer',
+            'motivo_fin_id' => 'nullable|exists:motivo_fin_periodos,id',
 
             // Validaciones para JornadaLaboral
             'horas_trabajadas' => 'required|integer',
@@ -212,123 +212,127 @@ class ModalidadFormativaController extends Controller
             'minutos_sobretiempo' => 'nullable|integer',
             'descripcion' => 'nullable|string|max:255',
             'numero_dias_semana' => 'required|integer',
-            'hora_ingreso' => 'required|date_format:H:i:s',
-            'hora_salida' => 'required|date_format:H:i:s',
+            'hora_ingreso' => 'nullable|date_format:H:i',
+            'hora_salida' => 'nullable|date_format:H:i',
 
             // Validaciones para ModalidadFormativa
-            'seguro_medico_id' => 'nullable|integer',
-            'nivel_educativo_id' => 'nullable|integer',
-            'ocupacion_id' => 'nullable|integer',
-            'madre_responsabilidad' => 'nullable|boolean',
-            'discapacidad' => 'nullable|boolean',
-            'institucion_id' => 'nullable|integer',
-            'horario_nocturno' => 'nullable|boolean',
-            'tipo_pago_id' => 'nullable|integer',
-            'tipo_banco_id' => 'nullable|integer',
+            'seguro_medico_id' => 'nullable|exists:seguro_medicos,id',
+            'nivel_educativo_id' => 'nullable|exists:nivel_educativos,id',
+            'ocupacion_id' => 'nullable|exists:ocupacions,id',
+            'madre_responsabilidad' => 'nullable|in:0,1',
+            'discapacidad' => 'nullable|in:0,1',
+            'institucion_id' => 'nullable|exists:institucions,id',
+            'horario_nocturno' => 'nullable|in:0,1',
+            'tipo_pago_id' => 'nullable|exists:tipo_pagos,id',
+            'tipo_banco_id' => 'nullable|exists:tipo_bancos,id',
             'numero_bancaria' => 'nullable|string|max:20',
             'monto_pago' => 'nullable|numeric',
-            'dias_subcidiado_id' => 'nullable|integer',
-            'dias_no_subcidiado_id' => 'nullable|integer',
-            'sucursal_establecimiento_laboral_id' => 'nullable|integer',
+            'sucursal_establecimiento_laboral_id' => 'nullable|exists:sucursal_establecimiento_laborals,id',
         ]);
 
-        // Crear PeriodoLaboral
-        $periodoLaboral = PeriodoLaboral::create([
-            'categoria_periodos_id' => $validatedData['categoria_periodos_id'],
-            'fecha_inicio' => $validatedData['fecha_inicio'],
-            'fecha_fin' => $validatedData['fecha_fin'],
-            'motivo_fin_id' => $validatedData['motivo_fin_id'],
-        ]);
+        DB::beginTransaction();
 
-        // Crear JornadaLaboral
-        $jornadaLaboral = JornadaLaboral::create([
-            'horas_trabajadas' => $validatedData['horas_trabajadas'],
-            'minutos_trabajados' => $validatedData['minutos_trabajados'],
-            'horas_sobretiempo' => $validatedData['horas_sobretiempo'],
-            'minutos_sobretiempo' => $validatedData['minutos_sobretiempo'],
-            'descripcion' => $validatedData['descripcion'],
-            'numero_dias_semana' => $validatedData['numero_dias_semana'],
-            'hora_ingreso' => $validatedData['hora_ingreso'],
-            'hora_salida' => $validatedData['hora_salida'],
-        ]);
+        try {
+            // Crear PeriodoLaboral
+            $periodoLaboral = PeriodoLaboral::create([
+                'categoria_periodos_id' => $validatedData['categoria_periodos_id'],
+                'fecha_inicio' => $validatedData['fecha_inicio'],
+                'fecha_fin' => $validatedData['fecha_fin'] ?? null,
+                'motivo_fin_id' => $validatedData['motivo_fin_id'] ?? null,
+            ]);
 
-        // Crear ModalidadFormativa
-        $modalidadFormativa = ModalidadFormativa::create([
-            'seguro_medico_id' => $validatedData['seguro_medico_id'],
-            'nivel_educativo_id' => $validatedData['nivel_educativo_id'],
-            'ocupacion_id' => $validatedData['ocupacion_id'],
-            'madre_responsabilidad' => $validatedData['madre_responsabilidad'],
-            'discapacidad' => $validatedData['discapacidad'],
-            'institucion_id' => $validatedData['institucion_id'],
-            'horario_nocturno' => $validatedData['horario_nocturno'],
-            'tipo_pago_id' => $validatedData['tipo_pago_id'],
-            'tipo_banco_id' => $validatedData['tipo_banco_id'],
-            'numero_bancaria' => $validatedData['numero_bancaria'],
-            'monto_pago' => $validatedData['monto_pago'],
-            'periodo_laboral_id' => $periodoLaboral->id,
-            'jornada_laboral_id' => $jornadaLaboral->id,
-            'sucursal_establecimiento_laboral_id' => $validatedData['sucursal_establecimiento_laboral_id'],
-        ]);
+            // Crear JornadaLaboral
+            $jornadaLaboral = JornadaLaboral::create([
+                'horas_trabajadas' => $validatedData['horas_trabajadas'],
+                'minutos_trabajados' => $validatedData['minutos_trabajados'],
+                'horas_sobretiempo' => $validatedData['horas_sobretiempo'] ?? null,
+                'minutos_sobretiempo' => $validatedData['minutos_sobretiempo'] ?? null,
+                'descripcion' => $validatedData['descripcion'] ?? null,
+                'numero_dias_semana' => $validatedData['numero_dias_semana'],
+                'hora_ingreso' => $validatedData['hora_ingreso'] ?? null,
+                'hora_salida' => $validatedData['hora_salida'] ?? null,
+            ]);
 
-        $datosPersonal = new DatosPersonal();
-        $datosPersonal->tipo_documento_id = $request->tipo_documento_id;
-        $datosPersonal->numero_documento = $request->numero_documento;
-        $datosPersonal->apellido_paterno = $request->apellido_paterno;
-        $datosPersonal->apellido_materno = $request->apellido_materno;
-        $datosPersonal->nombres = $request->nombres;
-        $datosPersonal->fecha_nacimiento = $request->fecha_nacimiento;
-        $datosPersonal->sexo = $request->sexo;
-        $datosPersonal->telefono = $request->telefono;
-        $datosPersonal->correo_electronico = $request->correo_electronico;
-        $datosPersonal->essalud_vida = $request->input('essalud_vida', 0); // Por defecto, si no se envía, será 0
+            // Crear ModalidadFormativa
+            $modalidadFormativa = ModalidadFormativa::create([
+                'seguro_medico_id' => $validatedData['seguro_medico_id'] ?? null,
+                'nivel_educativo_id' => $validatedData['nivel_educativo_id'] ?? null,
+                'ocupacion_id' => $validatedData['ocupacion_id'] ?? null,
+                'madre_responsabilidad' => $validatedData['madre_responsabilidad'] ?? null,
+                'discapacidad' => $validatedData['discapacidad'] ?? null,
+                'institucion_id' => $validatedData['institucion_id'] ?? null,
+                'horario_nocturno' => $validatedData['horario_nocturno'] ?? null,
+                'tipo_pago_id' => $validatedData['tipo_pago_id'] ?? null,
+                'tipo_banco_id' => $validatedData['tipo_banco_id'] ?? null,
+                'numero_bancaria' => $validatedData['numero_bancaria'] ?? null,
+                'monto_pago' => $validatedData['monto_pago'] ?? null,
+                'periodo_laboral_id' => $periodoLaboral->id,
+                'jornada_laboral_id' => $jornadaLaboral->id,
+                'sucursal_establecimiento_laboral_id' => $validatedData['sucursal_establecimiento_laboral_id'] ?? null,
+            ]);
 
-        // Asignar datos de domicilio si está marcado como domiciliado
-        if ($request->has('domiciliado')) {
-            $datosPersonal->domiciliado = true;
-            $datosPersonal->nacionalidad_id = $request->nacionalidad_id;
-            $datosPersonal->departamento_id = $request->departamento_id;
-            $datosPersonal->provincia_id = $request->provincia_id;
-            $datosPersonal->distrito_id = $request->distrito_id;
-            $datosPersonal->via_id = $request->via_id;
-            $datosPersonal->nombre_via = $request->nombre_via;
-            $datosPersonal->numero_via = $request->numero_via;
-            $datosPersonal->interior = $request->interior;
-            $datosPersonal->zona_id = $request->zona_id;
-            $datosPersonal->referencia = $request->referencia;
-        } else {
-            $datosPersonal->domiciliado = false;
-            // Limpiar campos de domicilio si no está marcado como domiciliado
-            $datosPersonal->nacionalidad_id = null;
-            $datosPersonal->departamento_id = null;
-            $datosPersonal->provincia_id = null;
-            $datosPersonal->distrito_id = null;
-            $datosPersonal->via_id = null;
-            $datosPersonal->nombre_via = null;
-            $datosPersonal->numero_via = null;
-            $datosPersonal->interior = null;
-            $datosPersonal->zona_id = null;
-            $datosPersonal->referencia = null;
+            // Crear DatosPersonal
+            $datosPersonal = new DatosPersonal();
+            $datosPersonal->tipo_documento_id = $validatedData['tipo_documento_id'];
+            $datosPersonal->numero_documento = $validatedData['numero_documento'];
+            $datosPersonal->apellido_paterno = $validatedData['apellido_paterno'];
+            $datosPersonal->apellido_materno = $validatedData['apellido_materno'];
+            $datosPersonal->nombres = $validatedData['nombres'];
+            $datosPersonal->fecha_nacimiento = $validatedData['fecha_nacimiento'];
+            $datosPersonal->sexo = $validatedData['sexo'] ?? null;
+            $datosPersonal->telefono = $validatedData['telefono'] ?? null;
+            $datosPersonal->correo_electronico = $validatedData['correo_electronico'] ?? null;
+            $datosPersonal->essalud_vida = $validatedData['essalud_vida'] ?? 0;
+
+            if ($request->has('domiciliado')) {
+                $datosPersonal->domiciliado = true;
+                $datosPersonal->nacionalidad_id = $validatedData['nacionalidad_id'] ?? null;
+           
+       
+                $datosPersonal->distrito_id = $validatedData['distrito_id'] ?? null;
+                $datosPersonal->via_id = $validatedData['via_id'] ?? null;
+                $datosPersonal->nombre_via = $validatedData['nombre_via'] ?? null;
+                $datosPersonal->numero_via = $validatedData['numero_via'] ?? null;
+                $datosPersonal->interior = $validatedData['interior'] ?? null;
+                $datosPersonal->zona_id = $validatedData['zona_id'] ?? null;
+                $datosPersonal->referencia = $validatedData['referencia'] ?? null;
+            } else {
+                $datosPersonal->domiciliado = false;
+            }
+
+            // Manejo de imagen
+
+
+            // Manejo de imagen
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('public/images');
+                $datosPersonal->imagen = basename($imagePath);
+            }
+            // Manejo de imagen
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('public/images');
+                $datosPersonal->image = basename($imagePath);
+            }
+
+            // Manejo de curriculum
+            if ($request->hasFile('curriculum')) {
+                $curriculumPath = $request->file('curriculum')->store('public/curriculums');
+                $datosPersonal->curriculum = basename($curriculumPath);
+            }
+            $datosPersonal->modalid_formativa_id = $modalidadFormativa->id;
+
+            // Guardar datos personales
+            $datosPersonal->save();
+
+            DB::commit();
+
+            return redirect()->route('modalidad_formativa.index')->with('success', 'Registro guardado exitosamente.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Hubo un error al guardar el registro: ' . $e->getMessage());
         }
-
-        // Manejo de imagen
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images');
-            $datosPersonal->imagen = basename($imagePath);
-        }
-
-        // Manejo de curriculum
-        if ($request->hasFile('curriculum')) {
-            $curriculumPath = $request->file('curriculum')->store('public/curriculums');
-            $datosPersonal->curriculum = basename($curriculumPath);
-        }
-        $datosPersonal->modalidad_formativa = $modalidadFormativa->id;
-        // Guardar el registro
-        $datosPersonal->save();
-
-        // Redireccionar con mensaje de éxito
-        return redirect()->route('datos_personales.index')
-            ->with('success', 'Datos personales registrados correctamente.');
     }
+
 
     /**
      * Display the specified resource.

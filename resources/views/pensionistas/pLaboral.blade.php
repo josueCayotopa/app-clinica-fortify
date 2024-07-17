@@ -1,49 +1,25 @@
 <div class="border rounded p-3 mb-3">
-    <h6 class="border-bottom pb-2 mb-3">Datos de Periodo Laboral</h6>
+    <h6 class="border-bottom pb-2 mb-3">Datos de PEriodo Laboral</h6>
     <div class="row">
-        <div class="col-md-6 mb-1">
-            <div class="form-group">
-                <label for="periodicidad_id">Periodo de pago<span
-                        class="campo-obligatorio">*</span></label>
-                <select class="form-control" id="periodicidad_id" name="periodicidad_id">
-                    @foreach ($periodicidad as $id => $periodicidad)
-                    <option value="{{ $id }}" {{ old('periodicidad_id', 1) == $id ? 'selected' : '' }}>
-                        {{ $periodicidad }}</option>
-                    @endforeach
-                </select>
-                @if ($errors->has('periodicidad_id'))
-                    <span class="error text-danger">
-                        {{ $errors->first('periodicidad_id') }}</span>
-                @endif
-            </div>
-        </div>
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="categoria_periodos_id">Categoria<span
                         class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="categoria_periodos_id" name="categoria_periodos_id">
+                    <option value="" disabled {{ old('categoria_periodos_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
                     @foreach ($categoriaPeriodo as $id => $categoriaPeriodo)
                         <option value="{{ $id }}"
                             {{ old('categoria_periodos_id') == $id ? 'selected' : '' }}>
                             {{ $categoriaPeriodo }}</option>
                     @endforeach
-                    <option value="" disabled>Selecciona un Tipo</option>
+                    
                 </select>
                 @if ($errors->has('categoria_periodos_id'))
                     <span class="error text-danger">
                         {{ $errors->first('categoria_periodos_id') }}</span>
                 @endif
-            </div>
-        </div>
-        
-        <div class="col-md-6 mb-1">
-            <div class="form-group">
-                <label for="horario_nocturno">Trabajador a horario nocturno</label>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="horario_nocturno"
-                        id="horario_nocturno" value="1" {{ old('horario_nocturno') ? 'checked' : '' }}>
-                    <label class="form-check-label" for="horario_nocturno">Aplica</label>
-                </div>
             </div>
         </div>
         <div class="col-md-6 mb-1">
@@ -59,7 +35,7 @@
         </div>
         <div class="col-md-6 mb-1">
             <div class="form-group">
-                <label for="fecha_fin">Fecha de Fin</label>
+                <label for="fecha_inicio">Fecha de Fin</label>
                 <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" placeholder="00/00/00"
                     value="{{ old('fecha_fin') }}">
                 @if ($errors->has('fecha_fin'))
@@ -80,6 +56,7 @@
                             {{ old('motivo_fin_id') == $id ? 'selected' : '' }}>
                             {{ $motivoFinPeriodo }}</option>
                     @endforeach
+                    <option value="" disabled>Selecciona un Tipo</option>
                 </select>
                 @if ($errors->has('motivo_fin_id'))
                     <span class="error text-danger">
