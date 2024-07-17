@@ -37,6 +37,7 @@ use App\Http\Controllers\TrabajadorCuartaCategoriaController;
 use App\Http\Controllers\UbigeoController;
 use App\Http\Controllers\UITController;
 use App\Http\Controllers\UserControlles;
+use App\Http\Controllers\VacacionesController;
 use App\Http\Controllers\ZonaController;
 use App\Http\Livewire\PensionRegimes;
 use App\Http\Livewire\RegimenAfpCrud;
@@ -210,6 +211,8 @@ Route::group(
         //Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
 
         Route::resource('vacaciones', AsignarVacacionesController::class);
+        Route::resource('solicitud_vacaciones', VacacionesController::class);
+        Route::get('trabajadores/{trabajador}/vacaciones', [VacacionesController::class, 'asignarVacaciones'])->name('vacaciones.solicitud');
 
         ///Calendario vaciones
 

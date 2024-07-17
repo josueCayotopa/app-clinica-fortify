@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DatosPersonal;
 use Illuminate\Http\Request;
 
 class AsignarVacacionesController extends Controller
@@ -13,12 +14,7 @@ class AsignarVacacionesController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            return response()->json([
-                'view' => view('vacaciones.asignar.index', )->render(),
-                'url' => route('vacaciones.asignar.index', $request->query())
-            ]);
-        }
+        
 
         return view('home')->with([
             'view' => 'intranet.vacaciones.asignar.index',
@@ -36,7 +32,11 @@ class AsignarVacacionesController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('home')->with([
+            'view' => 'intranet.vacaciones.asignar.create',
+            
+        ]);
     }
 
     /**
@@ -58,7 +58,7 @@ class AsignarVacacionesController extends Controller
      */
     public function show($id)
     {
-        //
+       
     }
 
     /**
@@ -94,4 +94,6 @@ class AsignarVacacionesController extends Controller
     {
         //
     }
+
+    
 }

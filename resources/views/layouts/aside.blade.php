@@ -178,11 +178,29 @@
                 </ul>
             </li>
 
+
+
+
             <li class="menu-item">
-                <a href="{{ route('vacaciones.index') }}" class="menu-link">
-                    <div data-i18n="New Sale">Asignar</div>
+                <a href="#" class="menu-link menu-toggle">
+                    <div data-i18n="Ventas">Vacaciones</div>
                 </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="{{ route('solicitud_vacaciones.index')}}" class="menu-link">
+                            <div data-i18n="Ventas">Solicitar Vacaciones</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('vacaciones.index') }}" class="menu-link">
+                            <div data-i18n="Ventas">Asignar Vacaciones</div>
+                        </a>
+                    </li>
+                    
+                </ul>
             </li>
+
+           
 
             <li class="menu-item">
                 <a href="{{ route('calendario.index') }}" class="menu-link">
