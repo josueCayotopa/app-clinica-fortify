@@ -287,8 +287,8 @@ class ModalidadFormativaController extends Controller
             if ($request->has('domiciliado')) {
                 $datosPersonal->domiciliado = true;
                 $datosPersonal->nacionalidad_id = $validatedData['nacionalidad_id'] ?? null;
-                $datosPersonal->departamento_id = $validatedData['departamento_id'] ?? null;
-                $datosPersonal->provincia_id = $validatedData['provincia_id'] ?? null;
+           
+       
                 $datosPersonal->distrito_id = $validatedData['distrito_id'] ?? null;
                 $datosPersonal->via_id = $validatedData['via_id'] ?? null;
                 $datosPersonal->nombre_via = $validatedData['nombre_via'] ?? null;
@@ -326,7 +326,7 @@ class ModalidadFormativaController extends Controller
 
             DB::commit();
 
-            return redirect()->route('ruta.deseada')->with('success', 'Registro guardado exitosamente.');
+            return redirect()->route('modalidad_formativa.index')->with('success', 'Registro guardado exitosamente.');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Hubo un error al guardar el registro: ' . $e->getMessage());

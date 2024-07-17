@@ -44,6 +44,7 @@ use App\Http\Livewire\PensionRegimes;
 use App\Http\Livewire\RegimenAfpCrud;
 use App\Http\Livewire\TipoDescuento;
 use App\Models\AfpDescuentosPensiones;
+use App\Models\CalculoPlanilla;
 use App\Models\CargoCategoria;
 use App\Models\ConceptoSunat;
 use App\Models\ModaliadFormativa;
@@ -214,13 +215,9 @@ Route::group(
 
         Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
 
-
-
-
-
         // Solicitud de Licencias 
         Route::resource('solicitud_licencias', SolicitudLicenciasController::class);
-        Route::resource('solicitud_licencias', SolicitudLicenciasController::class);
+        
 
         //ruta para asistencia
         // routes/web.php
@@ -234,6 +231,20 @@ Route::group(
         //Cuarta categoria
 
         Route::resource('cuarta_categoria', TrabajadorCuartaCategoriaController::class);
+
+
+
+        //  Calculo de planilla
+        Route::get('/planilla/index', [CalculoPlanilla::class, 'index'])->name('calculo.index');
+
+
+
+
+
+
+
+
+
     }
 );
 

@@ -7,23 +7,23 @@
 
 
     <div class="el-row is-justify-space-between row-bg mb-3">
-        <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
+        <div class="el-col el-col-24 el-col-xs-8 el-col-sm-11">
             <h5>Listado de Roles</h5>
         </div>
         <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
-            @can('user_create')
-                <button class="btn btn-primary ms-3" id="new-button">Nuevo <span><i class='bx bx-user-plus'></i></span>
-
+            @can('role_create')
+                <button class="btn btn-primary ms-3" id="new-button" data-toggle="modal" data-target="#createPermissionModal">
+                    Nuevo<span><i class='bx bx-plus'></i></span>
                 </button>
             @endcan
         </div>
     </div>
     <div class="el-row is-justify-space-between row-bg">
         <div class="col-lg-4 mt-2">
-            <form method="GET" action="{{ route('roles.index') }}" class="input-group">
-                <input type="text" class="form-control" name="search" id="search-input"
+            <form method="GET" action="{{ route('roles.index') }}" class="input-group flex-grow-1 ">
+                <input type="text" class="form-control " name="search" id="search-input"
                     placeholder="Buscar por Nombre o ID" value="{{ request()->input('search') }}">
-                <div class="input-group-append">
+                <div class="input-group-append ">
                     <button class="btn btn-primary" type="submit">Buscar</button>
                 </div>
             </form>
@@ -37,109 +37,91 @@
         </div>
     </div>
 
-
-
     <table class="table table-borderless">
         <thead>
             <tr>
-                <th>Numero</th>
+                <th>Id</th>
                 <th>Nombre</th>
-                <th>Usuario</th>
-                <th>Rol</th>
-
-                <th>Email</th>
+                <th>Permisos</th>
                 <th>Fecha</th>
-
-                <th text-right>Opciones</th>
+                <th class="text-right">Opciones</th>
             </tr>
         </thead>
         <tbody id="user-table">
-            @foreach ($users as $user)
+            @foreach ($roles as $role)
                 <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->username }}</td>
+                    <td>{{ $role->id }}</td>
+                    <td>{{ $role->name }}</td>
                     <td>
-                        @forelse ($user->roles as $role)
+                        @forelse ($role->permissions as $permission)
                             <span class="badge badge-success" style="background-color: rgb(22, 156, 209)">
-                                {{ $role->name }}
-
+                                {{ $permission->name }}
                             </span>
                         @empty
                             <span class="badge badge-danger" style="background-color: rgb(240, 7, 19)">
-                                No tiene roles
-
+                                No tiene permisos
                             </span>
                         @endforelse
                     </td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->created_at }}</td>
-                    <td text-right>
-                        <div class="action-buttons"
-                            style=" display: flex;
-                            justify-content: center;
-                            margin-top: 20px;">
-                            @can('user_show')
-                                <a href=" {{ route('users.show', $user->id) }}" class="btn btn-outline-primary"
+                    <td>{{ $role->created_at->toFormattedDateString() }}</td>
+                    <td class="text-right">
+                        <div class="action-buttons" style="display: flex; justify-content: center; margin-top: 20px;">
+                            @can('role_show')
+                                <a href="{{ route('roles.show', $role->id) }}" class="btn btn-outline-primary"
                                     style="margin: 0 2px;">
                                     <span><i class='bx bx-show-alt'></i></span>
                                 </a>
                             @endcan
-
-                            @can('user_edit')
-                                <a href=" {{ route('users.edit', $user->id) }}" class="btn btn-warning"
+                            @can('role_edit')
+                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning"
                                     style="margin: 0 2px;">
-                                    <span><i class='bx bx-edit-alt'></i></span>
+                                    <span><i class='bx bxs-edit'></i></span>
                                 </a>
                             @endcan
-                            @can('user_create')
-                                <div>
-                                    <form action="{{ route('users.delete', $user->id) }}" method="POST"
-                                        onsubmit="return confirm('seguro?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger" type="submit" style="margin: 0 2px;">
-                                            <span><span><i class='bx bxs-x-circle'></i></span>
-
-                                        </button>
-                                    </form>
-
-                                </div>
+                            @can('role_destroy')
+                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST"
+                                    onsubmit="return confirm('¿Estás seguro?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit" style="margin: 0 2px;">
+                                        <span><i class='bx bxs-x-circle'></i></i></span>
+                                    </button>
+                                </form>
                             @endcan
-
                         </div>
-
-
-
-
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <div class="mt-5"> <!-- Mayor separación entre la tabla y el paginador -->
-        {{ $users->links() }}
+    <div class="mt-5">
+        {{ $roles->links() }}
     </div>
 </div>
 
+
+
+
 <script>
     document.getElementById('new-button').addEventListener('click', function() {
-        window.location.href = '{{ route('users.create') }}';
+        window.location.href = '{{ route('roles.create') }}';
     });
 </script>
 <script>
-    < script >
-        $(document).ready(function() {
-            // Función de búsqueda en tiempo real
-            $('#search-input').on('input', function() {
-                const searchValue = $(this).val().toLowerCase();
-                $('#user-table tbody tr').filter(
-                    function() { // Asegúrate de apuntar a las filas del cuerpo de la tabla
-                        const nameText = $(this).find('td').eq(2).text()
-                            .toLowerCase(); // Índice 2 para el campo 'username'
-                        $(this).toggle(nameText.includes(searchValue));
-                    });
+    $(document).ready(function() {
+        // Función de búsqueda en tiempo real
+        $('#search-input').on('input', function() {
+            const searchValue = $(this).val().toLowerCase();
+            $('#user-table tr').filter(function() {
+                const idText = $(this).find('td').eq(0).text().toLowerCase();
+                const nameText = $(this).find('td').eq(1).text().toLowerCase();
+                $(this).toggle(idText.includes(searchValue) || nameText.includes(searchValue));
             });
         });
+    });
 </script>
+
+
+
+</div>

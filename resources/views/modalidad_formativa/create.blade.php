@@ -1,6 +1,7 @@
 @extends('layouts.home')
 @section('main')
     <div class="container mt-5">
+        @include('layouts.messege')
         <ul class="nav nav-tabs custom-tabs" id="personalTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
