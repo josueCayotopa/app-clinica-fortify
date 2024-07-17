@@ -21,7 +21,7 @@ class AsignarVacacionesController extends Controller
         }
 
         return view('home')->with([
-            'view' => 'vacaciones.asignar.index',
+            'view' => 'intranet.vacaciones.asignar.index',
             
         ]);
        

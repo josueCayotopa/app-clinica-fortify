@@ -1,4 +1,6 @@
-  <div class="container mt-5">
+@extends('layouts.home')
+@section('main') 
+ <div class="container mt-5">
       <ul class="nav nav-tabs custom-tabs" id="personalTab" role="tablist">
           <li class="nav-item">
               <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
@@ -25,14 +27,7 @@
               <a class="nav-link" id="jornadalaboral-tab" data-toggle="tab" href="#jornadalaboral" role="tab"
                   aria-controls="jornadalaboral" aria-selected="false">Jornada Laboral</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" id="diassubcidiados-tab" data-toggle="tab" href="#diassubcidiados" role="tab"
-                  aria-controls="diassubcidiados" aria-selected="false">Dias Subcidiados</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" id="diasnosubcidiados-tab" data-toggle="tab" href="#diasnosubcidiados" role="tab"
-                  aria-controls="diasnosubcidiados" aria-selected="false">Dias no Subcidiados</a>
-          </li>
+        
           <li class="nav-item">
               <a class="nav-link" id="remuneracion-tab" data-toggle="tab" href="#remuneracion" role="tab"
                   aria-controls="remuneracion" aria-selected="false">Remuneracion</a>
@@ -269,3 +264,4 @@
   <script src="{{ asset('/js/ubigeo/ubigeo.js') }}"></script>
   <script src="{{ asset('/js/personals/imagen.js') }}"></script>
   <script src="{{ asset('/js/personals/curriculum.js') }}"></script>
+@endsection

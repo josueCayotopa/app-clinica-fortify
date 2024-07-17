@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CategoriaOcupacional;
 use App\Models\Convenio;
+use App\Models\DatosPersonal;
 use App\Models\Departamento_Region;
 use App\Models\Distrito;
 use App\Models\EPS;
@@ -44,7 +45,7 @@ class PersonalController extends Controller
         $situacionesEPS = SituacionEPS::all()->pluck('descripcion', 'id');
         $tiposPago = TipoPago::all()->pluck('descripcion', 'id');
         $convenios = Convenio::all()->pluck('descripcion', 'id');
-        $personals = Personal::paginate(10);
+        $personals = DatosPersonal::paginate(10);
         $sctr_pensions = SCTRPension::all()->pluck('descripcion', 'id');
         $sctr_saluds = SCTRSalud::all()->pluck('descripcion', 'id');
         $categoriaocupacionales = CategoriaOcupacional::all()->pluck('DESCRIPCION', 'id');

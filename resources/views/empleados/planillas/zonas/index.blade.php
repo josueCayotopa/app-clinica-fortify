@@ -1,4 +1,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
 
 
 <div class="container mt-5">
@@ -17,7 +20,7 @@
 
         </div>
 
-        <button type="button" class="btn btn-primary ms-3 open-modal-btn-new" id="new-button" data-toggle="modal"
+        <button type="button" class="el-button el-button--primary ms-2 open-modal-btn-new" id="new-button" data-toggle="modal"
             data-target="#modalNuevaZona"> Nuevo
             <span><i class='bx bx-user-plus'></i></span>
         </button>
@@ -47,7 +50,7 @@
                                 justify-content: center;
                                 margin-top: 20px;">
 
-                            <button class="btn btn-warning " data-toggle="modal"
+                            <button class="el-button el-button--primary" data-toggle="modal"
                                 data-target="#editZona{{ $zona->id }}" style="margin: 0 2px;">
                                 <span><i class='bx bx-edit-alt'></i></span>
                             </button>
@@ -56,8 +59,8 @@
                                     onsubmit="return confirm('¿Seguro que quieres eliminar este elemento? ')">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" style="margin: 0 2px;">
-                                        <span><span><i class='bx bxs-user-x'></i></span>
+                                    <button class="el-button el-button--primary" type="submit" style="margin: 0 2px;">
+                                        <span><i class='bx bxs-x-circle'></i></span>
                                     </button>
 
                                 </form>
@@ -112,8 +115,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <input type="submit" class="btn btn-primary" id="submitButton" value="Guardar">
+                <button type="button" class="el-button el-button--secondary" data-dismiss="modal">Cerrar</button>
+                <input type="submit" class="el-button el-button--primary" id="submitButton" value="Guardar">
             </div>
         </div>
         </form>

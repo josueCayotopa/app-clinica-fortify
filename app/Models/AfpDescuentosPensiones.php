@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AfpDescuentosPensiones extends Model
 {
     use HasFactory;
+    protected $table = 'afp_descuentos_pensiones';
+
+
     protected $fillable = ['afp_id', 'descuento_id', 'tipo_comision', 'fecha', 'porcentaje', 'importe_tope'];
 
     public function afp()

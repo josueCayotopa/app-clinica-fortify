@@ -36,7 +36,7 @@ class DescuentosPorMes extends Component
         'descuento_descripcion' => 'required|string|max:255',
     ];
 
-    public function store()
+   public function store()
     {
         $this->validate();
 
@@ -57,7 +57,6 @@ class DescuentosPorMes extends Component
 
     public function addDescuento()
     {
-        
         $this->validateOnly('descuento_descripcion');
 
         DescuentoRegimemPencionario::create([
@@ -69,6 +68,7 @@ class DescuentosPorMes extends Component
         $this->reset(['descuento_descripcion']);
 
         $this->emit('closeModal');
+        $this->emit('refreshDescuentos');
     }
 
     private function resetInputFields()

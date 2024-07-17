@@ -40,14 +40,20 @@
                 <li class="menu-item">
                     <a href="{{ route('personals.index') }}" class="menu-link">
 
-                        <div data-i18n="Empleado">Empleado</div>
                         <div data-i18n="Empleado">Personal</div>
+                       
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="{{ route('trabajadores.index') }}" class="menu-link">
 
                         <div data-i18n="Empleado">Trabajador</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('modalidad_formativa.index') }}" class="menu-link">
+
+                        <div data-i18n="Empleado">Modalidad Formativa</div>
                     </a>
                 </li>
 
@@ -118,11 +124,6 @@
                         <div data-i18n="Ventas">Conceptos</div>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link">
-                        <div data-i18n="Ventas">Acumuacion de conceptos</div>
-                    </a>
-                </li>
 
 
             </ul>
@@ -131,36 +132,64 @@
     </ul>
     </li>
     <li class="menu-item ">
-        
-            <a href="#" class="menu-link menu-toggle">
-                <i class='menu-icon bx bx-map-alt'> </i>
-                <div data-i18n="Ventas">Vacaciones</div>
-            </a>
-        
 
+        <a href="#" class="menu-link menu-toggle">
+            <i class='menu-icon bx bx-map-alt'> </i>
+            <div data-i18n="Ventas">Asistencia y Licencias </div>
+        </a>
         <ul class="menu-sub">
-
             <li class="menu-item">
-                <a href="#" class="menu-link">
-                    <div data-i18n="New Sale">Solicitar Vacaciones</div>
+                <a href=" {{ route('asistencias.index') }}" class="menu-link">
+                    <div data-i18n="New Sale">Asistencias Personal</div>
                 </a>
             </li>
-            <li class="menu-item">
-                <a href="{{ route('vacaciones.asignar.index') }}" class="menu-link">
-                    <div data-i18n="New Sale">Asignar Vacaciones</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('vacaciones.calendario.index') }}" class="menu-link">
-                    <div data-i18n="Ventas">Calendario de vacaciones</div>
-                </a>
-            </li>
-
             <li class="menu-item">
                 <a href="{{ route('solicitud_licencias.index') }}" class="menu-link">
                     <div data-i18n="Ventas">Solicitar Licencias</div>
                 </a>
             </li>
+        </ul>
+    </li>
+
+    <li class="menu-item ">
+
+        <a href="#" class="menu-link menu-toggle">
+            <i class='menu-icon bx bx-map-alt'> </i>
+            <div data-i18n="Ventas">Intranet</div>
+        </a>
+        <ul class="menu-sub">
+
+            <li class="menu-item">
+                <a href="#" class="menu-link menu-toggle">
+                    <div data-i18n="Ventas">Licencias y permisos</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Ventas">Solicitud</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <div data-i18n="Ventas">Asignación</div>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('vacaciones.index') }}" class="menu-link">
+                    <div data-i18n="New Sale">Asignar</div>
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="{{ route('calendario.index') }}" class="menu-link">
+                    <div data-i18n="Ventas">Calendario</div>
+                </a>
+            </li>
+           
         </ul>
     </li>
     <li class="menu-item  ">
@@ -181,7 +210,12 @@
                 </a>
             </li>
             <li class="menu-item ">
-                <a href="{{ route('descuento_pensiones.index') }}" class="menu-link">
+                <a href="{{ route('tipos_descuento.index') }}" class="menu-link">
+                    <div data-i18n="Productos">Tipo Descuentos</div>
+                </a>
+            </li>
+            <li class="menu-item ">
+                <a href="{{ route('descuentos_pensiones.index') }}" class="menu-link">
                     <div data-i18n="Productos">Descuento Pensiones</div>
                 </a>
             </li>
@@ -283,26 +317,7 @@
             </li>
 
 
-            <li class="menu-item">
-                <a href="{{ route('sucursales.index') }}" class="menu-link">
-                    <div data-i18n="sucursal"> Sucursales</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('uits.index') }}" class="menu-link">
-                    <div data-i18n="uit"> UIT</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('sucursales.index') }}" class="menu-link">
-                    <div data-i18n="empresa"> Descuentos AFP</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="{{ route('sucursales.index') }}" class="menu-link">
-                    <div data-i18n="empresa"> Semanas</div>
-                </a>
-            </li>
+           
             <li class="menu-item">
                 <a href="{{ route('tipo_trabajador_ipsses.index') }}" class="menu-link">
                     <div data-i18n="empresa"> Tipo Trabajador ESSALUD</div>
@@ -318,3 +333,9 @@
                     <div data-i18n="empresa"> Prestamos c/ Conceptos</div>
                 </a>
             </li>
+
+        </ul>
+    </li>
+
+    </ul>
+</aside>

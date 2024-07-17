@@ -55,9 +55,16 @@ return new class extends Migration
             $table->char('afilacion_asegura_pension', 1)->nullable();
             $table->unsignedBigInteger('categoria_ocupacional_id')->nullable();
             $table->unsignedBigInteger('convenio_id')->nullable();
+
+
+
+            
             $table->unsignedBigInteger('periodo_laboral_id')->nullable();
             $table->char('otros_empleadores', 1)->nullable();
             $table->char('derechohabientes', 1)->nullable();
+
+
+
             $table->unsignedBigInteger('jornada_laboral_id')->nullable();
             $table->unsignedBigInteger('dias_subcidiado_id')->nullable();
             $table->unsignedBigInteger('dias_no_subcidiado_id')->nullable();

@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asistencia extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'fecha',
+        'hora_entrada',
+        'hora_salida',
+        'trabajador_id',
+    ];
+
+    /**
+     * Relación con el modelo Trabajador (DatosPersonals).
+     */
+    public function trabajador()
+    {
+        return $this->belongsTo(DatosPersonal::class, 'trabajador_id');
+    }
 }

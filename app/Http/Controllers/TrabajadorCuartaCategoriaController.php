@@ -2,7 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriaPeriodo;
+use App\Models\Departamento_Region;
+use App\Models\Distrito;
+use App\Models\Empresa;
+use App\Models\MotivoFinPeriodo;
+use App\Models\Nacionalidad;
+use App\Models\Periodicidad;
+use App\Models\Provincia;
+use App\Models\TipoDocumento;
 use App\Models\TrabajadorCuartaCategoria;
+use App\Models\Via;
+use App\Models\Zona;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
@@ -21,6 +32,7 @@ class TrabajadorCuartaCategoriaController extends Controller
         return view('home')->with([
             'view' => 'empleados.cuarta_categoria.index'
             
+            
         ]);
 
 
@@ -33,12 +45,32 @@ class TrabajadorCuartaCategoriaController extends Controller
      */
     public function create()
     {
-        
-
+        $tipoDocumento = TipoDocumento::pluck('descripcion', 'id');
+        $nacionalidad = Nacionalidad::pluck('descripcion', 'id');
+        $departamentos = Departamento_Region::pluck('descripcion', 'id');
+        $provincias = Provincia::pluck('descripcion', 'id');
+        $distritos = Distrito::pluck('descripcion', 'id');
+        $zonas = Zona::pluck('descripcion', 'id');
+        $vias = Via::pluck('descripcion', 'id');
+        $empresas = Empresa::pluck('razon_social', 'id');
+        $periodicidad = Periodicidad::pluck('descripcion', 'id');
+        $categoriaPeriodo = CategoriaPeriodo::pluck('descripcion', 'id');
+        $motivoFinPeriodo = MotivoFinPeriodo::pluck('descripcion', 'id');
 
 
         return view('home')->with([
-            'view' => 'empleados.cuarta_categoria.create'
+            'view' => 'empleados.cuarta_categoria.create',
+            'data' => compact('tipoDocumento',
+            'nacionalidad',
+            'departamentos',
+            'provincias',
+            'distritos',
+            'zonas',
+            'vias',
+            'empresas',
+            'periodicidad',
+            'categoriaPeriodo',
+            'motivoFinPeriodo')
             
         ]);
     }

@@ -24,7 +24,7 @@ class ConceptoSunat extends Model
         'sistema_privado_de_pensiones',
         'renta_5ta_categoría_retenciones',
         'essalud_seguro_regular_pensionista',
-        'contrib_solidaria_asistencia_previs',
+        'contrib_solidaria_asistencia_sprevis',
     ];
     public function concepto_sunat()
     {

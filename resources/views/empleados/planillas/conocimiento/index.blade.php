@@ -2,10 +2,9 @@
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 
-<div class="container mt-5">
+<div class="card-body mt-5 mb-1">
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -177,8 +176,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <input type="submit" class="btn btn-primary" id="submitButton" value="Guardar">
+                <button type="button" class="el-button el-button--secondary" data-dismiss="modal">Cerrar</button>
+                <input type="submit" class="el-button el-button--primary" id="submitButton" value="Guardar">
             </div>
         </div>
         </form>

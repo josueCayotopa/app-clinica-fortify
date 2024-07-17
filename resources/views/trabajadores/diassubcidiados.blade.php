@@ -6,12 +6,15 @@
                 <label for="tipo_suspencion_id">Suspencion<span
                         class="campo-obligatorio">*</span></label>
                 <select class="form-control" id="tipo_suspencion_id" name="tipo_suspencion_id">
+                    <option value="" disabled {{ old('tipo_suspencion_id') ? '' : 'selected' }}>
+                        Selecciona
+                        un tipo</option>
                     @foreach ($tipoSuspension as $id => $tipoSuspension)
                         <option value="{{ $id }}"
                             {{ old('tipo_suspencion_id') == $id ? 'selected' : '' }}>
                             {{ $tipoSuspension }}</option>
                     @endforeach
-                    <option value="" disabled>Selecciona un Tipo</option>
+                   
                 </select>
                 @if ($errors->has('tipo_suspencion_id'))
                     <span class="error text-danger">
