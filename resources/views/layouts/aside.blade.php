@@ -165,7 +165,7 @@
                 </a>
                 <ul class="menu-sub">
                     <li class="menu-item">
-                        <a href="#" class="menu-link">
+                        <a href="{{ route('licencias.index') }}" class="menu-link">
                             <div data-i18n="Ventas">Solicitud</div>
                         </a>
                     </li>

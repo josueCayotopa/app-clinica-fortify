@@ -32,6 +32,7 @@ use App\Http\Controllers\SolicitudLicenciasController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
+use App\Http\Controllers\LicenciasController;
 use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\TrabajadorCuartaCategoriaController;
 use App\Http\Controllers\UbigeoController;
@@ -44,11 +45,13 @@ use App\Http\Livewire\TipoDescuento;
 use App\Models\AfpDescuentosPensiones;
 use App\Models\CargoCategoria;
 use App\Models\ConceptoSunat;
+use App\Models\DatosPersonal;
 use App\Models\ModaliadFormativa;
 use App\Models\ModalidadFormativa;
 use App\Models\Ocupacion;
 use App\Models\RegimenPencionario;
 use App\Models\SolicitudLicencias;
+
 use App\Models\Sucursal;
 use App\Models\Tipo_trabajador;
 use Database\Seeders\OcupacionSeeder;
@@ -219,8 +222,9 @@ Route::group(
 
         // Solicitud de Licencias 
         Route::resource('solicitud_licencias', SolicitudLicenciasController::class);
+        Route::resource('licencias', LicenciasController::class);
 
-
+        Route::get('/api/trabajadores', [DatosPersonal::class, 'search']);
         //numero de ususarios
 
 

@@ -1,77 +1,109 @@
-
-    <div class="container">
-        <ul class="nav nav-tabs" id="personalTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab"
-                    aria-controls="general" aria-selected="true">General</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="contacto-tab" data-toggle="tab" href="#contacto" role="tab"
-                    aria-controls="contacto" aria-selected="false">Laboral</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="laboral-tab" data-toggle="tab" href="#laboral" role="tab"
-                    aria-controls="laboral" aria-selected="false">Beneficios</a>
-            </li>
-        </ul>
-        <!-- Contenido de las pestañas -->
-        <form id="personalForm" method="POST" action="{{ route('personals.store') }}">
-            @csrf
+@extends('layouts.home')
+@section('main')
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" id="datos-empresa-tab" data-toggle="tab" href="#datos-empresa">Datos de Licencia</a>
+                </li>
+            </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
-                    <!-- Contenido de la pestaña General -->
-                    <div class="form-group">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre">
-                    </div>
-                    <div class="form-group">
-                        <label for="apellido">Apellido:</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido">
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="contacto-tab">
-                    <!-- Contenido de la pestaña Laboral -->
-                    <div class="form-group">
-                        <label for="empresa">Empresa:</label>
-                        <input type="text" class="form-control" id="empresa" name="empresa">
-                    </div>
-                    <div class="form-group">
-                        <label for="puesto">Puesto:</label>
-                        <input type="text" class="form-control" id="puesto" name="puesto">
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="laboral" role="tabpanel" aria-labelledby="laboral-tab">
-                    <!-- Contenido de la pestaña Beneficios -->
-                    <div class="form-group">
-                        <label for="beneficio1">Beneficio 1:</label>
-                        <input type="text" class="form-control" id="beneficio1" name="beneficio1">
-                    </div>
-                    <div class="form-group">
-                        <label for="beneficio2">Beneficio 2:</label>
-                        <input type="text" class="form-control" id="beneficio2" name="beneficio2">
-                    </div>
+                <div class="tab-pane fade show active" id="datos-empresa">
+                    <form id="form-datos-empresa" method="POST" action="{{ route('licencias.store') }}" autocomplete="off">
+                        @csrf
+                        <div class="row">
+                            <!-- Buscador por número de documento y nombre -->
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="numero_documento">Buscar por Número de Documento</label>
+                                    <input type="text" id="numero_documento" class="form-control" placeholder="Número de Documento">
+                                    <label for="nombre">o Nombre</label>
+                                    <input type="text" id="nombre" class="form-control" placeholder="Nombre">
+                                </div>
+                            </div>
+                            <!-- Campos del formulario -->
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="trabajador_id">Trabajador ID</label>
+                                    <input type="text" name="trabajador_id" id="trabajador_id" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-1">
+                                <div class="form-group">
+                                    <label for="tipo_suspencion_id">Suspencion<span
+                                            class="campo-obligatorio">*</span></label>
+                                    <select class="form-control" id="tipo_suspencion_id" name="tipo_suspencion_id">
+                                        @foreach ($tipoSuspension as $id => $tipoSuspension)
+                                            <option value="{{ $id }}"
+                                                {{ old('tipo_suspencion_id') == $id ? 'selected' : '' }}>
+                                                {{ $tipoSuspension }}</option>
+                                        @endforeach
+                                        <option value="" disabled>Selecciona un Tipo</option>
+                                    </select>
+                                    @if ($errors->has('tipo_suspencion_id'))
+                                        <span class="error text-danger">
+                                            {{ $errors->first('tipo_suspencion_id') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="fecha_inicio">Fecha Inicio</label>
+                                    <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="fecha_fin">Fecha Fin</label>
+                                    <input type="date" name="fecha_fin" id="fecha_fin" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="descripcion">Descripción</label>
+                                    <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Botón para guardar -->
+                        <div class="row">
+                            <div class="col-md-12 gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-success">Solicitar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 gap-2 d-md-flex justify-content-md-end">
-                    <button aria-disabled="false" type="button" class="el-button" id="cancel-button">
-                        <span class="">Cancelar</span>
-                    </button>
-                    @can('user_create')
-                        <button type="submit" class="el-button el-button--primary">Crear</button>
-                    @endcan
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
+</div>
 
-    <!-- Scripts al final de la página -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Otros scripts -->
-    <script src="{{ asset('js/ubigeo/ubigeo.js') }}"></script>
-    <script src="{{ asset('js/personals/imagen.js') }}"></script>
-    <script src="{{ asset('js/personals/curriculum.js') }}"></script>
-
-    <!-- Tu script personalizado va aquí, si es necesario -->
+<script>
+$(document).ready(function() {
+    $('#numero_documento, #nombre').on('input', function() {
+        var numero_documento = $('#numero_documento').val();
+        var nombre = $('#nombre').val();
+        if (numero_documento.length > 0 || nombre.length > 0) {
+            $.ajax({
+                url: '/api/trabajadores',
+                type: 'GET',
+                data: {
+                    numero_documento: numero_documento,
+                    nombre: nombre
+                },
+                success: function(data) {
+                    if (data.trabajador) {
+                        $('#trabajador_id').val(data.trabajador.id);
+                    } else {
+                        $('#trabajador_id').val('');
+                    }
+                }
+            });
+        } else {
+            $('#trabajador_id').val('');
+        }
+    });
+});
+</script>
+@endsection

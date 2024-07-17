@@ -82,4 +82,20 @@ class DatosPersonalController extends Controller
     {
         //
     }
+    public function search(Request $request)
+    {
+        $query = DatosPersonal::query();
+
+        if ($request->filled('numero_documento')) {
+            $query->where('numero_documento', $request->numero_documento);
+        }
+
+        if ($request->filled('nombre')) {
+            $query->where('nombre', 'like', '%' . $request->nombre . '%');
+        }
+
+        $personal = $query->first();
+
+        return response()->json(['trabajador' => $personal]);
+    }
 }
