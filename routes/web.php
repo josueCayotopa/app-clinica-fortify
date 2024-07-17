@@ -209,6 +209,7 @@ Route::group(
         /// Asignar vacaciones
 
         //Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
+        //Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
 
         Route::resource('vacaciones', AsignarVacacionesController::class);
 
