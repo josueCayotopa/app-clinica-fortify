@@ -24,7 +24,7 @@ class DatosPersonalSeeder extends Seeder
             $periodoLaboral = PeriodoLaboral::create([
                 'categoria_periodos_id' => 1, // Asumiendo que esta categoría existe
                 'fecha_inicio' => now()->subYears(1)->toDateString(),
-                'fecha_fin' => null,
+                'fecha_fin' => '10/07/2025',
                 'motivo_fin_id' => null,
             ]);
 

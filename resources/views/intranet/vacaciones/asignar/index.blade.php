@@ -100,7 +100,7 @@
                                                     
                                                 </td>
                                             </tr> 
-                                            @include('vacaciones.asignar.modal')       
+                                            @include('intranet.vacaciones.asignar.modal')       
                                     </tbody>
 
                                 </table>

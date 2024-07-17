@@ -208,11 +208,15 @@ Route::group(
 
         /// Asignar vacaciones
 
-        Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
+        //Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
 
+        Route::resource('vacaciones', AsignarVacacionesController::class);
 
         ///Calendario vaciones
 
+        //Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
+
+        Route::resource('calendario', CalendarioVacacionesController::class);
         Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
 
         // Solicitud de Licencias 

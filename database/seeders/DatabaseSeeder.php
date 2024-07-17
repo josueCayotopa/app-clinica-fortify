@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
         //TipoBancoSeeder::class,
 
         //SeguroMedicoSeeder::class,
-        DatosPersonalSeeder::class,
+        //DatosPersonalSeeder::class,
         ]);
     }
 }
