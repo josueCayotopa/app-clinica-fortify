@@ -20,10 +20,8 @@ return new class extends Migration
             $table->date('fecha_fin')->nullable();
             $table->integer('numero_dias')->nullable();
             $table->boolean('activo')->default(true);
-
             // Clave foránea
             $table->foreign('trabajador_id')->references('id')->on('datos_personals');
-
             $table->timestamps();
         });
     }

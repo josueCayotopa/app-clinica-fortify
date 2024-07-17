@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DatosPersonal;
 use App\Models\Licencias;
+use App\Models\Personal;
+use App\Models\TipoSuspencion;
+use App\Models\TipoSuspension;
 use Illuminate\Http\Request;
 
 class LicenciasController extends Controller
@@ -14,7 +18,8 @@ class LicenciasController extends Controller
      */
     public function index()
     {
-        //
+        $licencias = Licencias::paginate(10); // Ejemplo de paginación, ajusta según necesites
+        return view('licencias.index', compact('licencias'));
     }
 
     /**
@@ -25,6 +30,10 @@ class LicenciasController extends Controller
     public function create()
     {
         //
+        $tipoSuspension=TipoSuspension::all()->pluck('descripcion', 'id');
+        $datospersonal=DatosPersonal::all()->pluck('numero_documento', 'id');
+        return view('licencias.create', compact('datospersonal', 'tipoSuspension'));
+        
     }
 
     /**
@@ -36,6 +45,15 @@ class LicenciasController extends Controller
     public function store(Request $request)
     {
         //
+        $licencia = new Licencias();
+        $licencia->trabajador_id = $request->trabajador_id;
+        $licencia->tipo_suspencion_id = $request->tipo_suspencion_id;
+        $licencia->fecha_inicio = $request->fecha_inicio;
+        $licencia->fecha_fin = $request->fecha_fin;
+        $licencia->descripcion = $request->descripcion;
+        $licencia->save();
+
+        return redirect()->route('licencias.index');
     }
 
     /**
@@ -55,9 +73,14 @@ class LicenciasController extends Controller
      * @param  \App\Models\Licencias  $licencias
      * @return \Illuminate\Http\Response
      */
-    public function edit(Licencias $licencias)
+    public function edit( $id)
     {
         //
+        $licencia = Licencias::findOrFail($id);
+        $tipoSuspension = TipoSuspension::whereIn('id', [11, 12])->pluck('descripcion', 'id');
+        $datospersonal=DatosPersonal::all()->pluck('numero_documento', 'id');
+        return view('licencias.create', compact('datospersonal', 'tipoSuspension','licencia'));
+        
     }
 
     /**
@@ -67,9 +90,12 @@ class LicenciasController extends Controller
      * @param  \App\Models\Licencias  $licencias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Licencias $licencias)
+    public function update(Request $request, $id)
     {
         //
+        $licencia = Licencias::findOrFail($id);
+        $licencia->update($request->all());
+        return redirect()->route('licencias.index')->with('success', 'Licencia actualizada correctamente');
     }
 
     /**
@@ -78,8 +104,13 @@ class LicenciasController extends Controller
      * @param  \App\Models\Licencias  $licencias
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Licencias $licencias)
+    public function destroy( $id)
     {
         //
+        {
+            $licencia = Licencias::findOrFail($id);
+            $licencia->delete();
+            return redirect()->route('licencias.index')->with('success', 'Licencia eliminada correctamente');
+        }
     }
 }

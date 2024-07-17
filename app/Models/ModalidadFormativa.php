@@ -29,32 +29,32 @@ class ModalidadFormativa extends Model
 
     public function seguroMedico()
     {
-        return $this->belongsTo(SeguroMedico::class);
+        return $this->belongsTo(SeguroMedico::class, 'seguro_medico_id');
     }
 
     public function nivelEducativo()
     {
-        return $this->belongsTo(Nivel_educativo::class);
+        return $this->belongsTo(Nivel_educativo::class, 'nivel_educativo_id');
     }
 
     public function ocupacion()
     {
-        return $this->belongsTo(Ocupacion::class);
+        return $this->belongsTo(Ocupacion::class, 'ocupacion_id');
     }
 
     public function institucion()
     {
-        return $this->belongsTo(Institucion::class);
+        return $this->belongsTo(Institucion::class, 'institucion_id');
     }
 
     public function tipoPago()
     {
-        return $this->belongsTo(TipoPago::class);
+        return $this->belongsTo(TipoPago::class, 'tipo_pago_id');
     }
 
     public function tipoBanco()
     {
-        return $this->belongsTo(TipoBanco::class);
+        return $this->belongsTo(TipoBanco::class, 'tipo_banco_id');
     }
 
     public function periodoLaboral()
@@ -64,7 +64,7 @@ class ModalidadFormativa extends Model
 
     public function jornadaLaboral()
     {
-        return $this->belongsTo(JornadaLaboral::class);
+        return $this->belongsTo(JornadaLaboral::class, 'periodo_laboral_id');
     }
 
     public function diasSubcidiado()
@@ -79,6 +79,6 @@ class ModalidadFormativa extends Model
 
     public function sucursalEstablecimientoLaboral()
     {
-        return $this->belongsTo(SucursalEstablecimientoLaboral::class);
+        return $this->belongsTo(SucursalEstablecimientoLaboral::class, 'sucursal_establecimiento_laboral_id');
     }
 }

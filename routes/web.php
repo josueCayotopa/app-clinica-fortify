@@ -17,6 +17,7 @@ use App\Http\Controllers\DerechoHabientesController;
 use App\Http\Controllers\DescuentoRegimemPencionarioController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\EmpresaMeDestacanController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FormulaController;
 use App\Http\Controllers\InstitucionController;
@@ -31,7 +32,9 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\SolicitudLicenciasController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TipoTrabajadorController;
+use App\Http\Controllers\TipoDeActividadController;
 use App\Http\Controllers\TipoTrabajadorIpssController;
+use App\Http\Controllers\LicenciasController;
 use App\Http\Controllers\TrabajadorController;
 use App\Http\Controllers\TrabajadorCuartaCategoriaController;
 use App\Http\Controllers\UbigeoController;
@@ -43,13 +46,16 @@ use App\Http\Livewire\PensionRegimes;
 use App\Http\Livewire\RegimenAfpCrud;
 use App\Http\Livewire\TipoDescuento;
 use App\Models\AfpDescuentosPensiones;
+use App\Models\CalculoPlanilla;
 use App\Models\CargoCategoria;
 use App\Models\ConceptoSunat;
+use App\Models\DatosPersonal;
 use App\Models\ModaliadFormativa;
 use App\Models\ModalidadFormativa;
 use App\Models\Ocupacion;
 use App\Models\RegimenPencionario;
 use App\Models\SolicitudLicencias;
+
 use App\Models\Sucursal;
 use App\Models\Tipo_trabajador;
 use Database\Seeders\OcupacionSeeder;
@@ -107,9 +113,7 @@ Route::group(
         // rutas para tipo trabajador ipss
         Route::resource('tipo_trabajador_ipsses', TipoTrabajadorIpssController::class);
 
-        //ruta para asistencia
-        // routes/web.php
-        Route::get('/asistenciaa', [AsistenciaController::class, 'index'])->name('asistencia.index');
+
 
 
         // empleado
@@ -118,8 +122,8 @@ Route::group(
 
         ////Planillas
         /////Conocimientos
-        Route::get('/empleados/planillas/conocimiento', [ConocimientoController::class, 'index'])->name('conocimiento.index');
-        Route::post('/empleados/planillas/conocimiento', [ConocimientoController::class, 'store'])->name('conocimiento.store');
+        Route::get('/empleados/planillas/conocimiento',  [ConocimientoController::class, 'index'])->name('conocimiento.index');
+        Route::post('/empleados/planillas/conocimiento',  [ConocimientoController::class, 'store'])->name('conocimiento.store');
         Route::post('/conocimiento/{id}', [ConocimientoController::class, 'update'])->name('conocimiento.update');
         Route::delete('/conocimiento/{conocimiento}', [ConocimientoController::class, 'destroy'])->name('conocimiento.delete');
 
@@ -148,7 +152,7 @@ Route::group(
 
 
         Route::resource('cargos', CargoController::class);
-        // cargo y Categorias
+       
         // Tipo de trabajador y ocupaciones  Josue 
         Route::resource('tipo_trabajadores', TipoTrabajadorController::class);
         Route::get('/tipos-trabajador/{id}/ocupaciones', [TipoTrabajadorController::class, 'getOcupaciones']);
@@ -209,6 +213,7 @@ Route::group(
         /// Asignar vacaciones
 
         //Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
+        //Route::get('/vacaciones/asignar', [AsignarVacacionesController::class, 'index'])->name('vacaciones.asignar.index');
 
         Route::resource('vacaciones', AsignarVacacionesController::class);
         Route::resource('solicitud_vacaciones', VacacionesController::class);
@@ -219,17 +224,39 @@ Route::group(
         //Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
 
         Route::resource('calendario', CalendarioVacacionesController::class);
+        Route::get('/vacaciones/calendario', [CalendarioVacacionesController::class, 'index'])->name('vacaciones.calendario.index');
 
         // Solicitud de Licencias 
         Route::resource('solicitud_licencias', SolicitudLicenciasController::class);
-
+        Route::resource('licencias', LicenciasController::class);
+        
+        Route::get('/api/trabajadores', [DatosPersonal::class, 'search']);
+        //ruta para asistencia
+        // routes/web.php
+        Route::get('/asistenciaa', [AsistenciaController::class, 'index'])->name('asistencia.index');
 
         //numero de ususarios
 
+        //pensionistas
+        Route::get('/pensionistas', [PensionistaController::class,'index'])->name('pensionistas.index');
 
         //Cuarta categoria
 
         Route::resource('cuarta_categoria', TrabajadorCuartaCategoriaController::class);
+
+
+
+        //  Calculo de planilla
+        Route::get('/planilla/index', [CalculoPlanilla::class, 'index'])->name('calculo.index');
+
+
+
+
+
+
+
+
+
     }
 );
 

@@ -16,7 +16,8 @@ class MotivoFinPeriodo extends Model
 
     public function periodoLaborals()
     {
-        return $this->hasMany(PeriodoLaboral::class, 'categoria_periodos_id');
+        return $this->hasMany(PeriodoLaboral::class, 'motivo_fin_id');
     }
+
 
 }

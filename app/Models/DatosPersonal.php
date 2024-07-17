@@ -18,7 +18,6 @@ class DatosPersonal extends Model
         'nombres',
         'fecha_nacimiento',
         'sexo',
-        'nacionalidad_id',
         'telefono',
         'correo_electronico',
         'imagen',
@@ -33,6 +32,7 @@ class DatosPersonal extends Model
         'nombre_zona',
         'referencia',
         'distrito_id',
+        //
         'institucion_id',
         'prefesion_id',
         'trabajador_id',
@@ -61,10 +61,6 @@ class DatosPersonal extends Model
         return $this->belongsTo(TipoDocumento::class);
     }
 
-    public function nacionalidad()
-    {
-        return $this->belongsTo(Nacionalidad::class, 'pais_id');
-    }
     public function trabajador()
     {
         return $this->belongsTo(Trabajador::class, 'trabajador_id');
