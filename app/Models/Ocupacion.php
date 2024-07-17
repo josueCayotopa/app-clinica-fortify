@@ -26,4 +26,8 @@ class Ocupacion extends Model
     {
         return $this->hasMany(Trabajador::class, 'ocupacion_id');
     }
+    public function modalidadformativa()
+    {
+        return $this->hasMany(ModalidadFormativa::class, 'ocupacion_id');
+    }
 }

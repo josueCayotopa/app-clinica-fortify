@@ -4,7 +4,7 @@
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="horas_trabajadas">Horas Trabajadas</label>
-                <input type="text" class="form-control" placeholder="Ingrese las horas trabajadas"
+                <input type="number" class="form-control" placeholder="Ingrese las horas trabajadas"
                     name="horas_trabajadas" value="{{ old('horas_trabajadas') }}">
                 @if ($errors->has('horas_trabajadas'))
                     <span class="error text-danger">{{ $errors->first('horas_trabajadas') }}</span>
@@ -14,7 +14,7 @@
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="minutos_trabajados">Minutos Trabajados</label>
-                <input type="text" class="form-control" placeholder="Ingrese los minutos trabajados"
+                <input type="number" class="form-control" placeholder="Ingrese los minutos trabajados"
                     name="minutos_trabajados" value="{{ old('minutos_trabajados') }}">
                 @if ($errors->has('minutos_trabajados'))
                     <span class="error text-danger">{{ $errors->first('minutos_trabajados') }}</span>
@@ -24,7 +24,7 @@
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="horas_sobretiempo">Horas de Sobretiempo</label>
-                <input type="text" class="form-control" placeholder="Ingrese las horas de sobretiempo"
+                <input type="number" class="form-control" placeholder="Ingrese las horas de sobretiempo"
                     name="horas_sobretiempo" value="{{ old('horas_sobretiempo') }}">
                 @if ($errors->has('horas_sobretiempo'))
                     <span class="error text-danger">{{ $errors->first('horas_sobretiempo') }}</span>
@@ -34,7 +34,7 @@
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="minutos_sobretiempo">Minutos de Sobretiempo</label>
-                <input type="text" class="form-control" placeholder="Ingrese los minutos de sobretiempo"
+                <input type="number" class="form-control" placeholder="Ingrese los minutos de sobretiempo"
                     name="minutos_sobretiempo" value="{{ old('minutos_sobretiempo') }}">
                 @if ($errors->has('minutos_sobretiempo'))
                     <span class="error text-danger">{{ $errors->first('minutos_sobretiempo') }}</span>
@@ -54,7 +54,7 @@
         <div class="col-md-6 mb-1">
             <div class="form-group">
                 <label for="numero_dias_semana">Número de Días a la Semana</label>
-                <input type="text" class="form-control" placeholder="Ingrese el número de días a la semana"
+                <input type="number" class="form-control" placeholder="Ingrese el número de días a la semana"
                     name="numero_dias_semana" value="{{ old('numero_dias_semana') }}">
                 @if ($errors->has('numero_dias_semana'))
                     <span class="error text-danger">{{ $errors->first('numero_dias_semana') }}</span>

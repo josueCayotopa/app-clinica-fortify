@@ -8,7 +8,7 @@
 
     <div class="el-row is-justify-space-between row-bg mb-3">
         <div class="el-col el-col-24 el-col-xs-8 el-col-sm-10">
-            <h5>Listado de Personal</h5>
+            <h5>Listado de Roles</h5>
         </div>
         <div class="el-col el-col-24 el-col-xs-6 el-col-sm-2">
             @can('user_create')
@@ -20,7 +20,7 @@
     </div>
     <div class="el-row is-justify-space-between row-bg">
         <div class="col-lg-4 mt-2">
-            <form method="GET" action="{{ route('users.index') }}" class="input-group">
+            <form method="GET" action="{{ route('roles.index') }}" class="input-group">
                 <input type="text" class="form-control" name="search" id="search-input"
                     placeholder="Buscar por Nombre o ID" value="{{ request()->input('search') }}">
                 <div class="input-group-append">

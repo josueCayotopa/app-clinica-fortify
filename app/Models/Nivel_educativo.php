@@ -21,4 +21,9 @@ class Nivel_educativo extends Model
     {
         return $this->hasMany(Trabajador::class,'nivel_edicativo_id');
     }
+    public function modalidadformativa()
+    {
+        return $this->hasMany(ModaliadFormativa::class,'nivel_edicativo_id');
+    }
+
 }

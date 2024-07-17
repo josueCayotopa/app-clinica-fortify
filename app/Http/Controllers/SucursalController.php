@@ -172,7 +172,6 @@ class SucursalController extends Controller
                 ))->render(),
                 'url' => route('sucursales.edit', $request->query())
             ]);
-            
         }
 
         return view('home')->with([
@@ -231,5 +230,12 @@ class SucursalController extends Controller
     {
         $sucursal->delete();
         return redirect()->route('sucursales.index')->with('success', 'Sucursal eliminada exitosamente.');
+    }
+
+
+    public function getSucursales($empresa_id)
+    {
+        $sucursales = Sucursal::where('empresa_id', $empresa_id)->pluck('nombre_sucursal', 'id');
+        return response()->json($sucursales);
     }
 }
